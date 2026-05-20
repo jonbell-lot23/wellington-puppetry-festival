@@ -8,9 +8,8 @@ const _dmSerif = DM_Serif_Display({ subsets: ["latin"], weight: "400" });
 const _inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: 'Strings & Shadows | Wellington Puppetry Festival 2026',
-  description: 'Where imagination takes flight. Wellington\'s premier puppetry festival featuring world-class performances for all ages.',
-  generator: 'v0.app',
+  title: 'Wellington Puppetry Festival 2026 — Puppets for Peace',
+  description: 'Wellington Puppetry Festival · Puppets for Peace · 18–20 September 2026 · Wellington, NZ',
   icons: {
     icon: [
       {

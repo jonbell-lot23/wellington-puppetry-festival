@@ -58,25 +58,27 @@ export default function Home() {
           Stay updated
         </h2>
         <p className="text-green-200 mb-8">Sign up for news and announcements from Wellington Puppetry Festival</p>
-        <form className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-4">
-          <input
-            type="text"
-            placeholder="First Name"
-            className="flex-1 px-4 py-2 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-yellow-400"
-          />
-          <input
-            type="text"
-            placeholder="Last Name"
-            className="flex-1 px-4 py-2 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-yellow-400"
-          />
+        <form className="flex flex-col gap-3 max-w-md mx-auto mb-4">
+          <div className="flex gap-3">
+            <input
+              type="text"
+              placeholder="First Name"
+              className="flex-1 px-4 py-3 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-yellow-400"
+            />
+            <input
+              type="text"
+              placeholder="Last Name"
+              className="flex-1 px-4 py-3 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-yellow-400"
+            />
+          </div>
           <input
             type="email"
             placeholder="Email Address"
-            className="flex-1 px-4 py-2 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-yellow-400"
+            className="w-full px-4 py-3 rounded bg-white/10 border border-white/20 text-white placeholder:text-white/40 focus:outline-none focus:border-yellow-400"
           />
           <button
             type="submit"
-            className="bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold px-6 py-2 rounded transition-colors"
+            className="w-full bg-yellow-400 hover:bg-yellow-300 text-green-900 font-bold px-6 py-3 rounded transition-colors text-lg"
           >
             Sign up
           </button>
