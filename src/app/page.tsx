@@ -1,29 +1,11 @@
 import Image from "next/image"
-import Link from "next/link"
 
 export default function Home() {
   return (
     <main className="min-h-screen" style={{ backgroundColor: "#1a0a0a" }}>
-      {/* Nav */}
-      <nav className="flex items-center justify-between px-6 py-4">
-        <Image
-          src="/images/festival-5.png"
-          alt="Wellington Puppetry Festival"
-          width={80}
-          height={80}
-          className="object-contain rounded"
-        />
-        <div className="hidden md:flex gap-6 text-white text-sm font-medium">
-          <Link href="#" className="hover:text-yellow-300 transition-colors">Home</Link>
-          <Link href="#" className="hover:text-yellow-300 transition-colors">Shows</Link>
-          <Link href="#" className="hover:text-yellow-300 transition-colors">About</Link>
-          <Link href="#" className="hover:text-yellow-300 transition-colors">For Teachers</Link>
-          <Link href="#" className="hover:text-yellow-300 transition-colors">Contact</Link>
-        </div>
-      </nav>
 
       {/* Hero */}
-      <section className="flex flex-col items-center px-4 pt-8 pb-12">
+      <section className="flex flex-col items-center px-4 pt-12 pb-12">
         <Image
           src="/images/festival-5.png"
           alt="Wellington Puppetry Festival – Puppets for Peace, 18–20 September 2026"
@@ -73,9 +55,9 @@ export default function Home() {
       {/* Newsletter */}
       <section className="bg-green-900 px-6 py-16 text-center">
         <h2 className="text-white text-2xl font-bold mb-2">
-          Sign up for occasional updates from Wellington Puppetry Festival
+          Stay updated
         </h2>
-        <p className="text-green-200 mb-8">Stay in the loop with news and announcements!</p>
+        <p className="text-green-200 mb-8">Sign up for news and announcements from Wellington Puppetry Festival</p>
         <form className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-4">
           <input
             type="text"
@@ -103,18 +85,13 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-black text-white/60 text-sm px-6 py-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <div className="flex gap-6">
-          <Link href="#" className="hover:text-white transition-colors">Shows</Link>
-          <Link href="#" className="hover:text-white transition-colors">For Teachers</Link>
-          <Link href="#" className="hover:text-white transition-colors">Contact</Link>
-          <Link href="#" className="hover:text-white transition-colors">About</Link>
-        </div>
-        <div className="flex gap-4">
-          <a href="https://www.instagram.com/BirdlifeProductions3" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
-          <a href="https://www.facebook.com/BirdlifeProductions" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Facebook</a>
-        </div>
-        <p className="text-white/30">Wellington Puppetry Festival 2026</p>
+      <footer className="bg-black text-white/40 text-sm px-6 py-8 text-center">
+        <p>Wellington Puppetry Festival · 18–20 September 2026 · Wellington, NZ</p>
+        <p className="mt-2">
+          <a href="mailto:wellingtonpuppetryfestival@gmail.com" className="hover:text-white transition-colors">
+            wellingtonpuppetryfestival@gmail.com
+          </a>
+        </p>
       </footer>
     </main>
   )
