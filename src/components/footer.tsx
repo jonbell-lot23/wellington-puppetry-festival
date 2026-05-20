@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { Facebook, Instagram, Twitter, Youtube } from "lucide-react"
+import { Globe, Share2, MessageCircle, Play } from "lucide-react"
 
 const footerLinks = {
   festival: [
@@ -23,10 +23,10 @@ const footerLinks = {
 }
 
 const socialLinks = [
-  { icon: Instagram, href: "#", label: "Instagram" },
-  { icon: Facebook, href: "#", label: "Facebook" },
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Youtube, href: "#", label: "YouTube" },
+  { icon: Share2, href: "#", label: "Instagram" },
+  { icon: Globe, href: "#", label: "Facebook" },
+  { icon: MessageCircle, href: "#", label: "Twitter" },
+  { icon: Play, href: "#", label: "YouTube" },
 ]
 
 export function Footer() {
