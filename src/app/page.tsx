@@ -6,21 +6,19 @@ export default function Home() {
     <main className="min-h-screen" style={{ backgroundColor: "#1a0a0a" }}>
       {/* Nav */}
       <nav className="flex items-center justify-between px-6 py-4">
-        <Link href="https://www.birdlifeproductions.co.nz" target="_blank">
-          <Image
-            src="/images/logo.png"
-            alt="Birdlife Productions"
-            width={120}
-            height={100}
-            className="object-contain"
-          />
-        </Link>
+        <Image
+          src="/images/festival-5.png"
+          alt="Wellington Puppetry Festival"
+          width={80}
+          height={80}
+          className="object-contain rounded"
+        />
         <div className="hidden md:flex gap-6 text-white text-sm font-medium">
           <Link href="#" className="hover:text-yellow-300 transition-colors">Home</Link>
           <Link href="#" className="hover:text-yellow-300 transition-colors">Shows</Link>
-          <Link href="#" className="hover:text-yellow-300 transition-colors">About Us</Link>
+          <Link href="#" className="hover:text-yellow-300 transition-colors">About</Link>
           <Link href="#" className="hover:text-yellow-300 transition-colors">For Teachers</Link>
-          <Link href="#" className="hover:text-yellow-300 transition-colors">Contact us</Link>
+          <Link href="#" className="hover:text-yellow-300 transition-colors">Contact</Link>
         </div>
       </nav>
 
@@ -75,9 +73,9 @@ export default function Home() {
       {/* Newsletter */}
       <section className="bg-green-900 px-6 py-16 text-center">
         <h2 className="text-white text-2xl font-bold mb-2">
-          Sign up for occasional updates from Birdlife Productions
+          Sign up for occasional updates from Wellington Puppetry Festival
         </h2>
-        <p className="text-green-200 mb-8">as well as some news and updates!</p>
+        <p className="text-green-200 mb-8">Stay in the loop with news and announcements!</p>
         <form className="flex flex-col sm:flex-row gap-3 max-w-2xl mx-auto mb-4">
           <input
             type="text"
@@ -116,7 +114,7 @@ export default function Home() {
           <a href="https://www.instagram.com/BirdlifeProductions3" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
           <a href="https://www.facebook.com/BirdlifeProductions" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Facebook</a>
         </div>
-        <p>Site made with ❤ by <a href="https://www.poladesign.co.nz/" className="underline hover:text-white" target="_blank" rel="noopener noreferrer">Pola Design</a></p>
+        <p className="text-white/30">Wellington Puppetry Festival 2026</p>
       </footer>
     </main>
   )
