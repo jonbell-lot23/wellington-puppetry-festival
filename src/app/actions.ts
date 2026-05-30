@@ -20,6 +20,12 @@ export type SiteContent = {
   footerEmail: string
 }
 
+export type ContentVersion = {
+  id: number
+  data: SiteContent
+  saved_at: string
+}
+
 const defaults: SiteContent = {
   heroSubheading: 'Wellington Puppetry Festival 2026',
   heroHeading: 'Thanks for your submissions',
@@ -54,6 +60,54 @@ export async function saveSiteContent(content: SiteContent) {
     .upsert({ id: 1, data: content, updated_at: new Date().toISOString() })
 
   if (error) throw error
+
+  await supabase
+    .from('site_content_history')
+    .insert({ data: content, saved_at: new Date().toISOString() })
+
+  revalidatePath('/')
+  revalidatePath('/admin')
+}
+
+export async function getContentHistory(): Promise<ContentVersion[]> {
+  const { data, error } = await supabase
+    .from('site_content_history')
+    .select('id, data, saved_at')
+    .order('saved_at', { ascending: false })
+    .limit(20)
+
+  if (error) return []
+  return (data ?? []) as ContentVersion[]
+}
+
+export async function historyTableExists(): Promise<boolean> {
+  const { error } = await supabase
+    .from('site_content_history')
+    .select('id')
+    .limit(1)
+  return !error
+}
+
+export async function revertToVersion(versionId: number) {
+  const { data, error } = await supabase
+    .from('site_content_history')
+    .select('data')
+    .eq('id', versionId)
+    .single()
+
+  if (error || !data) throw new Error('Version not found')
+
+  const content = { ...defaults, ...(data.data as Partial<SiteContent>) }
+
+  const { error: upsertError } = await supabase
+    .from('site_content')
+    .upsert({ id: 1, data: content, updated_at: new Date().toISOString() })
+
+  if (upsertError) throw upsertError
+
+  await supabase
+    .from('site_content_history')
+    .insert({ data: content, saved_at: new Date().toISOString() })
 
   revalidatePath('/')
   revalidatePath('/admin')
