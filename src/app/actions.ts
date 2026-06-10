@@ -44,6 +44,7 @@ const defaults: SiteContent = {
 }
 
 export async function getSiteContent(): Promise<SiteContent> {
+  if (!supabase) return defaults
   const { data, error } = await supabase
     .from('site_content')
     .select('data')
@@ -55,6 +56,8 @@ export async function getSiteContent(): Promise<SiteContent> {
 }
 
 export async function saveSiteContent(content: SiteContent) {
+  if (!supabase) return
+
   const { error } = await supabase
     .from('site_content')
     .upsert({ id: 1, data: content, updated_at: new Date().toISOString() })
@@ -70,6 +73,7 @@ export async function saveSiteContent(content: SiteContent) {
 }
 
 export async function getContentHistory(): Promise<ContentVersion[]> {
+  if (!supabase) return []
   const { data, error } = await supabase
     .from('site_content_history')
     .select('id, data, saved_at')
@@ -81,6 +85,7 @@ export async function getContentHistory(): Promise<ContentVersion[]> {
 }
 
 export async function historyTableExists(): Promise<boolean> {
+  if (!supabase) return false
   const { error } = await supabase
     .from('site_content_history')
     .select('id')
@@ -89,6 +94,8 @@ export async function historyTableExists(): Promise<boolean> {
 }
 
 export async function revertToVersion(versionId: number) {
+  if (!supabase) throw new Error('Supabase not configured')
+
   const { data, error } = await supabase
     .from('site_content_history')
     .select('data')
