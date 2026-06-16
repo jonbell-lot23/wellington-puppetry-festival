@@ -2,81 +2,56 @@
 
 import { supabase } from '@/lib/supabase'
 import { revalidatePath } from 'next/cache'
+import { defaultsFor, getPageDef } from '@/lib/pages'
 
-export type SiteContent = {
-  heroSubheading: string
-  heroHeading: string
-  badgeTitle: string
-  badgeSubtext: string
-  dateLocation: string
-  heroCta: string
-  formHeading: string
-  formSubtext: string
-  signupButton: string
-  successHeading: string
-  successSubtext: string
-  footerName: string
-  footerDate: string
-  footerEmail: string
-}
+export type PageContent = Record<string, string>
 
 export type ContentVersion = {
   id: number
-  data: SiteContent
+  slug: string
+  data: PageContent
   saved_at: string
 }
 
-const defaults: SiteContent = {
-  heroSubheading: 'Wellington Puppetry Festival 2026',
-  heroHeading: 'Thanks for your submissions',
-  badgeTitle: 'Programme Coming Soon',
-  badgeSubtext: 'Full lineup announced June 2026',
-  dateLocation: '18–20 September 2026 · Wellington, NZ',
-  heroCta: 'Sign up to be the first to know when the programme drops.',
-  formHeading: 'Stay in the loop',
-  formSubtext: 'Get news and announcements direct to your inbox.',
-  signupButton: 'Sign up for Festival News',
-  successHeading: "You're on the list!",
-  successSubtext: "We'll be in touch when the programme is announced.",
-  footerName: 'Wellington Puppetry Festival',
-  footerDate: '18–20 September 2026 · Wellington, NZ',
-  footerEmail: 'wellingtonpuppetryfestival@gmail.com',
-}
-
-export async function getSiteContent(): Promise<SiteContent> {
+/** Read a page's content, DB overrides merged over code defaults. */
+export async function getPageContent(slug: string): Promise<PageContent> {
+  const defaults = defaultsFor(slug)
   if (!supabase) return defaults
   const { data, error } = await supabase
-    .from('site_content')
+    .from('pages')
     .select('data')
-    .eq('id', 1)
+    .eq('slug', slug)
     .single()
 
   if (error || !data) return defaults
-  return { ...defaults, ...(data.data as Partial<SiteContent>) }
+  return { ...defaults, ...(data.data as PageContent) }
 }
 
-export async function saveSiteContent(content: SiteContent) {
+/** Persist a page's content and snapshot history. */
+export async function savePageContent(slug: string, content: PageContent) {
   if (!supabase) return
+  const def = getPageDef(slug)
+  const path = def?.path ?? '/'
 
   const { error } = await supabase
-    .from('site_content')
-    .upsert({ id: 1, data: content, updated_at: new Date().toISOString() })
-
+    .from('pages')
+    .upsert({ slug, data: content, updated_at: new Date().toISOString() })
   if (error) throw error
 
   await supabase
-    .from('site_content_history')
-    .insert({ data: content, saved_at: new Date().toISOString() })
+    .from('page_history')
+    .insert({ slug, data: content, saved_at: new Date().toISOString() })
 
-  revalidatePath('/')
+  revalidatePath(path)
   revalidatePath('/admin')
 }
 
-export async function getContentHistory(): Promise<ContentVersion[]> {
+export async function getPageHistory(slug: string): Promise<ContentVersion[]> {
   if (!supabase) return []
   const { data, error } = await supabase
-    .from('site_content_history')
-    .select('id, data, saved_at')
+    .from('page_history')
+    .select('id, slug, data, saved_at')
+    .eq('slug', slug)
     .order('saved_at', { ascending: false })
     .limit(20)
 
@@ -84,38 +59,23 @@ export async function getContentHistory(): Promise<ContentVersion[]> {
   return (data ?? []) as ContentVersion[]
 }
 
-export async function historyTableExists(): Promise<boolean> {
+export async function pagesTableExists(): Promise<boolean> {
   if (!supabase) return false
-  const { error } = await supabase
-    .from('site_content_history')
-    .select('id')
-    .limit(1)
+  const { error } = await supabase.from('pages').select('slug').limit(1)
   return !error
 }
 
-export async function revertToVersion(versionId: number) {
+export async function revertToVersion(slug: string, versionId: number) {
   if (!supabase) throw new Error('Supabase not configured')
 
   const { data, error } = await supabase
-    .from('site_content_history')
+    .from('page_history')
     .select('data')
     .eq('id', versionId)
     .single()
 
   if (error || !data) throw new Error('Version not found')
 
-  const content = { ...defaults, ...(data.data as Partial<SiteContent>) }
-
-  const { error: upsertError } = await supabase
-    .from('site_content')
-    .upsert({ id: 1, data: content, updated_at: new Date().toISOString() })
-
-  if (upsertError) throw upsertError
-
-  await supabase
-    .from('site_content_history')
-    .insert({ data: content, saved_at: new Date().toISOString() })
-
-  revalidatePath('/')
-  revalidatePath('/admin')
+  const content = { ...defaultsFor(slug), ...(data.data as PageContent) }
+  await savePageContent(slug, content)
 }

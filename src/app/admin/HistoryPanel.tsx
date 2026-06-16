@@ -1,29 +1,17 @@
 'use client'
 
 import { useState } from 'react'
-import { revertToVersion, type ContentVersion, type SiteContent } from '../actions'
+import { revertToVersion, type ContentVersion, type PageContent } from '../actions'
+import type { Field } from '@/lib/pages'
 
-const FIELD_LABELS: Record<keyof SiteContent, string> = {
-  heroSubheading: 'Hero subheading',
-  heroHeading: 'Hero heading',
-  badgeTitle: 'Badge title',
-  badgeSubtext: 'Badge subtext',
-  dateLocation: 'Date & location',
-  heroCta: 'Hero CTA',
-  formHeading: 'Form heading',
-  formSubtext: 'Form subtext',
-  signupButton: 'Signup button',
-  successHeading: 'Success heading',
-  successSubtext: 'Success subtext',
-  footerName: 'Footer name',
-  footerDate: 'Footer date',
-  footerEmail: 'Footer email',
-}
-
-function getDiff(a: SiteContent, b: SiteContent): Array<{ field: keyof SiteContent; from: string; to: string }> {
-  return (Object.keys(FIELD_LABELS) as Array<keyof SiteContent>)
-    .filter(k => a[k] !== b[k])
-    .map(k => ({ field: k, from: a[k], to: b[k] }))
+function getDiff(
+  labels: Record<string, string>,
+  a: PageContent,
+  b: PageContent,
+): Array<{ field: string; from: string; to: string }> {
+  return Object.keys(labels)
+    .filter((k) => (a[k] ?? '') !== (b[k] ?? ''))
+    .map((k) => ({ field: k, from: a[k] ?? '', to: b[k] ?? '' }))
 }
 
 function formatDate(iso: string) {
@@ -34,14 +22,18 @@ function formatDate(iso: string) {
 }
 
 export default function HistoryPanel({
+  slug,
   versions,
-  current,
+  fields,
 }: {
+  slug: string
   versions: ContentVersion[]
-  current: SiteContent
+  current: PageContent
+  fields: Field[]
 }) {
   const [expanded, setExpanded] = useState<number | null>(null)
   const [reverting, setReverting] = useState<number | null>(null)
+  const labels: Record<string, string> = Object.fromEntries(fields.map((f) => [f.key, f.label]))
 
   if (versions.length === 0) {
     return (
@@ -53,7 +45,7 @@ export default function HistoryPanel({
 
   async function handleRevert(id: number) {
     setReverting(id)
-    await revertToVersion(id)
+    await revertToVersion(slug, id)
     setReverting(null)
   }
 
@@ -61,7 +53,7 @@ export default function HistoryPanel({
     <div className="flex flex-col gap-2">
       {versions.map((version, i) => {
         const prev = versions[i + 1]
-        const diffs = prev ? getDiff(prev.data, version.data) : getDiff(version.data, version.data)
+        const diffs = prev ? getDiff(labels, prev.data, version.data) : getDiff(labels, version.data, version.data)
         const isCurrentLive = i === 0
         const isExpanded = expanded === version.id
 
@@ -96,7 +88,7 @@ export default function HistoryPanel({
                   <div className="flex flex-col gap-3 mb-4">
                     {diffs.map(({ field, from, to }) => (
                       <div key={field} className="text-xs">
-                        <div className="text-white/40 mb-1">{FIELD_LABELS[field]}</div>
+                        <div className="text-white/40 mb-1">{labels[field]}</div>
                         <div className="bg-red-900/30 border border-red-700/30 rounded px-2 py-1 text-red-300 line-through mb-1">{from}</div>
                         <div className="bg-green-900/30 border border-green-700/30 rounded px-2 py-1 text-green-300">{to}</div>
                       </div>

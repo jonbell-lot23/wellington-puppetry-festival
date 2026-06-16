@@ -75,7 +75,7 @@
 }
 
 @theme inline {
-  --font-sans: 'Inter', 'Inter Fallback', system-ui, sans-serif;
+  --font-sans: var(--font-nunito), 'Nunito Fallback', system-ui, sans-serif;
   --font-serif: 'DM Serif Display', 'Georgia', serif;
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
   --color-background: var(--background);
@@ -122,5 +122,31 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-nunito), system-ui, sans-serif;
   }
 }
+
+/* ── Birdlife Productions brand ─────────────────────────────────── */
+:root {
+  --brand-green: #2a571d; /* festival body heading green */
+  --brand-green-banner: #3c7d2e;
+  --brand-yellow: #f4b323;
+  --brand-orange: #e8772e;
+  --brand-cream: #fbf6e9;
+  --brand-maroon: #271620; /* dark page base */
+  --signup-blue: #aacdee; /* footer Sign Up button */
+}
+
+/* Site-wide dark maroon textured background (matches Squarespace original). */
+.site-bg {
+  background-color: var(--brand-maroon);
+  background-image: url('/images/footer-bg.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.font-display {
+  font-family: var(--font-nunito), system-ui, sans-serif;
+}
+
