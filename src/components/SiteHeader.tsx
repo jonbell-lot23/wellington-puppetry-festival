@@ -21,26 +21,26 @@ export default function SiteHeader() {
 
   return (
     <header className="absolute top-0 inset-x-0 z-50">
-      <div className="mx-auto max-w-[1100px] px-5 md:px-8 flex items-center justify-between py-4 md:py-5">
+      <div className="mx-auto max-w-[1440px] px-6 md:px-11 flex items-center justify-between py-3 md:py-4">
         <Link href="/" className="shrink-0">
           <Image
             src="/images/bp-logo.png"
             alt="Birdlife Productions"
-            width={120}
-            height={120}
+            width={160}
+            height={160}
             priority
-            className="w-[64px] md:w-[78px] h-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]"
+            className="w-[84px] md:w-[143px] h-auto drop-shadow-[0_1px_2px_rgba(0,0,0,0.25)]"
           />
         </Link>
 
         {/* Desktop nav */}
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav className="hidden lg:flex items-center gap-6">
           {NAV.map((item) =>
             item.external ? (
               <a
                 key={item.href}
                 href={item.href}
-                className="text-white text-[15px] font-medium hover:opacity-70 transition-opacity whitespace-nowrap"
+                className="text-white text-[22px] font-medium hover:opacity-70 transition-opacity whitespace-nowrap"
               >
                 {item.label}
               </a>
@@ -48,7 +48,7 @@ export default function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-white text-[15px] font-medium hover:opacity-70 transition-opacity whitespace-nowrap"
+                className="text-white text-[22px] font-medium hover:opacity-70 transition-opacity whitespace-nowrap"
               >
                 {item.label}
               </Link>
@@ -56,7 +56,7 @@ export default function SiteHeader() {
           )}
           <a
             href={`${SITE}/contact`}
-            className="rounded-[10px] bg-[#fcfbff] text-black text-[14px] font-medium px-5 py-2.5 hover:bg-white transition-colors whitespace-nowrap"
+            className="rounded-[10px] bg-[#fcfbff] text-black text-[14px] font-medium px-[21px] py-4 hover:bg-white transition-colors whitespace-nowrap"
           >
             Contact us
           </a>

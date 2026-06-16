@@ -22,21 +22,21 @@ export default async function FestivalPage() {
         />
       </section>
 
-      {/* White text block */}
-      <section className="bg-white px-6 py-28 md:min-h-[594px] md:flex md:items-center">
+      {/* White text block — centred in an airy ~594px section */}
+      <section className="bg-white px-6 py-24 flex items-center justify-center md:min-h-[594px] md:py-0">
         <div className="mx-auto max-w-3xl flex flex-col items-center text-center">
-          <h1 className="text-[var(--brand-green)] font-bold text-2xl md:text-[26px] leading-snug">
+          <h1 className="text-[var(--brand-green)] font-semibold text-[22px] md:text-[25px] leading-[1.7]">
             {c.line1}
           </h1>
-          <h2 className="text-[var(--brand-green)] font-bold text-2xl md:text-[26px] leading-snug mt-5">
+          <h2 className="text-[var(--brand-green)] font-semibold text-[22px] md:text-[25px] leading-[1.7]">
             {c.line2}
           </h2>
-          <h2 className="text-[var(--brand-green)] font-bold text-2xl md:text-[26px] leading-snug mt-7">
+          <h2 className="text-[var(--brand-green)] font-semibold text-[22px] md:text-[25px] leading-[1.7] mt-4">
             {c.line3}
           </h2>
           <Link
             href={c.buttonLink || '#footer-signup'}
-            className="mt-10 inline-block rounded-xl bg-black text-white font-light tracking-wide text-lg md:text-xl px-10 py-5 hover:bg-black/85 transition-colors"
+            className="mt-11 inline-block rounded-[10px] bg-black text-white font-light tracking-wide text-[19px] md:text-[20px] px-7 py-5 hover:bg-black/85 transition-colors"
           >
             {c.buttonText}
           </Link>
