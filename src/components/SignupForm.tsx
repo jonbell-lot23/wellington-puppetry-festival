@@ -18,7 +18,7 @@ export default function SignupForm() {
   if (submitted) {
     return (
       <p className="text-white/90 text-sm py-4">
-        🎉 Thanks — you&apos;re on the list! We&apos;ll be in touch.
+        🎉 Thanks, you&apos;re on the list! We&apos;ll be in touch.
       </p>
     )
   }

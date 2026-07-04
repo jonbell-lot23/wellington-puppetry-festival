@@ -23,8 +23,8 @@ export default async function AboutPage() {
             </h2>
             <p className="text-gray-600 leading-relaxed mb-4">
               WPF is run by Birdlife Productions with the help of local volunteers, artists and venues
-              across Pōneke Wellington. It exists to make puppetry — one of the oldest, strangest and
-              most joyful art forms — accessible to everyone, especially families who might not
+              across Pōneke Wellington. It exists to make puppetry, one of the oldest, strangest and
+              most joyful art forms, accessible to everyone, especially families who might not
               otherwise get to a theatre show.
             </p>
             <p className="text-gray-600 leading-relaxed">

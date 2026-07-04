@@ -14,9 +14,9 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  title: 'Birdlife Productions — theatre for children',
+  title: 'Birdlife Productions: theatre for children',
   description:
-    'Birdlife Productions — creating wonder with Puppetry, Storytelling and Music. Home of the Wellington Puppetry Festival.',
+    'Birdlife Productions, creating wonder with Puppetry, Storytelling and Music. Home of the Wellington Puppetry Festival.',
   icons: { icon: '/images/favicon.ico' },
 }
 

@@ -42,6 +42,53 @@ export const PAGES: PageDef[] = [
       ),
     ],
   },
+  {
+    slug: 'homepage',
+    path: '/',
+    title: 'Home page',
+    fields: [
+      F('heroKicker', 'Hero kicker', 'Pōneke Wellington'),
+      F('heroTitle', 'Hero title', 'Wellington Puppetry Festival'),
+      F('heroDates', 'Hero dates', '12 to 20 September 2026'),
+      F(
+        'heroTagline',
+        'Hero tagline',
+        'A brand new celebration of puppetry, storytelling and live performance, bringing local and touring artists to stages across the city.',
+        true,
+      ),
+      F('ticketsUrl', 'Tickets URL', '#'),
+      F('kidsHeading', 'Community day heading', 'Free activities for kids and families'),
+      F(
+        'kidsBody',
+        'Community day body',
+        'Saturday is our free community day: drop-in puppet making, short shows and street performance for all ages, no ticket required.',
+        true,
+      ),
+      F('newsletterHeading', 'Newsletter heading', 'Stay in the loop'),
+      F(
+        'newsletterSubtext',
+        'Newsletter subtext',
+        'Sign up for programme announcements, ticket releases and festival news as the first Wellington Puppetry Festival takes shape.',
+        true,
+      ),
+      F('sponsorsCaption', 'Sponsors caption', 'Made possible with support from'),
+      F('galleryHeading', 'Gallery heading', 'Gallery'),
+    ],
+  },
+  {
+    slug: 'about',
+    path: '/about',
+    title: 'About page',
+    fields: [
+      F('heading', 'Heading', 'About the festival'),
+      F(
+        'intro',
+        'Intro',
+        'The Wellington Puppetry Festival is a new event bringing puppetry, one of the oldest and most joyful art forms, to audiences across Pōneke.',
+        true,
+      ),
+    ],
+  },
 ]
 
 export function getPageDef(slug: string): PageDef | undefined {

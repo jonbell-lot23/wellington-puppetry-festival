@@ -135,6 +135,22 @@
   --brand-cream: #fbf6e9;
   --brand-maroon: #271620; /* dark page base */
   --signup-blue: #aacdee; /* footer Sign Up button */
+
+  /* Aliases used by the WPF homepage/about redesign. */
+  --wpf-cream: var(--brand-cream);
+  --wpf-green-deep: var(--brand-green);
+  --wpf-orange-deep: var(--brand-orange);
+  --wpf-ink: #271620;
+}
+
+/* Warm sunburst texture behind the homepage hero, radiating from top center. */
+.wpf-sunburst {
+  background-color: var(--wpf-cream);
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% -20%,
+    rgba(232, 119, 46, 0.08) 0deg 8deg,
+    transparent 8deg 16deg
+  );
 }
 
 /* Site-wide dark maroon textured background (matches Squarespace original). */

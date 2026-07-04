@@ -117,7 +117,7 @@ export default async function HomePage() {
               <div
                 key={name}
                 className="h-16 rounded-lg border border-dashed border-white/40 flex flex-col items-center justify-center gap-1 px-3 text-center"
-                title="Placeholder — swap in real sponsor logo"
+                title="Placeholder, swap in real sponsor logo"
               >
                 <ImagePlaceholder className="w-4 h-4 text-white/60" />
                 <span className="text-white/70 text-[10px] font-medium leading-tight">{name}</span>
@@ -125,7 +125,7 @@ export default async function HomePage() {
             ))}
           </div>
           <p className="text-center text-white/50 text-[11px] mt-4">
-            Placeholder sponsor slots — logos to be supplied.
+            Placeholder sponsor slots, logos to be supplied.
           </p>
         </div>
       </section>
