@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import SignupForm from '@/components/SignupForm'
 import WaveDivider from '@/components/WaveDivider'
@@ -74,9 +75,12 @@ export default async function HomePage() {
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-4xl">
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl" style={{ backgroundColor: 'var(--wpf-green-deep)' }}>
-            <div className="absolute inset-0 flex items-center justify-center opacity-20">
-              <ImagePlaceholder className="w-24 h-24 text-white" />
-            </div>
+            <Image
+              src="/images/gallery/wpf-gallery-047.jpg"
+              alt="Community day — kids activities"
+              fill
+              className="object-cover"
+            />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
               <p className="text-white/80 uppercase tracking-widest text-xs md:text-sm font-bold mb-2">
@@ -139,16 +143,18 @@ export default async function HomePage() {
             {c.galleryHeading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {[1, 2, 3, 4].map((i) => (
+            {['wpf-gallery-01.jpg', 'wpf-gallery-09.jpg', 'wpf-gallery-045.jpg', 'wpf-gallery-064.jpg', 'wpf-gallery-077.jpg', 'wpf-gallery-086.jpg', 'wpf-gallery-102.jpg', 'wpf-gallery-106.jpg'].map((img) => (
               <div
-                key={i}
-                className="relative aspect-square rounded-lg flex flex-col items-center justify-center gap-2 border border-dashed"
-                style={{ borderColor: 'var(--wpf-green-deep)', opacity: 0.6 }}
+                key={img}
+                className="relative aspect-square rounded-lg overflow-hidden"
               >
-                <ImagePlaceholder className="w-8 h-8" style={{ color: 'var(--wpf-green-deep)' }} />
-                <span className="text-xs font-medium" style={{ color: 'var(--wpf-green-deep)' }}>
-                  Photos coming soon
-                </span>
+                <Image
+                  src={`/images/gallery/${img}`}
+                  alt="Wellington Puppetry Festival 2024"
+                  fill
+                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  sizes="(max-width: 768px) 50vw, 25vw"
+                />
               </div>
             ))}
           </div>

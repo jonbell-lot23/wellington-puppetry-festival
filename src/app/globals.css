@@ -120,6 +120,10 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    /* Matches the sticky header so iOS safe-area / overscroll shows the right colour */
+    background-color: var(--wpf-yellow-soft);
+  }
   body {
     @apply text-foreground;
     background-color: var(--wpf-cream);
