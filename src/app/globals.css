@@ -121,20 +121,65 @@
     @apply border-border outline-ring/50;
   }
   body {
-    @apply bg-background text-foreground;
+    @apply text-foreground;
+    background-color: var(--wpf-cream);
     font-family: var(--font-nunito), system-ui, sans-serif;
   }
 }
 
-/* ── Birdlife Productions brand ─────────────────────────────────── */
+/* ── Legacy Birdlife Productions brand tokens ──────────────────────
+   Used only by the frozen /archives/v1 snapshot's own hardcoded hex
+   values are preferred there instead) and by nothing else — kept around
+   so old references don't 404, but do not build new UI against these. */
 :root {
-  --brand-green: #2a571d; /* festival body heading green */
+  --brand-green: #2a571d;
   --brand-green-banner: #3c7d2e;
   --brand-yellow: #f4b323;
   --brand-orange: #e8772e;
   --brand-cream: #fbf6e9;
-  --brand-maroon: #271620; /* dark page base */
-  --signup-blue: #aacdee; /* footer Sign Up button */
+  --brand-maroon: #271620;
+  --signup-blue: #aacdee;
+}
+
+/* ── WPF brand v2 — warm, hand-drawn "circus poster" palette ───────
+   Pulled from the existing sunburst/tent festival artwork (festival-5.png /
+   wpf-title.png) rather than invented from scratch: gold-yellow sunburst,
+   burnt orange tent stripes, leafy green, and a soft cream base instead of
+   stark white. Yellow is the dominant/primary colour site-wide; black is
+   avoided entirely outside the intentionally moodier Cabaret page. */
+:root {
+  --wpf-yellow: #f5b729; /* dominant sunburst yellow */
+  --wpf-yellow-soft: #fdecc0; /* soft butter-yellow, header + section bg */
+  --wpf-orange: #e8772e; /* tent-stripe orange */
+  --wpf-orange-deep: #c85a28; /* deeper burnt orange for accents/hover */
+  --wpf-green: #3c7d2e; /* leafy green accent */
+  --wpf-green-deep: #2a571d; /* deep green, footer/section anchor */
+  --wpf-cream: #fbf6e9; /* warm base instead of white */
+  --wpf-ink: #3b2a17; /* warm dark brown — replaces black for text */
+  --wpf-maroon: #271620; /* Cabaret page's intentionally moody dark base */
+}
+
+/* Tent-bunting stripe border — thin diagonal stripe band evoking the
+   striped circus-tent peak in the festival artwork. */
+.wpf-stripe-border {
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--wpf-orange) 0 14px,
+    var(--wpf-cream) 14px 28px,
+    var(--wpf-green) 28px 42px,
+    var(--wpf-cream) 42px 56px
+  );
+}
+
+/* Subtle sunburst texture — echoes the hero artwork's radiating rays,
+   used behind key headings instead of a flat colour block. */
+.wpf-sunburst {
+  background-color: var(--wpf-yellow);
+  background-image: repeating-conic-gradient(
+    from 0deg at 50% -60%,
+    var(--wpf-yellow) 0deg 9deg,
+    #f7c34c 9deg 18deg
+  );
 }
 
 /* Site-wide dark maroon textured background (matches Squarespace original). */

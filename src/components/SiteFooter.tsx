@@ -1,7 +1,6 @@
-import Image from 'next/image'
-import SignupForm from './SignupForm'
+import Link from 'next/link'
 
-const SITE = 'https://www.birdlifeproductions.co.nz'
+const TICKETS_URL = 'https://events.humanitix.com/'
 
 function Instagram() {
   return (
@@ -19,38 +18,38 @@ function Facebook() {
   )
 }
 
+// Secondary nav — the items trimmed out of the top nav (see SiteHeader
+// comment) live here instead, plus a repeated tickets link per the brief's
+// "ticket links everywhere" note.
 const LINKS = [
-  { label: 'Shows', href: `${SITE}/shows` },
-  { label: 'For Teachers', href: `${SITE}/for-teachers` },
-  { label: 'Contact', href: `${SITE}/contact` },
-  { label: 'About', href: `${SITE}/about-us` },
+  { label: 'Volunteers', href: '/volunteers' },
+  { label: 'Team', href: '/team' },
+  { label: 'Accessibility', href: '/accessibility' },
+  { label: 'Get Tickets', href: TICKETS_URL, external: true },
 ]
 
 export default function SiteFooter() {
   return (
-    <footer id="footer-signup" className="relative text-white overflow-hidden" style={{ backgroundColor: 'var(--brand-maroon)' }}>
-      <Image src="/images/footer-bg.jpg" alt="" fill sizes="100vw" className="object-cover object-center" />
-      <div className="absolute inset-0 bg-black/20" />
-      <div className="relative mx-auto max-w-[1100px] px-6 md:px-8 py-16 md:py-24 grid grid-cols-1 md:grid-cols-2 gap-10">
-        {/* Signup */}
+    <footer className="text-white" style={{ backgroundColor: 'var(--wpf-green-deep)' }}>
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
-          <h3 className="text-lg md:text-xl font-bold leading-snug mb-3">
-            Sign up for occasional updates from Birdlife Productions
-          </h3>
-          <p className="text-white/80 text-sm mb-1">as well as some news and updates!</p>
-          <p className="text-white/80 text-sm mb-5">We will always respect your privacy!</p>
-          <SignupForm />
-        </div>
-
-        {/* Social + links */}
-        <div className="md:pl-6">
-          <div className="flex items-center gap-3 mb-6">
+          <p className="font-extrabold leading-none text-xl mb-4">
+            Wellington
+            <br />
+            <span style={{ color: 'var(--wpf-yellow)' }}>Puppetry Festival</span>
+          </p>
+          <p className="text-white/85 text-sm max-w-xs leading-relaxed">
+            A free, community-powered puppetry festival in Pōneke Wellington —
+            proudly Wellington Funky since day one.
+          </p>
+          <p className="text-white/60 text-xs mt-3">Presented by Birdlife Productions</p>
+          <div className="flex items-center gap-3 mt-5">
             <a
               href="https://www.instagram.com/BirdlifeProductions3/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="grid place-items-center w-8 h-8 rounded-full bg-white text-gray-900 hover:opacity-80 transition"
+              className="grid place-items-center w-9 h-9 rounded-full bg-white text-gray-900 hover:opacity-80 transition"
             >
               <Instagram />
             </a>
@@ -59,24 +58,49 @@ export default function SiteFooter() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="grid place-items-center w-8 h-8 rounded-full bg-white text-gray-900 hover:opacity-80 transition"
+              className="grid place-items-center w-9 h-9 rounded-full bg-white text-gray-900 hover:opacity-80 transition"
             >
               <Facebook />
             </a>
           </div>
+        </div>
 
-          <ul className="space-y-2.5 mb-6">
-            {LINKS.map((l) => (
-              <li key={l.href}>
-                <a href={l.href} className="text-white/90 underline underline-offset-2 hover:text-white text-sm">
-                  {l.label}
-                </a>
-              </li>
-            ))}
+        <div>
+          <p className="text-white/60 text-xs uppercase tracking-widest font-semibold mb-4">More</p>
+          <ul className="space-y-2.5">
+            {LINKS.map((l) =>
+              l.external ? (
+                <li key={l.href}>
+                  <a
+                    href={l.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/90 hover:text-white text-sm font-medium"
+                  >
+                    {l.label}
+                  </a>
+                </li>
+              ) : (
+                <li key={l.href}>
+                  <Link href={l.href} className="text-white/90 hover:text-white text-sm font-medium">
+                    {l.label}
+                  </Link>
+                </li>
+              ),
+            )}
           </ul>
+        </div>
+      </div>
 
-          <p className="text-white/70 text-xs">
-            Site made with <span className="text-red-400">❤</span> by Pola Design
+      <div className="border-t border-white/15">
+        <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
+          <p className="text-white/60 text-xs">
+            © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions
+          </p>
+          <p className="text-white/60 text-xs">
+            <Link href="/archives/v1" className="underline underline-offset-2 hover:text-white">
+              Previous site
+            </Link>
           </p>
         </div>
       </div>

@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(curl *)",
+      "Read(//Users/jon/.config/supabase/**)",
+      "Read(//Users/jon/.supabase/**)"
+    ]
+  }
+}

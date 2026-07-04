@@ -14,9 +14,9 @@ const nunito = Nunito({
 })
 
 export const metadata: Metadata = {
-  title: 'Birdlife Productions — theatre for children',
+  title: 'Wellington Puppetry Festival — Puppets for Peace',
   description:
-    'Birdlife Productions — creating wonder with Puppetry, Storytelling and Music. Home of the Wellington Puppetry Festival.',
+    'A free, community-powered puppetry festival in Pōneke Wellington. Free family activities all Saturday, plus a full programme of local and visiting puppetry artists. Presented by Birdlife Productions.',
   icons: { icon: '/images/favicon.ico' },
 }
 
