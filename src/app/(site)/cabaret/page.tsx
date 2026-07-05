@@ -2,9 +2,6 @@ import { getPageContent } from '@/app/actions'
 
 export const revalidate = 60
 
-// Placeholder — swap for the real Humanitix event URL once tickets go on sale.
-const TICKETS_URL = 'https://events.humanitix.com/'
-
 // The "special page for cabaret" from the brief — deliberately a different,
 // moodier treatment (dark + gold) than the rest of the bright site, since
 // this is an after-dark, adults-only event within the festival.
@@ -23,15 +20,12 @@ export default async function CabaretPage() {
           </p>
           <h1 className="font-extrabold text-4xl md:text-6xl leading-tight text-balance">{c.heading}</h1>
           <p className="mt-6 text-white/80 leading-relaxed max-w-2xl mx-auto text-balance">{c.intro}</p>
-          <a
-            href={TICKETS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 hover:brightness-110 transition"
+          <span
+            className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 opacity-50 cursor-default"
             style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-maroon)' }}
           >
-            Get Cabaret Tickets
-          </a>
+            Tickets coming soon
+          </span>
         </div>
       </section>
 

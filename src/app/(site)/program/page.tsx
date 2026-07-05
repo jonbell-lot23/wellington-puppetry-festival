@@ -7,21 +7,21 @@ export const revalidate = 60
 const DAYS = [
   {
     day: 'Friday',
-    date: '18 Sep',
+    date: '18 Sep 2026',
     title: 'Opening Night',
     body: 'Festival kick-off with an evening showcase of visiting and local puppetry companies.',
     highlight: false,
   },
   {
     day: 'Saturday',
-    date: '19 Sep',
+    date: '19 Sep 2026',
     title: 'Free Family Day',
     body: 'A full day of FREE drop-in puppet-making, street performances and shows for kids and whānau. No ticket required.',
     highlight: true,
   },
   {
     day: 'Sunday',
-    date: '20 Sep',
+    date: '20 Sep 2026',
     title: 'Festival Shows + Cabaret',
     body: 'Daytime programme continues, closing with WPF Cabaret in the evening — see the Cabaret page for details.',
     highlight: false,

@@ -32,9 +32,6 @@ export default async function HomePage() {
           site's shape language. */}
       <section
         className="wpf-sunburst relative px-6 pt-16 pb-20 md:pt-24 md:pb-28"
-        style={{
-          clipPath: 'polygon(0 24px, 100% 0, 100% 100%, 0 100%)',
-        }}
       >
         <div className="mx-auto max-w-3xl flex flex-col items-center text-center" style={{ color: INK }}>
           <p className="uppercase tracking-widest text-xs md:text-sm font-bold opacity-70 mb-4">
@@ -49,15 +46,12 @@ export default async function HomePage() {
           <p className="mt-6 opacity-80 leading-relaxed max-w-2xl text-balance">{c.heroTagline}</p>
 
           <div className="mt-9 flex flex-col sm:flex-row items-center gap-4">
-            <a
-              href={c.ticketsUrl || '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block rounded-full text-white font-bold text-base px-8 py-4 hover:brightness-110 transition"
-              style={{ backgroundColor: GREEN_DEEP }}
+            <span
+              className="inline-block rounded-full font-bold text-base px-8 py-4 opacity-50 cursor-default"
+              style={{ backgroundColor: INK, color: 'var(--wpf-yellow-soft)' }}
             >
-              Get Tickets
-            </a>
+              Tickets coming soon
+            </span>
             <Link
               href="/program"
               className="inline-block rounded-full border-2 font-bold text-base px-8 py-4 hover:bg-black/5 transition"
@@ -68,6 +62,8 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
+
+      <WaveDivider fromColor="var(--wpf-yellow)" toColor="var(--wpf-cream)" />
 
       {/* Saturday free kids activities — the front-and-centre message from
           the meeting notes, treated like the reference site's big central
@@ -128,11 +124,10 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
-          <p className="text-center text-white/50 text-[11px] mt-4">
-            Placeholder sponsor slots — logos to be supplied.
-          </p>
         </div>
       </section>
+
+      <WaveDivider fromColor="var(--wpf-green-deep)" toColor="var(--wpf-cream)" flip />
 
       {/* Gallery — carried over from the previous site's brief ("the gallery
           at the bottom is good, keep it"); rebuilt here as a photo grid using

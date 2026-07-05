@@ -18,7 +18,7 @@ export default function SignupForm() {
   if (submitted) {
     return (
       <p className="text-white/90 text-sm py-4">
-        🎉 Thanks — you&apos;re on the list! We&apos;ll be in touch.
+        Thanks! We&apos;ll be in touch once sign-ups are open — follow us on Instagram or Facebook for updates in the meantime.
       </p>
     )
   }
@@ -52,7 +52,8 @@ export default function SignupForm() {
       />
       <button
         type="submit"
-        className="w-fit rounded-md bg-[var(--signup-blue)] hover:brightness-105 text-gray-800 text-sm font-medium px-6 py-2.5 transition mt-1"
+        className="w-fit rounded-md hover:brightness-105 text-sm font-bold px-6 py-2.5 transition mt-1"
+        style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }}
       >
         Sign Up
       </button>

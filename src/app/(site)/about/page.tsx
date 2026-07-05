@@ -1,6 +1,6 @@
+import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
-import ImagePlaceholder from '@/components/ImagePlaceholder'
 
 export const revalidate = 60
 
@@ -13,9 +13,13 @@ export default async function AboutPage() {
 
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden border border-dashed border-gray-300 flex flex-col items-center justify-center gap-3 text-gray-400">
-            <ImagePlaceholder className="w-12 h-12" />
-            <span className="text-xs uppercase tracking-widest">Photo coming soon</span>
+          <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
+            <Image
+              src="/images/gallery/wpf-gallery-077.jpg"
+              alt="Wellington Puppetry Festival"
+              fill
+              className="object-cover"
+            />
           </div>
           <div>
             <h2 className="font-extrabold text-2xl md:text-3xl text-gray-900 mb-4">

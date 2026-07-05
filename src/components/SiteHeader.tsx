@@ -14,9 +14,6 @@ const NAV = [
   { label: 'Contact', href: '/contact' },
 ]
 
-// Placeholder — swap for the real Humanitix event URL once tickets go on sale.
-const TICKETS_URL = 'https://events.humanitix.com/'
-
 // This is the festival's own microsite, so its own hand-lettered-style
 // wordmark leads the header — the Birdlife Productions bird-nest logo has
 // been demoted to a small text credit in the footer instead (see
@@ -53,28 +50,22 @@ export default function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <a
-              href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full text-white text-[14px] font-bold px-6 py-3 hover:brightness-110 transition whitespace-nowrap"
-              style={{ backgroundColor: 'var(--wpf-orange-deep)' }}
+            <span
+              className="rounded-full text-[14px] font-bold px-6 py-3 whitespace-nowrap opacity-60 cursor-default"
+              style={{ backgroundColor: 'var(--wpf-ink)', color: 'var(--wpf-yellow-soft)' }}
             >
-              Get Tickets
-            </a>
+              Tickets coming soon
+            </span>
           </nav>
 
           {/* Mobile: tickets + menu toggle */}
           <div className="lg:hidden flex items-center gap-2">
-            <a
-              href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="rounded-full text-white text-[13px] font-bold px-4 py-2.5 whitespace-nowrap"
-              style={{ backgroundColor: 'var(--wpf-orange-deep)' }}
+            <span
+              className="rounded-full text-[13px] font-bold px-4 py-2.5 whitespace-nowrap opacity-60 cursor-default"
+              style={{ backgroundColor: 'var(--wpf-ink)', color: 'var(--wpf-yellow-soft)' }}
             >
-              Tickets
-            </a>
+              Coming soon
+            </span>
             <button
               aria-label="Menu"
               onClick={() => setOpen((v) => !v)}

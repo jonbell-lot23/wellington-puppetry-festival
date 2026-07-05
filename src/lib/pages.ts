@@ -35,7 +35,7 @@ export const PAGES: PageDef[] = [
     title: 'Homepage',
     fields: [
       F('heroKicker', 'Hero kicker (small line above title)', 'A community festival made in Pōneke'),
-      F('heroTitle', 'Hero title', 'Wellington Puppetry Festival'),
+      F('heroTitle', 'Hero title', 'Three days of strings, shadows & wonder'),
       F('heroDates', 'Hero dates line', '18–20 SEP 2026 · PŌNEKE WELLINGTON'),
       F(
         'heroTagline',
