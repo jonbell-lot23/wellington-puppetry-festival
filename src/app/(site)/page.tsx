@@ -46,12 +46,15 @@ export default async function HomePage() {
           <p className="mt-6 opacity-80 leading-relaxed max-w-2xl text-balance">{c.heroTagline}</p>
 
           <div className="mt-9 flex flex-col sm:flex-row items-center gap-4">
-            <span
-              className="inline-block rounded-full font-bold text-base px-8 py-4 opacity-50 cursor-default"
-              style={{ backgroundColor: INK, color: 'var(--wpf-yellow-soft)' }}
+            <a
+              href="https://events.humanitix.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block rounded-full text-white font-bold text-base px-8 py-4 hover:brightness-110 transition"
+              style={{ backgroundColor: GREEN_DEEP }}
             >
-              Tickets coming soon
-            </span>
+              Get Tickets
+            </a>
             <Link
               href="/program"
               className="inline-block rounded-full border-2 font-bold text-base px-8 py-4 hover:bg-black/5 transition"
@@ -62,8 +65,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <WaveDivider fromColor="var(--wpf-yellow)" toColor="var(--wpf-cream)" />
 
       {/* Saturday free kids activities — the front-and-centre message from
           the meeting notes, treated like the reference site's big central

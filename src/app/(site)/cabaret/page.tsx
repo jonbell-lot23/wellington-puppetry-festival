@@ -20,12 +20,15 @@ export default async function CabaretPage() {
           </p>
           <h1 className="font-extrabold text-4xl md:text-6xl leading-tight text-balance">{c.heading}</h1>
           <p className="mt-6 text-white/80 leading-relaxed max-w-2xl mx-auto text-balance">{c.intro}</p>
-          <span
-            className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 opacity-50 cursor-default"
+          <a
+            href="https://events.humanitix.com/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 hover:brightness-110 transition"
             style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-maroon)' }}
           >
-            Tickets coming soon
-          </span>
+            Get Cabaret Tickets
+          </a>
         </div>
       </section>
 

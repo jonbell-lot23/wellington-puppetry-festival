@@ -1,7 +1,15 @@
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import ImagePlaceholder from '@/components/ImagePlaceholder'
 
 export const revalidate = 60
+
+const TEAM = [
+  { name: 'To be announced', role: 'Festival Director' },
+  { name: 'To be announced', role: 'Producer' },
+  { name: 'To be announced', role: 'Community & Volunteers Lead' },
+  { name: 'To be announced', role: 'Marketing & Comms' },
+]
 
 export default async function TeamPage() {
   const c = await getPageContent('team')
@@ -11,21 +19,20 @@ export default async function TeamPage() {
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-3xl text-center">
-          <div
-            className="rounded-2xl px-8 py-12 md:py-16"
-            style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}
-          >
-            <p className="text-5xl mb-6">🪆</p>
-            <h2 className="font-extrabold text-2xl md:text-3xl mb-4" style={{ color: 'var(--wpf-ink)' }}>
-              Team bios coming soon
-            </h2>
-            <p className="leading-relaxed max-w-md mx-auto" style={{ color: 'var(--wpf-ink)', opacity: 0.7 }}>
-              Wellington Puppetry Festival is organised by a small, dedicated team. Full bios and credits
-              will be listed here as the festival approaches.
-            </p>
-          </div>
+        <div className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-6">
+          {TEAM.map((member, i) => (
+            <div key={i} className="text-center">
+              <div className="aspect-square rounded-full bg-[var(--wpf-yellow-soft)] border border-black/5 flex items-center justify-center mb-3">
+                <ImagePlaceholder className="w-8 h-8 text-[var(--wpf-green-deep)]/50" />
+              </div>
+              <h3 className="font-bold text-gray-900 text-sm">{member.name}</h3>
+              <p className="text-[var(--wpf-green-deep)] text-xs font-medium">{member.role}</p>
+            </div>
+          ))}
         </div>
+        <p className="text-center text-gray-500 text-sm mt-10">
+          Full team bios coming soon.
+        </p>
       </section>
     </main>
   )

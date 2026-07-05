@@ -50,22 +50,28 @@ export default function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <span
-              className="rounded-full text-[14px] font-bold px-6 py-3 whitespace-nowrap opacity-60 cursor-default"
-              style={{ backgroundColor: 'var(--wpf-ink)', color: 'var(--wpf-yellow-soft)' }}
+            <a
+              href="https://events.humanitix.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full text-white text-[14px] font-bold px-6 py-3 hover:brightness-110 transition whitespace-nowrap"
+              style={{ backgroundColor: 'var(--wpf-orange-deep)' }}
             >
-              Tickets coming soon
-            </span>
+              Get Tickets
+            </a>
           </nav>
 
           {/* Mobile: tickets + menu toggle */}
           <div className="lg:hidden flex items-center gap-2">
-            <span
-              className="rounded-full text-[13px] font-bold px-4 py-2.5 whitespace-nowrap opacity-60 cursor-default"
-              style={{ backgroundColor: 'var(--wpf-ink)', color: 'var(--wpf-yellow-soft)' }}
+            <a
+              href="https://events.humanitix.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full text-white text-[13px] font-bold px-4 py-2.5 whitespace-nowrap"
+              style={{ backgroundColor: 'var(--wpf-orange-deep)' }}
             >
-              Coming soon
-            </span>
+              Tickets
+            </a>
             <button
               aria-label="Menu"
               onClick={() => setOpen((v) => !v)}
