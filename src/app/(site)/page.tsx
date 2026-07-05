@@ -127,7 +127,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-green-deep)" toColor="var(--wpf-cream)" flip />
+      <WaveDivider fromColor="var(--wpf-green-deep)" toColor="var(--wpf-cream)" />
 
       {/* Gallery — carried over from the previous site's brief ("the gallery
           at the bottom is good, keep it"); rebuilt here as a photo grid using
@@ -147,7 +147,7 @@ export default async function HomePage() {
                   src={`/images/gallery/${img}`}
                   alt="Wellington Puppetry Festival 2024"
                   fill
-                  className="object-cover hover:scale-105 transition-transform duration-300"
+                  className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
               </div>
