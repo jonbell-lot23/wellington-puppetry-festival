@@ -23,10 +23,10 @@ export default async function TeamPage() {
           {TEAM.map((member, i) => (
             <div key={i} className="text-center">
               <div className="aspect-square rounded-full bg-[var(--wpf-yellow-soft)] border border-black/5 flex items-center justify-center mb-3">
-                <ImagePlaceholder className="w-8 h-8 text-[var(--wpf-green-deep)]/50" />
+                <ImagePlaceholder className="w-8 h-8 text-[var(--wpf-ink)]/40" />
               </div>
               <h3 className="font-bold text-gray-900 text-sm">{member.name}</h3>
-              <p className="text-[var(--wpf-green-deep)] text-xs font-medium">{member.role}</p>
+              <p className="text-[var(--wpf-ink)]/70 text-xs font-medium">{member.role}</p>
             </div>
           ))}
         </div>

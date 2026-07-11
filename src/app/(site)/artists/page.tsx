@@ -14,7 +14,7 @@ const ARTISTS = [
 function Avatar() {
   return (
     <div className="aspect-square rounded-xl bg-[var(--wpf-yellow-soft)] border border-black/5 flex items-center justify-center">
-      <ImagePlaceholder className="w-10 h-10 text-[var(--wpf-green-deep)]/50" />
+      <ImagePlaceholder className="w-10 h-10 text-[var(--wpf-ink)]/40" />
     </div>
   )
 }
@@ -33,7 +33,7 @@ export default async function ArtistsPage() {
               <div key={i} className="text-center">
                 <Avatar />
                 <h3 className="mt-4 font-bold text-gray-900">{a.name}</h3>
-                <p className="text-[var(--wpf-green-deep)] text-sm font-medium">{a.role}</p>
+                <p className="text-[var(--wpf-ink)]/70 text-sm font-medium">{a.role}</p>
                 <p className="text-gray-500 text-xs">{a.country}</p>
               </div>
             ))}

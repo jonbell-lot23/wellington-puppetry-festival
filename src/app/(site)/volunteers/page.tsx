@@ -30,14 +30,15 @@ export default async function VolunteersPage() {
           </div>
 
           <div
-            className="mt-10 rounded-2xl p-8 md:p-10 text-center text-white"
-            style={{ backgroundColor: 'var(--wpf-green-deep)' }}
+            className="mt-10 rounded-2xl p-8 md:p-10 text-center"
+            style={{ backgroundColor: 'var(--wpf-orange-bright)', color: 'var(--wpf-ink)' }}
           >
             <h3 className="font-extrabold text-xl md:text-2xl mb-2">Keen to get involved?</h3>
-            <p className="text-white/90 mb-5">Get in touch and we&apos;ll let you know how to sign up.</p>
+            <p className="mb-5">Get in touch and we&apos;ll let you know how to sign up.</p>
             <a
               href="/contact"
-              className="inline-block rounded-full bg-white text-[var(--wpf-green-deep)] font-bold px-7 py-3.5 hover:brightness-95 transition"
+              className="inline-block rounded-full text-white font-bold px-7 py-3.5 hover:brightness-110 transition"
+              style={{ backgroundColor: 'var(--wpf-pink)' }}
             >
               Contact the team
             </a>

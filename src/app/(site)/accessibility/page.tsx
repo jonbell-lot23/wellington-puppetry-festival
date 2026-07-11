@@ -42,7 +42,7 @@ export default async function AccessibilityPage() {
           <a
             href="/contact"
             className="inline-block rounded-full font-bold px-7 py-3.5 text-white hover:brightness-110 transition"
-            style={{ backgroundColor: 'var(--wpf-green-deep)' }}
+            style={{ backgroundColor: 'var(--wpf-pink)' }}
           >
             Contact us about access needs
           </a>

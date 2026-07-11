@@ -42,19 +42,19 @@ export default async function ProgramPage() {
               key={d.day}
               className={`rounded-2xl p-7 flex flex-col ${
                 d.highlight
-                  ? 'text-white'
+                  ? 'text-[var(--wpf-ink)]'
                   : 'bg-[var(--wpf-yellow-soft)] text-gray-900 border border-black/5'
               }`}
-              style={d.highlight ? { backgroundColor: 'var(--wpf-green-deep)' } : undefined}
+              style={d.highlight ? { backgroundColor: 'var(--wpf-orange-bright)' } : undefined}
             >
               {d.highlight && (
-                <span className="self-start text-[11px] font-bold uppercase tracking-widest bg-white/20 rounded-full px-3 py-1 mb-4">
+                <span className="self-start text-[11px] font-bold uppercase tracking-widest bg-black/15 rounded-full px-3 py-1 mb-4">
                   Free entry
                 </span>
               )}
               <p className="text-sm font-bold uppercase tracking-widest opacity-70 mb-1">{d.date}</p>
               <h3 className="text-2xl font-extrabold mb-3">{d.day} — {d.title}</h3>
-              <p className={`leading-relaxed ${d.highlight ? 'text-white/90' : 'text-gray-600'}`}>{d.body}</p>
+              <p className={`leading-relaxed ${d.highlight ? 'text-[var(--wpf-ink)]' : 'text-gray-600'}`}>{d.body}</p>
             </div>
           ))}
         </div>
@@ -66,7 +66,7 @@ export default async function ProgramPage() {
           </p>
           <Link
             href="/"
-            className="inline-block mt-4 text-sm font-semibold text-[var(--wpf-green-deep)] underline underline-offset-2"
+            className="inline-block mt-4 text-sm font-semibold text-[var(--wpf-ink)] underline underline-offset-2"
           >
             Sign up on the homepage for programme announcements
           </Link>

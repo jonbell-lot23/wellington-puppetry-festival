@@ -158,7 +158,6 @@
   --wpf-orange-deep: #c85a28; /* deeper burnt orange for accents/hover */
   --wpf-orange-bright: #f26b1f; /* vibrant pumpkin orange — footer + newsletter backdrop; paired with DARK INK text (ink 4.51:1 AA) since it's too bright for white text. Replaces the old deep-green backdrop so the palette reads yellow + orange + hot-pink. */
   --wpf-green: #33bd6b; /* fresh, bright mint-leaning green accent (stripe/bunting only — not behind text) */
-  --wpf-green-deep: #0a875a; /* fresher emerald/mint-leaning deep green — anchors footer/newsletter behind WHITE text; shifted toward mint hue for freshness while staying dark enough for white body text at WCAG AA (4.54:1) */
   --wpf-mint: #c9f2da; /* light mint accent fill for fresh light sections (dark ink text only) */
   --wpf-pink: #d81b7c; /* hot-pink accent + CTA colour — WHITE button text 4.81:1 (AA), on cream 4.46:1. Slightly deepened from the first pass so white label text on the pink buttons clears AA. */
   --wpf-cream: #fbf6e9; /* warm base instead of white */

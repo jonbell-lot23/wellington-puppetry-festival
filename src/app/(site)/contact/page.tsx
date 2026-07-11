@@ -16,7 +16,7 @@ export default async function ContactPage() {
             <p className="text-gray-500 text-sm uppercase tracking-widest font-semibold mb-2">Email</p>
             <a
               href={`mailto:${c.email}`}
-              className="text-xl md:text-2xl font-bold text-[var(--wpf-green-deep)] hover:underline break-all"
+              className="text-xl md:text-2xl font-bold text-[var(--wpf-pink)] hover:underline break-all"
             >
               {c.email}
             </a>
