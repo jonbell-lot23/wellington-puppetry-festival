@@ -145,35 +145,52 @@
   --signup-blue: #aacdee;
 }
 
-/* ── WPF brand v2 — warm, hand-drawn "circus poster" palette ───────
-   Pulled from the existing sunburst/tent festival artwork (festival-5.png /
-   wpf-title.png) rather than invented from scratch: gold-yellow sunburst,
-   burnt orange tent stripes, leafy green, and a soft cream base instead of
-   stark white. Yellow is the dominant/primary colour site-wide; black is
-   avoided entirely outside the intentionally moodier Cabaret page. */
+/* ── WPF brand v3 — Pink + Blue + Yellow "circus poster" palette ───
+   Three colour families, each with soft / mid / deep shades. Warm,
+   playful, hand-drawn festival identity. Orange and green are demoted
+   to optional minor accents; the dominant trio is pink, blue, yellow.
+   Black is avoided outside the intentionally moody Cabaret page. */
 :root {
-  --wpf-yellow: #ffce2e; /* dominant sunburst yellow — brightened again toward a punchier warm gold per client feedback */
-  --wpf-yellow-soft: #fef0c6; /* soft butter-yellow, header + section bg — nudged brighter/fresher, still a good backdrop for dark ink */
-  --wpf-orange: #e8772e; /* tent-stripe orange */
-  --wpf-orange-deep: #c85a28; /* deeper burnt orange for accents/hover */
-  --wpf-orange-bright: #f26b1f; /* vibrant pumpkin orange — footer + newsletter backdrop; paired with DARK INK text (ink 4.51:1 AA) since it's too bright for white text. Replaces the old deep-green backdrop so the palette reads yellow + orange + hot-pink. */
-  --wpf-green: #33bd6b; /* fresh, bright mint-leaning green accent (stripe/bunting only — not behind text) */
-  --wpf-mint: #c9f2da; /* light mint accent fill for fresh light sections (dark ink text only) */
-  --wpf-pink: #d81b7c; /* hot-pink accent + CTA colour — WHITE button text 4.81:1 (AA), on cream 4.46:1. Slightly deepened from the first pass so white label text on the pink buttons clears AA. */
-  --wpf-cream: #fbf6e9; /* warm base instead of white */
-  --wpf-ink: #3b2a17; /* warm dark brown — replaces black for text */
+  /* Yellow — sunburst warmth */
+  --wpf-yellow-soft: #fef0c6; /* butter-yellow — header, cards, light sections (ink 12.09:1 AA) */
+  --wpf-yellow: #ffce2e; /* dominant sunburst mid-gold */
+  --wpf-yellow-deep: #e5b80a; /* rich gold accent — ink 8.47:1 on yellow-deep */
+  --wpf-yellow-ray: #ffdd6b; /* lighter sunburst ray in the conic gradient */
+
+  /* Pink — hot-pink CTAs + wordmark flourishes */
+  --wpf-pink-soft: #fce0ef; /* blush fill — ink 11.15:1 AA */
+  --wpf-pink: #d81b7c; /* hot-pink accent + CTA — white button text 4.81:1 (AA) */
+  --wpf-pink-deep: #a1155f; /* magenta depth — white text 7.12:1 (AA) */
+
+  /* Blue — charming cobalt counterpoint to warm yellow/pink */
+  --wpf-blue-soft: #cceaf8; /* sky fill — ink 10.91:1 AA */
+  --wpf-blue: #0d5fa8; /* bright cobalt — hero dates on yellow 4.39:1 (AA normal) */
+  --wpf-blue-deep: #0d3f75; /* deep ink-blue — footer/newsletter; white text 10.58:1 (AA) */
+
+  /* Neutrals */
+  --wpf-cream: #fbf6e9; /* warm base instead of white — ink 12.72:1 AA */
+  --wpf-ink: #3b2a17; /* warm dark brown body text */
   --wpf-maroon: #271620; /* Cabaret page's intentionally moody dark base */
+
+  /* Legacy / minor warm accents (demoted — do not use for dominant sections) */
+  --wpf-orange: #e8772e;
+  --wpf-orange-deep: #c85a28;
+  --wpf-orange-bright: #f26b1f;
+  --wpf-green: #33bd6b;
+  --wpf-mint: #c9f2da; /* alias → prefer --wpf-blue-soft for light cool sections */
 }
 
-/* Tent-bunting stripe border — thin diagonal stripe band evoking the
-   striped circus-tent peak in the festival artwork. */
+/* Tent-bunting stripe border — thin diagonal stripe band in the
+   Pink + Blue + Yellow trio (replaces the old orange/green stripes). */
 .wpf-stripe-border {
   background-image: repeating-linear-gradient(
     -45deg,
-    var(--wpf-orange) 0 14px,
+    var(--wpf-yellow) 0 14px,
     var(--wpf-cream) 14px 28px,
-    var(--wpf-green) 28px 42px,
-    var(--wpf-cream) 42px 56px
+    var(--wpf-pink) 28px 42px,
+    var(--wpf-cream) 42px 56px,
+    var(--wpf-blue) 56px 70px,
+    var(--wpf-cream) 70px 84px
   );
 }
 
@@ -184,7 +201,7 @@
   background-image: repeating-conic-gradient(
     from 0deg at 50% -60%,
     var(--wpf-yellow) 0deg 9deg,
-    #ffdd6b 9deg 18deg
+    var(--wpf-yellow-ray) 9deg 18deg
   );
 }
 
@@ -214,14 +231,13 @@
   color: var(--wpf-pink);
 }
 
-/* Footer sits on the bright-orange backdrop now, so links are dark ink
-   (readable) and simply deepen to full ink on hover. */
+/* Footer sits on deep-blue backdrop — links are white/cream for AA. */
 .wpf-footer-link {
-  color: rgba(59, 42, 23, 0.8);
+  color: rgba(255, 255, 255, 0.85);
   transition: color 0.15s ease;
 }
 .wpf-footer-link:hover {
-  color: var(--wpf-ink);
+  color: #ffffff;
 }
 
 .wpf-heading-dot::after {

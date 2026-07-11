@@ -32,8 +32,8 @@ const LINKS = [
 export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom?: string }) {
   return (
     <>
-    <WaveDivider fromColor={waveFrom} toColor="var(--wpf-orange-bright)" />
-    <footer style={{ backgroundColor: 'var(--wpf-orange-bright)', color: 'var(--wpf-ink)' }}>
+    <WaveDivider fromColor={waveFrom} toColor="var(--wpf-blue-deep)" />
+    <footer style={{ backgroundColor: 'var(--wpf-blue-deep)', color: '#ffffff' }}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
           <p className="font-extrabold leading-none text-xl mb-4">
@@ -95,7 +95,7 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
         </div>
       </div>
 
-      <div className="border-t border-black/15">
+      <div className="border-t border-white/15">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
           <p className="opacity-70 text-xs">
             © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions

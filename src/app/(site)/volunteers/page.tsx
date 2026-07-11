@@ -31,7 +31,7 @@ export default async function VolunteersPage() {
 
           <div
             className="mt-10 rounded-2xl p-8 md:p-10 text-center"
-            style={{ backgroundColor: 'var(--wpf-orange-bright)', color: 'var(--wpf-ink)' }}
+            style={{ backgroundColor: 'var(--wpf-blue-deep)', color: '#ffffff' }}
           >
             <h3 className="font-extrabold text-xl md:text-2xl mb-2">Keen to get involved?</h3>
             <p className="mb-5">Get in touch and we&apos;ll let you know how to sign up.</p>

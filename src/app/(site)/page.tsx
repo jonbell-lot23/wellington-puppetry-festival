@@ -8,8 +8,8 @@ import ImagePlaceholder from '@/components/ImagePlaceholder'
 export const revalidate = 60
 
 const CREAM = 'var(--wpf-cream)'
-const MINT = 'var(--wpf-mint)'
-const ORANGE_BRIGHT = 'var(--wpf-orange-bright)'
+const BLUE_SOFT = 'var(--wpf-blue-soft)'
+const BLUE_DEEP = 'var(--wpf-blue-deep)'
 const PINK = 'var(--wpf-pink)'
 const INK = 'var(--wpf-ink)'
 
@@ -42,7 +42,7 @@ export default async function HomePage() {
           <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight text-balance">
             {c.heroTitle}
           </h1>
-          <p className="mt-4 text-lg md:text-xl font-bold tracking-wide" style={{ color: 'var(--wpf-orange-deep)' }}>
+          <p className="mt-4 text-lg md:text-xl font-bold tracking-wide" style={{ color: 'var(--wpf-blue)' }}>
             {c.heroDates}
           </p>
           <p className="mt-6 opacity-80 leading-relaxed max-w-2xl text-balance">{c.heroTagline}</p>
@@ -88,9 +88,9 @@ export default async function HomePage() {
       {/* Saturday free kids activities — the front-and-centre message from
           the meeting notes, treated like the reference site's big central
           media moment ("ONE POWERFUL CELEBRATION" video block). */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: MINT }}>
+      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: BLUE_SOFT }}>
         <div className="mx-auto max-w-4xl">
-          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl" style={{ backgroundColor: ORANGE_BRIGHT }}>
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl" style={{ backgroundColor: BLUE_DEEP }}>
             <Image
               src="/images/gallery/wpf-gallery-047.jpg"
               alt="Community day — kids activities"
@@ -113,12 +113,11 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-mint)" toColor="var(--wpf-orange-bright)" />
+      <WaveDivider fromColor="var(--wpf-blue-soft)" toColor="var(--wpf-blue-deep)" />
 
-      {/* Newsletter + sponsors — vibrant pumpkin-orange block (was deep
-          green). Bright orange is too light for white text at AA, so this
-          section runs on dark ink text instead (ink on orange ≈ 4.51:1). */}
-      <section className="px-6 py-16 md:py-20" style={{ backgroundColor: ORANGE_BRIGHT, color: INK }}>
+      {/* Newsletter + sponsors — deep cobalt-blue block. White text on
+          blue-deep clears AA (10.58:1); pink/yellow CTAs stay on-brand. */}
+      <section className="px-6 py-16 md:py-20" style={{ backgroundColor: BLUE_DEEP, color: '#ffffff' }}>
         <div className="mx-auto max-w-3xl text-center mb-16">
           <h2 className="font-extrabold text-2xl md:text-4xl mb-3">{c.newsletterHeading}</h2>
           <p className="opacity-80 mb-8 max-w-xl mx-auto">{c.newsletterSubtext}</p>
@@ -135,18 +134,18 @@ export default async function HomePage() {
             {SPONSORS.map((name) => (
               <div
                 key={name}
-                className="h-16 rounded-lg border border-dashed border-black/25 flex flex-col items-center justify-center gap-1 px-3 text-center"
+                className="h-16 rounded-lg border border-dashed border-white/30 flex flex-col items-center justify-center gap-1 px-3 text-center"
                 title="Placeholder — swap in real sponsor logo"
               >
-                <ImagePlaceholder className="w-4 h-4 text-black/40" />
-                <span className="text-black/60 text-[10px] font-medium leading-tight">{name}</span>
+                <ImagePlaceholder className="w-4 h-4 text-white/50" />
+                <span className="text-white/70 text-[10px] font-medium leading-tight">{name}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-orange-bright)" toColor="var(--wpf-cream)" />
+      <WaveDivider fromColor="var(--wpf-blue-deep)" toColor="var(--wpf-cream)" />
 
       {/* Gallery — carried over from the previous site's brief ("the gallery
           at the bottom is good, keep it"); rebuilt here as a photo grid using

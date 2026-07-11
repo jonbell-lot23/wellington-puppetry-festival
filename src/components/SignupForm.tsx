@@ -17,7 +17,7 @@ export default function SignupForm() {
 
   if (submitted) {
     return (
-      <p className="text-sm py-4" style={{ color: 'var(--wpf-ink)', opacity: 0.9 }}>
+      <p className="text-sm py-4 text-white/90">
         Thanks! We&apos;ll be in touch once sign-ups are open — follow us on Instagram or Facebook for updates in the meantime.
       </p>
     )

@@ -42,19 +42,19 @@ export default async function ProgramPage() {
               key={d.day}
               className={`rounded-2xl p-7 flex flex-col ${
                 d.highlight
-                  ? 'text-[var(--wpf-ink)]'
+                  ? 'text-white'
                   : 'bg-[var(--wpf-yellow-soft)] text-gray-900 border border-black/5'
               }`}
-              style={d.highlight ? { backgroundColor: 'var(--wpf-orange-bright)' } : undefined}
+              style={d.highlight ? { backgroundColor: 'var(--wpf-blue-deep)' } : undefined}
             >
               {d.highlight && (
-                <span className="self-start text-[11px] font-bold uppercase tracking-widest bg-black/15 rounded-full px-3 py-1 mb-4">
+                <span className="self-start text-[11px] font-bold uppercase tracking-widest bg-white/20 rounded-full px-3 py-1 mb-4">
                   Free entry
                 </span>
               )}
               <p className="text-sm font-bold uppercase tracking-widest opacity-70 mb-1">{d.date}</p>
               <h3 className="text-2xl font-extrabold mb-3">{d.day} — {d.title}</h3>
-              <p className={`leading-relaxed ${d.highlight ? 'text-[var(--wpf-ink)]' : 'text-gray-600'}`}>{d.body}</p>
+              <p className={`leading-relaxed ${d.highlight ? 'text-white/90' : 'text-gray-600'}`}>{d.body}</p>
             </div>
           ))}
         </div>
