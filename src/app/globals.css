@@ -152,12 +152,12 @@
    stark white. Yellow is the dominant/primary colour site-wide; black is
    avoided entirely outside the intentionally moodier Cabaret page. */
 :root {
-  --wpf-yellow: #f5b729; /* dominant sunburst yellow */
-  --wpf-yellow-soft: #fdecc0; /* soft butter-yellow, header + section bg */
+  --wpf-yellow: #ffc21f; /* dominant sunburst yellow — brightened, punchier gold */
+  --wpf-yellow-soft: #fdecbf; /* soft butter-yellow, header + section bg */
   --wpf-orange: #e8772e; /* tent-stripe orange */
   --wpf-orange-deep: #c85a28; /* deeper burnt orange for accents/hover */
-  --wpf-green: #3c7d2e; /* leafy green accent */
-  --wpf-green-deep: #2a571d; /* deep green, footer/section anchor */
+  --wpf-green: #4ca336; /* leafy green accent — brightened, more vivid */
+  --wpf-green-deep: #2f6b20; /* deep green, footer/section anchor — nudged greener, still deepest */
   --wpf-cream: #fbf6e9; /* warm base instead of white */
   --wpf-ink: #3b2a17; /* warm dark brown — replaces black for text */
   --wpf-maroon: #271620; /* Cabaret page's intentionally moody dark base */
@@ -182,7 +182,7 @@
   background-image: repeating-conic-gradient(
     from 0deg at 50% -60%,
     var(--wpf-yellow) 0deg 9deg,
-    #f7c34c 9deg 18deg
+    #ffd45c 9deg 18deg
   );
 }
 

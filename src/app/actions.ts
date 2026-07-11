@@ -1,6 +1,6 @@
 'use server'
 
-import { supabase } from '@/lib/supabase'
+import { supabase, getSupabaseWriter } from '@/lib/supabase'
 import { revalidatePath } from 'next/cache'
 import { defaultsFor, getPageDef } from '@/lib/pages'
 
@@ -29,16 +29,17 @@ export async function getPageContent(slug: string): Promise<PageContent> {
 
 /** Persist a page's content and snapshot history. */
 export async function savePageContent(slug: string, content: PageContent) {
-  if (!supabase) return
+  const db = getSupabaseWriter()
+  if (!db) return
   const def = getPageDef(slug)
   const path = def?.path ?? '/'
 
-  const { error } = await supabase
+  const { error } = await db
     .from('pages')
     .upsert({ slug, data: content, updated_at: new Date().toISOString() })
   if (error) throw error
 
-  await supabase
+  await db
     .from('page_history')
     .insert({ slug, data: content, saved_at: new Date().toISOString() })
 
@@ -47,8 +48,9 @@ export async function savePageContent(slug: string, content: PageContent) {
 }
 
 export async function getPageHistory(slug: string): Promise<ContentVersion[]> {
-  if (!supabase) return []
-  const { data, error } = await supabase
+  const db = getSupabaseWriter()
+  if (!db) return []
+  const { data, error } = await db
     .from('page_history')
     .select('id, slug, data, saved_at')
     .eq('slug', slug)
@@ -66,9 +68,10 @@ export async function pagesTableExists(): Promise<boolean> {
 }
 
 export async function revertToVersion(slug: string, versionId: number) {
-  if (!supabase) throw new Error('Supabase not configured')
+  const db = getSupabaseWriter()
+  if (!db) throw new Error('Supabase not configured')
 
-  const { data, error } = await supabase
+  const { data, error } = await db
     .from('page_history')
     .select('data')
     .eq('id', versionId)

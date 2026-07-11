@@ -24,7 +24,6 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 inset-x-0 z-50">
-      <div className="wpf-stripe-border h-[6px] w-full" />
       <div style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}>
         <div className="mx-auto max-w-[1440px] px-6 md:px-11 flex items-center justify-between py-3 md:py-4">
           <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>

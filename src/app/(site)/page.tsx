@@ -45,6 +45,23 @@ export default async function HomePage() {
           </p>
           <p className="mt-6 opacity-80 leading-relaxed max-w-2xl text-balance">{c.heroTagline}</p>
 
+          {/* PLACEHOLDER hero image — swap this framed box for the real
+              festival logo / hero artwork once supplied. The client is drawn
+              in by imagery more than words, so this anchors the hero visually.
+              Uses the shared ImagePlaceholder with a warm cream/translucent
+              frame to fit the circus-poster aesthetic. */}
+          <figure className="mt-9 w-full max-w-md">
+            <div
+              className="relative aspect-[16/9] w-full rounded-2xl border-2 bg-white/60 backdrop-blur-sm flex items-center justify-center overflow-hidden"
+              style={{ borderColor: INK }}
+            >
+              <ImagePlaceholder className="w-14 h-14" style={{ color: INK }} />
+            </div>
+            <figcaption className="mt-2 text-xs font-bold uppercase tracking-widest opacity-60">
+              Festival logo — placeholder
+            </figcaption>
+          </figure>
+
           <div className="mt-9 flex flex-col sm:flex-row items-center gap-4">
             <a
               href="https://events.humanitix.com/"

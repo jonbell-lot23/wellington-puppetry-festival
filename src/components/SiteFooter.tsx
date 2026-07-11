@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import WaveDivider from '@/components/WaveDivider'
 
 const TICKETS_URL = 'https://events.humanitix.com/'
 
@@ -28,8 +29,10 @@ const LINKS = [
   { label: 'Get Tickets', href: TICKETS_URL, external: true },
 ]
 
-export default function SiteFooter() {
+export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom?: string }) {
   return (
+    <>
+    <WaveDivider fromColor={waveFrom} toColor="var(--wpf-green-deep)" />
     <footer className="text-white" style={{ backgroundColor: 'var(--wpf-green-deep)' }}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
@@ -105,5 +108,6 @@ export default function SiteFooter() {
         </div>
       </div>
     </footer>
+    </>
   )
 }
