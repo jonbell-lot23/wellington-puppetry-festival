@@ -1,6 +1,6 @@
 'use server'
 
-import { supabase, getSupabaseWriter } from '@/lib/supabase'
+import { supabase, getSupabaseAdmin } from '@/lib/supabase'
 import { revalidatePath } from 'next/cache'
 import { defaultsFor, getPageDef } from '@/lib/pages'
 
@@ -27,10 +27,19 @@ export async function getPageContent(slug: string): Promise<PageContent> {
   return { ...defaults, ...(data.data as PageContent) }
 }
 
+/** True when the service role key is set — required for admin writes and history. */
+export async function isAdminWritable(): Promise<boolean> {
+  return getSupabaseAdmin() !== null
+}
+
 /** Persist a page's content and snapshot history. */
 export async function savePageContent(slug: string, content: PageContent) {
-  const db = getSupabaseWriter()
-  if (!db) return
+  const db = getSupabaseAdmin()
+  if (!db) {
+    throw new Error(
+      'SUPABASE_SERVICE_ROLE_KEY is not configured. Add it to .env.local to enable admin saves.',
+    )
+  }
   const def = getPageDef(slug)
   const path = def?.path ?? '/'
 
@@ -48,7 +57,7 @@ export async function savePageContent(slug: string, content: PageContent) {
 }
 
 export async function getPageHistory(slug: string): Promise<ContentVersion[]> {
-  const db = getSupabaseWriter()
+  const db = getSupabaseAdmin()
   if (!db) return []
   const { data, error } = await db
     .from('page_history')
@@ -68,8 +77,12 @@ export async function pagesTableExists(): Promise<boolean> {
 }
 
 export async function revertToVersion(slug: string, versionId: number) {
-  const db = getSupabaseWriter()
-  if (!db) throw new Error('Supabase not configured')
+  const db = getSupabaseAdmin()
+  if (!db) {
+    throw new Error(
+      'SUPABASE_SERVICE_ROLE_KEY is not configured. Add it to .env.local to enable revert.',
+    )
+  }
 
   const { data, error } = await db
     .from('page_history')

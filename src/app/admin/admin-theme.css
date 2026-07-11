@@ -1,0 +1,121 @@
+/* Admin-only theme — imported by src/app/admin/layout.tsx only */
+
+:root {
+  --admin-cream: #fbf6e9;
+  --admin-white: #ffffff;
+  --admin-ink: #3b2a17;
+  --admin-ink-muted: #5c4a38;
+  --admin-ink-faint: #8a7764;
+  --admin-yellow: #ffce2e;
+  --admin-yellow-hover: #f0c020;
+  --admin-pink: #d81b7c;
+  --admin-blue: #0d5fa8;
+  --admin-border: #e8dcc8;
+  --admin-border-strong: #d4c4a8;
+  --admin-surface: #ffffff;
+  --admin-toolbar: rgba(255, 255, 255, 0.95);
+  --admin-danger-bg: #fef2f2;
+  --admin-danger-border: #fecaca;
+  --admin-danger-text: #991b1b;
+  --admin-success-bg: #f0fdf4;
+  --admin-success-border: #bbf7d0;
+  --admin-success-text: #166534;
+  --admin-warning-bg: #fffbeb;
+  --admin-warning-border: #fde68a;
+  --admin-warning-text: #92400e;
+}
+
+.admin-root {
+  min-height: 100vh;
+  background-color: var(--admin-cream);
+  color: var(--admin-ink);
+}
+
+.admin-toolbar {
+  background: var(--admin-toolbar);
+  border-bottom: 1px solid var(--admin-border);
+  backdrop-filter: blur(8px);
+}
+
+.admin-sidebar {
+  background: var(--admin-white);
+  border-right: 1px solid var(--admin-border);
+}
+
+.admin-card {
+  background: var(--admin-white);
+  border: 1px solid var(--admin-border);
+  border-radius: 0.5rem;
+}
+
+.admin-input {
+  background: var(--admin-white);
+  border: 1px solid var(--admin-border-strong);
+  color: var(--admin-ink);
+  border-radius: 0.5rem;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: var(--admin-blue);
+  box-shadow: 0 0 0 2px rgba(13, 95, 168, 0.15);
+}
+
+.admin-input::placeholder {
+  color: var(--admin-ink-faint);
+}
+
+.admin-btn-primary {
+  background: var(--admin-yellow);
+  color: var(--admin-ink);
+  font-weight: 700;
+}
+
+.admin-btn-primary:hover:not(:disabled) {
+  background: var(--admin-yellow-hover);
+}
+
+.admin-btn-secondary {
+  background: var(--admin-white);
+  border: 1px solid var(--admin-border-strong);
+  color: var(--admin-ink);
+}
+
+.admin-btn-secondary:hover:not(:disabled) {
+  background: var(--admin-cream);
+}
+
+.admin-tab-active {
+  background: rgba(255, 206, 46, 0.25);
+  color: var(--admin-ink);
+}
+
+.admin-nav-active {
+  background: rgba(255, 206, 46, 0.2);
+  color: var(--admin-ink);
+  font-weight: 600;
+}
+
+.admin-diff-removed {
+  background: var(--admin-danger-bg);
+  border: 1px solid var(--admin-danger-border);
+  color: var(--admin-danger-text);
+}
+
+.admin-diff-added {
+  background: var(--admin-success-bg);
+  border: 1px solid var(--admin-success-border);
+  color: var(--admin-success-text);
+}
+
+.admin-banner-warning {
+  background: var(--admin-warning-bg);
+  border: 1px solid var(--admin-warning-border);
+  color: var(--admin-warning-text);
+}
+
+.admin-banner-error {
+  background: var(--admin-danger-bg);
+  border: 1px solid var(--admin-danger-border);
+  color: var(--admin-danger-text);
+}

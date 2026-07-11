@@ -1,4 +1,4 @@
-import { getPageContent, getPageHistory, pagesTableExists } from '../actions'
+import { getPageContent, getPageHistory, isAdminWritable, pagesTableExists } from '../actions'
 import { PAGES, getPageDef } from '@/lib/pages'
 import AdminEditor from './AdminEditor'
 
@@ -24,10 +24,11 @@ export default async function AdminPage({
   const slug = getPageDef(page ?? '') ? page! : PAGES[0].slug
   const def = getPageDef(slug)!
 
-  const [content, versions, tableReady] = await Promise.all([
+  const [content, versions, tableReady, writable] = await Promise.all([
     getPageContent(slug),
     getPageHistory(slug),
     pagesTableExists(),
+    isAdminWritable(),
   ])
 
   return (
@@ -37,6 +38,7 @@ export default async function AdminPage({
       initialContent={content}
       initialVersions={versions}
       migrationSQL={tableReady ? null : MIGRATION_SQL}
+      writable={writable}
     />
   )
 }
