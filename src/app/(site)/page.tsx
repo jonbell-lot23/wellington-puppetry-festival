@@ -8,6 +8,7 @@ import ImagePlaceholder from '@/components/ImagePlaceholder'
 export const revalidate = 60
 
 const CREAM = 'var(--wpf-cream)'
+const MINT = 'var(--wpf-mint)'
 const GREEN_DEEP = 'var(--wpf-green-deep)'
 const INK = 'var(--wpf-ink)'
 
@@ -86,7 +87,7 @@ export default async function HomePage() {
       {/* Saturday free kids activities — the front-and-centre message from
           the meeting notes, treated like the reference site's big central
           media moment ("ONE POWERFUL CELEBRATION" video block). */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>
+      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: MINT }}>
         <div className="mx-auto max-w-4xl">
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl" style={{ backgroundColor: 'var(--wpf-green-deep)' }}>
             <Image
@@ -111,7 +112,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-cream)" toColor="var(--wpf-green-deep)" />
+      <WaveDivider fromColor="var(--wpf-mint)" toColor="var(--wpf-green-deep)" />
 
       {/* Newsletter + sponsors — same green section carrying straight on,
           matching the reference site's combined footer-ish block. Deep

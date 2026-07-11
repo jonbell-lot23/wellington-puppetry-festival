@@ -152,12 +152,13 @@
    stark white. Yellow is the dominant/primary colour site-wide; black is
    avoided entirely outside the intentionally moodier Cabaret page. */
 :root {
-  --wpf-yellow: #ffc21f; /* dominant sunburst yellow — brightened, punchier gold */
-  --wpf-yellow-soft: #fdecbf; /* soft butter-yellow, header + section bg */
+  --wpf-yellow: #ffce2e; /* dominant sunburst yellow — brightened again toward a punchier warm gold per client feedback */
+  --wpf-yellow-soft: #fef0c6; /* soft butter-yellow, header + section bg — nudged brighter/fresher, still a good backdrop for dark ink */
   --wpf-orange: #e8772e; /* tent-stripe orange */
   --wpf-orange-deep: #c85a28; /* deeper burnt orange for accents/hover */
-  --wpf-green: #4ca336; /* leafy green accent — brightened, more vivid */
-  --wpf-green-deep: #37872a; /* deep green, footer/newsletter anchor — brightened & more saturated per client feedback; brightest that keeps white body text at WCAG AA (4.51:1) */
+  --wpf-green: #33bd6b; /* fresh, bright mint-leaning green accent (stripe/bunting only — not behind text) */
+  --wpf-green-deep: #0a875a; /* fresher emerald/mint-leaning deep green — anchors footer/newsletter behind WHITE text; shifted toward mint hue for freshness while staying dark enough for white body text at WCAG AA (4.54:1) */
+  --wpf-mint: #c9f2da; /* light mint accent fill for fresh light sections (dark ink text only) */
   --wpf-cream: #fbf6e9; /* warm base instead of white */
   --wpf-ink: #3b2a17; /* warm dark brown — replaces black for text */
   --wpf-maroon: #271620; /* Cabaret page's intentionally moody dark base */
@@ -182,7 +183,7 @@
   background-image: repeating-conic-gradient(
     from 0deg at 50% -60%,
     var(--wpf-yellow) 0deg 9deg,
-    #ffd45c 9deg 18deg
+    #ffdd6b 9deg 18deg
   );
 }
 
