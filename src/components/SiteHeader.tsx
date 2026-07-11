@@ -43,7 +43,7 @@ export default function SiteHeader() {
               <Link
                 key={item.href}
                 href={item.href}
-                className="text-[15px] font-bold hover:opacity-70 transition-opacity whitespace-nowrap"
+                className="wpf-nav-link text-[15px] font-bold whitespace-nowrap"
                 style={{ color: 'var(--wpf-ink)' }}
               >
                 {item.label}
@@ -53,7 +53,7 @@ export default function SiteHeader() {
               href="https://events.humanitix.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full text-white text-[14px] font-bold px-6 py-3 hover:brightness-110 transition whitespace-nowrap"
+              className="wpf-btn-focus rounded-full text-white text-[14px] font-bold px-6 py-3 hover:brightness-110 transition whitespace-nowrap"
               style={{ backgroundColor: 'var(--wpf-orange-deep)' }}
             >
               Get Tickets
@@ -92,7 +92,7 @@ export default function SiteHeader() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="text-base font-bold py-1"
+                className="wpf-nav-link text-base font-bold py-1"
                 style={{ color: 'var(--wpf-ink)' }}
               >
                 {item.label}

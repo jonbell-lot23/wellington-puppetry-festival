@@ -78,14 +78,14 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
                     href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-white/90 hover:text-white text-sm font-medium"
+                    className="wpf-footer-link text-white/90 text-sm font-medium"
                   >
                     {l.label}
                   </a>
                 </li>
               ) : (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-white/90 hover:text-white text-sm font-medium">
+                  <Link href={l.href} className="wpf-footer-link text-white/90 text-sm font-medium">
                     {l.label}
                   </Link>
                 </li>

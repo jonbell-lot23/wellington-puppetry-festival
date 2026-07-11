@@ -21,7 +21,7 @@ export default function PageHero({
       style={{ backgroundColor: sunburst ? undefined : bg, color: textColor }}
     >
       <div className="mx-auto max-w-3xl text-center">
-        <h1 className="font-extrabold text-4xl md:text-6xl leading-tight text-balance">{heading}</h1>
+        <h1 className="wpf-heading-dot font-extrabold text-4xl md:text-6xl leading-tight text-balance">{heading}</h1>
         {intro && (
           <p className="mt-5 text-base md:text-lg opacity-80 leading-relaxed text-balance">{intro}</p>
         )}

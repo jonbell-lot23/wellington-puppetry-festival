@@ -35,7 +35,7 @@ export default async function HomePage() {
         className="wpf-sunburst relative px-6 pt-16 pb-20 md:pt-24 md:pb-28"
       >
         <div className="mx-auto max-w-3xl flex flex-col items-center text-center" style={{ color: INK }}>
-          <p className="uppercase tracking-widest text-xs md:text-sm font-bold opacity-70 mb-4">
+          <p className="wpf-pink-kicker uppercase tracking-widest text-xs md:text-sm font-bold mb-4">
             {c.heroKicker}
           </p>
           <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight text-balance">
@@ -53,8 +53,8 @@ export default async function HomePage() {
               frame to fit the circus-poster aesthetic. */}
           <figure className="mt-9 w-full max-w-md">
             <div
-              className="relative aspect-[16/9] w-full rounded-2xl border-2 bg-white/60 backdrop-blur-sm flex items-center justify-center overflow-hidden"
-              style={{ borderColor: INK }}
+              className="relative aspect-[16/9] w-full rounded-2xl border-2 border-t-[3px] bg-white/60 backdrop-blur-sm flex items-center justify-center overflow-hidden"
+              style={{ borderColor: INK, borderTopColor: 'var(--wpf-pink)' }}
             >
               <ImagePlaceholder className="w-14 h-14" style={{ color: INK }} />
             </div>
@@ -68,14 +68,14 @@ export default async function HomePage() {
               href="https://events.humanitix.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block rounded-full text-white font-bold text-base px-8 py-4 hover:brightness-110 transition"
+              className="wpf-btn-focus inline-block rounded-full text-white font-bold text-base px-8 py-4 hover:brightness-110 transition"
               style={{ backgroundColor: GREEN_DEEP }}
             >
               Get Tickets
             </a>
             <Link
               href="/program"
-              className="inline-block rounded-full border-2 font-bold text-base px-8 py-4 hover:bg-black/5 transition"
+              className="wpf-btn-focus inline-block rounded-full border-2 font-bold text-base px-8 py-4 hover:bg-black/5 transition hover:border-[var(--wpf-pink)]"
               style={{ borderColor: INK, color: INK }}
             >
               See the Programme
@@ -153,7 +153,7 @@ export default async function HomePage() {
           existing festival imagery. */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-center font-extrabold text-2xl md:text-4xl mb-10" style={{ color: 'var(--wpf-green-deep)' }}>
+          <h2 className="wpf-squiggle-underline text-center font-extrabold text-2xl md:text-4xl mb-12" style={{ color: 'var(--wpf-green-deep)' }}>
             {c.galleryHeading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
