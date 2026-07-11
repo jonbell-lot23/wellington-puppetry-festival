@@ -1,4 +1,7 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import WaveDivider from '@/components/WaveDivider'
 
 const TICKETS_URL = 'https://events.humanitix.com/'
@@ -30,16 +33,22 @@ const LINKS = [
 ]
 
 export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom?: string }) {
+  const pathname = usePathname()
+  // Cabaret is the intentionally moody maroon page — let the wine colour flow
+  // straight into the footer with no wave and no blue break.
+  const maroon = pathname?.startsWith('/cabaret') ?? false
+  const footerBg = maroon ? 'var(--wpf-maroon)' : 'var(--wpf-blue-deep)'
+
   return (
     <>
-    <WaveDivider fromColor={waveFrom} toColor="var(--wpf-blue-deep)" />
-    <footer style={{ backgroundColor: 'var(--wpf-blue-deep)', color: '#ffffff' }}>
+    {!maroon && <WaveDivider fromColor={waveFrom} toColor="var(--wpf-blue-deep)" />}
+    <footer style={{ backgroundColor: footerBg, color: '#ffffff' }}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
           <p className="font-extrabold leading-none text-xl mb-4">
             Wellington
             <br />
-            <span style={{ color: 'var(--wpf-pink)' }}>Puppetry Festival</span>
+            <span style={{ color: 'var(--wpf-yellow)' }}>Puppetry Festival</span>
           </p>
           <p className="opacity-85 text-sm max-w-xs leading-relaxed">
             A free, community-powered puppetry festival in Pōneke Wellington —

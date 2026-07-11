@@ -24,8 +24,8 @@ export default async function CabaretPage() {
             href="https://events.humanitix.com/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 hover:brightness-110 transition"
-            style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-maroon)' }}
+            className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 hover:brightness-125 transition"
+            style={{ backgroundColor: '#000000', color: 'var(--wpf-pink)' }}
           >
             Get Cabaret Tickets
           </a>

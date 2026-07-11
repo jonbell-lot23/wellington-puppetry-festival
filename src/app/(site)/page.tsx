@@ -70,8 +70,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-yellow)" toColor={BLUE_SOFT} />
-
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: BLUE_SOFT }}>
         <div className="mx-auto max-w-4xl">
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: BLUE_DEEP }}>
@@ -83,8 +81,8 @@ export default async function HomePage() {
             />
             <div className="absolute inset-0 bg-gradient-to-t from-[var(--wpf-blue-deep)]/85 via-[var(--wpf-blue-deep)]/25 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
-              <p className="wpf-section-kicker text-white/90 mb-2">Community day</p>
-              <h2 className="wpf-section-heading wpf-section-heading--on-dark text-3xl md:text-5xl">
+              <p className="wpf-section-kicker mb-2" style={{ color: 'var(--wpf-yellow)' }}>Community day</p>
+              <h2 className="wpf-section-heading text-3xl md:text-5xl" style={{ color: 'var(--wpf-yellow)' }}>
                 {c.kidsHeading}
               </h2>
             </div>
@@ -131,7 +129,7 @@ export default async function HomePage() {
 
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-6xl">
-          <h2 className="wpf-section-heading wpf-section-heading--pink wpf-heading-dot text-center text-2xl md:text-4xl mb-10 md:mb-12">
+          <h2 className="wpf-section-heading wpf-section-heading--pink text-center text-2xl md:text-4xl mb-10 md:mb-12">
             {c.galleryHeading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">

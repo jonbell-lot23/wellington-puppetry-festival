@@ -45,7 +45,7 @@ export default async function ProgramPage() {
                   ? 'text-white'
                   : 'bg-[var(--wpf-yellow-soft)] border border-black/5'
               }`}
-              style={d.highlight ? { backgroundColor: 'var(--wpf-blue-deep)' } : { color: 'var(--wpf-ink)' }}
+              style={d.highlight ? { backgroundColor: 'var(--wpf-pink)' } : { color: 'var(--wpf-ink)' }}
             >
               {d.highlight && (
                 <span className="self-start text-[11px] font-bold uppercase tracking-widest bg-white/20 rounded-full px-3 py-1 mb-4">
