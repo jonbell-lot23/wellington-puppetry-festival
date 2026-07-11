@@ -53,8 +53,7 @@ export default function SiteHeader() {
               href="https://events.humanitix.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="wpf-btn-focus rounded-full text-white text-[14px] font-bold px-6 py-3 hover:brightness-110 transition whitespace-nowrap"
-              style={{ backgroundColor: 'var(--wpf-pink)' }}
+              className="wpf-btn-primary wpf-btn-focus text-[14px] px-6 py-3 whitespace-nowrap"
             >
               Get Tickets
             </a>
@@ -66,8 +65,7 @@ export default function SiteHeader() {
               href="https://events.humanitix.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="wpf-btn-focus rounded-full text-white text-[13px] font-bold px-4 py-2.5 whitespace-nowrap"
-              style={{ backgroundColor: 'var(--wpf-pink)' }}
+              className="wpf-btn-primary wpf-btn-focus text-[13px] px-4 py-2.5 whitespace-nowrap"
             >
               Tickets
             </a>
@@ -86,7 +84,7 @@ export default function SiteHeader() {
 
         {/* Mobile menu */}
         {open && (
-          <nav className="lg:hidden mx-4 mb-4 rounded-xl bg-white/60 backdrop-blur px-5 py-4 flex flex-col gap-3">
+          <nav className="lg:hidden mx-4 mb-4 rounded-xl border border-black/5 px-5 py-4 flex flex-col gap-3" style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}>
             {NAV.map((item) => (
               <Link
                 key={item.href}
@@ -101,6 +99,7 @@ export default function SiteHeader() {
           </nav>
         )}
       </div>
+      <div className="h-1 wpf-stripe-border" aria-hidden />
     </header>
   )
 }

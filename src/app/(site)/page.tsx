@@ -10,10 +10,8 @@ export const revalidate = 60
 const CREAM = 'var(--wpf-cream)'
 const BLUE_SOFT = 'var(--wpf-blue-soft)'
 const BLUE_DEEP = 'var(--wpf-blue-deep)'
-const PINK = 'var(--wpf-pink)'
 const INK = 'var(--wpf-ink)'
 
-// Placeholder sponsor slots — swap logos in as they're confirmed.
 const SPONSORS = [
   'Creative NZ',
   'Wellington City Council',
@@ -28,56 +26,43 @@ export default async function HomePage() {
 
   return (
     <main style={{ backgroundColor: CREAM }}>
-      {/* Warm sunburst intro band — continues the hero artwork's radiating
-          rays as a subtle repeating-conic-gradient texture instead of a
-          flat colour block, angled top edge cloned from the reference
-          site's shape language. */}
-      <section
-        className="wpf-sunburst relative px-6 pt-16 pb-20 md:pt-24 md:pb-28"
-      >
-        <div className="mx-auto max-w-3xl flex flex-col items-center text-center" style={{ color: INK }}>
-          <p className="wpf-pink-kicker uppercase tracking-widest text-xs md:text-sm font-bold mb-4">
-            {c.heroKicker}
-          </p>
-          <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight text-balance">
+      <section className="wpf-sunburst relative px-6 pt-14 pb-16 md:pt-20 md:pb-20" style={{ color: INK }}>
+        <div className="mx-auto max-w-3xl flex flex-col items-center text-center">
+          <p className="wpf-section-kicker mb-3">{c.heroKicker}</p>
+          <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.08] text-balance tracking-tight">
             {c.heroTitle}
           </h1>
-          <p className="mt-4 text-lg md:text-xl font-bold tracking-wide" style={{ color: 'var(--wpf-blue)' }}>
+          <p className="mt-3 text-lg md:text-xl font-extrabold tracking-wide" style={{ color: 'var(--wpf-blue)' }}>
             {c.heroDates}
           </p>
-          <p className="mt-6 opacity-80 leading-relaxed max-w-2xl text-balance">{c.heroTagline}</p>
+          <p className="mt-5 wpf-text-muted leading-relaxed max-w-2xl text-balance text-base md:text-lg">
+            {c.heroTagline}
+          </p>
 
-          {/* PLACEHOLDER hero image — swap this framed box for the real
-              festival logo / hero artwork once supplied. The client is drawn
-              in by imagery more than words, so this anchors the hero visually.
-              Uses the shared ImagePlaceholder with a warm cream/translucent
-              frame to fit the circus-poster aesthetic. */}
-          <figure className="mt-9 w-full max-w-md">
+          <figure className="mt-8 w-full max-w-md">
             <div
-              className="relative aspect-[16/9] w-full rounded-2xl border-2 border-t-[3px] bg-white/60 backdrop-blur-sm flex items-center justify-center overflow-hidden"
+              className="relative aspect-[16/9] w-full rounded-2xl border-2 border-t-[3px] bg-white/55 flex items-center justify-center overflow-hidden shadow-sm"
               style={{ borderColor: INK, borderTopColor: 'var(--wpf-pink)' }}
             >
               <ImagePlaceholder className="w-14 h-14" style={{ color: INK }} />
             </div>
-            <figcaption className="mt-2 text-xs font-bold uppercase tracking-widest opacity-60">
+            <figcaption className="mt-2.5 wpf-section-kicker text-[10px] md:text-xs opacity-70">
               Festival logo — placeholder
             </figcaption>
           </figure>
 
-          <div className="mt-9 flex flex-col sm:flex-row items-center gap-4">
+          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
             <a
               href="https://events.humanitix.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="wpf-btn-focus inline-block rounded-full text-white font-bold text-base px-8 py-4 hover:brightness-110 transition"
-              style={{ backgroundColor: PINK }}
+              className="wpf-btn-primary wpf-btn-focus text-base px-8 py-3.5"
             >
               Get Tickets
             </a>
             <Link
               href="/program"
-              className="wpf-btn-focus inline-block rounded-full border-2 font-bold text-base px-8 py-4 hover:bg-black/5 transition hover:border-[var(--wpf-pink)]"
-              style={{ borderColor: INK, color: INK }}
+              className="wpf-btn-secondary wpf-btn-focus text-base px-8 py-3.5"
             >
               See the Programme
             </Link>
@@ -85,56 +70,53 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Saturday free kids activities — the front-and-centre message from
-          the meeting notes, treated like the reference site's big central
-          media moment ("ONE POWERFUL CELEBRATION" video block). */}
+      <WaveDivider fromColor="var(--wpf-yellow)" toColor={BLUE_SOFT} />
+
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: BLUE_SOFT }}>
         <div className="mx-auto max-w-4xl">
-          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl" style={{ backgroundColor: BLUE_DEEP }}>
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: BLUE_DEEP }}>
             <Image
               src="/images/gallery/wpf-gallery-047.jpg"
               alt="Community day — kids activities"
               fill
               className="object-cover"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[var(--wpf-blue-deep)]/85 via-[var(--wpf-blue-deep)]/25 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
-              <p className="text-white/80 uppercase tracking-widest text-xs md:text-sm font-bold mb-2">
-                Community day
-              </p>
-              <h2 className="text-white font-extrabold text-3xl md:text-5xl leading-tight text-balance">
+              <p className="wpf-section-kicker text-white/90 mb-2">Community day</p>
+              <h2 className="wpf-section-heading wpf-section-heading--on-dark text-3xl md:text-5xl">
                 {c.kidsHeading}
               </h2>
             </div>
           </div>
-          <p className="mt-6 text-center max-w-2xl mx-auto leading-relaxed" style={{ color: INK, opacity: 0.75 }}>
+          <p className="mt-7 text-center max-w-2xl mx-auto leading-relaxed wpf-text-muted text-base md:text-lg">
             {c.kidsBody}
           </p>
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-blue-soft)" toColor="var(--wpf-blue-deep)" />
+      <WaveDivider fromColor={BLUE_SOFT} toColor={BLUE_DEEP} />
 
-      {/* Newsletter + sponsors — deep cobalt-blue block. White text on
-          blue-deep clears AA (10.58:1); pink/yellow CTAs stay on-brand. */}
-      <section className="px-6 py-16 md:py-20" style={{ backgroundColor: BLUE_DEEP, color: '#ffffff' }}>
-        <div className="mx-auto max-w-3xl text-center mb-16">
-          <h2 className="font-extrabold text-2xl md:text-4xl mb-3">{c.newsletterHeading}</h2>
-          <p className="opacity-80 mb-8 max-w-xl mx-auto">{c.newsletterSubtext}</p>
-          <div className="flex justify-center">
-            <SignupForm />
-          </div>
+      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: BLUE_DEEP, color: '#ffffff' }}>
+        <div className="mx-auto max-w-3xl text-center mb-14 md:mb-16">
+          <h2 className="wpf-section-heading wpf-section-heading--on-dark text-2xl md:text-4xl mb-3">
+            {c.newsletterHeading}
+          </h2>
+          <p className="wpf-text-muted-on-dark mb-8 max-w-xl mx-auto text-base md:text-lg leading-relaxed">
+            {c.newsletterSubtext}
+          </p>
+          <SignupForm />
         </div>
 
-        <div className="mx-auto max-w-5xl">
-          <p className="text-center opacity-70 text-xs uppercase tracking-widest font-semibold mb-8">
+        <div className="mx-auto max-w-5xl pt-2 border-t border-white/12">
+          <p className="text-center wpf-text-muted-on-dark text-xs uppercase tracking-widest font-semibold mb-8">
             {c.sponsorsCaption}
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6 items-center">
             {SPONSORS.map((name) => (
               <div
                 key={name}
-                className="h-16 rounded-lg border border-dashed border-white/30 flex flex-col items-center justify-center gap-1 px-3 text-center"
+                className="h-16 rounded-lg border border-dashed border-white/25 flex flex-col items-center justify-center gap-1 px-3 text-center bg-white/5"
                 title="Placeholder — swap in real sponsor logo"
               >
                 <ImagePlaceholder className="w-4 h-4 text-white/50" />
@@ -145,21 +127,18 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-blue-deep)" toColor="var(--wpf-cream)" />
+      <WaveDivider fromColor={BLUE_DEEP} toColor={CREAM} />
 
-      {/* Gallery — carried over from the previous site's brief ("the gallery
-          at the bottom is good, keep it"); rebuilt here as a photo grid using
-          existing festival imagery. */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-6xl">
-          <h2 className="text-center font-extrabold text-2xl md:text-4xl mb-10" style={{ color: PINK }}>
+          <h2 className="wpf-section-heading wpf-section-heading--pink wpf-heading-dot text-center text-2xl md:text-4xl mb-10 md:mb-12">
             {c.galleryHeading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {['wpf-gallery-01.jpg', 'wpf-gallery-09.jpg', 'wpf-gallery-045.jpg', 'wpf-gallery-064.jpg', 'wpf-gallery-077.jpg', 'wpf-gallery-086.jpg', 'wpf-gallery-102.jpg', 'wpf-gallery-106.jpg'].map((img) => (
               <div
                 key={img}
-                className="relative aspect-square rounded-lg overflow-hidden"
+                className="wpf-gallery-tile relative aspect-square rounded-lg overflow-hidden shadow-sm"
               >
                 <Image
                   src={`/images/gallery/${img}`}

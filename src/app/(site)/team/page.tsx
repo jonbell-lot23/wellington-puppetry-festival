@@ -25,12 +25,12 @@ export default async function TeamPage() {
               <div className="aspect-square rounded-full bg-[var(--wpf-yellow-soft)] border border-black/5 flex items-center justify-center mb-3">
                 <ImagePlaceholder className="w-8 h-8 text-[var(--wpf-ink)]/40" />
               </div>
-              <h3 className="font-bold text-gray-900 text-sm">{member.name}</h3>
-              <p className="text-[var(--wpf-ink)]/70 text-xs font-medium">{member.role}</p>
+              <h3 className="font-bold text-sm" style={{ color: 'var(--wpf-ink)' }}>{member.name}</h3>
+              <p className="wpf-text-muted text-xs font-medium">{member.role}</p>
             </div>
           ))}
         </div>
-        <p className="text-center text-gray-500 text-sm mt-10">
+        <p className="text-center wpf-text-muted text-sm mt-10">
           Full team bios coming soon.
         </p>
       </section>

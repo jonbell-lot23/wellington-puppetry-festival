@@ -180,17 +180,17 @@
   --wpf-mint: #c9f2da; /* alias → prefer --wpf-blue-soft for light cool sections */
 }
 
-/* Tent-bunting stripe border — thin diagonal stripe band in the
-   Pink + Blue + Yellow trio (replaces the old orange/green stripes). */
+/* Tent-bunting stripe border — fine diagonal band in the Pink + Blue +
+   Yellow trio. Cream gaps keep it festive without overpowering content. */
 .wpf-stripe-border {
   background-image: repeating-linear-gradient(
     -45deg,
-    var(--wpf-yellow) 0 14px,
-    var(--wpf-cream) 14px 28px,
-    var(--wpf-pink) 28px 42px,
-    var(--wpf-cream) 42px 56px,
-    var(--wpf-blue) 56px 70px,
-    var(--wpf-cream) 70px 84px
+    var(--wpf-yellow-ray) 0 10px,
+    var(--wpf-cream) 10px 20px,
+    var(--wpf-pink) 20px 30px,
+    var(--wpf-cream) 30px 40px,
+    var(--wpf-blue) 40px 50px,
+    var(--wpf-cream) 50px 60px
   );
 }
 
@@ -227,8 +227,14 @@
 .wpf-nav-link {
   transition: color 0.15s ease;
 }
-.wpf-nav-link:hover {
+.wpf-nav-link:hover,
+.wpf-nav-link:focus-visible {
   color: var(--wpf-pink);
+}
+.wpf-nav-link:focus-visible {
+  outline: 2px solid var(--wpf-pink);
+  outline-offset: 3px;
+  border-radius: 2px;
 }
 
 /* Footer sits on deep-blue backdrop — links are white/cream for AA. */
@@ -253,5 +259,168 @@
 .wpf-btn-focus:focus-visible {
   outline: 2px solid var(--wpf-pink);
   outline-offset: 3px;
+}
+
+/* ── Shared typography + section rhythm ─────────────────────────── */
+
+.wpf-section-kicker {
+  color: var(--wpf-pink);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+@media (min-width: 768px) {
+  .wpf-section-kicker {
+    font-size: 0.875rem;
+  }
+}
+
+.wpf-section-heading {
+  font-weight: 800;
+  font-size: clamp(1.625rem, 3.5vw, 2.25rem);
+  line-height: 1.15;
+  color: var(--wpf-ink);
+  text-wrap: balance;
+}
+
+.wpf-section-heading--on-dark {
+  color: #ffffff;
+}
+
+.wpf-section-heading--pink {
+  color: var(--wpf-pink);
+}
+
+.wpf-text-muted {
+  color: color-mix(in srgb, var(--wpf-ink) 72%, transparent);
+}
+
+.wpf-text-muted-on-dark {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+/* ── Buttons — pink primary, ink-outline secondary ─────────────── */
+
+.wpf-btn-primary {
+  display: inline-block;
+  border-radius: 9999px;
+  background-color: var(--wpf-pink);
+  color: #ffffff;
+  font-weight: 700;
+  transition:
+    transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+    box-shadow 0.2s ease,
+    filter 0.15s ease;
+}
+
+.wpf-btn-primary:hover {
+  filter: brightness(1.06);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px color-mix(in srgb, var(--wpf-pink) 32%, transparent);
+}
+
+.wpf-btn-primary:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.wpf-btn-secondary {
+  display: inline-block;
+  border-radius: 9999px;
+  border: 2px solid var(--wpf-ink);
+  color: var(--wpf-ink);
+  font-weight: 700;
+  background-color: transparent;
+  transition:
+    background-color 0.15s ease,
+    border-color 0.15s ease,
+    transform 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wpf-btn-secondary:hover {
+  background-color: color-mix(in srgb, var(--wpf-ink) 5%, transparent);
+  border-color: var(--wpf-pink);
+}
+
+.wpf-btn-secondary:active {
+  transform: translateY(1px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wpf-btn-primary:hover,
+  .wpf-btn-primary:active,
+  .wpf-btn-secondary:active {
+    transform: none;
+  }
+}
+
+/* Yellow accent button — newsletter sign-up on deep-blue sections */
+.wpf-btn-accent {
+  display: inline-block;
+  border-radius: 9999px;
+  background-color: var(--wpf-yellow);
+  color: var(--wpf-ink);
+  font-weight: 700;
+  transition:
+    transform 0.2s cubic-bezier(0.25, 1, 0.5, 1),
+    filter 0.15s ease,
+    box-shadow 0.2s ease;
+}
+
+.wpf-btn-accent:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+  box-shadow: 0 3px 12px color-mix(in srgb, var(--wpf-yellow-deep) 40%, transparent);
+}
+
+.wpf-btn-accent:active {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+/* ── Newsletter form on deep-blue sections ─────────────────────── */
+
+.wpf-signup-panel {
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 1rem;
+  padding: 1.25rem;
+}
+
+.wpf-signup-input {
+  width: 100%;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  background-color: #ffffff;
+  color: var(--wpf-ink);
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.wpf-signup-input::placeholder {
+  color: color-mix(in srgb, var(--wpf-ink) 45%, transparent);
+}
+
+.wpf-signup-input:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--wpf-pink-soft), 0 0 0 3px var(--wpf-pink);
+}
+
+/* Subtle gallery lift — discoverable, not distracting */
+.wpf-gallery-tile {
+  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.wpf-gallery-tile:hover {
+  transform: scale(1.02);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wpf-gallery-tile:hover {
+    transform: none;
+  }
 }
 

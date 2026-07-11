@@ -32,13 +32,13 @@ export default async function ArtistsPage() {
             {ARTISTS.map((a, i) => (
               <div key={i} className="text-center">
                 <Avatar />
-                <h3 className="mt-4 font-bold text-gray-900">{a.name}</h3>
-                <p className="text-[var(--wpf-ink)]/70 text-sm font-medium">{a.role}</p>
-                <p className="text-gray-500 text-xs">{a.country}</p>
+                <h3 className="mt-4 font-bold" style={{ color: 'var(--wpf-ink)' }}>{a.name}</h3>
+                <p className="wpf-text-muted text-sm font-medium">{a.role}</p>
+                <p className="wpf-text-muted text-xs opacity-80">{a.country}</p>
               </div>
             ))}
           </div>
-          <p className="text-center text-gray-500 text-sm mt-10">
+          <p className="text-center wpf-text-muted text-sm mt-10">
             Full artist line-up to be announced alongside the 2026 programme.
           </p>
         </div>

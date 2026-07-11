@@ -33,16 +33,15 @@ export default async function AccessibilityPage() {
         <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
           {INFO.map((item) => (
             <div key={item.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
-              <h3 className="font-bold text-gray-900 mb-2">{item.title}</h3>
-              <p className="text-gray-600 text-sm leading-relaxed">{item.body}</p>
+              <h3 className="font-bold mb-2" style={{ color: 'var(--wpf-ink)' }}>{item.title}</h3>
+              <p className="wpf-text-muted text-sm leading-relaxed">{item.body}</p>
             </div>
           ))}
         </div>
         <div className="text-center mt-10">
           <a
             href="/contact"
-            className="inline-block rounded-full font-bold px-7 py-3.5 text-white hover:brightness-110 transition"
-            style={{ backgroundColor: 'var(--wpf-pink)' }}
+            className="wpf-btn-primary wpf-btn-focus px-7 py-3.5"
           >
             Contact us about access needs
           </a>

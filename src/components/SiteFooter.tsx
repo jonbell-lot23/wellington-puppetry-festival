@@ -39,7 +39,7 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
           <p className="font-extrabold leading-none text-xl mb-4">
             Wellington
             <br />
-            Puppetry Festival
+            <span style={{ color: 'var(--wpf-pink)' }}>Puppetry Festival</span>
           </p>
           <p className="opacity-85 text-sm max-w-xs leading-relaxed">
             A free, community-powered puppetry festival in Pōneke Wellington —
@@ -52,7 +52,8 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="grid place-items-center w-9 h-9 rounded-full bg-white text-gray-900 hover:opacity-80 transition"
+              className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
+              style={{ color: 'var(--wpf-blue-deep)' }}
             >
               <Instagram />
             </a>
@@ -61,7 +62,8 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
-              className="grid place-items-center w-9 h-9 rounded-full bg-white text-gray-900 hover:opacity-80 transition"
+              className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
+              style={{ color: 'var(--wpf-blue-deep)' }}
             >
               <Facebook />
             </a>

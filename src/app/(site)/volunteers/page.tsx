@@ -19,12 +19,12 @@ export default async function VolunteersPage() {
 
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-4xl">
-          <h2 className="font-extrabold text-2xl md:text-3xl text-gray-900 mb-6">Ways to help</h2>
+          <h2 className="wpf-section-heading text-2xl md:text-3xl mb-6">Ways to help</h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
             {ROLES.map((r) => (
               <div key={r.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
-                <h3 className="font-bold text-gray-900 mb-2">{r.title}</h3>
-                <p className="text-gray-600 text-sm leading-relaxed">{r.body}</p>
+                <h3 className="font-bold mb-2" style={{ color: 'var(--wpf-ink)' }}>{r.title}</h3>
+                <p className="wpf-text-muted text-sm leading-relaxed">{r.body}</p>
               </div>
             ))}
           </div>
@@ -37,8 +37,7 @@ export default async function VolunteersPage() {
             <p className="mb-5">Get in touch and we&apos;ll let you know how to sign up.</p>
             <a
               href="/contact"
-              className="inline-block rounded-full text-white font-bold px-7 py-3.5 hover:brightness-110 transition"
-              style={{ backgroundColor: 'var(--wpf-pink)' }}
+              className="wpf-btn-primary wpf-btn-focus px-7 py-3.5"
             >
               Contact the team
             </a>

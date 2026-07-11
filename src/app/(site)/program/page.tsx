@@ -43,9 +43,9 @@ export default async function ProgramPage() {
               className={`rounded-2xl p-7 flex flex-col ${
                 d.highlight
                   ? 'text-white'
-                  : 'bg-[var(--wpf-yellow-soft)] text-gray-900 border border-black/5'
+                  : 'bg-[var(--wpf-yellow-soft)] border border-black/5'
               }`}
-              style={d.highlight ? { backgroundColor: 'var(--wpf-blue-deep)' } : undefined}
+              style={d.highlight ? { backgroundColor: 'var(--wpf-blue-deep)' } : { color: 'var(--wpf-ink)' }}
             >
               {d.highlight && (
                 <span className="self-start text-[11px] font-bold uppercase tracking-widest bg-white/20 rounded-full px-3 py-1 mb-4">
@@ -54,13 +54,13 @@ export default async function ProgramPage() {
               )}
               <p className="text-sm font-bold uppercase tracking-widest opacity-70 mb-1">{d.date}</p>
               <h3 className="text-2xl font-extrabold mb-3">{d.day} — {d.title}</h3>
-              <p className={`leading-relaxed ${d.highlight ? 'text-white/90' : 'text-gray-600'}`}>{d.body}</p>
+              <p className={`leading-relaxed ${d.highlight ? 'text-white/90' : 'wpf-text-muted'}`}>{d.body}</p>
             </div>
           ))}
         </div>
 
-        <div className="mx-auto max-w-5xl mt-10 rounded-2xl border border-dashed border-gray-300 p-8 text-center">
-          <p className="text-gray-500 text-sm">
+        <div className="mx-auto max-w-5xl mt-10 rounded-2xl border border-dashed border-black/15 p-8 text-center bg-[var(--wpf-yellow-soft)]/50">
+          <p className="wpf-text-muted text-sm leading-relaxed">
             Full show-by-show line-up, times and venues coming soon — this page will be updated as the
             2026 programme is confirmed.
           </p>

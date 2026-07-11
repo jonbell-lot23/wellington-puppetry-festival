@@ -2,8 +2,6 @@
 
 import { useState } from 'react'
 
-// Footer mailing-list form: white inputs on the dark maroon footer,
-// light-blue Sign Up button — matches the Birdlife original.
 export default function SignupForm() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
@@ -17,46 +15,49 @@ export default function SignupForm() {
 
   if (submitted) {
     return (
-      <p className="text-sm py-4 text-white/90">
+      <p className="wpf-text-muted-on-dark text-sm py-4 max-w-md mx-auto leading-relaxed">
         Thanks! We&apos;ll be in touch once sign-ups are open — follow us on Instagram or Facebook for updates in the meantime.
       </p>
     )
   }
 
-  const input =
-    'w-full max-w-[300px] px-4 py-2.5 rounded-md bg-white text-gray-800 placeholder:text-gray-400 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--signup-blue)]'
-
   return (
-    <form onSubmit={handleSubmit} className="flex flex-col gap-3">
-      <input
-        type="text"
-        placeholder="First Name"
-        value={firstName}
-        onChange={(e) => setFirstName(e.target.value)}
-        className={input}
-      />
-      <input
-        type="text"
-        placeholder="Last Name"
-        value={lastName}
-        onChange={(e) => setLastName(e.target.value)}
-        className={input}
-      />
-      <input
-        type="email"
-        placeholder="Email Address"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        required
-        className={input}
-      />
-      <button
-        type="submit"
-        className="w-fit rounded-md hover:brightness-105 text-sm font-bold px-6 py-2.5 transition mt-1"
-        style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }}
-      >
-        Sign Up
-      </button>
+    <form onSubmit={handleSubmit} className="wpf-signup-panel w-full max-w-lg mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <input
+          type="text"
+          placeholder="First name"
+          value={firstName}
+          onChange={(e) => setFirstName(e.target.value)}
+          className="wpf-signup-input"
+          autoComplete="given-name"
+        />
+        <input
+          type="text"
+          placeholder="Last name"
+          value={lastName}
+          onChange={(e) => setLastName(e.target.value)}
+          className="wpf-signup-input"
+          autoComplete="family-name"
+        />
+      </div>
+      <div className="mt-3 flex flex-col sm:flex-row gap-3">
+        <input
+          type="email"
+          placeholder="Email address"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          required
+          className="wpf-signup-input flex-1"
+          autoComplete="email"
+        />
+        <button
+          type="submit"
+          className="wpf-btn-accent wpf-btn-focus shrink-0 text-sm px-6 py-2.5 sm:py-[0.625rem]"
+        >
+          Sign up
+        </button>
+      </div>
     </form>
   )
 }
