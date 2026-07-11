@@ -33,7 +33,7 @@ export default function SiteHeader() {
             >
               Wellington
               <br />
-              <span style={{ color: 'var(--wpf-orange-deep)' }}>Puppetry Festival</span>
+              <span style={{ color: 'var(--wpf-pink)' }}>Puppetry Festival</span>
             </span>
           </Link>
 
@@ -54,7 +54,7 @@ export default function SiteHeader() {
               target="_blank"
               rel="noopener noreferrer"
               className="wpf-btn-focus rounded-full text-white text-[14px] font-bold px-6 py-3 hover:brightness-110 transition whitespace-nowrap"
-              style={{ backgroundColor: 'var(--wpf-orange-deep)' }}
+              style={{ backgroundColor: 'var(--wpf-pink)' }}
             >
               Get Tickets
             </a>
@@ -66,8 +66,8 @@ export default function SiteHeader() {
               href="https://events.humanitix.com/"
               target="_blank"
               rel="noopener noreferrer"
-              className="rounded-full text-white text-[13px] font-bold px-4 py-2.5 whitespace-nowrap"
-              style={{ backgroundColor: 'var(--wpf-orange-deep)' }}
+              className="wpf-btn-focus rounded-full text-white text-[13px] font-bold px-4 py-2.5 whitespace-nowrap"
+              style={{ backgroundColor: 'var(--wpf-pink)' }}
             >
               Tickets
             </a>

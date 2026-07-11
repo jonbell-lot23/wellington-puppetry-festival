@@ -9,7 +9,8 @@ export const revalidate = 60
 
 const CREAM = 'var(--wpf-cream)'
 const MINT = 'var(--wpf-mint)'
-const GREEN_DEEP = 'var(--wpf-green-deep)'
+const ORANGE_BRIGHT = 'var(--wpf-orange-bright)'
+const PINK = 'var(--wpf-pink)'
 const INK = 'var(--wpf-ink)'
 
 // Placeholder sponsor slots — swap logos in as they're confirmed.
@@ -69,7 +70,7 @@ export default async function HomePage() {
               target="_blank"
               rel="noopener noreferrer"
               className="wpf-btn-focus inline-block rounded-full text-white font-bold text-base px-8 py-4 hover:brightness-110 transition"
-              style={{ backgroundColor: GREEN_DEEP }}
+              style={{ backgroundColor: PINK }}
             >
               Get Tickets
             </a>
@@ -89,7 +90,7 @@ export default async function HomePage() {
           media moment ("ONE POWERFUL CELEBRATION" video block). */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: MINT }}>
         <div className="mx-auto max-w-4xl">
-          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl" style={{ backgroundColor: 'var(--wpf-green-deep)' }}>
+          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl" style={{ backgroundColor: ORANGE_BRIGHT }}>
             <Image
               src="/images/gallery/wpf-gallery-047.jpg"
               alt="Community day — kids activities"
@@ -112,48 +113,47 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-mint)" toColor="var(--wpf-green-deep)" />
+      <WaveDivider fromColor="var(--wpf-mint)" toColor="var(--wpf-orange-bright)" />
 
-      {/* Newsletter + sponsors — same green section carrying straight on,
-          matching the reference site's combined footer-ish block. Deep
-          green here (rather than yellow) keeps a warm colour rhythm down
-          the page instead of an all-yellow wash. */}
-      <section className="px-6 py-16 md:py-20" style={{ backgroundColor: GREEN_DEEP }}>
-        <div className="mx-auto max-w-3xl text-center text-white mb-16">
+      {/* Newsletter + sponsors — vibrant pumpkin-orange block (was deep
+          green). Bright orange is too light for white text at AA, so this
+          section runs on dark ink text instead (ink on orange ≈ 4.51:1). */}
+      <section className="px-6 py-16 md:py-20" style={{ backgroundColor: ORANGE_BRIGHT, color: INK }}>
+        <div className="mx-auto max-w-3xl text-center mb-16">
           <h2 className="font-extrabold text-2xl md:text-4xl mb-3">{c.newsletterHeading}</h2>
-          <p className="text-white/90 mb-8 max-w-xl mx-auto">{c.newsletterSubtext}</p>
+          <p className="opacity-80 mb-8 max-w-xl mx-auto">{c.newsletterSubtext}</p>
           <div className="flex justify-center">
             <SignupForm />
           </div>
         </div>
 
         <div className="mx-auto max-w-5xl">
-          <p className="text-center text-white/70 text-xs uppercase tracking-widest font-semibold mb-8">
+          <p className="text-center opacity-70 text-xs uppercase tracking-widest font-semibold mb-8">
             {c.sponsorsCaption}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-6 md:gap-8 items-center">
             {SPONSORS.map((name) => (
               <div
                 key={name}
-                className="h-16 rounded-lg border border-dashed border-white/40 flex flex-col items-center justify-center gap-1 px-3 text-center"
+                className="h-16 rounded-lg border border-dashed border-black/25 flex flex-col items-center justify-center gap-1 px-3 text-center"
                 title="Placeholder — swap in real sponsor logo"
               >
-                <ImagePlaceholder className="w-4 h-4 text-white/60" />
-                <span className="text-white/70 text-[10px] font-medium leading-tight">{name}</span>
+                <ImagePlaceholder className="w-4 h-4 text-black/40" />
+                <span className="text-black/60 text-[10px] font-medium leading-tight">{name}</span>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      <WaveDivider fromColor="var(--wpf-green-deep)" toColor="var(--wpf-cream)" />
+      <WaveDivider fromColor="var(--wpf-orange-bright)" toColor="var(--wpf-cream)" />
 
       {/* Gallery — carried over from the previous site's brief ("the gallery
           at the bottom is good, keep it"); rebuilt here as a photo grid using
           existing festival imagery. */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-6xl">
-          <h2 className="wpf-squiggle-underline text-center font-extrabold text-2xl md:text-4xl mb-12" style={{ color: 'var(--wpf-green-deep)' }}>
+          <h2 className="text-center font-extrabold text-2xl md:text-4xl mb-10" style={{ color: PINK }}>
             {c.galleryHeading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">

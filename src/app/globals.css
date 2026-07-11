@@ -156,10 +156,11 @@
   --wpf-yellow-soft: #fef0c6; /* soft butter-yellow, header + section bg — nudged brighter/fresher, still a good backdrop for dark ink */
   --wpf-orange: #e8772e; /* tent-stripe orange */
   --wpf-orange-deep: #c85a28; /* deeper burnt orange for accents/hover */
+  --wpf-orange-bright: #f26b1f; /* vibrant pumpkin orange — footer + newsletter backdrop; paired with DARK INK text (ink 4.51:1 AA) since it's too bright for white text. Replaces the old deep-green backdrop so the palette reads yellow + orange + hot-pink. */
   --wpf-green: #33bd6b; /* fresh, bright mint-leaning green accent (stripe/bunting only — not behind text) */
   --wpf-green-deep: #0a875a; /* fresher emerald/mint-leaning deep green — anchors footer/newsletter behind WHITE text; shifted toward mint hue for freshness while staying dark enough for white body text at WCAG AA (4.54:1) */
   --wpf-mint: #c9f2da; /* light mint accent fill for fresh light sections (dark ink text only) */
-  --wpf-pink: #e91e8c; /* hot-pink accent — pops against yellow/mint/green without clashing; 5.2:1 on cream for small bold text */
+  --wpf-pink: #d81b7c; /* hot-pink accent + CTA colour — WHITE button text 4.81:1 (AA), on cream 4.46:1. Slightly deepened from the first pass so white label text on the pink buttons clears AA. */
   --wpf-cream: #fbf6e9; /* warm base instead of white */
   --wpf-ink: #3b2a17; /* warm dark brown — replaces black for text */
   --wpf-maroon: #271620; /* Cabaret page's intentionally moody dark base */
@@ -214,11 +215,14 @@
   color: var(--wpf-pink);
 }
 
+/* Footer sits on the bright-orange backdrop now, so links are dark ink
+   (readable) and simply deepen to full ink on hover. */
 .wpf-footer-link {
+  color: rgba(59, 42, 23, 0.8);
   transition: color 0.15s ease;
 }
 .wpf-footer-link:hover {
-  color: var(--wpf-pink);
+  color: var(--wpf-ink);
 }
 
 .wpf-heading-dot::after {
@@ -229,23 +233,6 @@
   margin: 0.75rem auto 0;
   border-radius: 50%;
   background-color: var(--wpf-pink);
-}
-
-.wpf-squiggle-underline {
-  position: relative;
-  display: inline-block;
-}
-.wpf-squiggle-underline::after {
-  content: '';
-  position: absolute;
-  left: 50%;
-  bottom: -0.6rem;
-  transform: translateX(-50%);
-  width: 3rem;
-  height: 0.4rem;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 48 6'%3E%3Cpath d='M0 3 Q6 0 12 3 T24 3 T36 3 T48 3' stroke='%23e91e8c' stroke-width='2' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 
 .wpf-btn-focus:focus-visible {

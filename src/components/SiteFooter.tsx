@@ -32,20 +32,20 @@ const LINKS = [
 export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom?: string }) {
   return (
     <>
-    <WaveDivider fromColor={waveFrom} toColor="var(--wpf-green-deep)" />
-    <footer className="text-white" style={{ backgroundColor: 'var(--wpf-green-deep)' }}>
+    <WaveDivider fromColor={waveFrom} toColor="var(--wpf-orange-bright)" />
+    <footer style={{ backgroundColor: 'var(--wpf-orange-bright)', color: 'var(--wpf-ink)' }}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
           <p className="font-extrabold leading-none text-xl mb-4">
             Wellington
             <br />
-            <span style={{ color: 'var(--wpf-yellow)' }}>Puppetry Festival</span>
+            Puppetry Festival
           </p>
-          <p className="text-white/85 text-sm max-w-xs leading-relaxed">
+          <p className="opacity-85 text-sm max-w-xs leading-relaxed">
             A free, community-powered puppetry festival in Pōneke Wellington —
             proudly Wellington Funky since day one.
           </p>
-          <p className="text-white/60 text-xs mt-3">Presented by Birdlife Productions</p>
+          <p className="opacity-70 text-xs mt-3">Presented by Birdlife Productions</p>
           <div className="flex items-center gap-3 mt-5">
             <a
               href="https://www.instagram.com/BirdlifeProductions3/"
@@ -69,7 +69,7 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
         </div>
 
         <div>
-          <p className="text-white/60 text-xs uppercase tracking-widest font-semibold mb-4">More</p>
+          <p className="opacity-70 text-xs uppercase tracking-widest font-semibold mb-4">More</p>
           <ul className="space-y-2.5">
             {LINKS.map((l) =>
               l.external ? (
@@ -78,14 +78,14 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
                     href={l.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="wpf-footer-link text-white/90 text-sm font-medium"
+                    className="wpf-footer-link text-sm font-medium"
                   >
                     {l.label}
                   </a>
                 </li>
               ) : (
                 <li key={l.href}>
-                  <Link href={l.href} className="wpf-footer-link text-white/90 text-sm font-medium">
+                  <Link href={l.href} className="wpf-footer-link text-sm font-medium">
                     {l.label}
                   </Link>
                 </li>
@@ -95,13 +95,13 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
         </div>
       </div>
 
-      <div className="border-t border-white/15">
+      <div className="border-t border-black/15">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-white/60 text-xs">
+          <p className="opacity-70 text-xs">
             © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions
           </p>
-          <p className="text-white/60 text-xs">
-            <Link href="/archives/v1" className="underline underline-offset-2 hover:text-white">
+          <p className="opacity-70 text-xs">
+            <Link href="/archives/v1" className="underline underline-offset-2 hover:opacity-100">
               Previous site
             </Link>
           </p>

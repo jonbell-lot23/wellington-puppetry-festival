@@ -29,15 +29,6 @@ export default function WaveDivider({
           d="M0,70 C240,130 480,10 720,50 C960,90 1200,130 1440,55 L1440,140 L0,140 Z"
           fill={toColor}
         />
-        {/* Pink accent stripe along the wave crest */}
-        <path
-          d="M0,70 C240,130 480,10 720,50 C960,90 1200,130 1440,55"
-          fill="none"
-          stroke="var(--wpf-pink)"
-          strokeWidth="3"
-          strokeLinecap="round"
-          opacity="0.65"
-        />
       </svg>
     </div>
   )
