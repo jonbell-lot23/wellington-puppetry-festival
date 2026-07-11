@@ -157,7 +157,7 @@
   --wpf-orange: #e8772e; /* tent-stripe orange */
   --wpf-orange-deep: #c85a28; /* deeper burnt orange for accents/hover */
   --wpf-green: #4ca336; /* leafy green accent — brightened, more vivid */
-  --wpf-green-deep: #2f6b20; /* deep green, footer/section anchor — nudged greener, still deepest */
+  --wpf-green-deep: #37872a; /* deep green, footer/newsletter anchor — brightened & more saturated per client feedback; brightest that keeps white body text at WCAG AA (4.51:1) */
   --wpf-cream: #fbf6e9; /* warm base instead of white */
   --wpf-ink: #3b2a17; /* warm dark brown — replaces black for text */
   --wpf-maroon: #271620; /* Cabaret page's intentionally moody dark base */
