@@ -30,6 +30,13 @@ export default function AdminEditor({
   const [saved, setSaved] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
   const [tab, setTab] = useState<Tab>('edit')
+  // Remounting the iframe (via key) forces it to re-fetch the route. Bumped
+  // after a successful save (once revalidatePath has run) and by the manual
+  // "Refresh" button so just-saved content shows in the preview.
+  const [previewNonce, setPreviewNonce] = useState(0)
+  // Mobile-only toggle between the editor and the preview. On wide screens
+  // both panes are always shown side by side (lg:block overrides this).
+  const [showPreview, setShowPreview] = useState(false)
 
   const handleSave = async () => {
     setSaving(true)
@@ -38,6 +45,7 @@ export default function AdminEditor({
       await savePageContent(def.slug, values)
       setSaved(true)
       router.refresh()
+      setPreviewNonce((n) => n + 1)
       setTimeout(() => setSaved(false), 3000)
     } catch (err) {
       setSaveError(err instanceof Error ? err.message : 'Save failed')
@@ -78,6 +86,12 @@ export default function AdminEditor({
           </div>
         </div>
         <div className="flex items-center gap-3">
+          <button
+            onClick={() => setShowPreview((s) => !s)}
+            className="lg:hidden text-[#8a7764] hover:text-[#0d5fa8] text-xs font-medium transition-colors"
+          >
+            {showPreview ? 'Show editor' : 'Show preview'}
+          </button>
           <a
             href={def.path}
             target="_blank"
@@ -120,8 +134,14 @@ export default function AdminEditor({
           </nav>
         </aside>
 
+        {/* Editor + preview split */}
+        <div className="flex-1 flex flex-col lg:flex-row min-w-0">
         {/* Editor / history */}
-        <main className="flex-1 p-8 max-w-2xl">
+        <main
+          className={`${
+            showPreview ? 'hidden' : 'block'
+          } lg:block lg:w-[45%] lg:shrink-0 lg:h-[calc(100vh-4rem)] lg:overflow-y-auto p-8`}
+        >
           {!writable && (
             <div className="admin-banner-warning rounded-lg px-4 py-3 mb-6 text-sm">
               <p className="font-semibold mb-1">Service role key missing</p>
@@ -196,6 +216,36 @@ export default function AdminEditor({
             </div>
           )}
         </main>
+
+        {/* Live preview of the public page for this slug */}
+        <section
+          className={`${
+            showPreview ? 'flex' : 'hidden'
+          } lg:flex flex-1 min-w-0 flex-col border-t lg:border-t-0 lg:border-l border-[#e8dcc8] bg-white lg:h-[calc(100vh-4rem)]`}
+        >
+          <div className="flex items-center justify-between gap-3 px-4 py-2 border-b border-[#e8dcc8] bg-[#fbf6e9]">
+            <div className="flex items-center gap-2 min-w-0">
+              <span className="text-[#8a7764] text-xs uppercase tracking-wide font-medium">
+                Preview
+              </span>
+              <span className="text-[#5c4a38] text-xs font-mono truncate">{def.path}</span>
+            </div>
+            <button
+              onClick={() => setPreviewNonce((n) => n + 1)}
+              className="admin-btn-secondary text-xs font-medium px-3 py-1 rounded transition-colors shrink-0"
+              title="Reload the preview to show the latest saved content"
+            >
+              ↻ Refresh
+            </button>
+          </div>
+          <iframe
+            key={`${def.slug}-${previewNonce}`}
+            src={def.path}
+            title={`Preview of ${def.title}`}
+            className="flex-1 w-full border-0 bg-white min-h-[70vh] lg:min-h-0"
+          />
+        </section>
+        </div>
       </div>
     </div>
   )
