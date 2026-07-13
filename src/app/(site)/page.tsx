@@ -31,29 +31,49 @@ export default async function HomePage() {
       {/* Hero — logo sits at top, overlapping upward into the white header */}
       <section className="wpf-sunburst relative px-6 pt-14 pb-16 md:pt-20 md:pb-20 overflow-x-clip" style={{ color: INK }}>
 
-        {/* Left photo collage — 2 photos on lg (edge-peeking), 3 on xl */}
-        <div aria-hidden className="hidden lg:block pointer-events-none select-none">
-          <div className="absolute left-0 xl:left-[5%] top-14 w-28 xl:w-40 rotate-[-11deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+        {/* Left photo collage — xl+: full 3-photo spread in the gutter */}
+        <div aria-hidden className="hidden xl:block pointer-events-none select-none">
+          <div className="absolute left-[5%] top-14 w-40 rotate-[-11deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-01.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
           </div>
-          <div className="absolute left-3 xl:left-[13%] top-52 w-28 xl:w-40 rotate-[8deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+          <div className="absolute left-[13%] top-56 w-40 rotate-[8deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-086.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
           </div>
-          <div className="hidden xl:block absolute left-[4%] top-[24rem] w-40 rotate-[-5deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+          <div className="absolute left-[4%] top-[24rem] w-40 rotate-[-5deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-045.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
           </div>
         </div>
 
-        {/* Right photo collage */}
-        <div aria-hidden className="hidden lg:block pointer-events-none select-none">
-          <div className="absolute right-0 xl:right-[5%] top-14 w-28 xl:w-40 rotate-[10deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+        {/* Left photo collage — lg only: 2 photos peeking from the edge */}
+        <div aria-hidden className="hidden lg:block xl:hidden pointer-events-none select-none">
+          <div className="absolute left-0 top-14 w-28 rotate-[-11deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-01.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
+          </div>
+          <div className="absolute left-3 top-52 w-28 rotate-[8deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-086.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
+          </div>
+        </div>
+
+        {/* Right photo collage — xl+: full 3-photo spread */}
+        <div aria-hidden className="hidden xl:block pointer-events-none select-none">
+          <div className="absolute right-[5%] top-14 w-40 rotate-[10deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-064.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
           </div>
-          <div className="absolute right-3 xl:right-[13%] top-52 w-28 xl:w-40 rotate-[-9deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+          <div className="absolute right-[13%] top-56 w-40 rotate-[-9deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-077.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
           </div>
-          <div className="hidden xl:block absolute right-[4%] top-[24rem] w-40 rotate-[4deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+          <div className="absolute right-[4%] top-[24rem] w-40 rotate-[4deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-102.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
+          </div>
+        </div>
+
+        {/* Right photo collage — lg only: 2 photos peeking from the edge */}
+        <div aria-hidden className="hidden lg:block xl:hidden pointer-events-none select-none">
+          <div className="absolute right-0 top-14 w-28 rotate-[10deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-064.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
+          </div>
+          <div className="absolute right-3 top-52 w-28 rotate-[-9deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-077.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
           </div>
         </div>
 
