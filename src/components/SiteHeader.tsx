@@ -24,7 +24,7 @@ export default function SiteHeader() {
 
   return (
     <header className="sticky top-0 inset-x-0 z-50">
-      <div style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}>
+      <div style={{ backgroundColor: '#ffffff' }}>
         <div className="mx-auto max-w-[1440px] px-6 md:px-11 flex items-center justify-between py-3 md:py-4">
           <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
             <span
@@ -33,7 +33,7 @@ export default function SiteHeader() {
             >
               Wellington
               <br />
-              <span style={{ color: 'var(--wpf-pink)' }}>Puppetry Festival</span>
+              <span style={{ color: 'var(--wpf-blue)' }}>Puppetry Festival</span>
             </span>
           </Link>
 
@@ -55,7 +55,7 @@ export default function SiteHeader() {
               rel="noopener noreferrer"
               className="wpf-btn-primary wpf-btn-focus text-[14px] px-6 py-3 whitespace-nowrap"
             >
-              Get Tickets
+              Tix on sale soon
             </a>
           </nav>
 
@@ -67,7 +67,7 @@ export default function SiteHeader() {
               rel="noopener noreferrer"
               className="wpf-btn-primary wpf-btn-focus text-[13px] px-4 py-2.5 whitespace-nowrap"
             >
-              Tickets
+              Tix soon
             </a>
             <button
               aria-label="Menu"
@@ -84,7 +84,7 @@ export default function SiteHeader() {
 
         {/* Mobile menu */}
         {open && (
-          <nav className="lg:hidden mx-4 mb-4 rounded-xl border border-black/5 px-5 py-4 flex flex-col gap-3" style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}>
+          <nav className="lg:hidden mx-4 mb-4 rounded-xl border border-black/5 px-5 py-4 flex flex-col gap-3" style={{ backgroundColor: '#ffffff' }}>
             {NAV.map((item) => (
               <Link
                 key={item.href}
@@ -99,7 +99,6 @@ export default function SiteHeader() {
           </nav>
         )}
       </div>
-      <div className="h-1 wpf-stripe-border" aria-hidden />
     </header>
   )
 }

@@ -37,24 +37,27 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
   // Cabaret is the intentionally moody maroon page — let the wine colour flow
   // straight into the footer with no wave and no blue break.
   const maroon = pathname?.startsWith('/cabaret') ?? false
-  const footerBg = maroon ? 'var(--wpf-maroon)' : 'var(--wpf-blue-deep)'
+  const ink = 'var(--wpf-ink)'
 
   return (
     <>
-    {!maroon && <WaveDivider fromColor={waveFrom} toColor="var(--wpf-blue-deep)" />}
-    <footer style={{ backgroundColor: footerBg, color: '#ffffff' }}>
+    {maroon && <WaveDivider fromColor={waveFrom} toColor="var(--wpf-maroon)" />}
+    <footer
+      className={maroon ? '' : 'wpf-sunburst'}
+      style={{ backgroundColor: maroon ? 'var(--wpf-maroon)' : undefined, color: maroon ? '#ffffff' : ink }}
+    >
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
           <p className="font-extrabold leading-none text-xl mb-4">
             Wellington
             <br />
-            <span style={{ color: 'var(--wpf-yellow)' }}>Puppetry Festival</span>
+            Puppetry Festival
           </p>
-          <p className="opacity-85 text-sm max-w-xs leading-relaxed">
+          <p className="text-sm max-w-xs leading-relaxed" style={{ color: maroon ? 'rgba(255,255,255,0.75)' : 'rgba(59,42,23,0.7)' }}>
             A free, community-powered puppetry festival in Pōneke Wellington —
             proudly Wellington Funky since day one.
           </p>
-          <p className="opacity-70 text-xs mt-3">Presented by Birdlife Productions</p>
+          <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>Presented by Birdlife Productions</p>
           <div className="flex items-center gap-3 mt-5">
             <a
               href="https://www.instagram.com/BirdlifeProductions3/"
@@ -62,7 +65,7 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
               rel="noopener noreferrer"
               aria-label="Instagram"
               className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
-              style={{ color: 'var(--wpf-blue-deep)' }}
+              style={{ color: 'var(--wpf-pink)' }}
             >
               <Instagram />
             </a>
@@ -72,7 +75,7 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
               rel="noopener noreferrer"
               aria-label="Facebook"
               className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
-              style={{ color: 'var(--wpf-blue-deep)' }}
+              style={{ color: 'var(--wpf-pink)' }}
             >
               <Facebook />
             </a>
@@ -80,38 +83,34 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
         </div>
 
         <div>
-          <p className="opacity-70 text-xs uppercase tracking-widest font-semibold mb-4">More</p>
+          <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>More</p>
           <ul className="space-y-2.5">
-            {LINKS.map((l) =>
-              l.external ? (
+            {LINKS.map((l) => {
+              const linkStyle = { color: maroon ? 'rgba(255,255,255,0.8)' : 'rgba(59,42,23,0.75)' }
+              return l.external ? (
                 <li key={l.href}>
-                  <a
-                    href={l.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="wpf-footer-link text-sm font-medium"
-                  >
+                  <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:opacity-100 transition-opacity" style={linkStyle}>
                     {l.label}
                   </a>
                 </li>
               ) : (
                 <li key={l.href}>
-                  <Link href={l.href} className="wpf-footer-link text-sm font-medium">
+                  <Link href={l.href} className="text-sm font-medium hover:opacity-100 transition-opacity" style={linkStyle}>
                     {l.label}
                   </Link>
                 </li>
-              ),
-            )}
+              )
+            })}
           </ul>
         </div>
       </div>
 
-      <div className="border-t border-white/15">
+      <div className="border-t" style={{ borderColor: maroon ? 'rgba(255,255,255,0.15)' : 'rgba(59,42,23,0.15)' }}>
         <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="opacity-70 text-xs">
+          <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>
             © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions
           </p>
-          <p className="opacity-70 text-xs">
+          <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>
             <Link href="/archives/v1" className="underline underline-offset-2 hover:opacity-100">
               Previous site
             </Link>

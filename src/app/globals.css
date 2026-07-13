@@ -122,7 +122,7 @@
   }
   html {
     /* Matches the sticky header so iOS safe-area / overscroll shows the right colour */
-    background-color: var(--wpf-yellow-soft);
+    background-color: #ffffff;
   }
   body {
     @apply text-foreground;
@@ -162,10 +162,10 @@
   --wpf-pink: #d81b7c; /* hot-pink accent + CTA — white button text 4.81:1 (AA) */
   --wpf-pink-deep: #a1155f; /* magenta depth — white text 7.12:1 (AA) */
 
-  /* Blue — charming cobalt counterpoint to warm yellow/pink */
-  --wpf-blue-soft: #cceaf8; /* sky fill — ink 10.91:1 AA */
-  --wpf-blue: #0d5fa8; /* bright cobalt — hero dates on yellow 4.39:1 (AA normal) */
-  --wpf-blue-deep: #0d3f75; /* deep ink-blue — footer/newsletter; white text 10.58:1 (AA) */
+  /* Green — natural brand green (replaces earlier blue family) */
+  --wpf-blue-soft: #dff5c2; /* pale lime fill — ink 11.4:1 AA */
+  --wpf-blue: #5ec20f; /* vivid brand green */
+  --wpf-blue-deep: #2d6c0a; /* deep forest green — footer/newsletter; white text 6.4:1 (AA) */
 
   /* Neutrals */
   --wpf-cream: #fbf6e9; /* warm base instead of white — ink 12.72:1 AA */
@@ -189,7 +189,7 @@
     var(--wpf-cream) 10px 20px,
     var(--wpf-pink) 20px 30px,
     var(--wpf-cream) 30px 40px,
-    var(--wpf-blue) 40px 50px,
+    var(--wpf-blue-soft) 40px 50px,
     var(--wpf-cream) 50px 60px
   );
 }

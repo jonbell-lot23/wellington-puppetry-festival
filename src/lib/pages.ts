@@ -57,6 +57,13 @@ export const PAGES: PageDef[] = [
         'Newsletter section subtext',
         'Sign up to our newsletter for programme announcements, Saturday free-activity updates and festival news.',
       ),
+      F('cabaretSectionHeading', 'Cabaret section heading', 'An after-dark evening of puppetry'),
+      F(
+        'cabaretSectionBody',
+        'Cabaret section body',
+        'When the kids have gone to bed, the festival gets a little wilder. An adults-only evening of bold, funny and surprising puppetry cabaret — one of the highlights of the Wellington Puppetry Festival.',
+        true,
+      ),
       F('galleryHeading', 'Gallery section heading', 'Moments from past festivals'),
       F('sponsorsCaption', 'Sponsors caption', 'Special thanks to our proud sponsors and supporters.'),
     ],
