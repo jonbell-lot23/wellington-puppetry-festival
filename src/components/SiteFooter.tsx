@@ -73,7 +73,12 @@ export default function SiteFooter() {
             A free, community-powered puppetry festival in Pōneke Wellington —
             proudly Wellington Funky since day one.
           </p>
-          <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : greenMuted }}>Presented by Birdlife Productions</p>
+          <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : greenMuted }}>
+            Presented by{' '}
+            <a href="https://www.birdlifeproductions.co.nz/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-100">
+              Birdlife Productions
+            </a>
+          </p>
           <div className="flex items-center gap-3 mt-5">
             <a
               href="https://www.instagram.com/BirdlifeProductions3/"
