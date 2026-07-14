@@ -72,7 +72,7 @@ export default function SiteFooter() {
               rel="noopener noreferrer"
               aria-label="Instagram"
               className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
-              style={{ color: 'var(--wpf-pink)' }}
+              style={{ color: maroon ? 'var(--wpf-pink)' : greenBg }}
             >
               <Instagram />
             </a>
@@ -82,7 +82,7 @@ export default function SiteFooter() {
               rel="noopener noreferrer"
               aria-label="Facebook"
               className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
-              style={{ color: 'var(--wpf-pink)' }}
+              style={{ color: maroon ? 'var(--wpf-pink)' : greenBg }}
             >
               <Facebook />
             </a>
