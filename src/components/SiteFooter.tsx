@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { usePathname } from 'next/navigation'
 const TICKETS_URL = 'https://events.humanitix.com/'
 
@@ -64,11 +65,21 @@ export default function SiteFooter() {
     <footer style={{ backgroundColor: maroon ? 'var(--wpf-maroon-deep)' : greenBg, color: maroon ? '#ffffff' : greenText }}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
-          <p className="font-extrabold leading-none text-xl mb-4">
-            Wellington
-            <br />
-            Puppetry Festival
-          </p>
+          <div className="flex items-center gap-3 mb-4">
+            <Image
+              src="/logo.png"
+              alt="WPF logo"
+              width={48}
+              height={48}
+              className="h-12 w-12 shrink-0"
+              style={{ mixBlendMode: maroon ? 'normal' : 'multiply' }}
+            />
+            <p className="font-extrabold leading-none text-xl">
+              Wellington
+              <br />
+              Puppetry Festival
+            </p>
+          </div>
           <p className="text-sm max-w-xs leading-relaxed" style={{ color: maroon ? 'rgba(255,255,255,0.75)' : greenText }}>
             A free, community-powered puppetry festival in Pōneke Wellington —
             proudly Wellington Funky since day one.
