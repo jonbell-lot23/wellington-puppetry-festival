@@ -51,12 +51,12 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Left photo collage — mobile: 2 photos barely hanging off left edge */}
+        {/* Left photo collage — mobile: 2 photos peeking from left edge */}
         <div aria-hidden className="block lg:hidden pointer-events-none select-none">
-          <div className="absolute left-0 -translate-x-[62%] top-10 w-20 rotate-[-13deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+          <div className="absolute left-0 -translate-x-[35%] top-10 w-20 rotate-[-13deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-01.jpg" alt="" fill className="object-cover" sizes="80px" /></div>
           </div>
-          <div className="absolute left-0 -translate-x-[58%] top-44 w-20 rotate-[11deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+          <div className="absolute left-0 -translate-x-[30%] top-44 w-20 rotate-[11deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-086.jpg" alt="" fill className="object-cover" sizes="80px" /></div>
           </div>
         </div>
@@ -84,9 +84,9 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Right photo collage — mobile: 1 photo barely hanging off right edge */}
+        {/* Right photo collage — mobile: 1 photo peeking from right edge */}
         <div aria-hidden className="block lg:hidden pointer-events-none select-none">
-          <div className="absolute right-0 translate-x-[62%] top-28 w-20 rotate-[12deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
+          <div className="absolute right-0 translate-x-[35%] top-28 w-20 rotate-[12deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-064.jpg" alt="" fill className="object-cover" sizes="80px" /></div>
           </div>
         </div>

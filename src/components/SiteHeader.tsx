@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import { useState } from 'react'
 
 // Top nav is deliberately trimmed to the handful of high-traffic pages —
@@ -26,7 +27,15 @@ export default function SiteHeader() {
     <header className="sticky top-0 inset-x-0 z-50">
       <div style={{ backgroundColor: '#ffffff' }}>
         <div className="mx-auto max-w-[1440px] px-6 md:px-11 flex items-center justify-between py-3 md:py-4">
-          <Link href="/" className="shrink-0" onClick={() => setOpen(false)}>
+          <Link href="/" className="shrink-0 flex items-center gap-3" onClick={() => setOpen(false)}>
+            <Image
+              src="/images/wpf-logo.svg"
+              alt="WPF logo"
+              width={44}
+              height={44}
+              className="h-10 w-10 md:h-11 md:w-11 shrink-0"
+              priority
+            />
             <span
               className="font-extrabold leading-none text-xl md:text-2xl tracking-tight"
               style={{ color: 'var(--wpf-ink)' }}

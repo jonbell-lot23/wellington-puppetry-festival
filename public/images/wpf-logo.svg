@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" role="img" aria-label="Wellington Puppetry Festival">
+  <defs>
+    <!-- Top arc: r=75 centred at 100,100, both endpoints on the circle at y=70 -->
+    <path id="arc-top" d="M 31,70 A 75,75 0 0,1 169,70"/>
+    <!-- Bottom arc: same circle, endpoints at y=130, going through y=175 -->
+    <path id="arc-bot" d="M 31,130 A 75,75 0 0,0 169,130"/>
+  </defs>
+
+  <!-- Green circle -->
+  <circle cx="100" cy="100" r="96" fill="#5ec20f"/>
+
+  <!-- WELLINGTON — curved at top -->
+  <text font-family="Georgia,'Times New Roman',serif" font-weight="bold" font-size="16"
+        fill="white" letter-spacing="2.5">
+    <textPath href="#arc-top" startOffset="50%" text-anchor="middle">WELLINGTON</textPath>
+  </text>
+
+  <!-- PUPPETRY FESTIVAL — curved at bottom -->
+  <text font-family="Georgia,'Times New Roman',serif" font-weight="bold" font-size="12"
+        fill="white" letter-spacing="1.5">
+    <textPath href="#arc-bot" startOffset="50%" text-anchor="middle">PUPPETRY FESTIVAL</textPath>
+  </text>
+
+  <!-- Bird — left wing -->
+  <path d="M 100,80 C 84,71 62,58 40,70 C 56,68 78,76 100,84 Z" fill="white"/>
+  <!-- Bird — right wing -->
+  <path d="M 100,80 C 116,71 138,58 160,70 C 144,68 122,76 100,84 Z" fill="white"/>
+  <!-- Bird — body -->
+  <ellipse cx="100" cy="82" rx="13" ry="9" fill="white"/>
+  <!-- Bird — head -->
+  <circle cx="112" cy="71" r="8" fill="white"/>
+  <!-- Bird — beak -->
+  <path d="M 119,70 L 128,72 L 119,74 Z" fill="white"/>
+  <!-- Bird — tail feathers (streaming lower-left) -->
+  <path d="M 90,88 C 80,95 73,103 69,112" stroke="white" stroke-width="3" stroke-linecap="round" fill="none"/>
+  <path d="M 89,90 C 78,98 71,107 67,117" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+  <path d="M 92,86 C 83,92 77,99 74,108" stroke="white" stroke-width="2" stroke-linecap="round" fill="none"/>
+
+  <!-- String from bird to hand -->
+  <line x1="100" y1="91" x2="100" y2="112" stroke="white" stroke-width="1.5" stroke-linecap="round"/>
+
+  <!-- Hand — fingers (as rounded strokes) -->
+  <line x1="94"  y1="127" x2="94"  y2="109" stroke="white" stroke-width="7" stroke-linecap="round"/>
+  <line x1="101" y1="127" x2="101" y2="106" stroke="white" stroke-width="7" stroke-linecap="round"/>
+  <line x1="108" y1="127" x2="108" y2="109" stroke="white" stroke-width="7" stroke-linecap="round"/>
+  <line x1="115" y1="127" x2="115" y2="114" stroke="white" stroke-width="6" stroke-linecap="round"/>
+  <!-- Hand — palm -->
+  <rect x="87" y="124" width="35" height="14" rx="5" fill="white"/>
+  <!-- Hand — thumb -->
+  <path d="M 88,126 C 85,122 83,117 84,113 C 85,110 88,109 91,111" stroke="white" stroke-width="7" stroke-linecap="round" fill="none"/>
+
+  <!-- Decorative swirl — left -->
+  <path d="M 37,103 C 31,97 30,89 36,86 C 42,83 46,88 43,93 C 40,97 33,95 37,90"
+        stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  <!-- Decorative swirl — right -->
+  <path d="M 163,103 C 169,97 170,89 164,86 C 158,83 154,88 157,93 C 160,97 167,95 163,90"
+        stroke="white" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+</svg>
