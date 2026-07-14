@@ -1,7 +1,5 @@
-import Link from 'next/link'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
-import SignupForm from '@/components/SignupForm'
 
 export const revalidate = 60
 
@@ -27,6 +25,15 @@ const DAYS = [
     body: 'Daytime programme continues, closing with WPF Cabaret in the evening — see the Cabaret page for details.',
     highlight: false,
   },
+]
+
+const SKELETON_SHOWS = [
+  { time: '10:00am', venue: 'BATS Theatre' },
+  { time: '11:30am', venue: 'Toi Poneke' },
+  { time: '1:00pm', venue: 'BATS Theatre' },
+  { time: '2:30pm', venue: 'Circa Theatre' },
+  { time: '4:00pm', venue: 'Toi Poneke' },
+  { time: '7:30pm', venue: 'BATS Theatre' },
 ]
 
 export default async function ProgramPage() {
@@ -60,14 +67,41 @@ export default async function ProgramPage() {
           ))}
         </div>
 
-        <div className="mx-auto max-w-3xl mt-10 rounded-2xl p-8 md:p-10 text-center" style={{ backgroundColor: 'var(--wpf-blue)' }}>
-          <p className="text-sm leading-relaxed mb-1" style={{ color: 'rgba(13,38,0,0.75)' }}>
-            Full show-by-show line-up, times and venues coming soon — this page will be updated as the 2026 programme is confirmed.
+        {/* Skeleton programme */}
+        <div className="mx-auto max-w-5xl mt-14">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="font-extrabold text-xl" style={{ color: 'var(--wpf-ink)' }}>
+              Saturday 19 Sep — Show by Show
+            </h2>
+            <span className="text-xs font-bold uppercase tracking-widest rounded-full px-3 py-1" style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }}>
+              Coming soon 🎭
+            </span>
+          </div>
+
+          <div className="space-y-3">
+            {SKELETON_SHOWS.map((show, i) => (
+              <div
+                key={i}
+                className="rounded-xl p-4 flex items-center gap-4 border border-black/5 animate-pulse"
+                style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}
+              >
+                <span className="text-sm font-bold shrink-0 w-16 opacity-50" style={{ color: 'var(--wpf-ink)' }}>
+                  {show.time}
+                </span>
+                <div className="flex-1 space-y-2">
+                  <div className="h-3.5 rounded-full w-2/3" style={{ backgroundColor: 'rgba(0,0,0,0.1)' }} />
+                  <div className="h-2.5 rounded-full w-1/3" style={{ backgroundColor: 'rgba(0,0,0,0.07)' }} />
+                </div>
+                <span className="text-xs opacity-40 shrink-0 hidden sm:block" style={{ color: 'var(--wpf-ink)' }}>
+                  {show.venue}
+                </span>
+              </div>
+            ))}
+          </div>
+
+          <p className="text-center mt-8 text-sm wpf-text-muted">
+            The puppets are rehearsing. The venues are ready. The programme drops soon — we promise it&apos;ll be worth the wait.
           </p>
-          <p className="font-bold mb-6" style={{ color: '#0d2600' }}>
-            Sign up for programme announcements:
-          </p>
-          <SignupForm />
         </div>
       </section>
     </main>
