@@ -49,14 +49,14 @@ export default function SiteHeader() {
                 {item.label}
               </Link>
             ))}
-            <span className="text-[14px] px-6 py-3 whitespace-nowrap rounded-full opacity-40 cursor-default" style={{ backgroundColor: 'var(--wpf-yellow-soft)', color: 'var(--wpf-ink)' }}>
+            <span className="text-[14px] px-6 py-3 whitespace-nowrap rounded-full opacity-40 cursor-default" style={{ backgroundColor: 'var(--wpf-pink)', color: '#ffffff' }}>
               Tix on sale soon
             </span>
           </nav>
 
           {/* Mobile: tickets + menu toggle */}
           <div className="lg:hidden flex items-center gap-2">
-            <span className="text-[13px] px-4 py-2.5 whitespace-nowrap rounded-full opacity-40 cursor-default" style={{ backgroundColor: 'var(--wpf-yellow-soft)', color: 'var(--wpf-ink)' }}>
+            <span className="text-[13px] px-4 py-2.5 whitespace-nowrap rounded-full opacity-40 cursor-default" style={{ backgroundColor: 'var(--wpf-pink)', color: '#ffffff' }}>
               Tix soon
             </span>
             <button
