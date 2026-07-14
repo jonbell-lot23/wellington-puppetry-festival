@@ -52,6 +52,15 @@ export default function SiteFooter() {
         </svg>
       </div>
     )}
+    {/* Wave at top — cabaret maroon deepens into footer */}
+    {maroon && (
+      <div aria-hidden className="relative w-full overflow-hidden leading-[0]" style={{ backgroundColor: 'var(--wpf-maroon)' }}>
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
+          <path d="M0,55 C360,100 720,10 1080,45 C1260,65 1360,80 1440,50 L1440,100 L0,100 Z" fill="var(--wpf-maroon-deep)" opacity="0.5" />
+          <path d="M0,65 C240,105 480,5 720,40 C960,75 1200,100 1440,60 L1440,100 L0,100 Z" fill="var(--wpf-maroon-deep)" />
+        </svg>
+      </div>
+    )}
     <footer style={{ backgroundColor: maroon ? 'var(--wpf-maroon-deep)' : greenBg, color: maroon ? '#ffffff' : greenText }}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>

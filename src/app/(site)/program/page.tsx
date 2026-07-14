@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import SignupForm from '@/components/SignupForm'
 
 export const revalidate = 60
 
@@ -59,17 +60,14 @@ export default async function ProgramPage() {
           ))}
         </div>
 
-        <div className="mx-auto max-w-5xl mt-10 rounded-2xl border border-dashed border-black/15 p-8 text-center bg-[var(--wpf-yellow-soft)]/50">
-          <p className="wpf-text-muted text-sm leading-relaxed">
-            Full show-by-show line-up, times and venues coming soon — this page will be updated as the
-            2026 programme is confirmed.
+        <div className="mx-auto max-w-3xl mt-10 rounded-2xl p-8 md:p-10 text-center" style={{ backgroundColor: 'var(--wpf-blue)' }}>
+          <p className="text-sm leading-relaxed mb-1" style={{ color: 'rgba(13,38,0,0.75)' }}>
+            Full show-by-show line-up, times and venues coming soon — this page will be updated as the 2026 programme is confirmed.
           </p>
-          <Link
-            href="/"
-            className="inline-block mt-4 text-sm font-semibold text-[var(--wpf-ink)] underline underline-offset-2"
-          >
-            Sign up on the homepage for programme announcements
-          </Link>
+          <p className="font-bold mb-6" style={{ color: '#0d2600' }}>
+            Sign up for programme announcements:
+          </p>
+          <SignupForm />
         </div>
       </section>
     </main>
