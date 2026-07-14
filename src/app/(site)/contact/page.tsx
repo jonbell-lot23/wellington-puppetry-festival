@@ -19,7 +19,7 @@ export default async function ContactPage() {
             <p className="wpf-section-kicker opacity-80 mb-2">Email</p>
             <a
               href={`mailto:${c.email}`}
-              className="text-xl md:text-2xl font-bold hover:underline break-all transition-colors hover:text-[var(--wpf-pink-deep)]"
+              className="text-base md:text-lg font-bold hover:underline break-all transition-colors hover:text-[var(--wpf-pink-deep)]"
               style={{ color: 'var(--wpf-pink)' }}
             >
               {c.email}
