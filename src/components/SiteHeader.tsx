@@ -29,11 +29,12 @@ export default function SiteHeader() {
         <div className="mx-auto max-w-[1440px] px-6 md:px-11 flex items-center justify-between py-3 md:py-4">
           <Link href="/" className="shrink-0 flex items-center gap-3" onClick={() => setOpen(false)}>
             <Image
-              src="/images/wpf-logo.svg"
+              src="/logo.png"
               alt="WPF logo"
-              width={44}
-              height={44}
-              className="h-10 w-10 md:h-11 md:w-11 shrink-0"
+              width={48}
+              height={48}
+              className="h-11 w-11 md:h-12 md:w-12 shrink-0"
+              style={{ mixBlendMode: 'multiply' }}
               priority
             />
             <span
