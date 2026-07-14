@@ -1,5 +1,6 @@
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import SignupForm from '@/components/SignupForm'
 
 export const revalidate = 60
 
@@ -44,6 +45,19 @@ export default async function ContactPage() {
               </div>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Newsletter */}
+      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: 'var(--wpf-blue)' }}>
+        <div className="mx-auto max-w-3xl text-center">
+          <h2 className="wpf-section-heading text-2xl md:text-4xl mb-3" style={{ color: '#0d2600' }}>
+            {c.newsletterHeading}
+          </h2>
+          <p className="mb-8 max-w-xl mx-auto text-base md:text-lg leading-relaxed" style={{ color: 'rgba(13,38,0,0.75)' }}>
+            {c.newsletterSubtext}
+          </p>
+          <SignupForm />
         </div>
       </section>
     </main>

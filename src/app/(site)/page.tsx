@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
-import SignupForm from '@/components/SignupForm'
 import ImagePlaceholder from '@/components/ImagePlaceholder'
 
 export const revalidate = 60
@@ -146,6 +145,14 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Wave: green → cabaret maroon */}
+      <div aria-hidden className="relative w-full overflow-hidden leading-[0]" style={{ backgroundColor: GREEN_VIVID }}>
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
+          <path d="M0,55 C360,100 720,10 1080,45 C1260,65 1360,80 1440,50 L1440,100 L0,100 Z" fill={CABARET_BG} opacity="0.5" />
+          <path d="M0,68 C240,108 480,8 720,42 C960,76 1200,102 1440,62 L1440,100 L0,100 Z" fill={CABARET_BG} />
+        </svg>
+      </div>
+
       {/* Evening Cabaret */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CABARET_BG }}>
         <div className="mx-auto max-w-4xl">
@@ -170,20 +177,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Newsletter */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: GREEN_VIVID }}>
-        <div className="mx-auto max-w-3xl text-center mb-14 md:mb-16">
-          <h2 className="wpf-section-heading text-2xl md:text-4xl mb-3" style={{ color: '#0d2600' }}>
-            {c.newsletterHeading}
-          </h2>
-          <p className="mb-8 max-w-xl mx-auto text-base md:text-lg leading-relaxed" style={{ color: 'rgba(13,38,0,0.75)' }}>
-            {c.newsletterSubtext}
-          </p>
-          <SignupForm />
-        </div>
-
-        <div className="mx-auto max-w-5xl pt-2 border-t" style={{ borderColor: 'rgba(13,38,0,0.2)' }}>
-          <p className="text-center text-xs uppercase tracking-widest font-semibold mb-8" style={{ color: 'rgba(13,38,0,0.6)' }}>
+      {/* Sponsors */}
+      <section className="px-6 py-14 md:py-20" style={{ backgroundColor: CREAM }}>
+        <div className="mx-auto max-w-5xl">
+          <p className="text-center text-xs uppercase tracking-widest font-semibold mb-8" style={{ color: 'rgba(0,0,0,0.5)' }}>
             {c.sponsorsCaption}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6 items-center">
@@ -191,11 +188,11 @@ export default async function HomePage() {
               <div
                 key={name}
                 className="h-16 rounded-lg border border-dashed flex flex-col items-center justify-center gap-1 px-3 text-center"
-                style={{ borderColor: 'rgba(13,38,0,0.2)', backgroundColor: 'rgba(13,38,0,0.06)' }}
+                style={{ borderColor: 'rgba(0,0,0,0.15)', backgroundColor: 'rgba(0,0,0,0.04)' }}
                 title="Placeholder — swap in real sponsor logo"
               >
-                <ImagePlaceholder className="w-4 h-4" style={{ color: 'rgba(13,38,0,0.35)' }} />
-                <span className="text-[10px] font-medium leading-tight" style={{ color: 'rgba(13,38,0,0.6)' }}>{name}</span>
+                <ImagePlaceholder className="w-4 h-4" style={{ color: 'rgba(0,0,0,0.3)' }} />
+                <span className="text-[10px] font-medium leading-tight" style={{ color: '#000000' }}>{name}</span>
               </div>
             ))}
           </div>
