@@ -12,8 +12,10 @@ export default async function ContactPage() {
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
-        <div className="mx-auto max-w-2xl text-center">
-          <div className="rounded-2xl bg-[var(--wpf-yellow-soft)] border border-black/5 p-8 md:p-10">
+        <div className="mx-auto max-w-5xl grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+
+          {/* Left: socials + email */}
+          <div className="rounded-2xl bg-[var(--wpf-yellow-soft)] border border-black/5 p-8 md:p-10 h-full">
             <p className="wpf-section-kicker opacity-80 mb-2">Email</p>
             <a
               href={`mailto:${c.email}`}
@@ -25,7 +27,7 @@ export default async function ContactPage() {
 
             <div className="mt-8 pt-8 border-t border-black/10">
               <p className="wpf-section-kicker opacity-80 mb-3">Follow along</p>
-              <div className="flex justify-center gap-3">
+              <div className="flex gap-3">
                 <a
                   href="https://www.instagram.com/BirdlifeProductions3/"
                   target="_blank"
@@ -45,19 +47,18 @@ export default async function ContactPage() {
               </div>
             </div>
           </div>
-        </div>
-      </section>
 
-      {/* Newsletter */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: 'var(--wpf-blue)' }}>
-        <div className="mx-auto max-w-3xl text-center">
-          <h2 className="wpf-section-heading text-2xl md:text-4xl mb-3" style={{ color: '#0d2600' }}>
-            {c.newsletterHeading}
-          </h2>
-          <p className="mb-8 max-w-xl mx-auto text-base md:text-lg leading-relaxed" style={{ color: 'rgba(13,38,0,0.75)' }}>
-            {c.newsletterSubtext}
-          </p>
-          <SignupForm />
+          {/* Right: newsletter */}
+          <div className="rounded-2xl p-8 md:p-10 h-full" style={{ backgroundColor: 'var(--wpf-blue)' }}>
+            <h2 className="wpf-section-heading text-xl md:text-2xl mb-2" style={{ color: '#0d2600' }}>
+              {c.newsletterHeading}
+            </h2>
+            <p className="mb-6 text-sm md:text-base leading-relaxed" style={{ color: 'rgba(13,38,0,0.75)' }}>
+              {c.newsletterSubtext}
+            </p>
+            <SignupForm />
+          </div>
+
         </div>
       </section>
     </main>
