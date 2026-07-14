@@ -184,31 +184,8 @@ export default async function HomePage() {
         </svg>
       </div>
 
-      {/* Sponsors */}
-      <section className="px-6 py-14 md:py-20" style={{ backgroundColor: CREAM }}>
-        <div className="mx-auto max-w-5xl">
-          <p className="text-center text-sm uppercase tracking-widest font-bold mb-8" style={{ color: 'var(--wpf-pink)' }}>
-            {c.sponsorsCaption}
-          </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 md:gap-6 items-center">
-            {SPONSORS.map((s) => (
-              <div
-                key={s.name}
-                className="h-20 flex items-center justify-center px-3"
-              >
-                {s.logo ? (
-                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 w-auto object-contain" style={s.invert ? { filter: 'invert(1)' } : undefined} />
-                ) : (
-                  <span className="text-xs font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Gallery */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>
+      <section className="px-6 pt-16 pb-10 md:pt-24 md:pb-14" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-6xl">
           <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12" style={{ color: 'var(--wpf-blue)' }}>
             {c.galleryHeading}
@@ -226,6 +203,26 @@ export default async function HomePage() {
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
                 />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Sponsors */}
+      <section className="px-6 pt-10 pb-16 md:pt-14 md:pb-24" style={{ backgroundColor: CREAM }}>
+        <div className="mx-auto max-w-5xl">
+          <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12" style={{ color: 'var(--wpf-blue)' }}>
+            {c.sponsorsCaption}
+          </h2>
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 md:gap-6 items-center">
+            {SPONSORS.map((s) => (
+              <div key={s.name} className="h-20 flex items-center justify-center px-3">
+                {s.logo ? (
+                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 w-auto object-contain" style={s.invert ? { filter: 'invert(1)' } : undefined} />
+                ) : (
+                  <span className="text-xs font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
+                )}
               </div>
             ))}
           </div>
