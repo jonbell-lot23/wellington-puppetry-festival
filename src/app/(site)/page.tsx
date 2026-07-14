@@ -12,12 +12,12 @@ const CABARET_BG = 'var(--wpf-maroon)'     // #271620 — same moody dark as cab
 const INK = 'var(--wpf-ink)'
 
 const SPONSORS = [
-  'Creative NZ',
-  'Wellington City Council',
-  'BATS Theatre',
-  'Toi Poneke',
-  'Circa Theatre',
-  'Absolutely Positively Wellington',
+  { name: 'Creative NZ', logo: null },
+  { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
+  { name: 'BATS Theatre', logo: '/images/sponsor-bats.png' },
+  { name: 'Toi Poneke', logo: null },
+  { name: 'Circa Theatre', logo: '/images/sponsor-circa.png' },
+  { name: 'Absolutely Positively Wellington', logo: null },
 ]
 
 export default async function HomePage() {
@@ -177,6 +177,14 @@ export default async function HomePage() {
         </div>
       </section>
 
+      {/* Wave: cabaret maroon → cream */}
+      <div aria-hidden className="relative w-full overflow-hidden leading-[0]" style={{ backgroundColor: CABARET_BG }}>
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
+          <path d="M0,55 C360,100 720,10 1080,45 C1260,65 1360,80 1440,50 L1440,100 L0,100 Z" fill={CREAM} opacity="0.4" />
+          <path d="M0,65 C240,105 480,5 720,40 C960,75 1200,100 1440,60 L1440,100 L0,100 Z" fill={CREAM} />
+        </svg>
+      </div>
+
       {/* Sponsors */}
       <section className="px-6 py-14 md:py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-5xl">
@@ -184,15 +192,17 @@ export default async function HomePage() {
             {c.sponsorsCaption}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6 items-center">
-            {SPONSORS.map((name) => (
+            {SPONSORS.map((s) => (
               <div
-                key={name}
-                className="h-16 rounded-lg border border-dashed flex flex-col items-center justify-center gap-1 px-3 text-center"
+                key={s.name}
+                className="h-16 rounded-lg border border-dashed flex items-center justify-center px-3"
                 style={{ borderColor: 'rgba(0,0,0,0.15)', backgroundColor: 'rgba(0,0,0,0.04)' }}
-                title="Placeholder — swap in real sponsor logo"
               >
-                <ImagePlaceholder className="w-4 h-4" style={{ color: 'rgba(0,0,0,0.3)' }} />
-                <span className="text-[10px] font-medium leading-tight" style={{ color: '#000000' }}>{name}</span>
+                {s.logo ? (
+                  <Image src={s.logo} alt={s.name} width={120} height={48} className="max-h-10 w-auto object-contain" />
+                ) : (
+                  <span className="text-[10px] font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
+                )}
               </div>
             ))}
           </div>
