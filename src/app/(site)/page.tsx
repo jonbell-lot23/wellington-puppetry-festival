@@ -12,7 +12,7 @@ const CABARET_BG = 'var(--wpf-maroon)'     // #271620 — same moody dark as cab
 const INK = 'var(--wpf-ink)'
 
 const SPONSORS = [
-  { name: 'Creative NZ', logo: null },
+  { name: 'Creative NZ', logo: '/images/sponsor-creativenz.png' },
   { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
   { name: 'BATS Theatre', logo: '/images/sponsor-bats.png' },
   { name: 'Toi Poneke', logo: null },
