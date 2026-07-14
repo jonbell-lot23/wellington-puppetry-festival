@@ -9,7 +9,7 @@ export const revalidate = 60
 const CREAM = 'var(--wpf-cream)'
 const GREEN_VIVID = 'var(--wpf-blue)'      // #5ec20f — vivid brand green
 const GREEN_DEEP = 'var(--wpf-blue-deep)'  // #2d6c0a — deep forest green
-const CABARET_BG = 'var(--wpf-pink-deep)'  // #a1155f — deep crimson
+const CABARET_BG = 'var(--wpf-maroon)'     // #271620 — same moody dark as cabaret page
 const INK = 'var(--wpf-ink)'
 
 const SPONSORS = [

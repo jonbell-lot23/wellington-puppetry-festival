@@ -41,7 +41,7 @@ export default function SiteFooter() {
     <>
     <footer
       className={maroon ? '' : 'wpf-sunburst'}
-      style={{ backgroundColor: maroon ? 'var(--wpf-maroon)' : undefined, color: maroon ? '#ffffff' : ink }}
+      style={{ backgroundColor: maroon ? 'var(--wpf-maroon-deep)' : undefined, color: maroon ? '#ffffff' : ink }}
     >
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
@@ -102,12 +102,19 @@ export default function SiteFooter() {
         </div>
       </div>
 
-      <div className="border-t" style={{ borderColor: maroon ? 'rgba(255,255,255,0.15)' : 'rgba(59,42,23,0.15)' }}>
+      {/* Wave into green bottom bar — inherits parent bg so works on both sunburst and dark maroon */}
+      <div aria-hidden className="relative w-full overflow-hidden leading-[0]">
+        <svg viewBox="0 0 1440 140" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
+          <path d="M0,80 C360,140 720,20 1080,60 C1260,80 1360,100 1440,70 L1440,140 L0,140 Z" fill="var(--wpf-blue)" opacity="0.4" />
+          <path d="M0,70 C240,130 480,10 720,50 C960,90 1200,130 1440,55 L1440,140 L0,140 Z" fill="var(--wpf-blue)" />
+        </svg>
+      </div>
+      <div style={{ backgroundColor: 'var(--wpf-blue)' }}>
         <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>
+          <p className="text-xs" style={{ color: 'rgba(13,38,0,0.7)' }}>
             © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions
           </p>
-          <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>
+          <p className="text-xs" style={{ color: 'rgba(13,38,0,0.7)' }}>
             <Link href="/archives/v1" className="underline underline-offset-2 hover:opacity-100">
               Previous site
             </Link>

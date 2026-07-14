@@ -171,6 +171,7 @@
   --wpf-cream: #fbf6e9; /* warm base instead of white — ink 12.72:1 AA */
   --wpf-ink: #3b2a17; /* warm dark brown body text */
   --wpf-maroon: #271620; /* Cabaret page's intentionally moody dark base */
+  --wpf-maroon-deep: #130a0e; /* Footer on cabaret page — darker than page bg */
 
   /* Legacy / minor warm accents (demoted — do not use for dominant sections) */
   --wpf-orange: #e8772e;
