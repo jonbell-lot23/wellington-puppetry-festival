@@ -65,7 +65,7 @@ export const PAGES: PageDef[] = [
         true,
       ),
       F('galleryHeading', 'Gallery section heading', 'Moments from past festivals'),
-      F('sponsorsCaption', 'Sponsors caption', 'Special thanks to our proud sponsors and supporters.'),
+      F('sponsorsCaption', 'Sponsors caption', 'Special thanks to our proud sponsors and supporters'),
     ],
   },
   {

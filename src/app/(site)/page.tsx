@@ -187,7 +187,7 @@ export default async function HomePage() {
       {/* Sponsors */}
       <section className="px-6 py-14 md:py-20" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-5xl">
-          <p className="text-center text-xs uppercase tracking-widest font-semibold mb-8" style={{ color: 'rgba(0,0,0,0.5)' }}>
+          <p className="text-center text-sm uppercase tracking-widest font-bold mb-8" style={{ color: 'var(--wpf-pink)' }}>
             {c.sponsorsCaption}
           </p>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6 items-center">
