@@ -190,7 +190,7 @@ export default async function HomePage() {
           <p className="text-center text-sm uppercase tracking-widest font-bold mb-8" style={{ color: 'var(--wpf-pink)' }}>
             {c.sponsorsCaption}
           </p>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-5 md:gap-6 items-center">
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 md:gap-6 items-center">
             {SPONSORS.map((s) => (
               <div
                 key={s.name}
