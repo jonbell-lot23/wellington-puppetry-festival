@@ -50,10 +50,8 @@ export default async function ContactPage() {
 
           {/* Right: newsletter */}
           <div className="rounded-2xl p-8 md:p-10 h-full" style={{ backgroundColor: 'var(--wpf-blue)' }}>
-            <h2 className="wpf-section-heading text-xl md:text-2xl mb-2" style={{ color: '#0d2600' }}>
-              {c.newsletterHeading}
-            </h2>
-            <p className="mb-6 text-sm md:text-base leading-relaxed" style={{ color: 'rgba(13,38,0,0.75)' }}>
+            <p className="wpf-section-kicker mb-2" style={{ color: 'rgba(13,38,0,0.6)' }}>Newsletter</p>
+            <p className="font-bold text-base mb-6" style={{ color: '#0d2600' }}>
               {c.newsletterSubtext}
             </p>
             <SignupForm />
