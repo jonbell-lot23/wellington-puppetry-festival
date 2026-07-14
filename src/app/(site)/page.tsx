@@ -17,7 +17,6 @@ const SPONSORS = [
   { name: 'BATS Theatre', logo: '/images/sponsor-bats.png' },
   { name: 'Toi Poneke', logo: null },
   { name: 'Circa Theatre', logo: '/images/sponsor-circa.png' },
-  { name: 'Absolutely Positively Wellington', logo: null },
 ]
 
 export default async function HomePage() {
