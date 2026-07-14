@@ -2,7 +2,6 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import SignupForm from '@/components/SignupForm'
-import WaveDivider from '@/components/WaveDivider'
 import ImagePlaceholder from '@/components/ImagePlaceholder'
 
 export const revalidate = 60
@@ -147,8 +146,6 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <WaveDivider fromColor={GREEN_VIVID} toColor={CABARET_BG} />
-
       {/* Evening Cabaret */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CABARET_BG }}>
         <div className="mx-auto max-w-4xl">
@@ -172,8 +169,6 @@ export default async function HomePage() {
           </p>
         </div>
       </section>
-
-      <WaveDivider fromColor={CABARET_BG} toColor={GREEN_VIVID} />
 
       {/* Newsletter */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: GREEN_VIVID }}>
@@ -206,8 +201,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <WaveDivider fromColor={GREEN_VIVID} toColor={CREAM} />
 
       {/* Gallery */}
       <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CREAM }}>

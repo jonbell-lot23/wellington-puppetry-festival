@@ -2,8 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import WaveDivider from '@/components/WaveDivider'
-
 const TICKETS_URL = 'https://events.humanitix.com/'
 
 function Instagram() {
@@ -32,7 +30,7 @@ const LINKS = [
   { label: 'Get Tickets', href: TICKETS_URL, external: true },
 ]
 
-export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom?: string }) {
+export default function SiteFooter() {
   const pathname = usePathname()
   // Cabaret is the intentionally moody maroon page — let the wine colour flow
   // straight into the footer with no wave and no blue break.
@@ -41,7 +39,6 @@ export default function SiteFooter({ waveFrom = 'var(--wpf-cream)' }: { waveFrom
 
   return (
     <>
-    {maroon && <WaveDivider fromColor={waveFrom} toColor="var(--wpf-maroon)" />}
     <footer
       className={maroon ? '' : 'wpf-sunburst'}
       style={{ backgroundColor: maroon ? 'var(--wpf-maroon)' : undefined, color: maroon ? '#ffffff' : ink }}
