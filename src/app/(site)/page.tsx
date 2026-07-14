@@ -195,13 +195,12 @@ export default async function HomePage() {
             {SPONSORS.map((s) => (
               <div
                 key={s.name}
-                className="h-16 rounded-lg border border-dashed flex items-center justify-center px-3"
-                style={{ borderColor: 'rgba(0,0,0,0.15)', backgroundColor: 'rgba(0,0,0,0.04)' }}
+                className="h-20 flex items-center justify-center px-3"
               >
                 {s.logo ? (
-                  <Image src={s.logo} alt={s.name} width={120} height={48} className="max-h-10 w-auto object-contain" />
+                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 w-auto object-contain" />
                 ) : (
-                  <span className="text-[10px] font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
+                  <span className="text-xs font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
                 )}
               </div>
             ))}
