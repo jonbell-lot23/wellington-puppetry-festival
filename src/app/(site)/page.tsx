@@ -15,7 +15,7 @@ const SPONSORS = [
   { name: 'Creative NZ', logo: '/images/sponsor-creativenz.png' },
   { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
   { name: 'BATS Theatre', logo: '/images/sponsor-bats.png' },
-  { name: 'Toi Aro', logo: '/images/sponsor-toiaro.png', invert: true },
+  { name: 'Toi Aro', logo: '/images/sponsor-toiaro.png' },
   { name: 'Circa Theatre', logo: '/images/sponsor-circa.png' },
 ]
 
