@@ -401,17 +401,4 @@
 }
 
 /* Subtle gallery lift — discoverable, not distracting */
-.wpf-gallery-tile {
-  transition: transform 0.25s cubic-bezier(0.25, 1, 0.5, 1);
-}
-
-.wpf-gallery-tile:hover {
-  transform: scale(1.02);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .wpf-gallery-tile:hover {
-    transform: none;
-  }
-}
 
