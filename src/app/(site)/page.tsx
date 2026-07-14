@@ -15,7 +15,7 @@ const SPONSORS = [
   { name: 'Creative NZ', logo: '/images/sponsor-creativenz.png' },
   { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
   { name: 'BATS Theatre', logo: '/images/sponsor-bats.png' },
-  { name: 'Toi Poneke', logo: null },
+  { name: 'Toi Aro', logo: '/images/sponsor-toiaro.png', invert: true },
   { name: 'Circa Theatre', logo: '/images/sponsor-circa.png' },
 ]
 
@@ -197,7 +197,7 @@ export default async function HomePage() {
                 className="h-20 flex items-center justify-center px-3"
               >
                 {s.logo ? (
-                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 w-auto object-contain" />
+                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 w-auto object-contain" style={s.invert ? { filter: 'invert(1)' } : undefined} />
                 ) : (
                   <span className="text-xs font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
                 )}
