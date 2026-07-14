@@ -121,14 +121,9 @@ export default function SiteFooter() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 border-t" style={{ borderColor: 'rgba(13,38,0,0.15)' }}>
-        <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.5)' : greenMuted }}>
-          © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions
-        </p>
-        <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.5)' : greenMuted }}>
-          <Link href="/archives/v1" className="underline underline-offset-2 hover:opacity-100">
-            Previous site
-          </Link>
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 border-t" style={{ borderColor: 'rgba(13,38,0,0.15)' }}>
+        <p className="text-xs text-center" style={{ color: maroon ? 'rgba(255,255,255,0.5)' : greenMuted }}>
+          © {new Date().getFullYear()} Wellington Puppetry Festival
         </p>
       </div>
     </footer>

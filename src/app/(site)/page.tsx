@@ -212,7 +212,7 @@ export default async function HomePage() {
       {/* Sponsors */}
       <section className="px-6 pt-10 pb-16 md:pt-14 md:pb-24" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-5xl">
-          <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12 lowercase" style={{ color: 'var(--wpf-blue-deep)' }}>
+          <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12 lowercase" style={{ color: 'var(--wpf-ink)' }}>
             {c.sponsorsCaption}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 md:gap-6 items-center">
