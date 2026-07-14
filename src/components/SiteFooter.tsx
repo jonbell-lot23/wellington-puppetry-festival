@@ -37,12 +37,22 @@ export default function SiteFooter() {
   const maroon = pathname?.startsWith('/cabaret') ?? false
   const ink = 'var(--wpf-ink)'
 
+  const greenBg = 'var(--wpf-blue)'
+  const greenText = 'rgba(13,38,0,0.75)'
+  const greenMuted = 'rgba(13,38,0,0.5)'
+
   return (
     <>
-    <footer
-      className={maroon ? '' : 'wpf-sunburst'}
-      style={{ backgroundColor: maroon ? 'var(--wpf-maroon-deep)' : undefined, color: maroon ? '#ffffff' : ink }}
-    >
+    {/* Wave at top — green rises from below */}
+    {!maroon && (
+      <div aria-hidden className="relative w-full overflow-hidden leading-[0]">
+        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
+          <path d="M0,55 C360,100 720,10 1080,45 C1260,65 1360,80 1440,50 L1440,100 L0,100 Z" fill={greenBg} opacity="0.4" />
+          <path d="M0,65 C240,105 480,5 720,40 C960,75 1200,100 1440,60 L1440,100 L0,100 Z" fill={greenBg} />
+        </svg>
+      </div>
+    )}
+    <footer style={{ backgroundColor: maroon ? 'var(--wpf-maroon-deep)' : greenBg, color: maroon ? '#ffffff' : greenText }}>
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
         <div>
           <p className="font-extrabold leading-none text-xl mb-4">
@@ -50,11 +60,11 @@ export default function SiteFooter() {
             <br />
             Puppetry Festival
           </p>
-          <p className="text-sm max-w-xs leading-relaxed" style={{ color: maroon ? 'rgba(255,255,255,0.75)' : 'rgba(59,42,23,0.7)' }}>
+          <p className="text-sm max-w-xs leading-relaxed" style={{ color: maroon ? 'rgba(255,255,255,0.75)' : greenText }}>
             A free, community-powered puppetry festival in Pōneke Wellington —
             proudly Wellington Funky since day one.
           </p>
-          <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>Presented by Birdlife Productions</p>
+          <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : greenMuted }}>Presented by Birdlife Productions</p>
           <div className="flex items-center gap-3 mt-5">
             <a
               href="https://www.instagram.com/BirdlifeProductions3/"
@@ -80,10 +90,10 @@ export default function SiteFooter() {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : 'rgba(59,42,23,0.5)' }}>More</p>
+          <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : greenMuted }}>More</p>
           <ul className="space-y-2.5">
             {LINKS.map((l) => {
-              const linkStyle = { color: maroon ? 'rgba(255,255,255,0.8)' : 'rgba(59,42,23,0.75)' }
+              const linkStyle = { color: maroon ? 'rgba(255,255,255,0.8)' : greenText }
               return l.external ? (
                 <li key={l.href}>
                   <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:opacity-100 transition-opacity" style={linkStyle}>
@@ -102,24 +112,15 @@ export default function SiteFooter() {
         </div>
       </div>
 
-      {/* Wave into green bottom bar — inherits parent bg so works on both sunburst and dark maroon */}
-      <div aria-hidden className="relative w-full overflow-hidden leading-[0]">
-        <svg viewBox="0 0 1440 140" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
-          <path d="M0,80 C360,140 720,20 1080,60 C1260,80 1360,100 1440,70 L1440,140 L0,140 Z" fill="var(--wpf-blue)" opacity="0.4" />
-          <path d="M0,70 C240,130 480,10 720,50 C960,90 1200,130 1440,55 L1440,140 L0,140 Z" fill="var(--wpf-blue)" />
-        </svg>
-      </div>
-      <div style={{ backgroundColor: 'var(--wpf-blue)' }}>
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2">
-          <p className="text-xs" style={{ color: 'rgba(13,38,0,0.7)' }}>
-            © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions
-          </p>
-          <p className="text-xs" style={{ color: 'rgba(13,38,0,0.7)' }}>
-            <Link href="/archives/v1" className="underline underline-offset-2 hover:opacity-100">
-              Previous site
-            </Link>
-          </p>
-        </div>
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 flex flex-col sm:flex-row items-center justify-between gap-2 border-t" style={{ borderColor: 'rgba(13,38,0,0.15)' }}>
+        <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.5)' : greenMuted }}>
+          © {new Date().getFullYear()} Wellington Puppetry Festival · Birdlife Productions
+        </p>
+        <p className="text-xs" style={{ color: maroon ? 'rgba(255,255,255,0.5)' : greenMuted }}>
+          <Link href="/archives/v1" className="underline underline-offset-2 hover:opacity-100">
+            Previous site
+          </Link>
+        </p>
       </div>
     </footer>
     </>
