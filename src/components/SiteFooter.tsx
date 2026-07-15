@@ -38,8 +38,8 @@ export default function SiteFooter() {
   const ink = 'var(--wpf-ink)'
 
   const greenBg = 'var(--wpf-blue)'
-  const greenText = 'rgba(13,38,0,0.75)'
-  const greenMuted = 'rgba(13,38,0,0.5)'
+  const greenText = 'rgba(255,255,255,0.9)'
+  const greenMuted = 'rgba(255,255,255,0.6)'
 
   return (
     <>
@@ -126,7 +126,7 @@ export default function SiteFooter() {
         </div>
       </div>
 
-      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 border-t" style={{ borderColor: 'rgba(13,38,0,0.15)' }}>
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
         <p className="text-xs text-center" style={{ color: maroon ? 'rgba(255,255,255,0.5)' : greenMuted }}>
           © {new Date().getFullYear()} Wellington Puppetry Festival
         </p>

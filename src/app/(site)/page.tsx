@@ -28,8 +28,8 @@ export default async function HomePage() {
       {/* Hero — logo sits at top, overlapping upward into the white header */}
       <section className="wpf-sunburst relative px-6 pt-14 pb-16 md:pt-20 md:pb-20 overflow-x-clip" style={{ color: INK }}>
 
-        {/* Left photo collage — xl+: full 3-photo spread in the gutter */}
-        <div aria-hidden className="hidden xl:block pointer-events-none select-none">
+        {/* Left photo collage — lg+: full 3-photo spread in the gutter */}
+        <div aria-hidden className="hidden lg:block pointer-events-none select-none">
           <div className="absolute left-[5%] top-14 w-40 rotate-[-11deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-01.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
           </div>
@@ -41,18 +41,9 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Left photo collage — lg only: 2 photos peeking from the edge */}
-        <div aria-hidden className="hidden lg:block xl:hidden pointer-events-none select-none">
-          <div className="absolute left-0 top-14 w-28 rotate-[-11deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
-            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-01.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
-          </div>
-          <div className="absolute left-3 top-52 w-28 rotate-[8deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
-            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-086.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
-          </div>
-        </div>
 
-        {/* Left photo collage — mobile: 2 photos peeking from left edge */}
-        <div aria-hidden className="block lg:hidden pointer-events-none select-none">
+        {/* Left photo collage — mobile: hidden */}
+        <div aria-hidden className="hidden pointer-events-none select-none">
           <div className="absolute left-0 -translate-x-[35%] top-10 w-20 rotate-[-13deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-01.jpg" alt="" fill className="object-cover" sizes="80px" /></div>
           </div>
@@ -61,8 +52,8 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Right photo collage — xl+: full 3-photo spread */}
-        <div aria-hidden className="hidden xl:block pointer-events-none select-none">
+        {/* Right photo collage — lg+: full 3-photo spread */}
+        <div aria-hidden className="hidden lg:block pointer-events-none select-none">
           <div className="absolute right-[5%] top-14 w-40 rotate-[10deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-064.jpg" alt="" fill className="object-cover" sizes="160px" /></div>
           </div>
@@ -74,18 +65,9 @@ export default async function HomePage() {
           </div>
         </div>
 
-        {/* Right photo collage — lg only: 2 photos peeking from the edge */}
-        <div aria-hidden className="hidden lg:block xl:hidden pointer-events-none select-none">
-          <div className="absolute right-0 top-14 w-28 rotate-[10deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
-            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-064.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
-          </div>
-          <div className="absolute right-3 top-52 w-28 rotate-[-9deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
-            <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-077.jpg" alt="" fill className="object-cover" sizes="112px" /></div>
-          </div>
-        </div>
 
-        {/* Right photo collage — mobile: 1 photo peeking from right edge */}
-        <div aria-hidden className="block lg:hidden pointer-events-none select-none">
+        {/* Right photo collage — mobile: hidden */}
+        <div aria-hidden className="hidden pointer-events-none select-none">
           <div className="absolute right-0 translate-x-[35%] top-28 w-20 rotate-[12deg] border-[3px] border-white rounded shadow-lg overflow-hidden">
             <div className="relative aspect-square"><Image src="/images/gallery/wpf-gallery-064.jpg" alt="" fill className="object-cover" sizes="80px" /></div>
           </div>
@@ -138,7 +120,7 @@ export default async function HomePage() {
               </h2>
             </div>
           </div>
-          <p className="mt-7 text-center max-w-2xl mx-auto leading-relaxed text-base md:text-lg" style={{ color: '#0d2600' }}>
+          <p className="mt-7 text-center max-w-2xl mx-auto leading-relaxed text-base md:text-lg" style={{ color: '#ffffff' }}>
             {c.kidsBody}
           </p>
         </div>
@@ -191,7 +173,7 @@ export default async function HomePage() {
             {c.galleryHeading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {['wpf-gallery-01.jpg', 'wpf-gallery-09.jpg', 'wpf-gallery-045.jpg', 'wpf-gallery-064.jpg', 'wpf-gallery-077.jpg', 'wpf-gallery-086.jpg', 'wpf-gallery-102.jpg', 'wpf-gallery-106.jpg'].map((img) => (
+            {['wpf-gallery-01.jpg', 'wpf-gallery-tom-01.jpg', 'wpf-gallery-045.jpg', 'wpf-gallery-064.jpg', 'wpf-gallery-077.jpg', 'wpf-gallery-086.jpg', 'wpf-gallery-tom-02.jpg', 'wpf-gallery-tom-03.jpg'].map((img) => (
               <div
                 key={img}
                 className="wpf-gallery-tile relative aspect-square rounded-lg overflow-hidden shadow-sm"
