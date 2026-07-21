@@ -16,18 +16,18 @@ export default async function CabaretPage() {
             className="uppercase tracking-[0.2em] text-xs md:text-sm font-bold mb-4"
             style={{ color: 'var(--wpf-yellow)' }}
           >
-            18+ · After dark · Part of WPF
+            {c.kicker}
           </p>
           <h1 className="font-extrabold text-4xl md:text-6xl leading-tight text-balance">{c.heading}</h1>
           <p className="mt-6 text-white/80 leading-relaxed max-w-2xl mx-auto text-balance">{c.intro}</p>
           <a
-            href="https://events.humanitix.com/"
+            href={c.ticketsUrl}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 hover:brightness-125 transition"
             style={{ backgroundColor: '#000000', color: 'var(--wpf-pink)' }}
           >
-            Get Cabaret Tickets
+            {c.ticketsLabel}
           </a>
         </div>
       </section>
@@ -35,9 +35,9 @@ export default async function CabaretPage() {
       <section className="px-6 pb-24">
         <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-3 gap-5 text-center">
           {[
-            { label: 'Bold', body: 'Puppetry like you\'ve never seen it — sharp, funny, a little unhinged.' },
-            { label: 'Curated', body: 'A hand-picked line-up of local and visiting cabaret performers.' },
-            { label: 'One night only', body: 'The signature closing-night event of the festival.' },
+            { label: c.card1Label, body: c.card1Body },
+            { label: c.card2Label, body: c.card2Body },
+            { label: c.card3Label, body: c.card3Body },
           ].map((f) => (
             <div key={f.label} className="rounded-xl bg-white/5 border border-white/10 p-6">
               <p className="font-bold mb-2" style={{ color: 'var(--wpf-yellow)' }}>{f.label}</p>
@@ -46,7 +46,7 @@ export default async function CabaretPage() {
           ))}
         </div>
         <p className="text-center text-white/40 text-xs mt-10">
-          Line-up, venue and exact date to be confirmed alongside the full 2026 programme.
+          {c.footnote}
         </p>
       </section>
     </main>
