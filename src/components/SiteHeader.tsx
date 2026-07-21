@@ -8,7 +8,8 @@ import { useState } from 'react'
 // Accessibility) lives in the footer instead.
 const NAV = [
   { label: 'Program', href: '/program' },
-  { label: 'Artists', href: '/artists' },
+  // Artists page hidden for now — head shots weren't available; bios will
+  // live in the programme listings instead. Re-add when ready.
   { label: 'Cabaret', href: '/cabaret' },
   { label: 'About', href: '/about' },
   { label: 'Contact', href: '/contact' },
