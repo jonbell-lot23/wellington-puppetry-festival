@@ -206,6 +206,20 @@
   );
 }
 
+/* Scalloped bottom edge on the yellow hero itself, so the sunburst rays run
+   all the way down into the bumps (no flat-yellow strip, no seam line). The
+   notches are cut transparent; the green Community section below is pulled up
+   behind the hero so it shows through them. */
+.wpf-hero-scallop-mask {
+  --scallop: 22px;
+  -webkit-mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--scallop)) no-repeat,
+    radial-gradient(circle at var(--scallop) 0, #000 var(--scallop), transparent calc(var(--scallop) + 0.5px)) bottom / calc(var(--scallop) * 2) var(--scallop) repeat-x;
+  mask:
+    linear-gradient(#000 0 0) top / 100% calc(100% - var(--scallop)) no-repeat,
+    radial-gradient(circle at var(--scallop) 0, #000 var(--scallop), transparent calc(var(--scallop) + 0.5px)) bottom / calc(var(--scallop) * 2) var(--scallop) repeat-x;
+}
+
 /* Site-wide dark maroon textured background (matches Squarespace original). */
 .site-bg {
   background-color: var(--brand-maroon);

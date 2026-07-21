@@ -30,7 +30,7 @@ export default async function HomePage() {
     <main style={{ backgroundColor: CREAM }}>
 
       {/* Hero — logo sits at top, overlapping upward into the white header */}
-      <section className="wpf-sunburst relative px-6 pt-14 pb-16 md:pt-20 md:pb-20 overflow-x-clip" style={{ color: INK }}>
+      <section className="wpf-sunburst wpf-hero-scallop-mask relative z-10 px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pb-40 overflow-x-clip" style={{ color: INK }}>
 
         {/* Left photo collage — lg+: full 3-photo spread in the gutter */}
         <div aria-hidden className="hidden lg:block pointer-events-none select-none">
@@ -107,8 +107,9 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Community Day — vivid brand green */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: GREEN_VIVID }}>
+      {/* Community Day — vivid brand green. Pulled up under the hero's
+          scalloped bottom edge so the green shows through the notches. */}
+      <section className="px-6 pt-16 pb-16 md:pt-24 md:pb-24 -mt-[22px]" style={{ backgroundColor: GREEN_VIVID }}>
         <div className="mx-auto max-w-4xl">
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: GREEN_DEEP }}>
             <Image

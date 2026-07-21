@@ -32,7 +32,7 @@ export default function SiteHeader() {
             <img
               src="/images/wpf-logo.png"
               alt=""
-              className="h-11 w-11 md:h-12 md:w-12 shrink-0"
+              className="h-11 md:h-12 w-auto object-contain shrink-0"
               style={{ mixBlendMode: 'multiply' }}
             />
             <span

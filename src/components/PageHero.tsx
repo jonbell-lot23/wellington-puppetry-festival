@@ -2,18 +2,20 @@ export default function PageHero({
   heading,
   intro,
   sunburst = true,
+  scallop = true,
   bg = 'var(--wpf-yellow)',
   textColor = 'var(--wpf-ink)',
 }: {
   heading: string
   intro?: string
   sunburst?: boolean
+  scallop?: boolean
   bg?: string
   textColor?: string
 }) {
   return (
     <section
-      className={`relative px-6 pt-16 pb-14 md:pt-24 md:pb-20 ${sunburst ? 'wpf-sunburst' : ''}`}
+      className={`relative px-6 pt-16 pb-14 md:pt-24 md:pb-20 ${sunburst ? 'wpf-sunburst' : ''} ${scallop ? 'wpf-hero-scallop-mask z-10' : ''}`}
       style={{ backgroundColor: sunburst ? undefined : bg, color: textColor }}
     >
       <div className="mx-auto max-w-3xl text-center">
