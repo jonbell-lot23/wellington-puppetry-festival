@@ -200,6 +200,7 @@ export const PAGES: PageDef[] = [
     path: '/cabaret',
     title: 'Cabaret (special page)',
     fields: [
+      F('kicker', 'Kicker line (small text above title)', '18+ · After dark · Part of WPF'),
       F('heading', 'Page heading', 'WPF Cabaret'),
       F(
         'intro',
@@ -207,6 +208,18 @@ export const PAGES: PageDef[] = [
         'An after-dark, adults-only night of puppetry cabaret — bold, funny, a little bit wild. The signature evening event of the festival, featuring a curated line-up of local and visiting performers.',
         true,
       ),
+      F('ticketsLabel', 'Tickets button label', 'Get Cabaret Tickets'),
+      F('ticketsUrl', 'Tickets button URL', 'https://events.humanitix.com/'),
+
+      // Three feature cards.
+      F('card1Label', 'Card 1 — title', 'Bold'),
+      F('card1Body', 'Card 1 — text', 'Puppetry like you\'ve never seen it — sharp, funny, a little unhinged.', true),
+      F('card2Label', 'Card 2 — title', 'Curated'),
+      F('card2Body', 'Card 2 — text', 'A hand-picked line-up of local and visiting cabaret performers.', true),
+      F('card3Label', 'Card 3 — title', 'One night only'),
+      F('card3Body', 'Card 3 — text', 'The signature closing-night event of the festival.', true),
+
+      F('footnote', 'Footnote below cards', 'Line-up, venue and exact date to be confirmed alongside the full 2026 programme.', true),
     ],
   },
   {
