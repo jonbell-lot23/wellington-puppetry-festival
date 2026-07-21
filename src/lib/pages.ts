@@ -156,6 +156,28 @@ export const PAGES: PageDef[] = [
         'Wellington Puppetry Festival is a community-led celebration of puppetry in all its forms — traditional and contemporary, tiny and giant, for toddlers and adults alike. We\'re proud to bring the city together for a free, welcoming, imagination-filled long weekend.',
         true,
       ),
+
+      // Rose Beauchamp tribute section.
+      F('roseHeading', 'Rose section — heading', 'In the footsteps of Rose Beauchamp'),
+      F(
+        'roseBody1',
+        'Rose section — first paragraph',
+        'Wellington\'s love of puppetry owes an enormous amount to Rose Beauchamp. A pianist who never set out to become a puppeteer, Rose fell for the art form and went on to help organise the very first national puppet festival, the NZ Puppet Parade that filled Lambton Quay in 1986.',
+        true,
+      ),
+      F(
+        'roseBody2',
+        'Rose section — second paragraph',
+        'She turned shadows into art, and art into activism: her internationally renowned shadow puppetry made audiences laugh and cry, but also educated and spoke out against the injustice she saw in the world. The Wellington Puppetry Festival carries that spirit forward, puppetry for everyone, in the city she helped fall in love with the art.',
+        true,
+      ),
+      F(
+        'roseQuote',
+        'Rose section — pull quote',
+        'Puppets are exciting, they make us laugh, and understand other cultures as well as enriching our own lives.',
+        true,
+      ),
+      F('roseQuoteBy', 'Rose section — quote attribution', 'Rose Beauchamp'),
     ],
   },
   {
