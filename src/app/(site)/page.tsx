@@ -1,7 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
-import ImagePlaceholder from '@/components/ImagePlaceholder'
 
 export const revalidate = 60
 
@@ -11,12 +10,17 @@ const GREEN_DEEP = 'var(--wpf-blue-deep)'  // #2d6c0a — deep forest green
 const CABARET_BG = 'var(--wpf-maroon)'     // #271620 — same moody dark as cabaret page
 const INK = 'var(--wpf-ink)'
 
+// Sponsor list per Bridget (Jul 2026). Only WCC currently has a logo file;
+// the rest render as styled text names via the fallback below until logos
+// are supplied. Drop a file in /public/images and add `logo:` to swap.
 const SPONSORS = [
-  { name: 'Creative NZ', logo: '/images/sponsor-creativenz.png' },
   { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
-  { name: 'BATS Theatre', logo: '/images/sponsor-bats.png' },
-  { name: 'Toi Aro', logo: '/images/sponsor-toiaro.png' },
-  { name: 'Circa Theatre', logo: '/images/sponsor-circa.png' },
+  { name: 'The Peace and Disarmament Fund', logo: null },
+  { name: 'TAHI Festival', logo: null },
+  { name: 'Ridgeway School', logo: null },
+  { name: 'Vogelmorn Bowling Club', logo: null },
+  { name: 'BLENNZ', logo: null },
+  { name: 'You!', logo: null },
 ]
 
 export default async function HomePage() {
@@ -108,14 +112,15 @@ export default async function HomePage() {
         <div className="mx-auto max-w-4xl">
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: GREEN_DEEP }}>
             <Image
-              src="/images/gallery/wpf-gallery-047.jpg"
+              src="/images/2024-puppetry-gala.jpg"
               alt="Community day — kids activities"
               fill
               className="object-cover"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
-              <p className="wpf-section-kicker mb-2" style={{ color: '#ffffff' }}>Community day</p>
-              <h2 className="wpf-section-heading text-3xl md:text-5xl" style={{ color: '#ffffff' }}>
+              <p className="wpf-section-kicker mb-2" style={{ color: 'var(--wpf-yellow)' }}>Community day</p>
+              <h2 className="wpf-section-heading text-3xl md:text-5xl" style={{ color: 'var(--wpf-yellow)' }}>
                 {c.kidsHeading}
               </h2>
             </div>

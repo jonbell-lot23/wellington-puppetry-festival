@@ -3,30 +3,6 @@ import PageHero from '@/components/PageHero'
 
 export const revalidate = 60
 
-const DAYS = [
-  {
-    day: 'Friday',
-    date: '18 Sep 2026',
-    title: 'Opening Night',
-    body: 'Festival kick-off with an evening showcase of visiting and local puppetry companies.',
-    highlight: false,
-  },
-  {
-    day: 'Saturday',
-    date: '19 Sep 2026',
-    title: 'Free Family Day',
-    body: 'A full day of FREE drop-in puppet-making, street performances and shows for kids and whānau. No ticket required.',
-    highlight: true,
-  },
-  {
-    day: 'Sunday',
-    date: '20 Sep 2026',
-    title: 'Festival Shows + Cabaret',
-    body: 'Daytime programme continues, closing with WPF Cabaret in the evening — see the Cabaret page for details.',
-    highlight: false,
-  },
-]
-
 const SKELETON_SHOWS = [
   { time: '10:00am', venue: 'BATS Theatre' },
   { time: '11:30am', venue: 'Toi Poneke' },
@@ -38,6 +14,19 @@ const SKELETON_SHOWS = [
 
 export default async function ProgramPage() {
   const c = await getPageContent('program')
+
+  // Day cards — names/colours fixed here; date/title/body come from /admin.
+  const DAYS = [
+    { day: 'Friday', date: c.day1Date, title: c.day1Title, body: c.day1Body, highlight: false },
+    { day: 'Saturday', date: c.day2Date, title: c.day2Title, body: c.day2Body, highlight: true },
+    { day: 'Sunday', date: c.day3Date, title: c.day3Title, body: c.day3Body, highlight: false },
+  ]
+
+  // Show-by-show rows from /admin. A row only appears once it has a title;
+  // until any are filled we keep the "coming soon" placeholder below.
+  const shows = [1, 2, 3, 4, 5, 6]
+    .map((n) => ({ time: c[`show${n}Time`], title: c[`show${n}Title`], info: c[`show${n}Info`] }))
+    .filter((s) => s.title?.trim())
 
   return (
     <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
@@ -67,41 +56,67 @@ export default async function ProgramPage() {
           ))}
         </div>
 
-        {/* Skeleton programme */}
+        {/* Show-by-show — real rows once filled in /admin, else placeholder */}
         <div className="mx-auto max-w-5xl mt-14">
           <div className="flex items-center justify-between mb-6">
             <h2 className="font-extrabold text-xl" style={{ color: 'var(--wpf-ink)' }}>
-              Saturday 19 Sep — Show by Show
+              {c.showsHeading}
             </h2>
-            <span className="text-xs font-bold uppercase tracking-widest rounded-full px-3 py-1" style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }}>
-              Coming soon 🎭
-            </span>
+            {shows.length === 0 && (
+              <span className="text-xs font-bold uppercase tracking-widest rounded-full px-3 py-1" style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }}>
+                Coming soon 🎭
+              </span>
+            )}
           </div>
 
-          <div className="space-y-3">
-            {SKELETON_SHOWS.map((show, i) => (
-              <div
-                key={i}
-                className="rounded-xl p-4 flex items-center gap-4 border border-black/5 animate-pulse"
-                style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}
-              >
-                <span className="text-sm font-bold shrink-0 w-16 opacity-50" style={{ color: 'var(--wpf-ink)' }}>
-                  {show.time}
-                </span>
-                <div className="flex-1 space-y-2">
-                  <div className="h-3.5 rounded-full w-2/3" style={{ backgroundColor: 'rgba(0,0,0,0.1)' }} />
-                  <div className="h-2.5 rounded-full w-1/3" style={{ backgroundColor: 'rgba(0,0,0,0.07)' }} />
+          {shows.length > 0 ? (
+            <div className="space-y-3">
+              {shows.map((show, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl p-4 flex items-center gap-4 border border-black/5"
+                  style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}
+                >
+                  <span className="text-sm font-bold shrink-0 w-20" style={{ color: 'var(--wpf-ink)' }}>
+                    {show.time}
+                  </span>
+                  <div className="flex-1 min-w-0">
+                    <p className="font-bold" style={{ color: 'var(--wpf-ink)' }}>{show.title}</p>
+                    {show.info?.trim() && (
+                      <p className="text-sm wpf-text-muted">{show.info}</p>
+                    )}
+                  </div>
                 </div>
-                <span className="text-xs opacity-40 shrink-0 hidden sm:block" style={{ color: 'var(--wpf-ink)' }}>
-                  {show.venue}
-                </span>
+              ))}
+            </div>
+          ) : (
+            <>
+              <div className="space-y-3">
+                {SKELETON_SHOWS.map((show, i) => (
+                  <div
+                    key={i}
+                    className="rounded-xl p-4 flex items-center gap-4 border border-black/5 animate-pulse"
+                    style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}
+                  >
+                    <span className="text-sm font-bold shrink-0 w-16 opacity-50" style={{ color: 'var(--wpf-ink)' }}>
+                      {show.time}
+                    </span>
+                    <div className="flex-1 space-y-2">
+                      <div className="h-3.5 rounded-full w-2/3" style={{ backgroundColor: 'rgba(0,0,0,0.1)' }} />
+                      <div className="h-2.5 rounded-full w-1/3" style={{ backgroundColor: 'rgba(0,0,0,0.07)' }} />
+                    </div>
+                    <span className="text-xs opacity-40 shrink-0 hidden sm:block" style={{ color: 'var(--wpf-ink)' }}>
+                      {show.venue}
+                    </span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <p className="text-center mt-8 text-sm wpf-text-muted">
-            The puppets are rehearsing. The venues are ready. The programme drops soon — we promise it&apos;ll be worth the wait.
-          </p>
+              <p className="text-center mt-8 text-sm wpf-text-muted">
+                The puppets are rehearsing. The venues are ready. The programme drops soon — we promise it&apos;ll be worth the wait.
+              </p>
+            </>
+          )}
         </div>
       </section>
     </main>
