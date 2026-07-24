@@ -102,7 +102,7 @@ const SCHEDULE: DaySchedule[] = [
           { time: '9:00am', title: 'Shadow Puppetry Workshop', by: 'Rowena', duration: '2.5 hrs', venue: 'hall' },
           { time: 'All morning', title: 'Ad-hoc workshops & sharings', venue: 'upstairs' },
           { time: '11:15am', title: 'Puppets in Wartime', by: 'Simone', duration: '40 mins', venue: 'hall' },
-          { time: '12:00pm', title: 'Night Shift', by: 'Steph', duration: '30 mins', age: '10+', note: 'PG', venue: 'hall' },
+          { time: '12:00pm', title: 'Night Shift', by: 'Steph', duration: '30 mins', age: '10+', venue: 'hall' },
           { time: '12:30pm', title: 'Closing Circle', venue: 'hall' },
           { time: 'TBC', title: 'Box of Birds', by: 'Birds', duration: '30 mins', age: '3+', note: 'BLENNZ', venue: 'ridgeway' },
           { time: 'TBC', title: 'Little Bad Mood', by: 'Marine', duration: '20 mins', age: '5+', venue: 'ridgeway' },
