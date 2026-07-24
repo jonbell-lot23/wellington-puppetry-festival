@@ -113,15 +113,11 @@ const SCHEDULE: DaySchedule[] = [
   },
 ]
 
-function Chip({ children, strong = false }: { children: React.ReactNode; strong?: boolean }) {
+function Chip({ children }: { children: React.ReactNode }) {
   return (
     <span
       className="text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-0.5 shrink-0"
-      style={
-        strong
-          ? { backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }
-          : { backgroundColor: 'rgba(0,0,0,0.06)', color: 'var(--wpf-ink)' }
-      }
+      style={{ backgroundColor: 'rgba(0,0,0,0.06)', color: 'var(--wpf-ink)' }}
     >
       {children}
     </span>
@@ -206,9 +202,14 @@ export default async function ProgramPage() {
                     >
                       {part.events.map((ev, i) => (
                         <li key={i} className="px-5 py-3.5 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2">
-                          <span className="text-sm font-bold shrink-0 w-24" style={{ color: 'var(--wpf-ink)' }}>
-                            {ev.time}
-                          </span>
+                          <div className="shrink-0 w-24">
+                            <p className="text-sm font-bold" style={{ color: 'var(--wpf-ink)' }}>
+                              {ev.time}
+                            </p>
+                            {ev.age && (
+                              <p className="text-xs font-bold wpf-text-muted">Ages: {ev.age}</p>
+                            )}
+                          </div>
                           <div className="flex-1 min-w-0 basis-full sm:basis-auto order-last sm:order-none">
                             <p className="font-bold" style={{ color: 'var(--wpf-ink)' }}>
                               {ev.title}
@@ -219,7 +220,6 @@ export default async function ProgramPage() {
                             )}
                           </div>
                           <div className="flex items-center gap-1.5 ml-auto">
-                            {ev.age && <Chip strong>{ev.age}</Chip>}
                             {ev.note && <Chip>{ev.note}</Chip>}
                             <VenueChip venue={ev.venue} />
                           </div>
