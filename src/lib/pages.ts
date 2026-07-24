@@ -77,7 +77,7 @@ export const PAGES: PageDef[] = [
       F(
         'intro',
         'Intro paragraph',
-        'Three days of marionettes, shadow play, giant puppets and street performance across Pōneke Wellington. The full 2026 programme is being finalised — check back soon, or sign up to our newsletter to hear first.',
+        'Three days of shows, workshops and free family fun across Pōneke Wellington — from opening karakia on Friday night to the closing circle on Sunday afternoon.',
         true,
       ),
 
@@ -85,35 +85,16 @@ export const PAGES: PageDef[] = [
       // fixed in the page; these fields fill each card's date, title and text.
       F('day1Date', 'Friday card — date', '18 Sep 2026'),
       F('day1Title', 'Friday card — title', 'Opening Night'),
-      F('day1Body', 'Friday card — description', 'Festival kick-off with an evening showcase of visiting and local puppetry companies.', true),
+      F('day1Body', 'Friday card — description', 'Festival kick-off at the Hall — opening karakia, Norbert, pizza with a portrait painter, and a sharing circle.', true),
       F('day2Date', 'Saturday card — date', '19 Sep 2026'),
       F('day2Title', 'Saturday card — title', 'Free Family Day'),
-      F('day2Body', 'Saturday card — description', 'A full day of FREE drop-in puppet-making, street performances and shows for kids and whānau. No ticket required.', true),
+      F('day2Body', 'Saturday card — description', 'A full day of FREE drop-in puppet-making, KidsZone on the Green, workshops and family shows — then an evening of shows and Cabaret. No ticket required for the day.', true),
       F('day3Date', 'Sunday card — date', '20 Sep 2026'),
-      F('day3Title', 'Sunday card — title', 'Festival Shows + Cabaret'),
-      F('day3Body', 'Sunday card — description', 'Daytime programme continues, closing with WPF Cabaret in the evening — see the Cabaret page for details.', true),
+      F('day3Title', 'Sunday card — title', 'Workshops + Closing'),
+      F('day3Body', 'Sunday card — description', 'Shadow puppetry workshop, final shows at the Hall and Ridgeway Hall, and the closing circle to wrap the weekend.', true),
 
-      // Show-by-show list. Leave a show's title blank to hide that row. While
-      // every title is blank the page shows its "coming soon" placeholder.
-      F('showsHeading', 'Show-by-show — section heading', 'Saturday 19 Sep — Show by Show'),
-      F('show1Time', 'Show 1 — time', ''),
-      F('show1Title', 'Show 1 — title', ''),
-      F('show1Info', 'Show 1 — venue / info', ''),
-      F('show2Time', 'Show 2 — time', ''),
-      F('show2Title', 'Show 2 — title', ''),
-      F('show2Info', 'Show 2 — venue / info', ''),
-      F('show3Time', 'Show 3 — time', ''),
-      F('show3Title', 'Show 3 — title', ''),
-      F('show3Info', 'Show 3 — venue / info', ''),
-      F('show4Time', 'Show 4 — time', ''),
-      F('show4Title', 'Show 4 — title', ''),
-      F('show4Info', 'Show 4 — venue / info', ''),
-      F('show5Time', 'Show 5 — time', ''),
-      F('show5Title', 'Show 5 — title', ''),
-      F('show5Info', 'Show 5 — venue / info', ''),
-      F('show6Time', 'Show 6 — time', ''),
-      F('show6Title', 'Show 6 — title', ''),
-      F('show6Info', 'Show 6 — venue / info', ''),
+      // The full day-by-day schedule (times, venues, shows) is structural and
+      // lives in the program page component — schedule changes are a code edit.
     ],
   },
   {
