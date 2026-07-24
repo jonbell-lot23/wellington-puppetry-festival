@@ -1,117 +1,14 @@
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import { parseSchedule, VENUES, type VenueKey } from '@/lib/schedule'
 
 export const revalidate = 60
 
-// Full weekend programme, from Bridget's "WPF Weekend Itinerary 2026"
-// spreadsheet (Jul 2026). Internal rows (set up / pack down) are omitted —
-// this is the public-facing schedule. Structure lives here per the usual
-// split: text tweaks in /admin, schedule changes are a code edit.
+// The schedule itself is edited in /admin ("Programme — Schedule") and stored
+// as JSON under the 'program-schedule' slug; defaults live in lib/schedule.ts.
 //
 // Each day is a single time-sorted list (not grouped by venue) so visitors
 // can scan "what's on next"; the venue is a coloured chip on each row.
-
-const VENUES = {
-  hall: { label: 'The Hall', bg: 'var(--wpf-yellow)' },
-  upstairs: { label: 'Upstairs', bg: 'var(--wpf-pink-soft)' },
-  green: { label: 'The Green', bg: 'var(--wpf-blue-soft)' },
-  ridgeway: { label: 'Ridgeway Hall', bg: 'var(--wpf-cream)' },
-} as const
-
-type VenueKey = keyof typeof VENUES
-
-type Event = {
-  time: string
-  title: string
-  venue: VenueKey
-  by?: string
-  duration?: string
-  age?: string
-  note?: string
-  detail?: string
-}
-
-type DaySchedule = {
-  id: string
-  day: string
-  date: string
-  parts: { label?: string; events: Event[] }[]
-}
-
-const SCHEDULE: DaySchedule[] = [
-  {
-    id: 'friday',
-    day: 'Friday',
-    date: '18 Sep',
-    parts: [
-      {
-        events: [
-          { time: '6:00–6:10pm', title: 'Opening Karakia', venue: 'hall' },
-          { time: '6:10–6:15pm', title: 'Introduction to Norbert', by: 'Roger', venue: 'hall' },
-          { time: '6:15–6:30pm', title: 'Norbert', duration: '15 mins', venue: 'hall' },
-          { time: '6:30–7:15pm', title: 'Pizza & Portrait Painter', venue: 'hall' },
-          { time: '7:15–9:15pm', title: 'Sharing Circle', venue: 'hall' },
-          { time: '9:15–9:30pm', title: 'Closing', venue: 'hall' },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'saturday',
-    day: 'Saturday',
-    date: '19 Sep',
-    parts: [
-      {
-        label: 'Daytime',
-        events: [
-          { time: '9:30–11:00am', title: 'Mechanisms', by: 'Jon', duration: '1.5 hrs', age: '14+', venue: 'upstairs' },
-          { time: '10:00–10:30am', title: 'Box of Birds', by: 'Birds', duration: '30 mins', age: '3+', note: 'BLENNZ', venue: 'hall' },
-          {
-            time: '10:00am–2:00pm',
-            title: 'Free KidsZone',
-            venue: 'green',
-            detail: 'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgeway Hall.',
-          },
-          { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
-          { time: '11:00–11:30am', title: 'Migit and the Dragon', by: 'Mary', duration: '30 mins', age: '3+', venue: 'hall' },
-          { time: '11:50am', title: 'Bespoke Backpacks', by: 'Ally', duration: '45 mins', venue: 'upstairs' },
-          { time: '12:00–12:45pm', title: 'Little Top Circus', by: 'Jon', duration: '45 mins', age: '3+', venue: 'hall' },
-          { time: '12:00–1:00pm', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
-          { time: '12:15–1:45pm', title: 'Make a Puppet and Bring It to Life', by: 'Birds', duration: '1.5 hrs', venue: 'upstairs' },
-          { time: '1:15–2:00pm', title: 'The Fish — Commission', by: 'Joey', duration: '40 mins', age: '7+', venue: 'hall' },
-        ],
-      },
-      {
-        label: 'Evening',
-        events: [
-          { time: '6:00–6:40pm', title: 'The Fish — Commission', by: 'Joey', duration: '40 mins', venue: 'hall' },
-          { time: '6:45–7:30pm', title: 'Pea Soup Dinner + Films', venue: 'hall' },
-          { time: '7:30–8:00pm', title: 'Excerpt: Skylight', by: 'Birdlife', duration: '20 mins', venue: 'hall' },
-          { time: '8:00–9:30pm', title: 'Cabaret', duration: '60 mins', venue: 'hall' },
-        ],
-      },
-    ],
-  },
-  {
-    id: 'sunday',
-    day: 'Sunday',
-    date: '20 Sep',
-    parts: [
-      {
-        events: [
-          { time: '9:00–11:00am', title: 'Shadow Puppetry Workshop', by: 'Rowena', duration: '2.5 hrs', venue: 'hall' },
-          { time: 'All morning', title: 'Ad-hoc workshops & sharings', venue: 'upstairs' },
-          { time: '11:15–11:50am', title: 'Puppets in Wartime', by: 'Simone', duration: '40 mins', venue: 'hall' },
-          { time: '12:00–12:30pm', title: 'Night Shift', by: 'Steph', duration: '30 mins', age: '10+', venue: 'hall' },
-          { time: '12:30–1:30pm', title: 'Closing Circle', venue: 'hall' },
-          { time: 'TBC', title: 'Box of Birds', by: 'Birds', duration: '30 mins', age: '3+', note: 'BLENNZ', venue: 'ridgeway' },
-          { time: 'TBC', title: 'Little Bad Mood', by: 'Marine', duration: '20 mins', age: '5+', venue: 'ridgeway' },
-          { time: 'TBC', title: 'Paper Bag Family', by: 'Marine', duration: '45 mins', age: '5+', venue: 'ridgeway' },
-        ],
-      },
-    ],
-  },
-]
 
 function Chip({ children }: { children: React.ReactNode }) {
   return (
@@ -125,7 +22,7 @@ function Chip({ children }: { children: React.ReactNode }) {
 }
 
 function VenueChip({ venue }: { venue: VenueKey }) {
-  const v = VENUES[venue]
+  const v = VENUES[venue] ?? VENUES.hall
   return (
     <span
       className="text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-0.5 shrink-0 border border-black/10"
@@ -137,7 +34,11 @@ function VenueChip({ venue }: { venue: VenueKey }) {
 }
 
 export default async function ProgramPage() {
-  const c = await getPageContent('program')
+  const [c, sched] = await Promise.all([
+    getPageContent('program'),
+    getPageContent('program-schedule'),
+  ])
+  const schedule = parseSchedule(sched.scheduleJson)
 
   // Day cards — names/colours fixed here; date/title/body come from /admin.
   const DAYS = [
@@ -177,7 +78,7 @@ export default async function ProgramPage() {
 
         {/* Full weekend schedule — one time-sorted list per day */}
         <div className="mx-auto max-w-5xl mt-20 space-y-16">
-          {SCHEDULE.map((day) => (
+          {schedule.map((day) => (
             <div key={day.id} id={day.id} className="scroll-mt-24">
               <div className="flex items-baseline gap-3 mb-6">
                 <h2 className="text-3xl font-extrabold" style={{ color: 'var(--wpf-ink)' }}>
@@ -200,31 +101,40 @@ export default async function ProgramPage() {
                       className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden"
                       style={{ backgroundColor: 'var(--wpf-yellow-soft)' }}
                     >
-                      {part.events.map((ev, i) => (
-                        <li key={i} className="px-5 py-3.5 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2">
-                          <div className="shrink-0 w-32">
-                            <p className="text-sm font-bold" style={{ color: 'var(--wpf-ink)' }}>
-                              {ev.time}
-                            </p>
-                            {ev.age && (
-                              <p className="text-xs font-bold wpf-text-muted">Ages: {ev.age}</p>
+                      {part.events
+                        .filter((ev) => ev.title?.trim())
+                        .map((ev, i) => (
+                          <li key={i} className="px-5 py-3.5 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2">
+                            <div className="shrink-0 w-32">
+                              <p className="text-sm font-bold" style={{ color: 'var(--wpf-ink)' }}>
+                                {ev.time}
+                              </p>
+                              {ev.age && (
+                                <p className="text-xs font-bold wpf-text-muted">Ages: {ev.age}</p>
+                              )}
+                            </div>
+                            {ev.image?.trim() && (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img
+                                src={ev.image}
+                                alt={ev.title}
+                                className="w-14 h-14 rounded-lg object-cover shrink-0 border border-black/10"
+                              />
                             )}
-                          </div>
-                          <div className="flex-1 min-w-0 basis-full sm:basis-auto order-last sm:order-none">
-                            <p className="font-bold" style={{ color: 'var(--wpf-ink)' }}>
-                              {ev.title}
-                              {ev.by && <span className="font-semibold wpf-text-muted"> · {ev.by}</span>}
-                            </p>
-                            {(ev.duration || ev.detail) && (
-                              <p className="text-sm wpf-text-muted">{ev.detail ?? ev.duration}</p>
-                            )}
-                          </div>
-                          <div className="flex items-center gap-1.5 ml-auto">
-                            {ev.note && <Chip>{ev.note}</Chip>}
-                            <VenueChip venue={ev.venue} />
-                          </div>
-                        </li>
-                      ))}
+                            <div className="flex-1 min-w-0 basis-full sm:basis-auto order-last sm:order-none">
+                              <p className="font-bold" style={{ color: 'var(--wpf-ink)' }}>
+                                {ev.title}
+                                {ev.by && <span className="font-semibold wpf-text-muted"> · {ev.by}</span>}
+                              </p>
+                              {ev.duration && <p className="text-sm wpf-text-muted">{ev.duration}</p>}
+                              {ev.detail && <p className="text-sm wpf-text-muted">{ev.detail}</p>}
+                            </div>
+                            <div className="flex items-center gap-1.5 ml-auto">
+                              {ev.note && <Chip>{ev.note}</Chip>}
+                              <VenueChip venue={ev.venue} />
+                            </div>
+                          </li>
+                        ))}
                     </ul>
                   </div>
                 ))}

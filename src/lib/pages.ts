@@ -6,6 +6,12 @@
 // Keep fields to headline/intro/link-style text that owners plausibly want
 // to tweak themselves. Layout, imagery and structure stay in the component
 // code — that's still a developer job per the "image updates" workflow.
+//
+// Exception: the programme schedule ('program-schedule' slug) stores its
+// events as one JSON blob and gets a dedicated structured editor in /admin
+// instead of the generic field form.
+
+import { DEFAULT_SCHEDULE, serializeSchedule } from './schedule'
 
 export type Field = {
   key: string
@@ -93,9 +99,18 @@ export const PAGES: PageDef[] = [
       F('day3Title', 'Sunday card — title', 'Workshops + Closing'),
       F('day3Body', 'Sunday card — description', 'Shadow puppetry workshop, final shows at the Hall and Ridgeway Hall, and the closing circle to wrap the weekend.', true),
 
-      // The full day-by-day schedule (times, venues, shows) is structural and
-      // lives in the program page component — schedule changes are a code edit.
+      // The full day-by-day schedule lives in the 'program-schedule' entry
+      // below, edited with a dedicated structured editor in /admin.
     ],
+  },
+  {
+    // Rendered on /program below the day cards. The single field holds the
+    // whole schedule as JSON; /admin swaps in the structured ScheduleEditor
+    // for this slug rather than showing a raw textarea.
+    slug: 'program-schedule',
+    path: '/program',
+    title: 'Programme — Schedule',
+    fields: [F('scheduleJson', 'Schedule (JSON)', serializeSchedule(DEFAULT_SCHEDULE), true)],
   },
   {
     slug: 'artists',

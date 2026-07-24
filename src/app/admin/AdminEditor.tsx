@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { savePageContent, type PageContent, type ContentVersion } from '../actions'
 import type { Field } from '@/lib/pages'
 import HistoryPanel from './HistoryPanel'
+import ScheduleEditor from './ScheduleEditor'
 
 type Tab = 'edit' | 'history'
 type PageDef = { slug: string; path: string; title: string; fields: Field[] }
@@ -191,6 +192,12 @@ export default function AdminEditor({
                 writable={writable}
               />
             )
+          ) : def.slug === 'program-schedule' ? (
+            <ScheduleEditor
+              key={def.slug}
+              value={values.scheduleJson ?? ''}
+              onChange={(json) => setValues((v) => ({ ...v, scheduleJson: json }))}
+            />
           ) : (
             <div className="flex flex-col gap-5">
               {def.fields.map((f) => (
