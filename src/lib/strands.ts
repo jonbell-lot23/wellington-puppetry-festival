@@ -1,17 +1,43 @@
-// PROTOTYPE — Bridget's "one card per strand" structure (Jul 2026 email).
+// The programme, as Bridget asked for it (Jul 2026): one card per *strand* —
+// "Saturday — Workshops", "Saturday — Shows for Children and whānau" — rather
+// than one card per day with shows and workshops muddled together inside.
 //
-// This is the proposed replacement for the day-card + one-big-list model on
-// /program. Nothing here is wired to /admin yet; the data is hardcoded so the
-// shape can be reviewed on a real page first.
+// A Strand is a card *and* its programme at once. Before this, the cards lived
+// in pages.ts (day1Title, day2Body…) and the schedule lived in lib/schedule.ts,
+// so the same weekend was edited in two unrelated places. Now it's one blob,
+// stored as JSON under the 'program-schedule' slug (key: strandsJson) and
+// edited with StrandsEditor in /admin.
 //
-// The idea: today the *cards* live in pages.ts (day1Title, day2Body…) and the
-// *schedule* lives in lib/schedule.ts, so Bridget edits the same weekend in two
-// unrelated places. A Strand is both at once — a card with its own programme.
+// lib/schedule.ts is still the home of VENUES and the older DaySchedule shape,
+// which /archives/v1 and the previous stored content still refer to.
 
-import type { ScheduleEvent } from '@/lib/schedule'
+import { VENUES, type VenueKey } from './schedule'
+
+export type { VenueKey }
+export { VENUES }
 
 /** How you get in. Drives the chip on the card. */
 export type Access = 'invite' | 'attendees' | 'free' | 'ticketed'
+
+export type StrandEvent = {
+  time: string
+  title: string
+  venue: VenueKey
+  by?: string
+  duration?: string
+  age?: string
+  /** Small tag beside the row — "BLENNZ". */
+  note?: string
+  /** One-line detail shown inline on the listing. Keep it short. */
+  detail?: string
+  image?: string
+  /** Longer blurb — only shown on the event's own More info page. */
+  blurb?: string
+  /** Artist bio — only shown on the More info page. */
+  bio?: string
+  /** Humanitix (or other) link. The Buy tickets button appears once this is set. */
+  ticketUrl?: string
+}
 
 export type Strand = {
   id: string
@@ -24,8 +50,8 @@ export type Strand = {
   /** Blank until tickets go live; Bridget pastes the Humanitix link herself. */
   ctaLabel?: string
   ctaUrl?: string
-  /** Non-public strands (Opening Event, Closing Circle) don't open. */
-  events: ScheduleEvent[]
+  /** Non-public strands (Opening Event, Closing Circle) have none, and don't open. */
+  events: StrandEvent[]
 }
 
 export const DAYS = [
@@ -42,7 +68,7 @@ export const ACCESS_STYLE: Record<Access, { label: string; bg: string; fg: strin
   ticketed: { label: 'Ticketed', bg: 'var(--wpf-pink-soft)', fg: 'var(--wpf-pink-deep)' },
 }
 
-export const STRANDS: Strand[] = [
+export const DEFAULT_STRANDS: Strand[] = [
   {
     id: 'fri-opening',
     day: 'Friday',
@@ -57,8 +83,7 @@ export const STRANDS: Strand[] = [
     id: 'sat-carnival',
     day: 'Saturday',
     title: 'Junk Puppet Carnival',
-    blurb:
-      'A morning of FREE junk puppet making, roaming puppets and outdoor games.',
+    blurb: 'A morning of FREE junk puppet making, roaming puppets and outdoor games.',
     note: 'No ticket required — pack a picnic and bring the whānau.',
     access: 'free',
     events: [
@@ -77,8 +102,7 @@ export const STRANDS: Strand[] = [
     id: 'sat-shows',
     day: 'Saturday',
     title: 'Shows for Children and whānau',
-    blurb:
-      'A morning of glorious puppet shows designed for different ages to enjoy!',
+    blurb: 'A morning of glorious puppet shows designed for different ages to enjoy!',
     note: 'Check the programme here and buy your tickets quick.',
     access: 'ticketed',
     events: [
@@ -92,8 +116,7 @@ export const STRANDS: Strand[] = [
     id: 'sat-workshops',
     day: 'Saturday',
     title: 'Workshops',
-    blurb:
-      'A morning of captivating hands-on puppet workshops for ages 14+.',
+    blurb: 'A morning of captivating hands-on puppet workshops for ages 14+.',
     note: 'Check the programme here.',
     access: 'ticketed',
     events: [
@@ -135,9 +158,9 @@ export const STRANDS: Strand[] = [
     title: 'Workshops',
     blurb: 'More workshops for adults and children.',
     access: 'ticketed',
+    // Bridget, 25 Jul: "ad-hoc workshops & sharings" — CUT.
     events: [
       { time: '9:00–11:00am', title: 'Shadow Puppetry Workshop', by: 'Rowena', duration: '2.5 hrs', venue: 'hall' },
-      { time: 'All morning', title: 'Ad-hoc workshops & sharings', venue: 'upstairs' },
       { time: '11:15–11:50am', title: 'Puppets in Wartime', by: 'Simone', duration: '40 mins', venue: 'hall' },
       { time: 'TBC', title: 'Paper Bag Family', by: 'Marine', duration: '45 mins', age: '5+', venue: 'ridgeway' },
     ],
@@ -153,3 +176,75 @@ export const STRANDS: Strand[] = [
     events: [],
   },
 ]
+
+const ACCESS_KEYS: Access[] = ['invite', 'attendees', 'free', 'ticketed']
+
+/** Parse stored strands JSON; fall back to the code default on any problem. */
+export function parseStrands(json: string | undefined | null): Strand[] {
+  if (!json?.trim()) return DEFAULT_STRANDS
+  try {
+    const parsed = JSON.parse(json)
+    if (
+      Array.isArray(parsed) &&
+      parsed.length > 0 &&
+      parsed.every(
+        (s) =>
+          s &&
+          typeof s.id === 'string' &&
+          typeof s.day === 'string' &&
+          typeof s.title === 'string' &&
+          ACCESS_KEYS.includes(s.access) &&
+          Array.isArray(s.events),
+      )
+    ) {
+      return parsed as Strand[]
+    }
+  } catch {
+    // fall through
+  }
+  return DEFAULT_STRANDS
+}
+
+export function serializeStrands(strands: Strand[]): string {
+  return JSON.stringify(strands, null, 2)
+}
+
+/** Rows with no title are drafts in /admin — never render them publicly. */
+export function publicEvents(strand: Strand): StrandEvent[] {
+  return strand.events.filter((ev) => ev.title?.trim())
+}
+
+function slugify(s: string): string {
+  return s
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '')
+}
+
+/**
+ * URL for an event's More info page. Derived rather than stored so Bridget
+ * never has to think about slugs — the strand id keeps it unique when the same
+ * show runs twice (The Fish is in both sat-shows and sat-peace).
+ */
+export function eventSlug(strand: Strand, ev: StrandEvent): string {
+  return `${strand.id}-${slugify(ev.title)}`
+}
+
+/** An event earns a More info page once there's something to put on it. */
+export function hasMoreInfo(ev: StrandEvent): boolean {
+  return Boolean(ev.blurb?.trim() || ev.bio?.trim() || ev.image?.trim())
+}
+
+export function findEventBySlug(
+  strands: Strand[],
+  slug: string,
+): { strand: Strand; event: StrandEvent } | undefined {
+  for (const strand of strands) {
+    for (const event of publicEvents(strand)) {
+      if (eventSlug(strand, event) === slug) return { strand, event }
+    }
+  }
+  return undefined
+}

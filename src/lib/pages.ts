@@ -7,11 +7,11 @@
 // to tweak themselves. Layout, imagery and structure stay in the component
 // code — that's still a developer job per the "image updates" workflow.
 //
-// Exception: the programme schedule ('program-schedule' slug) stores its
+// Exception: the programme ('program-schedule' slug) stores its cards and
 // events as one JSON blob and gets a dedicated structured editor in /admin
 // instead of the generic field form.
 
-import { DEFAULT_SCHEDULE, serializeSchedule } from './schedule'
+import { DEFAULT_STRANDS, serializeStrands } from './strands'
 
 export type Field = {
   key: string
@@ -86,31 +86,34 @@ export const PAGES: PageDef[] = [
         'Three days of shows, workshops and free family fun across Pōneke Wellington — from opening karakia on Friday night to the closing circle on Sunday afternoon.',
         true,
       ),
+      // Bridget, Jul 2026: the Hall / Upstairs / the Green only make sense once
+      // you know they're all rooms at one address. Sits above the listings.
+      F(
+        'venueNote',
+        'Venue note (above the programme)',
+        'Everything happens at The Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn — “the Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgeway Hall is a short walk away, and is also our wet weather venue.',
+        true,
+      ),
+      F(
+        'footnote',
+        'Footnote below the programme',
+        'Programme details may shift a little as the festival comes together — check back closer to the weekend.',
+        true,
+      ),
 
-      // Three day cards. The day name (Friday/Saturday/Sunday) and colour are
-      // fixed in the page; these fields fill each card's date, title and text.
-      F('day1Date', 'Friday card — date', '18 Sep 2026'),
-      F('day1Title', 'Friday card — title', 'Opening Night'),
-      F('day1Body', 'Friday card — description', 'Festival kick-off at the Hall — opening karakia, Norbert, pizza with a portrait painter, and a sharing circle.', true),
-      F('day2Date', 'Saturday card — date', '19 Sep 2026'),
-      F('day2Title', 'Saturday card — title', 'Free Family Day'),
-      F('day2Body', 'Saturday card — description', 'A full day of FREE drop-in puppet-making, KidsZone on the Green, workshops and family shows — then an evening of shows and Cabaret. No ticket required for the day.', true),
-      F('day3Date', 'Sunday card — date', '20 Sep 2026'),
-      F('day3Title', 'Sunday card — title', 'Workshops + Closing'),
-      F('day3Body', 'Sunday card — description', 'Shadow puppetry workshop, final shows at the Hall and Ridgeway Hall, and the closing circle to wrap the weekend.', true),
-
-      // The full day-by-day schedule lives in the 'program-schedule' entry
-      // below, edited with a dedicated structured editor in /admin.
+      // The cards themselves — their titles, wording and what's listed inside
+      // each one — live in the 'program-schedule' entry below, edited with a
+      // dedicated structured editor in /admin.
     ],
   },
   {
-    // Rendered on /program below the day cards. The single field holds the
-    // whole schedule as JSON; /admin swaps in the structured ScheduleEditor
-    // for this slug rather than showing a raw textarea.
+    // The whole programme: one card per strand, each with its own listings.
+    // The single field holds it as JSON; /admin swaps in the structured
+    // StrandsEditor for this slug rather than showing a raw textarea.
     slug: 'program-schedule',
     path: '/program',
-    title: 'Programme — Schedule',
-    fields: [F('scheduleJson', 'Schedule (JSON)', serializeSchedule(DEFAULT_SCHEDULE), true)],
+    title: 'Programme — Cards & listings',
+    fields: [F('strandsJson', 'Programme (JSON)', serializeStrands(DEFAULT_STRANDS), true)],
   },
   {
     slug: 'artists',
