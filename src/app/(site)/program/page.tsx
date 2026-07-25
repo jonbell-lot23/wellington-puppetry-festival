@@ -9,6 +9,7 @@ import {
   hasMoreInfo,
   parseStrands,
   publicEvents,
+  venueMapUrl,
   type Strand,
   type StrandEvent,
   type VenueKey,
@@ -25,18 +26,28 @@ export const revalidate = 60
 // <details>/<summary>, so this stays a server component with zero client JS and
 // keeps keyboard/screen-reader behaviour for free.
 
-/** Venue is information, not an action — a colour dot and a label, never a pill. */
+/**
+ * A colour dot and a label — never a pill. Bridget read the old bordered chip as
+ * a button. It does now open the venue in the visitor's maps app, so a dotted
+ * underline says "tappable" without pretending to be a button.
+ */
 function VenueLabel({ venue }: { venue: VenueKey }) {
   const v = VENUES[venue] ?? VENUES.hall
   return (
-    <span className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider shrink-0 wpf-text-muted">
+    <a
+      href={venueMapUrl(venue)}
+      target="_blank"
+      rel="noreferrer"
+      title={`Open ${v.address} in Maps`}
+      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider shrink-0 wpf-text-muted underline decoration-dotted decoration-from-font underline-offset-4 hover:decoration-solid"
+    >
       <span
-        className="w-2 h-2 rounded-full shrink-0"
+        className="w-2 h-2 rounded-full shrink-0 no-underline"
         style={{ backgroundColor: v.bg, boxShadow: 'inset 0 0 0 1px rgba(0,0,0,0.2)' }}
         aria-hidden="true"
       />
       {v.label}
-    </span>
+    </a>
   )
 }
 
@@ -206,12 +217,42 @@ export default async function ProgramPage() {
           {/* Bridget: the Hall / Upstairs / the Green only make sense once you
               know they're all rooms at one address. Say so before the listings. */}
           {c.venueNote && (
-            <p
-              className="mb-12 rounded-xl px-5 py-4 leading-relaxed border border-black/10"
+            <div
+              className="mb-12 rounded-xl px-5 py-4 border border-black/10"
               style={{ backgroundColor: 'var(--wpf-blue-soft)', color: 'var(--wpf-ink)' }}
             >
-              {c.venueNote}
-            </p>
+              <p className="leading-relaxed">{c.venueNote}</p>
+              {/* Tapping a venue anywhere on this page opens Maps; say so once,
+                  up front, for anyone finding their way there on the day. */}
+              <p className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
+                {(['hall', 'ridgeway'] as VenueKey[]).map((k) => (
+                  <a
+                    key={k}
+                    href={venueMapUrl(k)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1.5 text-sm font-bold underline underline-offset-4 hover:no-underline"
+                    style={{ color: 'var(--wpf-pink-deep)' }}
+                  >
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2.5"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      aria-hidden="true"
+                    >
+                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
+                      <circle cx="12" cy="10" r="3" />
+                    </svg>
+                    {k === 'hall' ? 'Vogelmorn Bowling Club' : VENUES[k].label} in Maps
+                  </a>
+                ))}
+              </p>
+            </div>
           )}
 
           <div className="space-y-16">

@@ -6,11 +6,35 @@
 // (Jul 2026) — is what renders when no DB row exists yet, and what parsing
 // falls back to if the stored JSON is ever malformed.
 
+// The Hall, Upstairs and the Green are all rooms at one address — the Vogelmorn
+// Bowling Club. `address` is what gets handed to the maps app when someone taps
+// a venue on their phone, so it needs to be a string a map can actually find:
+// name first, then street, suburb, city.
+//
+// TODO(Bridget): confirm Ridgeway. She writes "Ridgeway Hall"; the school up the
+// road is Ridgway School (no 'e') at 120 Mornington Rd, two minutes from the
+// Bowling Club at 93 — which matches "a short walk away". Inferred, not verified.
 export const VENUES = {
-  hall: { label: 'The Hall', bg: 'var(--wpf-yellow)' },
-  upstairs: { label: 'Upstairs', bg: 'var(--wpf-pink-soft)' },
-  green: { label: 'The Green', bg: 'var(--wpf-blue-soft)' },
-  ridgeway: { label: 'Ridgeway Hall', bg: 'var(--wpf-cream)' },
+  hall: {
+    label: 'The Hall',
+    bg: 'var(--wpf-yellow)',
+    address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
+  },
+  upstairs: {
+    label: 'Upstairs',
+    bg: 'var(--wpf-pink-soft)',
+    address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
+  },
+  green: {
+    label: 'The Green',
+    bg: 'var(--wpf-blue-soft)',
+    address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
+  },
+  ridgeway: {
+    label: 'Ridgeway Hall',
+    bg: 'var(--wpf-cream)',
+    address: 'Ridgway School, 120 Mornington Road, Brooklyn, Wellington 6021',
+  },
 } as const
 
 export type VenueKey = keyof typeof VENUES

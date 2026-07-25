@@ -8,6 +8,7 @@ import {
   hasMoreInfo,
   parseStrands,
   publicEvents,
+  venueMapUrl,
 } from '@/lib/strands'
 
 export const revalidate = 60
@@ -77,7 +78,6 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
           <dl className="flex flex-wrap gap-x-8 gap-y-3 mb-10">
             {[
               { term: 'When', value: [ev.time, ev.duration].filter(Boolean).join(' · ') },
-              { term: 'Where', value: venue.label },
               { term: 'Ages', value: ev.age },
             ]
               .filter((d) => d.value)
@@ -91,6 +91,27 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                   </dd>
                 </div>
               ))}
+            {/* Where gets the full address and a maps link — this is the page
+                someone has open while they're trying to find the door. */}
+            <div>
+              <dt className="text-[11px] font-bold uppercase tracking-widest wpf-text-muted">
+                Where
+              </dt>
+              <dd className="font-bold" style={{ color: 'var(--wpf-ink)' }}>
+                {venue.label}
+              </dd>
+              <dd>
+                <a
+                  href={venueMapUrl(ev.venue)}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-semibold underline underline-offset-4 hover:no-underline"
+                  style={{ color: 'var(--wpf-pink-deep)' }}
+                >
+                  {venue.address}
+                </a>
+              </dd>
+            </div>
           </dl>
 
           {ev.image?.trim() && (

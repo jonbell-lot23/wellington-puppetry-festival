@@ -177,6 +177,20 @@ export const DEFAULT_STRANDS: Strand[] = [
   },
 ]
 
+/**
+ * A link that opens the venue in whatever maps app the visitor has.
+ *
+ * google.com/maps/search/?api=1 is the portable choice: on iOS it hands off to
+ * the Google Maps app if it's installed and falls back to the web map (which
+ * still offers directions) if it isn't, and on Android it opens Maps directly.
+ * maps.apple.com would be nicer on iPhone but shows an unsupported-browser page
+ * everywhere else, and a geo: URI does nothing on desktop.
+ */
+export function venueMapUrl(venue: VenueKey): string {
+  const v = VENUES[venue] ?? VENUES.hall
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v.address)}`
+}
+
 const ACCESS_KEYS: Access[] = ['invite', 'attendees', 'free', 'ticketed']
 
 /** Parse stored strands JSON; fall back to the code default on any problem. */
