@@ -326,6 +326,36 @@ export default function StrandsEditor({
                         />
                       </div>
 
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+                        <Field
+                          label="Content warnings (optional)"
+                          value={ev.warnings ?? ''}
+                          placeholder="Flashing lights. Loud noises."
+                          onChange={(v) => updateEvent(si, ei, { warnings: v })}
+                        />
+                        <TextField
+                          label="Creative team — one person per line"
+                          value={ev.credits ?? ''}
+                          rows={3}
+                          placeholder="Jane Doe (she/her) — Puppeteer"
+                          onChange={(v) => updateEvent(si, ei, { credits: v })}
+                        />
+                      </div>
+
+                      {/* One path per line. A blank line is a slot that shows
+                          "photo coming soon" until there's an image for it. */}
+                      <TextField
+                        label="Photos — one /images/… path per line (blank line = “coming soon” box)"
+                        value={(ev.images ?? []).join('\n')}
+                        rows={3}
+                        onChange={(v) =>
+                          updateEvent(si, ei, {
+                            images: v === '' ? [] : v.split('\n').map((l) => l.trim()),
+                          })
+                        }
+                        className="mb-2"
+                      />
+
                       <div className="flex items-center gap-2 justify-end">
                         <button
                           onClick={() => moveEvent(si, ei, -1)}

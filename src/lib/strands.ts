@@ -33,8 +33,18 @@ export type StrandEvent = {
   image?: string
   /** Longer blurb — only shown on the event's own More info page. */
   blurb?: string
+  /** Content warnings, comma separated. Shown under the blurb on the More info page. */
+  warnings?: string
   /** Artist bio — only shown on the More info page. */
   bio?: string
+  /** Creative team, one person per line ("Name (pronouns) — role"). */
+  credits?: string
+  /**
+   * Photo strip on the More info page. An empty string is a deliberate slot —
+   * it renders a "photo coming soon" box, so a show can be laid out before its
+   * photos arrive and the path pasted in later without a code change.
+   */
+  images?: string[]
   /** Humanitix (or other) link. The Buy tickets button appears once this is set. */
   ticketUrl?: string
 }
@@ -109,7 +119,24 @@ export const DEFAULT_STRANDS: Strand[] = [
       { time: '10:00–10:30am', title: 'Box of Birds', by: 'Birds', duration: '30 mins', age: '3+', note: 'BLENNZ', venue: 'hall' },
       { time: '11:00–11:30am', title: 'Migit and the Dragon', by: 'Mary', duration: '30 mins', age: '3+', venue: 'hall' },
       { time: '12:00–12:45pm', title: 'Little Top Circus', by: 'Jon', duration: '45 mins', age: '3+', venue: 'hall' },
-      { time: '1:15–2:00pm', title: 'The Fish — Commission', by: 'Joey', duration: '40 mins', age: '7+', venue: 'hall' },
+
+      {
+        time: '1:15–2:00pm',
+        title: 'The Fish — Commission',
+        by: 'Joey Sheppard',
+        duration: '40 mins',
+        age: '7+',
+        venue: 'hall',
+        blurb:
+          'Specially commissioned by the Wellington Puppetry Festival with funding from The Peace and Disarmament Trust, \u2018The Fish\u2019 is a magical puppetry performance featuring giant fish puppets, shadow play, crankies and physical theatre. A father shares the tale of his mother, who chose to live forever as a sunfish. When his daughter is swallowed by a giant fish, past and reality collide in an unforgettable journey of courage, family and the sea.',
+        warnings: 'Flashing lights. Fear of death (being eaten).',
+        bio:
+          'Joey Sheppard is an award-nominated multidisciplinary performer, puppeteer; and a graduate of Toi Whakaari New Zealand Drama School. Now based in Melbourne as part of St Martin\u2019s Youth Arts EMBOLDEN Emerging Artist Program, she creates tactile, imaginative work that challenges expectations and gives voice to untold stories. Community is central to their practice; alongside fellow Toi grads, Joey created a youth arts initiative in the south of Aotearoa, sharing clowning, puppetry and movement with young people to nurture creativity and connection.',
+        credits:
+          'Joey Sheppard (she/they) \u2014 Creative lead, performer, puppeteer and puppet maker\nThomas Steinmann (he/him) \u2014 Performer, head puppeteer',
+        // Photos to come from Bridget; empty slots render "coming soon".
+        images: ['', ''],
+      },
     ],
   },
   {
@@ -133,7 +160,24 @@ export const DEFAULT_STRANDS: Strand[] = [
       'An evening of cutting-edge puppetry entertainment, including our freshly commissioned work by Joey Sheppard, a scintillating puppet cabaret, all rounded off with a gourmet dinner — all included in the price.',
     access: 'ticketed',
     events: [
-      { time: '6:00–6:40pm', title: 'The Fish — Commission', by: 'Joey', duration: '40 mins', venue: 'hall' },
+
+      {
+        time: '6:00–6:40pm',
+        title: 'The Fish — Commission',
+        by: 'Joey Sheppard',
+        duration: '40 mins',
+        age: '7+',
+        venue: 'hall',
+        blurb:
+          'Specially commissioned by the Wellington Puppetry Festival with funding from The Peace and Disarmament Trust, \u2018The Fish\u2019 is a magical puppetry performance featuring giant fish puppets, shadow play, crankies and physical theatre. A father shares the tale of his mother, who chose to live forever as a sunfish. When his daughter is swallowed by a giant fish, past and reality collide in an unforgettable journey of courage, family and the sea.',
+        warnings: 'Flashing lights. Fear of death (being eaten).',
+        bio:
+          'Joey Sheppard is an award-nominated multidisciplinary performer, puppeteer; and a graduate of Toi Whakaari New Zealand Drama School. Now based in Melbourne as part of St Martin\u2019s Youth Arts EMBOLDEN Emerging Artist Program, she creates tactile, imaginative work that challenges expectations and gives voice to untold stories. Community is central to their practice; alongside fellow Toi grads, Joey created a youth arts initiative in the south of Aotearoa, sharing clowning, puppetry and movement with young people to nurture creativity and connection.',
+        credits:
+          'Joey Sheppard (she/they) \u2014 Creative lead, performer, puppeteer and puppet maker\nThomas Steinmann (he/him) \u2014 Performer, head puppeteer',
+        // Photos to come from Bridget; empty slots render "coming soon".
+        images: ['', ''],
+      },
       { time: '6:45–7:30pm', title: 'Pea Soup Dinner + Films', venue: 'hall' },
       { time: '7:30–8:00pm', title: 'Excerpt: Skylight', by: 'Birdlife', duration: '20 mins', venue: 'hall' },
       { time: '8:00–9:30pm', title: 'Cabaret', duration: '60 mins', venue: 'hall' },
@@ -248,7 +292,13 @@ export function eventSlug(strand: Strand, ev: StrandEvent): string {
 
 /** An event earns a More info page once there's something to put on it. */
 export function hasMoreInfo(ev: StrandEvent): boolean {
-  return Boolean(ev.blurb?.trim() || ev.bio?.trim() || ev.image?.trim())
+  return Boolean(
+    ev.blurb?.trim() ||
+      ev.bio?.trim() ||
+      ev.credits?.trim() ||
+      ev.image?.trim() ||
+      ev.images?.length,
+  )
 }
 
 export function findEventBySlug(

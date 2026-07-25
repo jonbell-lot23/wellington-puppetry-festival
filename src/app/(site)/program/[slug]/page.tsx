@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { getPageContent } from '@/app/actions'
+import ImagePlaceholder from '@/components/ImagePlaceholder'
 import {
   VENUES,
   eventSlug,
@@ -21,6 +22,14 @@ export const revalidate = 60
 // Slugs are derived from the strand id + title (see lib/strands.ts), so there's
 // no slug field for Bridget to maintain in /admin. Renaming a show changes its
 // URL; that's fine while nothing links in from outside.
+
+/** Blank-line-separated text from /admin, rendered as paragraphs. */
+function paragraphs(text: string) {
+  return text
+    .split(/\n\s*\n/)
+    .filter((p) => p.trim())
+    .map((p, i) => <p key={i}>{p}</p>)
+}
 
 async function loadStrands() {
   const stored = await getPageContent('program-schedule')
@@ -125,28 +134,81 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
           {ev.blurb?.trim() && (
             <div className="space-y-4 text-lg leading-relaxed mb-10" style={{ color: 'var(--wpf-ink)' }}>
-              {ev.blurb
-                .split(/\n\s*\n/)
-                .filter((p) => p.trim())
-                .map((p, i) => (
-                  <p key={i}>{p}</p>
-                ))}
+              {paragraphs(ev.blurb)}
             </div>
           )}
 
-          {ev.bio?.trim() && (
+          {ev.warnings?.trim() && (
+            <p
+              className="rounded-xl px-5 py-4 mb-10 leading-relaxed border border-black/10"
+              style={{ backgroundColor: 'var(--wpf-cream)', color: 'var(--wpf-ink)' }}
+            >
+              <span className="font-bold">Content warnings: </span>
+              {ev.warnings}
+            </p>
+          )}
+
+          {/* Photo slots. An empty string is a placeholder Bridget has claimed
+              but not filled yet — it says so rather than silently collapsing. */}
+          {ev.images && ev.images.length > 0 && (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+              {ev.images.map((src, i) =>
+                src.trim() ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={i}
+                    src={src}
+                    alt={`${ev.title} — photo ${i + 1}`}
+                    className="w-full aspect-[4/3] object-cover rounded-2xl border border-black/10"
+                  />
+                ) : (
+                  <div
+                    key={i}
+                    className="w-full aspect-[4/3] rounded-2xl border border-black/10 flex flex-col items-center justify-center gap-3"
+                    style={{ backgroundColor: 'rgba(0,0,0,0.05)', color: 'var(--wpf-ink)' }}
+                  >
+                    <ImagePlaceholder className="w-12 h-12 opacity-50" />
+                    <p className="text-xs font-bold uppercase tracking-widest wpf-text-muted">
+                      Photo coming soon
+                    </p>
+                  </div>
+                ),
+              )}
+            </div>
+          )}
+
+          {(ev.bio?.trim() || ev.credits?.trim()) && (
             <div className="rounded-2xl p-7 mb-10 border border-black/5 bg-[var(--wpf-yellow-soft)]">
-              <h2 className="text-sm font-bold uppercase tracking-widest wpf-text-muted mb-3">
-                About the artist
-              </h2>
-              <div className="space-y-4 leading-relaxed" style={{ color: 'var(--wpf-ink)' }}>
-                {ev.bio
-                  .split(/\n\s*\n/)
-                  .filter((p) => p.trim())
-                  .map((p, i) => (
-                    <p key={i}>{p}</p>
-                  ))}
-              </div>
+              {ev.bio?.trim() && (
+                <>
+                  <h2 className="text-sm font-bold uppercase tracking-widest wpf-text-muted mb-3">
+                    About the artist
+                  </h2>
+                  <div className="space-y-4 leading-relaxed" style={{ color: 'var(--wpf-ink)' }}>
+                    {paragraphs(ev.bio)}
+                  </div>
+                </>
+              )}
+
+              {ev.credits?.trim() && (
+                <>
+                  <h2
+                    className={`text-sm font-bold uppercase tracking-widest wpf-text-muted mb-3 ${
+                      ev.bio?.trim() ? 'mt-7 pt-7 border-t border-black/10' : ''
+                    }`}
+                  >
+                    Creative team
+                  </h2>
+                  <ul className="space-y-1.5 leading-relaxed" style={{ color: 'var(--wpf-ink)' }}>
+                    {ev.credits
+                      .split('\n')
+                      .filter((line) => line.trim())
+                      .map((line, i) => (
+                        <li key={i}>{line}</li>
+                      ))}
+                  </ul>
+                </>
+              )}
             </div>
           )}
 

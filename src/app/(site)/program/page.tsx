@@ -26,6 +26,48 @@ export const revalidate = 60
 // <details>/<summary>, so this stays a server component with zero client JS and
 // keeps keyboard/screen-reader behaviour for free.
 
+// Venue names that earn a "(Map)" link wherever they turn up in the venue note.
+// The note is free text Bridget edits, so this is a scan rather than markup she
+// has to remember — and if she rewords past a name, it just doesn't link.
+const MAP_TERMS: { term: string; venue: VenueKey }[] = [
+  { term: 'Vogelmorn Bowling Club', venue: 'hall' },
+  { term: 'Vogelmorn Hall', venue: 'hall' },
+  { term: 'Ridgeway Hall', venue: 'ridgeway' },
+]
+
+function MapLink({ venue }: { venue: VenueKey }) {
+  return (
+    <>
+      {' '}
+      <a
+        href={venueMapUrl(venue)}
+        target="_blank"
+        rel="noreferrer"
+        title={`Open ${VENUES[venue].address} in Maps`}
+        className="font-bold underline underline-offset-4 hover:no-underline whitespace-nowrap"
+        style={{ color: 'var(--wpf-pink-deep)' }}
+      >
+        (Map)
+      </a>
+    </>
+  )
+}
+
+/** Drop a "(Map)" link in after each venue name mentioned in the note. */
+function withMapLinks(text: string) {
+  const pattern = MAP_TERMS.map((t) => t.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
+  return text.split(new RegExp(`(${pattern})`, 'g')).map((chunk, i) => {
+    const hit = MAP_TERMS.find((t) => t.term === chunk)
+    if (!hit) return <span key={i}>{chunk}</span>
+    return (
+      <span key={i}>
+        {chunk}
+        <MapLink venue={hit.venue} />
+      </span>
+    )
+  })
+}
+
 /**
  * A colour dot and a label — never a pill. Bridget read the old bordered chip as
  * a button. It does now open the venue in the visitor's maps app, so a dotted
@@ -39,7 +81,7 @@ function VenueLabel({ venue }: { venue: VenueKey }) {
       target="_blank"
       rel="noreferrer"
       title={`Open ${v.address} in Maps`}
-      className="inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider shrink-0 wpf-text-muted underline decoration-dotted decoration-from-font underline-offset-4 hover:decoration-solid"
+      className="relative z-10 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider shrink-0 wpf-text-muted underline decoration-dotted decoration-from-font underline-offset-4 hover:decoration-solid"
     >
       <span
         className="w-2 h-2 rounded-full shrink-0 no-underline"
@@ -54,7 +96,21 @@ function VenueLabel({ venue }: { venue: VenueKey }) {
 function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
   const more = hasMoreInfo(ev)
   return (
-    <li className="px-5 py-3.5 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2">
+    // The whole row is the link when there's a More info page. It's a stretched
+    // overlay rather than a wrapping <a> so the venue map link and the tickets
+    // button — both real links — can sit inside it without nesting anchors.
+    <li
+      className={`relative px-5 py-3.5 flex flex-wrap sm:flex-nowrap items-center gap-x-4 gap-y-2 ${
+        more ? 'transition-colors hover:bg-black/[0.03] focus-within:bg-black/[0.03]' : ''
+      }`}
+    >
+      {more && (
+        <Link
+          href={`/program/${eventSlug(strand, ev)}`}
+          className="absolute inset-0 z-0"
+          aria-label={`More about ${ev.title}`}
+        />
+      )}
       {/* Left column carries everything time-ish: when, how long, who for. */}
       <div className="shrink-0 w-32">
         <p className="text-sm font-bold" style={{ color: 'var(--wpf-ink)' }}>
@@ -79,21 +135,22 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
         {ev.detail && <p className="text-sm wpf-text-muted">{ev.detail}</p>}
         {(more || ev.ticketUrl?.trim()) && (
           <p className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1">
+            {/* Not a link itself — the row overlay above handles the click. It's
+                here so the row visibly advertises that there's more to read. */}
             {more && (
-              <Link
-                href={`/program/${eventSlug(strand, ev)}`}
-                className="text-xs font-bold uppercase tracking-widest underline underline-offset-4 hover:no-underline"
+              <span
+                className="text-xs font-bold uppercase tracking-widest underline underline-offset-4"
                 style={{ color: 'var(--wpf-pink-deep)' }}
               >
-                More info
-              </Link>
+                More info →
+              </span>
             )}
             {ev.ticketUrl?.trim() && (
               <a
                 href={ev.ticketUrl}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-block rounded-full px-3.5 py-1 text-xs font-bold text-white transition-transform hover:-translate-y-0.5"
+                className="relative z-10 inline-block rounded-full px-3.5 py-1 text-xs font-bold text-white transition-transform hover:-translate-y-0.5"
                 style={{ backgroundColor: 'var(--wpf-pink)' }}
               >
                 Buy tickets
@@ -217,42 +274,12 @@ export default async function ProgramPage() {
           {/* Bridget: the Hall / Upstairs / the Green only make sense once you
               know they're all rooms at one address. Say so before the listings. */}
           {c.venueNote && (
-            <div
-              className="mb-12 rounded-xl px-5 py-4 border border-black/10"
+            <p
+              className="mb-12 rounded-xl px-5 py-4 leading-relaxed border border-black/10"
               style={{ backgroundColor: 'var(--wpf-blue-soft)', color: 'var(--wpf-ink)' }}
             >
-              <p className="leading-relaxed">{c.venueNote}</p>
-              {/* Tapping a venue anywhere on this page opens Maps; say so once,
-                  up front, for anyone finding their way there on the day. */}
-              <p className="mt-3 flex flex-wrap gap-x-6 gap-y-2">
-                {(['hall', 'ridgeway'] as VenueKey[]).map((k) => (
-                  <a
-                    key={k}
-                    href={venueMapUrl(k)}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex items-center gap-1.5 text-sm font-bold underline underline-offset-4 hover:no-underline"
-                    style={{ color: 'var(--wpf-pink-deep)' }}
-                  >
-                    <svg
-                      width="14"
-                      height="14"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      aria-hidden="true"
-                    >
-                      <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z" />
-                      <circle cx="12" cy="10" r="3" />
-                    </svg>
-                    {k === 'hall' ? 'Vogelmorn Bowling Club' : VENUES[k].label} in Maps
-                  </a>
-                ))}
-              </p>
-            </div>
+              {withMapLinks(c.venueNote)}
+            </p>
           )}
 
           <div className="space-y-16">
