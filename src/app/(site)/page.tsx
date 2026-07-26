@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
+import SponsorInvite from '@/components/SponsorInvite'
 
 export const revalidate = 60
 
@@ -218,27 +219,7 @@ export default async function HomePage() {
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-8 items-center">
             {SPONSORS.map((s) =>
               s.cta ? (
-                <Link
-                  key={s.name}
-                  href="/contact"
-                  // Six logos + this tile = seven, so it lands alone on the last
-                  // row. Full width on mobile, centred under the middle column
-                  // on wider screens, so it reads as deliberate rather than left
-                  // over.
-                  className="group col-span-2 sm:col-span-1 sm:col-start-2 h-24 flex flex-col items-center justify-center gap-1 px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
-                  style={{ borderColor: 'var(--wpf-pink)' }}
-                >
-                  <span
-                    className="text-2xl font-extrabold leading-none transition-transform duration-200 group-hover:scale-110"
-                    style={{ color: 'var(--wpf-pink-deep)' }}
-                  >
-                    You!
-                  </span>
-                  <span className="text-[10px] font-bold uppercase tracking-widest wpf-text-muted">
-                    Sponsor us
-                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1"> →</span>
-                  </span>
-                </Link>
+                <SponsorInvite key={s.name} />
               ) : (
                 <div key={s.name} className="h-24 flex items-center justify-center px-3">
                   {s.logo ? (
