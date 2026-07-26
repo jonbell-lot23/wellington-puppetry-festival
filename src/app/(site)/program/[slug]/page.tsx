@@ -154,13 +154,21 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
               {ev.images.map((src, i) =>
                 src.trim() ? (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
+                  // object-contain, not cover: production shots come in at
+                  // whatever shape they were taken, and cropping a puppet out
+                  // of frame to fill a tidy box is worse than letterboxing.
+                  <div
                     key={i}
-                    src={src}
-                    alt={`${ev.title} — photo ${i + 1}`}
-                    className="w-full aspect-[4/3] object-cover rounded-2xl border border-black/10"
-                  />
+                    className="w-full aspect-[4/3] rounded-2xl border border-black/10 overflow-hidden flex items-center justify-center"
+                    style={{ backgroundColor: 'rgba(0,0,0,0.05)' }}
+                  >
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={src}
+                      alt={`${ev.title} — photo ${i + 1}`}
+                      className="max-w-full max-h-full w-auto h-auto object-contain"
+                    />
+                  </div>
                 ) : (
                   <div
                     key={i}

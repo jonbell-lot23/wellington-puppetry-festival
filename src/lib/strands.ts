@@ -134,8 +134,7 @@ export const DEFAULT_STRANDS: Strand[] = [
           'Joey Sheppard is an award-nominated multidisciplinary performer, puppeteer; and a graduate of Toi Whakaari New Zealand Drama School. Now based in Melbourne as part of St Martin\u2019s Youth Arts EMBOLDEN Emerging Artist Program, she creates tactile, imaginative work that challenges expectations and gives voice to untold stories. Community is central to their practice; alongside fellow Toi grads, Joey created a youth arts initiative in the south of Aotearoa, sharing clowning, puppetry and movement with young people to nurture creativity and connection.',
         credits:
           'Joey Sheppard (she/they) \u2014 Creative lead, performer, puppeteer and puppet maker\nThomas Steinmann (he/him) \u2014 Performer, head puppeteer',
-        // Photos to come from Bridget; empty slots render "coming soon".
-        images: ['', ''],
+        images: ['/images/shows/the-fish-1.png', '/images/shows/the-fish-2.png'],
       },
     ],
   },
@@ -175,8 +174,7 @@ export const DEFAULT_STRANDS: Strand[] = [
           'Joey Sheppard is an award-nominated multidisciplinary performer, puppeteer; and a graduate of Toi Whakaari New Zealand Drama School. Now based in Melbourne as part of St Martin\u2019s Youth Arts EMBOLDEN Emerging Artist Program, she creates tactile, imaginative work that challenges expectations and gives voice to untold stories. Community is central to their practice; alongside fellow Toi grads, Joey created a youth arts initiative in the south of Aotearoa, sharing clowning, puppetry and movement with young people to nurture creativity and connection.',
         credits:
           'Joey Sheppard (she/they) \u2014 Creative lead, performer, puppeteer and puppet maker\nThomas Steinmann (he/him) \u2014 Performer, head puppeteer',
-        // Photos to come from Bridget; empty slots render "coming soon".
-        images: ['', ''],
+        images: ['/images/shows/the-fish-1.png', '/images/shows/the-fish-2.png'],
       },
       { time: '6:45–7:30pm', title: 'Pea Soup Dinner + Films', venue: 'hall' },
       { time: '7:30–8:00pm', title: 'Excerpt: Skylight', by: 'Birdlife', duration: '20 mins', venue: 'hall' },
