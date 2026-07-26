@@ -10,16 +10,20 @@ const GREEN_DEEP = 'var(--wpf-blue-deep)'  // #2d6c0a — deep forest green
 const CABARET_BG = 'var(--wpf-maroon)'     // #271620 — same moody dark as cabaret page
 const INK = 'var(--wpf-ink)'
 
-// Sponsor list per Bridget (Jul 2026). Only WCC currently has a logo file;
-// the rest render as styled text names via the fallback below until logos
-// are supplied. Drop a file in /public/images and add `logo:` to swap.
+// Sponsor list per Bridget (Jul 2026). Logos live in /public/images/logos,
+// named for the organisation. Anyone without a file yet renders as a styled
+// text name via the fallback below — drop a file in and add `logo:` to swap.
+//
+// The school is "Ridgway", no 'e', per its own logo — Te Kura o Tawatawa /
+// Ridgway School. Bridget writes "Ridgeway"; the venue label in the programme
+// still follows her spelling until she says otherwise.
 const SPONSORS = [
   { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
   { name: 'The Peace and Disarmament Fund', logo: null },
-  { name: 'TAHI Festival', logo: null },
-  { name: 'Ridgeway School', logo: null },
-  { name: 'Vogelmorn Bowling Club', logo: null },
-  { name: 'BLENNZ', logo: null },
+  { name: 'TAHI Festival', logo: '/images/logos/tahi-festival.png' },
+  { name: 'Ridgway School', logo: '/images/logos/ridgway-school.png' },
+  { name: 'Vogelmorn Bowling Club', logo: '/images/logos/vogelmorn-bowling-club.png' },
+  { name: 'BLENNZ', logo: '/images/logos/blennz.png' },
   { name: 'You!', logo: null },
 ]
 
