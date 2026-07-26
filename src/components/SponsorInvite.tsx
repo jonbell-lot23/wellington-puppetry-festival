@@ -40,7 +40,7 @@ export default function SponsorInvite() {
       // Six logos plus this tile is seven, so it lands alone on the last row.
       // Full width on mobile, centred under the middle column above that, so
       // the position reads as chosen rather than left over.
-      className="group col-span-2 sm:col-span-1 sm:col-start-2 h-24 flex flex-col items-center justify-center gap-1 px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
+      className="group col-span-2 sm:col-span-1 sm:col-start-2 h-24 flex items-center justify-center px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
       style={{ borderColor: 'var(--wpf-pink)' }}
       aria-label="Could your logo be here? Get in touch about sponsoring the festival."
     >
@@ -62,7 +62,7 @@ export default function SponsorInvite() {
         )}
 
         <span
-          className="flex items-end text-2xl font-extrabold leading-none transition-transform duration-200 group-hover:scale-110"
+          className="flex items-end text-3xl font-extrabold leading-none transition-transform duration-200 group-hover:scale-110"
           style={{ color: 'var(--wpf-pink-deep)' }}
         >
           {LETTERS.map((ch, i) => (
@@ -77,10 +77,6 @@ export default function SponsorInvite() {
             </span>
           ))}
         </span>
-      </span>
-
-      <span className="text-[10px] font-bold uppercase tracking-widest wpf-text-muted">
-        Sponsor us
       </span>
     </button>
   )
