@@ -19,7 +19,11 @@ const INK = 'var(--wpf-ink)'
 // still follows her spelling until she says otherwise.
 const SPONSORS = [
   { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
-  { name: 'The Peace and Disarmament Fund', logo: null },
+  {
+    // "Education Trust", per its own logo — not "Fund".
+    name: 'Peace & Disarmament Education Trust',
+    logo: '/images/logos/peace-and-disarmament-education-trust.png',
+  },
   { name: 'TAHI Festival', logo: '/images/logos/tahi-festival.png' },
   { name: 'Ridgway School', logo: '/images/logos/ridgway-school.png' },
   { name: 'Vogelmorn Bowling Club', logo: '/images/logos/vogelmorn-bowling-club.png' },
@@ -211,7 +215,9 @@ export default async function HomePage() {
             {SPONSORS.map((s) => (
               <div key={s.name} className="h-20 flex items-center justify-center px-3">
                 {s.logo ? (
-                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 w-auto object-contain" />
+                  // max-w-full matters: PADET's wordmark is nearly 5:1, so
+                  // height-constrained alone it would overrun its grid cell.
+                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 max-w-full w-auto object-contain" />
                 ) : (
                   <span className="text-xs font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
                 )}
