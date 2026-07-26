@@ -42,7 +42,6 @@ export default function SponsorInvite() {
       // the position reads as chosen rather than left over.
       className="group col-span-2 sm:col-span-1 sm:col-start-2 h-24 flex items-center justify-center px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
       style={{ borderColor: 'var(--wpf-pink)' }}
-      aria-label="Could your logo be here? Get in touch about sponsoring the festival."
     >
       <span key={run} className="relative">
         {dancing && (
