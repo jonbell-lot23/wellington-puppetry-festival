@@ -28,7 +28,8 @@ const SPONSORS = [
   { name: 'Ridgway School', logo: '/images/logos/ridgway-school.png' },
   { name: 'Vogelmorn Bowling Club', logo: '/images/logos/vogelmorn-bowling-club.png' },
   { name: 'BLENNZ', logo: '/images/logos/blennz.png' },
-  { name: 'You!', logo: null },
+  // Not a sponsor — an invitation. Rendered as a call to action, not a logo.
+  { name: 'You!', logo: null, cta: true },
 ]
 
 export default async function HomePage() {
@@ -207,22 +208,49 @@ export default async function HomePage() {
 
       {/* Sponsors */}
       <section className="px-6 pt-10 pb-16 md:pt-14 md:pb-24" style={{ backgroundColor: CREAM }}>
-        <div className="mx-auto max-w-5xl">
+        {/* Three across. Seven tiles fills two rows of three and leaves "You!"
+            alone on the third — which is the point: it lands as an invitation
+            rather than as the runt of a five-wide row. */}
+        <div className="mx-auto max-w-3xl">
           <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12 lowercase" style={{ color: 'var(--wpf-ink)' }}>
             {c.sponsorsCaption}
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-5 md:gap-6 items-center">
-            {SPONSORS.map((s) => (
-              <div key={s.name} className="h-20 flex items-center justify-center px-3">
-                {s.logo ? (
-                  // max-w-full matters: PADET's wordmark is nearly 5:1, so
-                  // height-constrained alone it would overrun its grid cell.
-                  <Image src={s.logo} alt={s.name} width={180} height={72} className="max-h-14 max-w-full w-auto object-contain" />
-                ) : (
-                  <span className="text-xs font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
-                )}
-              </div>
-            ))}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-8 items-center">
+            {SPONSORS.map((s) =>
+              s.cta ? (
+                <Link
+                  key={s.name}
+                  href="/contact"
+                  // Six logos + this tile = seven, so it lands alone on the last
+                  // row. Full width on mobile, centred under the middle column
+                  // on wider screens, so it reads as deliberate rather than left
+                  // over.
+                  className="group col-span-2 sm:col-span-1 sm:col-start-2 h-24 flex flex-col items-center justify-center gap-1 px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
+                  style={{ borderColor: 'var(--wpf-pink)' }}
+                >
+                  <span
+                    className="text-2xl font-extrabold leading-none transition-transform duration-200 group-hover:scale-110"
+                    style={{ color: 'var(--wpf-pink-deep)' }}
+                  >
+                    You!
+                  </span>
+                  <span className="text-[10px] font-bold uppercase tracking-widest wpf-text-muted">
+                    Sponsor us
+                    <span className="inline-block transition-transform duration-200 group-hover:translate-x-1"> →</span>
+                  </span>
+                </Link>
+              ) : (
+                <div key={s.name} className="h-24 flex items-center justify-center px-3">
+                  {s.logo ? (
+                    // max-w-full matters: PADET's wordmark is nearly 5:1, so
+                    // height-constrained alone it would overrun its grid cell.
+                    <Image src={s.logo} alt={s.name} width={220} height={88} className="max-h-16 max-w-full w-auto object-contain" />
+                  ) : (
+                    <span className="text-xs font-medium text-center leading-tight" style={{ color: '#000000' }}>{s.name}</span>
+                  )}
+                </div>
+              ),
+            )}
           </div>
         </div>
       </section>
