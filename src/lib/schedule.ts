@@ -11,9 +11,10 @@
 // a venue on their phone, so it needs to be a string a map can actually find:
 // name first, then street, suburb, city.
 //
-// TODO(Bridget): confirm Ridgeway. She writes "Ridgeway Hall"; the school up the
-// road is Ridgway School (no 'e') at 120 Mornington Rd, two minutes from the
-// Bowling Club at 93 — which matches "a short walk away". Inferred, not verified.
+// Ridgway, no 'e' — confirmed by Bridget (Jul 2026) and by the school's own
+// logo, Te Kura o Tawatawa / Ridgway School, 120 Mornington Rd. The object key
+// stays 'ridgeway' because stored programme JSON references it; only the label
+// visitors see was ever misspelled.
 export const VENUES = {
   hall: {
     label: 'The Hall',
@@ -31,7 +32,7 @@ export const VENUES = {
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
   },
   ridgeway: {
-    label: 'Ridgeway Hall',
+    label: 'Ridgway Hall',
     bg: 'var(--wpf-cream)',
     address: 'Ridgway School, 120 Mornington Road, Brooklyn, Wellington 6021',
   },
@@ -92,7 +93,7 @@ export const DEFAULT_SCHEDULE: DaySchedule[] = [
             time: '10:00am–2:00pm',
             title: 'Free KidsZone',
             venue: 'green',
-            detail: 'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgeway Hall.',
+            detail: 'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgway Hall.',
           },
           { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
           { time: '11:00–11:30am', title: 'Migit and the Dragon', by: 'Mary', duration: '30 mins', age: '3+', venue: 'hall' },

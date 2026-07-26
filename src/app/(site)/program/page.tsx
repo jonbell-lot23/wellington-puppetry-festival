@@ -32,7 +32,7 @@ export const revalidate = 60
 const MAP_TERMS: { term: string; venue: VenueKey }[] = [
   { term: 'Vogelmorn Bowling Club', venue: 'hall' },
   { term: 'Vogelmorn Hall', venue: 'hall' },
-  { term: 'Ridgeway Hall', venue: 'ridgeway' },
+  { term: 'Ridgway Hall', venue: 'ridgeway' },
 ]
 
 function MapLink({ venue }: { venue: VenueKey }) {

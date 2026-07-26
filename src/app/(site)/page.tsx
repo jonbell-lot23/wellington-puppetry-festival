@@ -15,8 +15,8 @@ const INK = 'var(--wpf-ink)'
 // text name via the fallback below — drop a file in and add `logo:` to swap.
 //
 // The school is "Ridgway", no 'e', per its own logo — Te Kura o Tawatawa /
-// Ridgway School. Bridget writes "Ridgeway"; the venue label in the programme
-// still follows her spelling until she says otherwise.
+// Ridgway School. Confirmed with Bridget, and the programme venue label now
+// matches.
 const SPONSORS = [
   { name: 'Wellington City Council', logo: '/images/sponsor-wcc.svg' },
   {

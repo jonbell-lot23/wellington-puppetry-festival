@@ -102,7 +102,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         title: 'Free KidsZone',
         venue: 'green',
         detail:
-          'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgeway Hall.',
+          'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgway Hall.',
       },
       { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
       { time: '12:00–1:00pm', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
