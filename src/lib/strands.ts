@@ -82,6 +82,11 @@ export const ACCESS_STYLE: Record<Access, { label: string; bg: string; fg: strin
 // per show/workshop, transcribed as sent. Several artists appear twice across
 // the weekend — the shared text lives here so the two copies can't drift.
 
+// Bridget, 29 Jul: everything at Ridgway is there because the venue is
+// wheelchair accessible (and roomier — it's what fits the 3-hour BLENNZ
+// workshop). She wants that said on every Ridgway listing, not just the one.
+const RIDGWAY_ACCESS = 'Wheelchair accessible venue.'
+
 const BIRDLIFE_BLURB =
   'Peter and his grandma build a nesting box for Ruru — but Peter must learn to be patient and wait to discover who will eventually nest in his ‘Box of Birds’! The story introduces young children to the idea of supporting our precious manu and the different needs they may have. Hailed as “the cutest little show in Aotearoa” by Hamilton Arts Festival, this is an exquisitely produced puppet show with interactive songs and percussion, designed very specifically for young children and their whānau to enjoy.'
 
@@ -266,6 +271,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         age: '14+',
         note: 'BLENNZ',
         venue: 'ridgeway',
+        detail: RIDGWAY_ACCESS,
         blurb:
           'How to engage blind and low vision audiences. Find out how you can develop shows that are more accessible for blind and low vision audiences, and learn how to describe the key visual elements of one of your own puppets. This workshop builds your understanding of blind and low vision experience, and offers practical skills to create more accessible performances. We’ll discuss how you can effectively engage with this audience from booking tickets to making everyone comfortable when they arrive. Bring along a puppet, and learn how to audio describe its visual characteristics. Audio description is central to connecting with this audience. We’ll provide resources so you can keep developing your skills following the workshop.',
         bio:
@@ -323,12 +329,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         age: '3–8',
         note: 'Audio described',
         venue: 'ridgeway',
-        detail: 'Wheelchair accessible venue.',
+        detail: RIDGWAY_ACCESS,
         blurb: BIRDLIFE_BLURB,
         bio: BIRDLIFE_BIO,
         credits: BIRDLIFE_CREDITS,
       },
-      { time: '10:45–11:10am', title: 'Little Bad Mood', by: 'Marine', duration: '20 mins', age: '5+', venue: 'ridgeway' },
+      { time: '10:45–11:10am', title: 'Little Bad Mood', by: 'Marine', duration: '20 mins', age: '5+', venue: 'ridgeway', detail: RIDGWAY_ACCESS },
       {
         time: '12:00–12:30pm',
         title: 'Night Shift',
@@ -386,7 +392,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio:
           'Simone began her puppetry journey by performing fairytales and other stories with ‘The Little People’s Puppet Theatre’ in Rotorua in the 70s. She was able to draw on this experience when touring orphanages and refugee camps with her own puppet and clown work ‘The Serious Road Trip’. On returning to Aotearoa, she developed this story further, honing and specialising in Puppetry. She received scholarships to train with masters from around the world such as Berlin, Bochum, Paris and Wellington with Capital E. Simone is visiting the Festival from the Bay of Plenty.',
       },
-      { time: '11:15am–12:00pm', title: 'Paper Bag Family', by: 'Marine', duration: '45 mins', age: '5+', venue: 'ridgeway' },
+      { time: '11:15am–12:00pm', title: 'Paper Bag Family', by: 'Marine', duration: '45 mins', age: '5+', venue: 'ridgeway', detail: RIDGWAY_ACCESS },
     ],
   },
   {

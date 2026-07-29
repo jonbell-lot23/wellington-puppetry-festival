@@ -91,7 +91,7 @@ export const PAGES: PageDef[] = [
       F(
         'venueNote',
         'Venue note (above the programme)',
-        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club — “the Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgway Hall is a short walk further up the same road, and is also our wet weather venue.',
+        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club — “the Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, and is also our wet weather venue.',
         true,
       ),
       F(
