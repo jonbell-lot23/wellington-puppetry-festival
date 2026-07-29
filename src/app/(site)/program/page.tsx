@@ -26,44 +26,39 @@ export const revalidate = 60
 // <details>/<summary>, so this stays a server component with zero client JS and
 // keeps keyboard/screen-reader behaviour for free.
 
-// Venue names that earn a "(Map)" link wherever they turn up in the venue note.
+// Venue names that become map links wherever they turn up in the venue note.
 // The note is free text Bridget edits, so this is a scan rather than markup she
 // has to remember — and if she rewords past a name, it just doesn't link.
+//
+// Longest first: the pattern alternates in this order, so 'Vogelmorn Bowling
+// Club' wins before a shorter term could match inside it.
 const MAP_TERMS: { term: string; venue: VenueKey }[] = [
   { term: 'Vogelmorn Bowling Club', venue: 'hall' },
   { term: 'Vogelmorn Hall', venue: 'hall' },
   { term: 'Ridgway Hall', venue: 'ridgeway' },
 ]
 
-function MapLink({ venue }: { venue: VenueKey }) {
-  return (
-    <>
-      {' '}
-      <a
-        href={venueMapUrl(venue)}
-        target="_blank"
-        rel="noreferrer"
-        title={`Open ${VENUES[venue].address} in Maps`}
-        className="font-bold underline underline-offset-4 hover:no-underline whitespace-nowrap"
-        style={{ color: 'var(--wpf-pink-deep)' }}
-      >
-        (Map)
-      </a>
-    </>
-  )
-}
-
-/** Drop a "(Map)" link in after each venue name mentioned in the note. */
+/**
+ * Link the venue names in the note where they already sit, rather than trailing
+ * each one with a "(Map)". Two parentheticals in a three-line paragraph read as
+ * clutter; the name is the thing you'd tap anyway.
+ */
 function withMapLinks(text: string) {
   const pattern = MAP_TERMS.map((t) => t.term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|')
   return text.split(new RegExp(`(${pattern})`, 'g')).map((chunk, i) => {
     const hit = MAP_TERMS.find((t) => t.term === chunk)
     if (!hit) return <span key={i}>{chunk}</span>
     return (
-      <span key={i}>
+      <a
+        key={i}
+        href={venueMapUrl(hit.venue)}
+        target="_blank"
+        rel="noreferrer"
+        title={`Open ${VENUES[hit.venue].address} in Maps`}
+        className="font-semibold underline decoration-dotted decoration-from-font underline-offset-4 hover:decoration-solid"
+      >
         {chunk}
-        <MapLink venue={hit.venue} />
-      </span>
+      </a>
     )
   })
 }
