@@ -31,6 +31,8 @@ export type StrandEvent = {
   /** One-line detail shown inline on the listing. Keep it short. */
   detail?: string
   image?: string
+  /** Alt text for `image`. Falls back to the event title if left blank. */
+  imageAlt?: string
   /** Longer blurb — only shown on the event's own More info page. */
   blurb?: string
   /** Content warnings, comma separated. Shown under the blurb on the More info page. */
@@ -45,6 +47,8 @@ export type StrandEvent = {
    * photos arrive and the path pasted in later without a code change.
    */
   images?: string[]
+  /** Alt text per photo in `images`, same order. Falls back to "{title} — photo N". */
+  imagesAlt?: string[]
   /** Humanitix (or other) link. The Buy tickets button appears once this is set. */
   ticketUrl?: string
 }
@@ -108,6 +112,21 @@ const FISH_BIO =
 const FISH_CREDITS =
   'Joey Sheppard (she/they) — Creative lead, performer, puppeteer and puppet maker\nThomas Steinmann (he/him) — Performer, head puppeteer'
 
+// Alt text for photos reused across two listings each (Box of Birds and The
+// Fish both run twice over the weekend, sharing the same production photos).
+const BOX_OF_BIRDS_IMAGE_ALT =
+  "Peter and his grandma puppets — an older character in a knitted headscarf embracing a boy puppet in a blue beanie"
+const BOX_OF_BIRDS_IMAGES_ALT = [
+  BOX_OF_BIRDS_IMAGE_ALT,
+  'Two fluffy baby owl (ruru) puppets peeking over a wooden nesting box, with a third owl looking out through its round hole',
+]
+const FISH_IMAGE_ALT =
+  'A shadow-puppet child figure suspended by threads over a lit screen, a hand reaching down from above'
+const FISH_IMAGES_ALT = [
+  FISH_IMAGE_ALT,
+  'A leaping fish shadow puppet silhouetted against a glowing paper screen inside billowing dark fabric',
+]
+
 export const DEFAULT_STRANDS: Strand[] = [
   {
     id: 'fri-opening',
@@ -150,7 +169,9 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '10:00–10:30am',
         title: 'Box of Birds',
         image: '/images/shows/box-of-birds-1.jpg',
+        imageAlt: BOX_OF_BIRDS_IMAGE_ALT,
         images: ['/images/shows/box-of-birds-1.jpg', '/images/shows/box-of-birds-2.jpg'],
+        imagesAlt: BOX_OF_BIRDS_IMAGES_ALT,
         by: 'Birdlife Productions',
         duration: '30 mins',
         age: '3–8',
@@ -164,7 +185,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '11:00–11:30am',
         title: 'Migit and the Dragon',
         image: '/images/shows/migit-and-the-dragon-1.jpg',
+        imageAlt: "Kerry and Mary McCammon performing with a suitcase puppet featuring sun and moon faces, to a classroom of children with hands raised",
         images: ['/images/shows/migit-and-the-dragon-1.jpg', '/images/shows/migit-and-the-dragon-2.jpg'],
+        imagesAlt: [
+          "Kerry and Mary McCammon performing with a suitcase puppet featuring sun and moon faces, to a classroom of children with hands raised",
+          "Kerry and Mary McCammon in pirate costume as Long John Knickers and Nudger, performing with a ukulele at an outdoor event",
+        ],
         by: 'Natural Magic',
         duration: '30 mins',
         age: '3–10',
@@ -179,7 +205,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '12:00–12:45pm',
         title: 'Little Top Circus',
         image: '/images/shows/little-top-circus-1.jpg',
+        imageAlt: "A marionette circus strongman puppet in a red-and-white striped costume with a waxed moustache and boots",
         images: ['/images/shows/little-top-circus-1.jpg', '/images/shows/little-top-circus-2.jpg'],
+        imagesAlt: [
+          "A marionette circus strongman puppet in a red-and-white striped costume with a waxed moustache and boots",
+          "Close-up of a foam clown-face puppet head with a red nose and big round ears",
+        ],
         by: 'Jon Coddington',
         duration: '45 mins',
         age: 'All',
@@ -195,6 +226,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '1:15–2:00pm',
         title: 'The Fish — Commission',
         image: '/images/shows/the-fish-1.png',
+        imageAlt: FISH_IMAGE_ALT,
         by: 'Joey Sheppard',
         duration: '40 mins',
         age: '7+',
@@ -204,6 +236,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio: FISH_BIO,
         credits: FISH_CREDITS,
         images: ['/images/shows/the-fish-1.png', '/images/shows/the-fish-2.png'],
+        imagesAlt: FISH_IMAGES_ALT,
       },
     ],
   },
@@ -219,7 +252,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '9:30–11:00am',
         title: 'Basic Mechanisms for Puppetry',
         image: '/images/shows/basic-mechanisms-1.jpg',
+        imageAlt: "A mechanical four-legged dog puppet built from wood, wire and hinges, showing its internal movement mechanism",
         images: ['/images/shows/basic-mechanisms-1.jpg', '/images/shows/basic-mechanisms-2.jpg'],
+        imagesAlt: [
+          "A mechanical four-legged dog puppet built from wood, wire and hinges, showing its internal movement mechanism",
+          "Jon Coddington smiling while operating a large vulture puppet with tattered wings, in front of a seated workshop audience",
+        ],
         by: 'Jon Coddington',
         duration: '1.5 hrs',
         age: '14+',
@@ -232,7 +270,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '11:50am',
         title: 'Bespoke Backpacks for Giants and Walkabouts',
         image: '/images/shows/bespoke-backpacks-1.jpg',
+        imageAlt: "A glowing green goblin-faced giant puppet waving to a nighttime street parade crowd",
         images: ['/images/shows/bespoke-backpacks-1.jpg', '/images/shows/bespoke-backpacks-2.jpg'],
+        imagesAlt: [
+          "A glowing green goblin-faced giant puppet waving to a nighttime street parade crowd",
+          "A fluffy white giant puppet head strapped into a wooden carrying-backpack frame",
+        ],
         by: 'Ally Rogers',
         duration: '45 mins',
         age: '14+',
@@ -248,7 +291,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '12:15–1:45pm',
         title: 'Make a Puppet and Bring it to Life!',
         image: '/images/shows/make-a-puppet-1.jpg',
+        imageAlt: "A simple table-top puppet with a plain white face, headscarf and flowing purple robe, operated by a hidden puppeteer's hand",
         images: ['/images/shows/make-a-puppet-1.jpg', '/images/shows/make-a-puppet-2.jpg'],
+        imagesAlt: [
+          "A simple table-top puppet with a plain white face, headscarf and flowing purple robe, operated by a hidden puppeteer's hand",
+          "Workshop participants standing at a table, each holding a simple puppet with a white foam head and dark fabric cape they have just made",
+        ],
         by: 'Bridget Sanders',
         duration: '90 mins',
         age: '14+',
@@ -265,7 +313,11 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '2:00–5:00pm',
         title: 'Building Access from the Start',
         image: '/images/shows/building-access-1.jpg',
+        imageAlt: "Portrait of a woman with short grey hair, smiling",
         images: ['/images/shows/building-access-1.jpg'],
+        imagesAlt: [
+          "Portrait of a woman with short grey hair, smiling",
+        ],
         by: 'Lauren Hayes and Judith Jones',
         duration: '3 hrs',
         age: '14+',
@@ -295,6 +347,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '6:00–6:40pm',
         title: 'The Fish — Commission',
         image: '/images/shows/the-fish-1.png',
+        imageAlt: FISH_IMAGE_ALT,
         by: 'Joey Sheppard',
         duration: '40 mins',
         age: '7+',
@@ -304,6 +357,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio: FISH_BIO,
         credits: FISH_CREDITS,
         images: ['/images/shows/the-fish-1.png', '/images/shows/the-fish-2.png'],
+        imagesAlt: FISH_IMAGES_ALT,
       },
       { time: '6:50–7:40pm', title: 'Pea Soup Dinner + Films', venue: 'hall' },
       // Bridget, 29 Jul: Birdlife's 'Skylight' excerpt is out, and the cabaret
@@ -323,7 +377,9 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '10:00–10:30am',
         title: 'Box of Birds',
         image: '/images/shows/box-of-birds-1.jpg',
+        imageAlt: BOX_OF_BIRDS_IMAGE_ALT,
         images: ['/images/shows/box-of-birds-1.jpg', '/images/shows/box-of-birds-2.jpg'],
+        imagesAlt: BOX_OF_BIRDS_IMAGES_ALT,
         by: 'Birdlife Productions',
         duration: '30 mins',
         age: '3–8',
@@ -339,7 +395,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '12:00–12:30pm',
         title: 'Night Shift',
         image: '/images/shows/night-shift-1.jpg',
+        imageAlt: "A shadow-puppet screen showing a city skyline with a bridge, buildings and trees, with a performer silhouetted reaching up beside it",
         images: ['/images/shows/night-shift-1.jpg', '/images/shows/night-shift-2.jpg'],
+        imagesAlt: [
+          "A shadow-puppet screen showing a city skyline with a bridge, buildings and trees, with a performer silhouetted reaching up beside it",
+          "A blue-lit shadow puppet screen showing a city skyline with a bridge and a leaping fish silhouette under a crescent moon",
+        ],
         by: 'Stephanie Cairns',
         duration: '30 mins',
         age: '10+',
@@ -364,7 +425,11 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '9:00–11:30am',
         title: 'Exploring 3D Shadows',
         image: '/images/shows/exploring-3d-shadows-1.jpg',
+        imageAlt: "A shadow puppet screen showing a line of animal silhouettes — a bird, cat and dog — holding hands mid-dance",
         images: ['/images/shows/exploring-3d-shadows-1.jpg'],
+        imagesAlt: [
+          "A shadow puppet screen showing a line of animal silhouettes — a bird, cat and dog — holding hands mid-dance",
+        ],
         by: 'Rowena MacGill',
         duration: '2.5 hrs',
         age: '14+',
@@ -382,7 +447,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '11:15–11:50am',
         title: 'Puppetry in Warzones',
         image: '/images/shows/puppetry-in-warzones-1.jpg',
+        imageAlt: "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
         images: ['/images/shows/puppetry-in-warzones-1.jpg', '/images/shows/puppetry-in-warzones-2.jpg'],
+        imagesAlt: [
+          "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
+          "An old photograph of two performers posing beside large costumed puppet figures — one in a polka-dot dress, one blue-faced in striped pyjamas",
+        ],
         by: 'Simone van Kan',
         duration: '40 mins',
         age: '14+',

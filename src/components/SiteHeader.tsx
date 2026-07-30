@@ -20,7 +20,7 @@ const NAV = [
 // been demoted to a small text credit in the footer instead (see
 // SiteFooter). No corporate black bar either: warm cream/yellow with a
 // tent-stripe bottom border instead.
-export default function SiteHeader() {
+export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
   const [open, setOpen] = useState(false)
 
   return (
@@ -31,7 +31,7 @@ export default function SiteHeader() {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/wpf-logo.png"
-              alt=""
+              alt={logoAlt ?? ''}
               className="h-11 md:h-12 w-auto object-contain shrink-0"
               style={{ mixBlendMode: 'multiply' }}
             />

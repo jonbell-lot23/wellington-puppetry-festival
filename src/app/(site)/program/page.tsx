@@ -119,7 +119,7 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
         // eslint-disable-next-line @next/next/no-img-element
         <img
           src={ev.image}
-          alt={ev.title}
+          alt={ev.imageAlt?.trim() || ev.title}
           className="w-14 h-14 rounded-lg object-cover shrink-0 border border-black/10"
         />
       )}

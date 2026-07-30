@@ -304,6 +304,15 @@ export default function StrandsEditor({
                           onChange={(v) => updateEvent(si, ei, { image: v })}
                         />
                         <Field
+                          label="Image alt text (for screen readers)"
+                          value={ev.imageAlt ?? ''}
+                          placeholder={ev.title || 'Describe the photo'}
+                          onChange={(v) => updateEvent(si, ei, { imageAlt: v })}
+                        />
+                      </div>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+                        <Field
                           label="Ticket link (optional)"
                           value={ev.ticketUrl ?? ''}
                           placeholder="https://events.humanitix.com/…"
@@ -344,17 +353,29 @@ export default function StrandsEditor({
 
                       {/* One path per line. A blank line is a slot that shows
                           "photo coming soon" until there's an image for it. */}
-                      <TextField
-                        label="Photos — one /images/… path per line (blank line = “coming soon” box)"
-                        value={(ev.images ?? []).join('\n')}
-                        rows={3}
-                        onChange={(v) =>
-                          updateEvent(si, ei, {
-                            images: v === '' ? [] : v.split('\n').map((l) => l.trim()),
-                          })
-                        }
-                        className="mb-2"
-                      />
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
+                        <TextField
+                          label="Photos — one /images/… path per line (blank line = “coming soon” box)"
+                          value={(ev.images ?? []).join('\n')}
+                          rows={3}
+                          onChange={(v) =>
+                            updateEvent(si, ei, {
+                              images: v === '' ? [] : v.split('\n').map((l) => l.trim()),
+                            })
+                          }
+                        />
+                        <TextField
+                          label="Photo alt text — one line per photo, same order"
+                          value={(ev.imagesAlt ?? []).join('\n')}
+                          rows={3}
+                          placeholder={`${ev.title || 'Show'} — photo 1`}
+                          onChange={(v) =>
+                            updateEvent(si, ei, {
+                              imagesAlt: v === '' ? [] : v.split('\n').map((l) => l.trim()),
+                            })
+                          }
+                        />
+                      </div>
 
                       <div className="flex items-center gap-2 justify-end">
                         <button

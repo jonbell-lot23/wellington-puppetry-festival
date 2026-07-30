@@ -202,7 +202,15 @@ export default function AdminEditor({
             <div className="flex flex-col gap-5">
               {def.fields.map((f) => (
                 <label key={f.key} className="flex flex-col gap-1.5">
-                  <span className="text-[#5c4a38] text-xs font-medium">{f.label}</span>
+                  {f.image && (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={f.image}
+                      alt=""
+                      className="h-20 w-auto max-w-[10rem] object-contain rounded border border-[#e8dcc8] bg-white self-start"
+                    />
+                  )}
+                  <span className="text-[#5c4a38] text-xs font-medium font-mono">{f.label}</span>
                   {f.multiline ? (
                     <textarea
                       rows={4}

@@ -6,6 +6,7 @@ export const revalidate = 60
 
 export default async function AboutPage() {
   const c = await getPageContent('about')
+  const alt = await getPageContent('image-alt-text')
 
   return (
     <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
@@ -16,7 +17,7 @@ export default async function AboutPage() {
           <div className="relative aspect-[4/3] rounded-2xl overflow-hidden">
             <Image
               src="/images/gallery/wpf-gallery-077.jpg"
-              alt="Wellington Puppetry Festival"
+              alt={alt.aboutPhoto}
               fill
               className="object-cover"
             />
@@ -45,7 +46,7 @@ export default async function AboutPage() {
             <div className="flex flex-col sm:flex-row gap-6 md:gap-8 items-start">
               <Image
                 src="/images/rose.png"
-                alt="Rose Beauchamp, founder of Wellington's puppet festivals"
+                alt={alt.roseImage}
                 width={454}
                 height={688}
                 className="w-48 md:w-64 h-auto rounded-xl shadow-sm shrink-0"
@@ -65,15 +66,15 @@ export default async function AboutPage() {
           {/* Archive images at their natural aspect ratios, in a row beneath */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-5 mt-8">
             {[
-              { src: '/images/original-flyer.png', alt: 'Original Wellington puppet festival flyer', w: 632, h: 928 },
-              { src: '/images/first-parade.png', alt: 'The first NZ Puppet Parade, Lambton Quay 1986', w: 644, h: 810 },
-              { src: '/images/stilts.png', alt: 'Stilt performers at an early puppet festival', w: 528, h: 778 },
-              { src: '/images/beach.png', alt: 'Puppetry on the beach', w: 468, h: 748 },
+              { src: '/images/original-flyer.png', key: 'archiveFlyer', w: 632, h: 928 },
+              { src: '/images/first-parade.png', key: 'archiveParade', w: 644, h: 810 },
+              { src: '/images/stilts.png', key: 'archiveStilts', w: 528, h: 778 },
+              { src: '/images/beach.png', key: 'archiveBeach', w: 468, h: 748 },
             ].map((img) => (
               <Image
                 key={img.src}
                 src={img.src}
-                alt={img.alt}
+                alt={alt[img.key]}
                 width={img.w}
                 height={img.h}
                 className="w-full h-auto rounded-lg shadow-sm"

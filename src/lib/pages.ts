@@ -18,6 +18,8 @@ export type Field = {
   label: string
   multiline?: boolean
   default: string
+  /** Path to the image this field is alt text for — shown as a thumbnail in /admin. */
+  image?: string
 }
 
 export type PageDef = {
@@ -32,6 +34,14 @@ const F = (key: string, label: string, def: string, multiline = false): Field =>
   label,
   default: def,
   multiline,
+})
+
+/** An alt-text field paired with a thumbnail preview of the image it describes. */
+const ALT = (key: string, image: string, def: string): Field => ({
+  key,
+  label: image,
+  default: def,
+  image,
 })
 
 export const PAGES: PageDef[] = [
@@ -247,6 +257,44 @@ export const PAGES: PageDef[] = [
         'We want everyone to be able to enjoy WPF. We\'re working to make our venues, programme and free Saturday activities as accessible as possible — get in touch if you have questions or specific access needs.',
         true,
       ),
+    ],
+  },
+  {
+    // Alt text for every meaningful image on the site — one field per image,
+    // shown with a thumbnail in /admin (see ALT() above). Purely decorative
+    // images (the hero photo collage, marked aria-hidden) are deliberately
+    // left out — an empty alt is the correct, accessible choice for those.
+    // Per-show/workshop photos live with the programme instead (imageAlt /
+    // imagesAlt on each event in program-schedule), since they're per-event.
+    slug: 'image-alt-text',
+    path: '/',
+    title: 'Image alt text',
+    fields: [
+      ALT('logo', '/images/wpf-logo.png', 'Wellington Puppetry Festival logo'),
+      ALT(
+        'homeCommunityDay',
+        '/images/2024-puppetry-gala.jpg',
+        'Community day — kids activities',
+      ),
+      ALT(
+        'homeCabaretHero',
+        '/images/cabaret-hero.jpeg',
+        'Evening Cabaret — WPF after-dark puppetry performance',
+      ),
+      ALT('homeGallery1', '/images/gallery/wpf-gallery-01.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('homeGallery2', '/images/gallery/wpf-gallery-tom-01.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('homeGallery3', '/images/gallery/wpf-gallery-045.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('homeGallery4', '/images/gallery/wpf-gallery-064.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('homeGallery5', '/images/gallery/wpf-gallery-077.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('homeGallery6', '/images/gallery/wpf-gallery-086.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('homeGallery7', '/images/gallery/wpf-gallery-tom-02.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('homeGallery8', '/images/gallery/wpf-gallery-tom-03.jpg', 'Photo from Wellington Puppetry Festival 2024'),
+      ALT('aboutPhoto', '/images/gallery/wpf-gallery-077.jpg', 'Wellington Puppetry Festival'),
+      ALT('roseImage', '/images/rose.png', "Rose Beauchamp, founder of Wellington's puppet festivals"),
+      ALT('archiveFlyer', '/images/original-flyer.png', 'Original Wellington puppet festival flyer'),
+      ALT('archiveParade', '/images/first-parade.png', 'The first NZ Puppet Parade, Lambton Quay 1986'),
+      ALT('archiveStilts', '/images/stilts.png', 'Stilt performers at an early puppet festival'),
+      ALT('archiveBeach', '/images/beach.png', 'Puppetry on the beach'),
     ],
   },
 ]

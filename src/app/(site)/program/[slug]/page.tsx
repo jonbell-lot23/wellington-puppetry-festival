@@ -127,7 +127,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             // eslint-disable-next-line @next/next/no-img-element
             <img
               src={ev.image}
-              alt={ev.title}
+              alt={ev.imageAlt?.trim() || ev.title}
               className="w-full rounded-2xl mb-10 border border-black/10"
             />
           )}
@@ -165,7 +165,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={src}
-                      alt={`${ev.title} — photo ${i + 1}`}
+                      alt={ev.imagesAlt?.[i]?.trim() || `${ev.title} — photo ${i + 1}`}
                       className="max-w-full max-h-full w-auto h-auto object-contain"
                     />
                   </div>

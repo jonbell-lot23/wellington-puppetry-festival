@@ -33,8 +33,20 @@ const SPONSORS = [
   { name: 'You!', logo: null, cta: true },
 ]
 
+const GALLERY_IMAGES = [
+  { file: 'wpf-gallery-01.jpg', key: 'homeGallery1' },
+  { file: 'wpf-gallery-tom-01.jpg', key: 'homeGallery2' },
+  { file: 'wpf-gallery-045.jpg', key: 'homeGallery3' },
+  { file: 'wpf-gallery-064.jpg', key: 'homeGallery4' },
+  { file: 'wpf-gallery-077.jpg', key: 'homeGallery5' },
+  { file: 'wpf-gallery-086.jpg', key: 'homeGallery6' },
+  { file: 'wpf-gallery-tom-02.jpg', key: 'homeGallery7' },
+  { file: 'wpf-gallery-tom-03.jpg', key: 'homeGallery8' },
+]
+
 export default async function HomePage() {
   const c = await getPageContent('homepage')
+  const alt = await getPageContent('image-alt-text')
 
   return (
     <main style={{ backgroundColor: CREAM }}>
@@ -124,7 +136,7 @@ export default async function HomePage() {
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: GREEN_DEEP }}>
             <Image
               src="/images/2024-puppetry-gala.jpg"
-              alt="Community day — kids activities"
+              alt={alt.homeCommunityDay}
               fill
               className="object-cover"
             />
@@ -156,7 +168,7 @@ export default async function HomePage() {
           <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: INK }}>
             <Image
               src="/images/cabaret-hero.jpeg"
-              alt="Evening Cabaret — WPF after-dark puppetry performance"
+              alt={alt.homeCabaretHero}
               fill
               className="object-cover"
             />
@@ -189,14 +201,14 @@ export default async function HomePage() {
             {c.galleryHeading}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
-            {['wpf-gallery-01.jpg', 'wpf-gallery-tom-01.jpg', 'wpf-gallery-045.jpg', 'wpf-gallery-064.jpg', 'wpf-gallery-077.jpg', 'wpf-gallery-086.jpg', 'wpf-gallery-tom-02.jpg', 'wpf-gallery-tom-03.jpg'].map((img) => (
+            {GALLERY_IMAGES.map(({ file, key }) => (
               <div
-                key={img}
+                key={file}
                 className="wpf-gallery-tile relative aspect-square rounded-lg overflow-hidden shadow-sm"
               >
                 <Image
-                  src={`/images/gallery/${img}`}
-                  alt="Wellington Puppetry Festival 2024"
+                  src={`/images/gallery/${file}`}
+                  alt={alt[key]}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 50vw, 25vw"
