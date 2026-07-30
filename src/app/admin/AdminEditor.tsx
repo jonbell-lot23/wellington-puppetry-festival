@@ -112,9 +112,25 @@ export default function AdminEditor({
         </div>
       </div>
 
-      <div className="pt-16 flex">
+      {/* Mobile-only page switcher — the sidebar list is too wide to show alongside
+          the editor on a phone, so it collapses to a select here instead. */}
+      <div className="lg:hidden pt-16 px-4 py-2 admin-sidebar border-b border-[#e8dcc8]">
+        <select
+          value={def.slug}
+          onChange={(e) => router.push(`/admin?page=${e.target.value}`)}
+          className="admin-input w-full px-3 py-2 text-sm"
+        >
+          {pages.map((p) => (
+            <option key={p.slug} value={p.slug}>
+              {p.title}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="lg:pt-16 flex">
         {/* Page list */}
-        <aside className="admin-sidebar w-56 shrink-0 min-h-screen p-4">
+        <aside className="admin-sidebar hidden lg:block w-56 shrink-0 min-h-screen p-4">
           <p className="text-[#8a7764] text-xs uppercase tracking-wide mb-3 font-medium">
             Pages
           </p>
