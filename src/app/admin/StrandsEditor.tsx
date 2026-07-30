@@ -351,31 +351,20 @@ export default function StrandsEditor({
                         />
                       </div>
 
-                      {/* One path per line. A blank line is a slot that shows
-                          "photo coming soon" until there's an image for it. */}
-                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
-                        <TextField
-                          label="Photos — one /images/… path per line (blank line = “coming soon” box)"
-                          value={(ev.images ?? []).join('\n')}
-                          rows={3}
-                          onChange={(v) =>
-                            updateEvent(si, ei, {
-                              images: v === '' ? [] : v.split('\n').map((l) => l.trim()),
-                            })
-                          }
-                        />
-                        <TextField
-                          label="Photo alt text — one line per photo, same order"
-                          value={(ev.imagesAlt ?? []).join('\n')}
-                          rows={3}
-                          placeholder={`${ev.title || 'Show'} — photo 1`}
-                          onChange={(v) =>
-                            updateEvent(si, ei, {
-                              imagesAlt: v === '' ? [] : v.split('\n').map((l) => l.trim()),
-                            })
-                          }
-                        />
-                      </div>
+                      {/* Photo paths themselves are managed manually outside this
+                          editor — only the alt text is edited here. */}
+                      <TextField
+                        label="Photo alt text — one line per photo, same order"
+                        value={(ev.imagesAlt ?? []).join('\n')}
+                        rows={3}
+                        placeholder={`${ev.title || 'Show'} — photo 1`}
+                        onChange={(v) =>
+                          updateEvent(si, ei, {
+                            imagesAlt: v === '' ? [] : v.split('\n'),
+                          })
+                        }
+                        className="mb-2"
+                      />
 
                       <div className="flex items-center gap-2 justify-end">
                         <button

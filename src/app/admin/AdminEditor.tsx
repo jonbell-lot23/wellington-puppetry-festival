@@ -219,12 +219,20 @@ export default function AdminEditor({
               {def.fields.map((f) => (
                 <label key={f.key} className="flex flex-col gap-1.5">
                   {f.image && (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={f.image}
-                      alt=""
-                      className="h-20 w-auto max-w-[10rem] object-contain rounded border border-[#e8dcc8] bg-white self-start"
-                    />
+                    <a
+                      href={f.image}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      title="Open full size in a new tab"
+                      className="self-start"
+                    >
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={f.image}
+                        alt=""
+                        className="h-32 w-auto max-w-[16rem] object-contain rounded border border-[#e8dcc8] bg-white hover:border-[#0d5fa8] transition-colors"
+                      />
+                    </a>
                   )}
                   <span className="text-[#5c4a38] text-xs font-medium font-mono">{f.label}</span>
                   {f.multiline ? (
