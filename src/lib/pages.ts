@@ -257,6 +257,79 @@ export const PAGES: PageDef[] = [
         'We want everyone to be able to enjoy WPF. We\'re working to make our venues, programme and free Saturday activities as accessible as possible — get in touch if you have questions or specific access needs.',
         true,
       ),
+
+      // The four access cards. These say what a disabled festival-goer can
+      // actually expect, so they need to be editable as venues and provisions
+      // firm up — they were hardcoded until Aug 2026.
+      F('card1Label', 'Card 1 — title', 'Venue access'),
+      F(
+        'card1Body',
+        'Card 1 — text',
+        'We work with venues across Wellington to ensure wheelchair access, accessible seating and accessible toilets wherever possible. Specific venue access details will be listed alongside each show in the programme.',
+        true,
+      ),
+      F('card2Label', 'Card 2 — title', 'Sensory-friendly'),
+      F(
+        'card2Body',
+        'Card 2 — text',
+        'Our free Saturday activities are designed to be welcoming for neurodivergent kids and families, with space to move around and no obligation to stay for a full show.',
+        true,
+      ),
+      F('card3Label', 'Card 3 — title', 'Companion tickets'),
+      F(
+        'card3Body',
+        'Card 3 — text',
+        'Support person / companion tickets are available on request for ticketed shows — contact us ahead of time and we\'ll sort it out.',
+        true,
+      ),
+      F('card4Label', 'Card 4 — title', 'Let us know'),
+      F(
+        'card4Body',
+        'Card 4 — text',
+        'If you have a specific access need we haven\'t covered here, get in touch — we\'d rather know in advance so we can make it work.',
+        true,
+      ),
+
+      F('ctaLabel', 'Contact button label', 'Contact us about access needs'),
+
+      // Blind / low vision provision, from Bridget's "WPF BLENNZ shows" doc
+      // (Aug 2026). Lives here rather than only in the programme so it reads
+      // as ordinary festival information, which is what the access advice
+      // asked for. A show with an empty title is dropped, so the list can grow
+      // — Ngā Maunga Rū may add a touch tour and has slot 3 waiting.
+      F('accessShowsHeading', 'Accessible shows — heading', 'Shows for blind and low vision audiences'),
+      F(
+        'accessShowsIntro',
+        'Accessible shows — intro',
+        'Audio description is provided through headphones and should be pre-booked with your ticket. Touch tours are optional and free to anyone holding a ticket to that show.',
+        true,
+      ),
+      F('accessShow1Label', 'Accessible show 1 — title', 'Box of Birds — Birdlife Productions'),
+      F(
+        'accessShow1Body',
+        'Accessible show 1 — details',
+        'Ages 3–8, 30 minutes. Audio description and touch tour.\nSaturday 19 September — touch tour 9:30am, show 10:00am, Vogelmorn Hall. $12.\nSunday 20 September — touch tour 9:30am, show 10:00am, Ridgway School Hall (wheelchair accessible). $12.',
+        true,
+      ),
+      F('accessShow2Label', 'Accessible show 2 — title', 'Little Landscapes — Amy Grace Laura'),
+      F(
+        'accessShow2Body',
+        'Accessible show 2 — details',
+        'Ages 5–7 and their grown-ups, 25 minutes. Touch tour 15 minutes before each show.\nSaturday 19 September — 10:30am, 11:30am and 12:30pm on the Vogelmorn Green. Free, part of the Junk Puppet Carnival. Wet weather venue: Ridgway School Hall.',
+        true,
+      ),
+      F('accessShow3Label', 'Accessible show 3 — title', ''),
+      F('accessShow3Body', 'Accessible show 3 — details', '', true),
+
+      // Pointer to the public testing report at /accessibility/report.
+      F('reportHeading', 'Website report section — heading', 'How accessible is this website?'),
+      F(
+        'reportBody',
+        'Website report section — text',
+        'We test this site with a keyboard, with automated checkers and at high zoom, and we publish what we find — including what we haven\'t fixed yet.',
+        true,
+      ),
+      F('reportLinkLabel', 'Website report section — link label', 'Read our accessibility report'),
     ],
   },
   {

@@ -245,7 +245,20 @@ function StrandCard({ strand }: { strand: Strand }) {
         </span>
       </summary>
 
-      <ul className="mt-5 rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
+      {/* Bridget, 6 Aug: "I get confused when opening the 'Saturday Shows' or
+          Workshops because I forget I am in the 'Saturday' listing." The day
+          is only on the <h2> group heading further up the page, which is off
+          screen by the time a card is open. Repeating it here as a real
+          heading fixes it for sighted readers and gives screen-reader users a
+          labelled landmark into the list at the same time. */}
+      <h4
+        className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
+        style={{ color: 'var(--wpf-pink-deep)' }}
+      >
+        {strand.day} — {strand.title}
+      </h4>
+
+      <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
         {events.map((ev, i) => (
           <EventRow key={i} strand={strand} ev={ev} />
         ))}

@@ -3,27 +3,20 @@ import PageHero from '@/components/PageHero'
 
 export const revalidate = 60
 
-const INFO = [
-  {
-    title: 'Venue access',
-    body: 'We work with venues across Wellington to ensure wheelchair access, accessible seating and accessible toilets wherever possible. Specific venue access details will be listed alongside each show in the programme.',
-  },
-  {
-    title: 'Sensory-friendly',
-    body: 'Our free Saturday activities are designed to be welcoming for neurodivergent kids and families, with space to move around and no obligation to stay for a full show.',
-  },
-  {
-    title: 'Companion tickets',
-    body: 'Support person / companion tickets are available on request for ticketed shows — contact us ahead of time and we\'ll sort it out.',
-  },
-  {
-    title: 'Let us know',
-    body: 'If you have a specific access need we haven\'t covered here, get in touch — we\'d rather know in advance so we can make it work.',
-  },
-]
-
 export default async function AccessibilityPage() {
   const c = await getPageContent('accessibility')
+
+  // Card text is editable in /admin (see the 'accessibility' entry in
+  // lib/pages.ts) — access provisions change as venues are confirmed, and
+  // waiting on a developer to correct them is the wrong shape for this page.
+  // A card with an empty title is dropped, so the count can vary.
+  const cards = [1, 2, 3, 4]
+    .map((n) => ({ title: c[`card${n}Label`], body: c[`card${n}Body`] }))
+    .filter((card) => card.title?.trim())
+
+  const accessShows = [1, 2, 3]
+    .map((n) => ({ title: c[`accessShow${n}Label`], body: c[`accessShow${n}Body`] }))
+    .filter((show) => show.title?.trim())
 
   return (
     <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
@@ -34,7 +27,7 @@ export default async function AccessibilityPage() {
             heading above them, which left them skipping a level. */}
         <h2 className="wpf-visually-hidden">Access at the festival</h2>
         <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {INFO.map((item) => (
+          {cards.map((item) => (
             <div key={item.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
               <h3 className="font-bold mb-2" style={{ color: 'var(--wpf-ink)' }}>{item.title}</h3>
               <p className="wpf-text-muted text-sm leading-relaxed">{item.body}</p>
@@ -46,21 +39,50 @@ export default async function AccessibilityPage() {
             href="/contact"
             className="wpf-btn-primary wpf-btn-focus px-7 py-3.5"
           >
-            Contact us about access needs
+            {c.ctaLabel}
           </a>
         </div>
 
+        {accessShows.length > 0 && (
+          <div className="mx-auto max-w-3xl mt-16">
+            <h2 className="wpf-section-heading mb-3">{c.accessShowsHeading}</h2>
+            <p className="wpf-text-muted text-sm leading-relaxed mb-6 max-w-2xl">
+              {c.accessShowsIntro}
+            </p>
+            <ul className="space-y-4">
+              {accessShows.map((show) => (
+                <li
+                  key={show.title}
+                  className="rounded-xl bg-[var(--wpf-blue-soft)] p-6 border border-black/5"
+                >
+                  <h3 className="font-bold mb-2" style={{ color: 'var(--wpf-ink)' }}>
+                    {show.title}
+                  </h3>
+                  {/* Each line of the field is its own line on the page — one
+                      per showing — so times stay scannable. */}
+                  {show.body
+                    ?.split('\n')
+                    .filter((line) => line.trim())
+                    .map((line) => (
+                      <p key={line} className="wpf-text-muted text-sm leading-relaxed">
+                        {line}
+                      </p>
+                    ))}
+                </li>
+              ))}
+            </ul>
+          </div>
+        )}
+
         <div className="mx-auto max-w-3xl mt-14 pt-10 border-t border-black/10 text-center">
           <h2 className="font-bold text-lg mb-2" style={{ color: 'var(--wpf-ink)' }}>
-            How accessible is this website?
+            {c.reportHeading}
           </h2>
           <p className="wpf-text-muted text-sm leading-relaxed max-w-xl mx-auto mb-5">
-            We test this site with a keyboard, with automated checkers and at
-            high zoom, and we publish what we find — including what we haven&apos;t
-            fixed yet.
+            {c.reportBody}
           </p>
           <a href="/accessibility/report" className="wpf-btn-secondary wpf-btn-focus px-6 py-3">
-            Read our accessibility report
+            {c.reportLinkLabel}
           </a>
         </div>
       </section>
