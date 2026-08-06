@@ -9,7 +9,7 @@ export default async function AboutPage() {
   const alt = await getPageContent('image-alt-text')
 
   return (
-    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
@@ -28,7 +28,7 @@ export default async function AboutPage() {
             </h2>
             <p className="wpf-text-muted leading-relaxed mb-4">
               WPF is run by Birdlife Productions with the help of local volunteers, artists and venues
-              across Pōneke Wellington. It exists to make puppetry — one of the oldest, strangest and
+              across <span lang="mi">Pōneke</span> Wellington. It exists to make puppetry — one of the oldest, strangest and
               most joyful art forms — accessible to everyone, especially families who might not
               otherwise get to a theatre show.
             </p>

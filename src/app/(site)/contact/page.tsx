@@ -8,7 +8,7 @@ export default async function ContactPage() {
   const c = await getPageContent('contact')
 
   return (
-    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
@@ -16,17 +16,17 @@ export default async function ContactPage() {
 
           {/* Left: socials + email */}
           <div className="rounded-2xl bg-[var(--wpf-yellow-soft)] border border-black/5 p-8 md:p-10 h-full">
-            <p className="wpf-section-kicker opacity-80 mb-2">Email</p>
+            <p className="wpf-section-kicker mb-2">Email</p>
             <a
               href={`mailto:${c.email}`}
-              className="text-base md:text-lg font-bold hover:underline break-all transition-colors hover:text-[var(--wpf-pink-deep)]"
-              style={{ color: 'var(--wpf-pink)' }}
+              className="wpf-btn-focus text-base md:text-lg font-bold hover:underline break-all transition-colors"
+              style={{ color: 'var(--wpf-pink-deep)' }}
             >
               {c.email}
             </a>
 
             <div className="mt-8 pt-8 border-t border-black/10">
-              <p className="wpf-section-kicker opacity-80 mb-3">Follow along</p>
+              <p className="wpf-section-kicker mb-3">Follow along</p>
               <div className="flex gap-3">
                 <a
                   href="https://www.instagram.com/BirdlifeProductions3/"
@@ -49,9 +49,11 @@ export default async function ContactPage() {
           </div>
 
           {/* Right: newsletter */}
-          <div className="rounded-2xl p-8 md:p-10 h-full" style={{ backgroundColor: 'var(--wpf-blue)' }}>
-            <p className="wpf-section-kicker mb-2" style={{ color: 'rgba(13,38,0,0.6)' }}>Newsletter</p>
-            <p className="font-bold text-base mb-6" style={{ color: '#0d2600' }}>
+          {/* Dark-on-green here was 2.24:1 for the kicker. White on the deep
+              green reads at 6.44:1 and matches the footer treatment. */}
+          <div className="rounded-2xl p-8 md:p-10 h-full" style={{ backgroundColor: 'var(--wpf-blue-deep)' }}>
+            <p className="wpf-section-kicker mb-2" style={{ color: 'var(--wpf-blue-on-dark)' }}>Newsletter</p>
+            <p className="font-bold text-base mb-6" style={{ color: '#ffffff' }}>
               {c.newsletterSubtext}
             </p>
             <SignupForm />

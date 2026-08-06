@@ -262,7 +262,7 @@ export default async function ProgramPage() {
   const strands = parseStrands(stored.strandsJson)
 
   return (
-    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">

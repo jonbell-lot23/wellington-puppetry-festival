@@ -37,9 +37,12 @@ export default function SiteFooter() {
   const maroon = pathname?.startsWith('/cabaret') ?? false
   const ink = 'var(--wpf-ink)'
 
+  // Semi-transparent white over the brand green failed AA (0.9 → 3.81:1,
+  // 0.6 → 2.53:1). Solid tints instead: white is 5.61:1 on the green and
+  // --wpf-blue-on-dark is 4.7:1, so both clear AA for small text.
   const greenBg = 'var(--wpf-blue)'
-  const greenText = 'rgba(255,255,255,0.9)'
-  const greenMuted = 'rgba(255,255,255,0.6)'
+  const greenText = '#ffffff'
+  const greenMuted = 'var(--wpf-blue-on-dark)'
 
   return (
     <>
@@ -69,13 +72,19 @@ export default function SiteFooter() {
             <br />
             Puppetry Festival
           </p>
-          <p className="text-sm max-w-xs leading-relaxed" style={{ color: maroon ? 'rgba(255,255,255,0.75)' : greenText }}>
-            A free, community-powered puppetry festival in Pōneke Wellington —
-            proudly Wellington Funky since day one.
+          <p className="text-sm max-w-xs leading-relaxed" style={{ color: maroon ? 'rgba(255,255,255,0.92)' : greenText }}>
+            A free, community-powered puppetry festival in{' '}
+            <span lang="mi">Pōneke</span> Wellington — proudly Wellington Funky
+            since day one.
           </p>
-          <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : greenMuted }}>
+          <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}>
             Presented by{' '}
-            <a href="https://www.birdlifeproductions.co.nz/" target="_blank" rel="noopener noreferrer" className="underline underline-offset-2 hover:opacity-100">
+            <a
+              href="https://www.birdlifeproductions.co.nz/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wpf-btn-focus underline underline-offset-2 inline-block py-1"
+            >
               Birdlife Productions
             </a>
           </p>
@@ -104,19 +113,22 @@ export default function SiteFooter() {
         </div>
 
         <div>
-          <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: maroon ? 'rgba(255,255,255,0.55)' : greenMuted }}>More</p>
-          <ul className="space-y-2.5">
+          <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}>More</p>
+          {/* py-1.5 gives each link a >=24px tall hit area (WCAG 2.5.8) —
+              they were 19px high, which is a small target on a phone. */}
+          <ul className="space-y-1">
             {LINKS.map((l) => {
-              const linkStyle = { color: maroon ? 'rgba(255,255,255,0.8)' : greenText }
+              const linkStyle = { color: maroon ? '#ffffff' : greenText }
+              const cls = 'wpf-btn-focus text-sm font-medium inline-block py-1.5 hover:underline'
               return l.external ? (
                 <li key={l.href}>
-                  <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-sm font-medium hover:opacity-100 transition-opacity" style={linkStyle}>
+                  <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls} style={linkStyle}>
                     {l.label}
                   </a>
                 </li>
               ) : (
                 <li key={l.href}>
-                  <Link href={l.href} className="text-sm font-medium hover:opacity-100 transition-opacity" style={linkStyle}>
+                  <Link href={l.href} className={cls} style={linkStyle}>
                     {l.label}
                   </Link>
                 </li>
@@ -127,7 +139,7 @@ export default function SiteFooter() {
       </div>
 
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
-        <p className="text-xs text-center" style={{ color: maroon ? 'rgba(255,255,255,0.5)' : greenMuted }}>
+        <p className="text-xs text-center" style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}>
           © {new Date().getFullYear()} Wellington Puppetry Festival
         </p>
       </div>

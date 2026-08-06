@@ -9,6 +9,9 @@ export default async function SiteLayout({
   const imageAlts = await getPageContent('image-alt-text')
   return (
     <>
+      <a href="#main" className="wpf-skip-link">
+        Skip to content
+      </a>
       <SiteHeader logoAlt={imageAlts.logo} />
       {children}
       <SiteFooter />

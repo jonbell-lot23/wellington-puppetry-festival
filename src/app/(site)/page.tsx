@@ -49,7 +49,7 @@ export default async function HomePage() {
   const alt = await getPageContent('image-alt-text')
 
   return (
-    <main style={{ backgroundColor: CREAM }}>
+    <main id="main" tabIndex={-1} style={{ backgroundColor: CREAM }}>
 
       {/* Hero — logo sits at top, overlapping upward into the white header */}
       <section className="wpf-sunburst wpf-hero-scallop-mask relative z-10 px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pb-40 overflow-x-clip" style={{ color: INK }}>

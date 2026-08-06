@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 // Top nav is deliberately trimmed to the handful of high-traffic pages —
 // see summary for reasoning. Everything else (Volunteers, Team,
@@ -22,6 +22,21 @@ const NAV = [
 // tent-stripe bottom border instead.
 export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
   const [open, setOpen] = useState(false)
+  const toggleRef = useRef<HTMLButtonElement>(null)
+
+  // Escape closes the mobile menu and puts focus back on the toggle, so a
+  // keyboard user isn't stranded in a menu they can't dismiss.
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setOpen(false)
+        toggleRef.current?.focus()
+      }
+    }
+    document.addEventListener('keydown', onKey)
+    return () => document.removeEventListener('keydown', onKey)
+  }, [open])
 
   return (
     <header className="sticky top-0 inset-x-0 z-50">
@@ -57,23 +72,40 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
                 {item.label}
               </Link>
             ))}
-            <span className="text-[14px] px-6 py-3 whitespace-nowrap rounded-full opacity-40 cursor-default" style={{ backgroundColor: 'var(--wpf-pink)', color: '#ffffff' }}>
+            {/* Was opacity-40 over pink to read as "not yet active", which
+                dropped white-on-pink to 1.93:1 — the worst contrast on the
+                site. The dimming now comes from a soft blush fill with ink
+                text (11.15:1) rather than from transparency. */}
+            <span
+              className="text-[14px] font-semibold px-6 py-3 whitespace-nowrap rounded-full cursor-default border"
+              style={{ backgroundColor: 'var(--wpf-pink-soft)', color: 'var(--wpf-pink-deep)', borderColor: 'var(--wpf-pink-deep)' }}
+            >
               Tix on sale soon
             </span>
           </nav>
 
-          {/* Mobile: tickets + menu toggle */}
+          {/* Mobile: tickets + menu toggle.
+              The pill is hidden below 380px — at a 400% zoom / 320px viewport
+              it pushed the menu button off the right edge (doc width 361 vs
+              320), which made the page scroll sideways. The same "tickets
+              soon" message is repeated in the footer, so nothing is lost. */}
           <div className="lg:hidden flex items-center gap-2">
-            <span className="text-[13px] px-4 py-2.5 whitespace-nowrap rounded-full opacity-40 cursor-default" style={{ backgroundColor: 'var(--wpf-pink)', color: '#ffffff' }}>
+            <span
+              className="hidden min-[380px]:inline-block text-[13px] px-4 py-2.5 whitespace-nowrap rounded-full cursor-default"
+              style={{ backgroundColor: 'var(--wpf-pink-deep)', color: '#ffffff' }}
+            >
               Tix soon
             </span>
             <button
-              aria-label="Menu"
+              ref={toggleRef}
+              aria-label={open ? 'Close menu' : 'Open menu'}
+              aria-expanded={open}
+              aria-controls="mobile-nav"
               onClick={() => setOpen((v) => !v)}
-              className="p-2 -mr-2"
+              className="wpf-btn-focus p-2 -mr-2"
               style={{ color: 'var(--wpf-ink)' }}
             >
-              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden>
                 {open ? <path d="M6 6l12 12M18 6L6 18" /> : <path d="M3 6h18M3 12h18M3 18h18" />}
               </svg>
             </button>
@@ -82,7 +114,12 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
 
         {/* Mobile menu */}
         {open && (
-          <nav className="lg:hidden mx-4 mb-4 rounded-xl border border-black/5 px-5 py-4 flex flex-col gap-3" style={{ backgroundColor: '#ffffff' }}>
+          <nav
+            id="mobile-nav"
+            aria-label="Main"
+            className="lg:hidden mx-4 mb-4 rounded-xl border border-black/5 px-5 py-4 flex flex-col gap-3"
+            style={{ backgroundColor: '#ffffff' }}
+          >
             {NAV.map((item) => (
               <Link
                 key={item.href}

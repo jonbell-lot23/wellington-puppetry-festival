@@ -63,7 +63,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
   const venue = VENUES[ev.venue] ?? VENUES.hall
 
   return (
-    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-2xl">
           <Link

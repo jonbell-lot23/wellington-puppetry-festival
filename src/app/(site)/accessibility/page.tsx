@@ -26,10 +26,13 @@ export default async function AccessibilityPage() {
   const c = await getPageContent('accessibility')
 
   return (
-    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
+        {/* Hidden h2 — the card titles are h3s and the design has no visible
+            heading above them, which left them skipping a level. */}
+        <h2 className="wpf-visually-hidden">Access at the festival</h2>
         <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
           {INFO.map((item) => (
             <div key={item.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
@@ -44,6 +47,20 @@ export default async function AccessibilityPage() {
             className="wpf-btn-primary wpf-btn-focus px-7 py-3.5"
           >
             Contact us about access needs
+          </a>
+        </div>
+
+        <div className="mx-auto max-w-3xl mt-14 pt-10 border-t border-black/10 text-center">
+          <h2 className="font-bold text-lg mb-2" style={{ color: 'var(--wpf-ink)' }}>
+            How accessible is this website?
+          </h2>
+          <p className="wpf-text-muted text-sm leading-relaxed max-w-xl mx-auto mb-5">
+            We test this site with a keyboard, with automated checkers and at
+            high zoom, and we publish what we find — including what we haven&apos;t
+            fixed yet.
+          </p>
+          <a href="/accessibility/report" className="wpf-btn-secondary wpf-btn-focus px-6 py-3">
+            Read our accessibility report
           </a>
         </div>
       </section>

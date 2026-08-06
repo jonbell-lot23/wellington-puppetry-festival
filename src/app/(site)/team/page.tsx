@@ -15,10 +15,14 @@ export default async function TeamPage() {
   const c = await getPageContent('team')
 
   return (
-    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
+        {/* The design has no visible heading between the h1 and the member
+            cards, which left the h3s orphaned. A hidden h2 restores the
+            outline without changing the layout. */}
+        <h2 className="wpf-visually-hidden">Festival team</h2>
         <div className="mx-auto max-w-4xl grid grid-cols-2 md:grid-cols-4 gap-6">
           {TEAM.map((member, i) => (
             <div key={i} className="text-center">

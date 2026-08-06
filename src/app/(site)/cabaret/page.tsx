@@ -9,7 +9,7 @@ export default async function CabaretPage() {
   const c = await getPageContent('cabaret')
 
   return (
-    <main style={{ backgroundColor: 'var(--wpf-maroon)' }} className="text-white">
+    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-maroon)' }} className="text-white">
       <section className="px-6 pt-24 pb-20 md:pt-32 md:pb-28">
         <div className="mx-auto max-w-3xl text-center">
           <p
@@ -25,7 +25,9 @@ export default async function CabaretPage() {
             target="_blank"
             rel="noopener noreferrer"
             className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 hover:brightness-125 transition"
-            style={{ backgroundColor: '#000000', color: 'var(--wpf-pink)' }}
+            // --wpf-pink on black is 4.37:1 — just under AA for this size.
+            // A brighter pink on the same black reads at 5.75:1.
+            style={{ backgroundColor: '#000000', color: '#e8459a' }}
           >
             {c.ticketsLabel}
           </a>
@@ -45,7 +47,8 @@ export default async function CabaretPage() {
             </div>
           ))}
         </div>
-        <p className="text-center text-white/40 text-xs mt-10">
+        {/* white/40 was 3.76:1 on the maroon; white/70 clears AA. */}
+        <p className="text-center text-white/70 text-xs mt-10">
           {c.footnote}
         </p>
       </section>
