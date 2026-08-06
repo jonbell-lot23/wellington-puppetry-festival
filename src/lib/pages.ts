@@ -104,6 +104,19 @@ export const PAGES: PageDef[] = [
         'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club — “the Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, and is also our wet weather venue.',
         true,
       ),
+      // Sarah, 7 Aug: access information shouldn't be quarantined on its own
+      // page. The separate /accessibility page stays as a shortcut, but the
+      // same information is repeated here, in the ordinary flow, so it reaches
+      // everyone rather than only the people who go looking for it.
+      F('accessHeading', 'Access note — heading', 'Access at the festival'),
+      F(
+        'accessBody',
+        'Access note — text',
+        'Volunteers will be on hand across the weekend to help with wayfinding and getting you where you need to go. Two of our shows are audio described and offer an optional touch tour. If you would like help planning your visit, or you have an access need we have not listed, please get in touch — we are very glad to help.',
+        true,
+      ),
+      F('accessLinkLabel', 'Access note — link label', 'See our shows for blind and low vision audiences'),
+
       F(
         'footnote',
         'Footnote below the programme',

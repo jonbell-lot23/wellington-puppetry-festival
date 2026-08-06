@@ -43,8 +43,10 @@ export default async function AccessibilityPage() {
           </a>
         </div>
 
+        {/* Linked to from the end of the programme as its own destination —
+            scroll-mt keeps the heading clear of the sticky header on arrival. */}
         {accessShows.length > 0 && (
-          <div className="mx-auto max-w-3xl mt-16">
+          <div id="accessible-shows" className="mx-auto max-w-3xl mt-16 scroll-mt-28">
             <h2 className="wpf-section-heading mb-3">{c.accessShowsHeading}</h2>
             <p className="wpf-text-muted text-sm leading-relaxed mb-6 max-w-2xl">
               {c.accessShowsIntro}

@@ -128,6 +128,23 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
           {ev.title}
           {ev.by && <span className="font-semibold wpf-text-muted"> · {ev.by}</span>}
         </p>
+        {/* Sarah, 7 Aug: "I don't know why it's centred". The tag used to sit
+            in the right-hand group with the venue label. On a phone the title
+            wraps onto its own line, which left "Audio described" stranded
+            mid-row, detached from the show it describes. It belongs with the
+            title. */}
+        {ev.note && (
+          <span
+            className="mt-1 inline-block text-[11px] font-bold uppercase tracking-wider rounded-full px-2.5 py-0.5 border"
+            style={{
+              backgroundColor: 'var(--wpf-blue-soft)',
+              color: 'var(--wpf-blue-deep)',
+              borderColor: 'var(--wpf-blue-deep)',
+            }}
+          >
+            {ev.note}
+          </span>
+        )}
         {ev.detail && <p className="text-sm wpf-text-muted">{ev.detail}</p>}
         {(more || ev.ticketUrl?.trim()) && (
           <p className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1">
@@ -158,11 +175,6 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
       {/* shrink-0 is load-bearing: the label inside is shrink-0 too, so without
           it this container collapses under it and it overflows the row. */}
       <div className="flex items-center gap-2.5 ml-auto shrink-0">
-        {ev.note && (
-          <span className="text-[11px] font-bold uppercase tracking-wider wpf-text-muted">
-            {ev.note}
-          </span>
-        )}
         <VenueLabel venue={ev.venue} />
       </div>
     </li>
@@ -314,6 +326,42 @@ export default async function ProgramPage() {
               )
             })}
           </div>
+
+          {/* Access note sits at the end of the programme, before the "details
+              may shift" footnote — deliberately in the main flow rather than
+              tucked in the footer, so it's read as ordinary festival
+              information by everyone who reaches the end of the listings. */}
+          {c.accessBody && (
+            <section
+              aria-labelledby="programme-access"
+              className="mt-16 rounded-2xl bg-[var(--wpf-blue-soft)] border border-black/5 p-6 md:p-8"
+            >
+              <h2
+                id="programme-access"
+                className="font-extrabold text-xl mb-2"
+                style={{ color: 'var(--wpf-ink)' }}
+              >
+                {c.accessHeading}
+              </h2>
+              <p className="wpf-text-muted text-sm leading-relaxed max-w-2xl">{c.accessBody}</p>
+              <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
+                <a
+                  href="/accessibility#accessible-shows"
+                  className="wpf-btn-focus text-sm font-bold underline underline-offset-4"
+                  style={{ color: 'var(--wpf-pink-deep)' }}
+                >
+                  {c.accessLinkLabel} →
+                </a>
+                <a
+                  href="/contact"
+                  className="wpf-btn-focus text-sm font-bold underline underline-offset-4"
+                  style={{ color: 'var(--wpf-pink-deep)' }}
+                >
+                  Contact us about access →
+                </a>
+              </p>
+            </section>
+          )}
 
           <p className="mt-16 text-center text-sm wpf-text-muted">{c.footnote}</p>
         </div>
