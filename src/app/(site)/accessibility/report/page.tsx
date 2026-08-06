@@ -115,7 +115,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Screen reader pass',
     status: 'open',
     body:
-      'Not done yet. Lauren offered to run this once the sandbox is ready, and that testing will find things the automated tools cannot.',
+      'Not done yet. An accessibility consultant will run this once the site is ready for it, and that testing will find things the automated tools cannot.',
     detail:
       'Landmarks, heading structure and alt text are all in place to give that pass a sensible starting point, but none of that substitutes for someone actually listening to the site.',
   },
