@@ -27,6 +27,9 @@ const LINKS = [
   { label: 'Volunteers', href: '/volunteers' },
   { label: 'Team', href: '/team' },
   { label: 'Accessibility', href: '/accessibility' },
+  // Also reachable from the "You!" tile on the sponsor wall, but that tile is
+  // a visual joke — this is the route for anyone not playing along.
+  { label: 'Support us', href: '/support' },
   { label: 'Get Tickets', href: TICKETS_URL, external: true },
 ]
 

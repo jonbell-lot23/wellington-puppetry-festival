@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 //
 //  1. Nothing goes in the "Passing" column that hasn't actually been run.
 //     The numbers below come from a real axe-core pass over the production
-//     build (24 pages x 3 viewports), a scripted keyboard walk, and a 320px
+//     build (25 pages x 3 viewports), a scripted keyboard walk, and a 320px
 //     reflow check — not from a checklist someone eyeballed.
 //  2. "Open" stays honest. A report that only lists wins is marketing, and
 //     the people who need this page can tell the difference immediately.
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const LAST_TESTED = '7 August 2026'
 
 const SUMMARY = [
-  { figure: '24', label: 'pages tested' },
+  { figure: '25', label: 'pages tested' },
   { figure: '3', label: 'screen widths each' },
   { figure: '0', label: 'automated errors left' },
   { figure: '18', label: 'issues fixed' },
@@ -56,7 +56,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Automated checker (axe-core, WCAG 2.2 AA)',
     status: 'pass',
     body:
-      'Every public page checked at desktop, phone and 320px widths — 24 pages, 72 page loads. Zero errors outstanding.',
+      'Every public page checked at desktop, phone and 320px widths — 25 pages, 75 page loads. Zero errors outstanding.',
     detail:
       'This caught 267 colour-contrast failures and a run of heading-order problems. All are fixed. Worth saying plainly: automated tools only catch roughly a quarter of real accessibility problems, so a clean run is a floor, not a finish line.',
   },
@@ -80,9 +80,9 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Motion and animation',
     status: 'pass',
     body:
-      'Nothing on the site animates on its own, nothing flashes, and there is no infinite scroll. The one animation is the "You!" tile on the sponsor wall, which only plays when you choose to click it.',
+      'Nothing on the site animates on its own, nothing flashes, and there is no infinite scroll. The one animation is the "You!" tile on the sponsor wall, which plays when you hover or focus it.',
     detail:
-      'Verified that it is fully suppressed when the operating system is set to reduce motion — the whole rig is removed rather than merely slowed down.',
+      'Verified that it is fully suppressed when the operating system is set to reduce motion — the whole rig is removed rather than merely slowed down. It also runs on keyboard focus, so it is not mouse-only.',
   },
   {
     title: 'No accessibility overlay',
@@ -149,6 +149,7 @@ const CHANGELOG: { date: string; items: string[] }[] = [
   {
     date: '7 August 2026',
     items: [
+      'The "You!" tile on the sponsor wall is now a proper link to a Support page, rather than a button that only did something visual. Its animation plays on hover and on keyboard focus.',
       'Te reo Māori is now marked up across the whole site so screen readers pronounce it as te reo, not as English. It is applied automatically as pages are built, rather than typed in by hand, so it keeps working as the programme changes.',
       'Access information folded into the programme itself, instead of living only on this section of the site.',
       'Moved the "audio described" tag next to the show it describes — on a phone it had been sitting adrift in the row above.',

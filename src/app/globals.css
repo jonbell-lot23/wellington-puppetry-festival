@@ -466,13 +466,21 @@
 /* ---------------------------------------------------------------------------
    Marionette easter egg — the "You!" tile on the sponsor wall.
 
-   Click it and a control bar swings down on strings, lifts each letter off the
-   baseline for a loose-jointed jig, then hauls the rig back up out of frame.
-   Staggering the letters is what sells it: a marionette's limbs never arrive
-   together, because the slack in each string takes up at its own rate.
+   Hover or focus it and a control bar swings down on strings, lifts each
+   letter off the baseline for a loose-jointed jig, then hauls the rig back up
+   out of frame. Staggering the letters is what sells it: a marionette's limbs
+   never arrive together, because the slack in each string takes up at its own
+   rate.
 
    One shared 3.4s timeline so the bar, the strings and the letters stay in
-   sync without any JS keeping time — React only mounts the rig and clears it.
+   sync without any JS keeping time. It's driven entirely by :hover and
+   :focus-visible — the tile is a plain link with no client JS at all, and
+   re-hovering restarts the run for free because the animation property is
+   only applied while hovered.
+
+   The rig is hidden at rest: the keyframes start and end at opacity 0, but
+   with no animation running the elements would otherwise sit there fully
+   opaque.
 --------------------------------------------------------------------------- */
 
 .wpf-rig {
@@ -496,7 +504,7 @@
   background: linear-gradient(180deg, #c68a3f, #8b5a24);
   box-shadow: 0 1px 2px rgb(0 0 0 / 0.25);
   transform-origin: 50% 50%;
-  animation: wpf-rig-bar 3.4s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+  opacity: 0;
 }
 
 .wpf-rig-string {
@@ -506,13 +514,26 @@
   height: 2.9rem;
   background: linear-gradient(180deg, rgb(0 0 0 / 0.35), rgb(0 0 0 / 0.12));
   transform-origin: 50% 0;
-  animation: wpf-rig-string 3.4s ease-in-out forwards;
+  opacity: 0;
 }
 
 /* Each letter hangs off its own string. */
 .wpf-marionette {
   display: inline-block;
   transform-origin: 50% 0;
+}
+
+/* Play on hover, and on keyboard focus so it isn't mouse-only. */
+.wpf-sponsor-invite:hover .wpf-rig-bar,
+.wpf-sponsor-invite:focus-visible .wpf-rig-bar {
+  animation: wpf-rig-bar 3.4s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+}
+.wpf-sponsor-invite:hover .wpf-rig-string,
+.wpf-sponsor-invite:focus-visible .wpf-rig-string {
+  animation: wpf-rig-string 3.4s ease-in-out forwards;
+}
+.wpf-sponsor-invite:hover .wpf-marionette,
+.wpf-sponsor-invite:focus-visible .wpf-marionette {
   animation: wpf-marionette 3.4s ease-in-out forwards;
 }
 
@@ -548,9 +569,12 @@
 
 /* Nobody gets yanked around by strings against their will. */
 @media (prefers-reduced-motion: reduce) {
-  .wpf-rig-bar,
-  .wpf-rig-string,
-  .wpf-marionette {
+  .wpf-sponsor-invite:hover .wpf-rig-bar,
+  .wpf-sponsor-invite:focus-visible .wpf-rig-bar,
+  .wpf-sponsor-invite:hover .wpf-rig-string,
+  .wpf-sponsor-invite:focus-visible .wpf-rig-string,
+  .wpf-sponsor-invite:hover .wpf-marionette,
+  .wpf-sponsor-invite:focus-visible .wpf-marionette {
     animation: none;
   }
   .wpf-rig {

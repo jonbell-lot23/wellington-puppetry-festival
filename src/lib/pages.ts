@@ -293,6 +293,38 @@ export const PAGES: PageDef[] = [
     ],
   },
   {
+    // Where the "You!" tile on the sponsor wall goes. Placeholder wording for
+    // now: the Trust's charity number and donation forms aren't ready, so the
+    // page says so plainly and points at email instead of pretending.
+    // Replace `body2` and add the real details when they land.
+    slug: 'support',
+    path: '/support',
+    title: 'Support us',
+    fields: [
+      F('heading', 'Page heading', 'Support the festival'),
+      F(
+        'intro',
+        'Intro paragraph',
+        'Wellington Puppetry Festival is run by a charitable trust, which means donations to it are tax deductible.',
+        true,
+      ),
+      F('bodyHeading', 'Body — heading', 'Every bit of it goes into the work'),
+      F(
+        'body1',
+        'Body — first paragraph',
+        'The festival runs on a small budget and a lot of goodwill. Support helps us keep Saturday free for families, pay the artists properly, and put on the things that are hardest to fund — audio described shows, touch tours, and the access support that lets everyone come along.',
+        true,
+      ),
+      F(
+        'body2',
+        'Body — second paragraph (placeholder until the forms are ready)',
+        'We are still getting our donation forms and charity paperwork together. In the meantime, if you would like to support the festival — as an individual, a business or a funder — please email us and we will take it from there.',
+        true,
+      ),
+      F('ctaLabel', 'Email button label', 'Email us about supporting WPF'),
+    ],
+  },
+  {
     slug: 'accessibility',
     path: '/accessibility',
     title: 'Accessibility',
@@ -410,6 +442,11 @@ export const PAGES: PageDef[] = [
       ALT('homeGallery7', '/images/gallery/wpf-gallery-tom-02.jpg', 'Photo from Wellington Puppetry Festival 2024'),
       ALT('homeGallery8', '/images/gallery/wpf-gallery-tom-03.jpg', 'Photo from Wellington Puppetry Festival 2024'),
       ALT('aboutPhoto', '/images/gallery/wpf-gallery-077.jpg', 'Wellington Puppetry Festival'),
+      ALT(
+        'supportPhoto',
+        '/images/gallery/wpf-gallery-064.jpg',
+        'A kiwi marionette on strings stepping across a wooden floor towards a row of children sitting on cushions, one with her face painted, all watching it closely',
+      ),
       ALT('roseImage', '/images/rose.png', "Rose Beauchamp, founder of Wellington's puppet festivals"),
       ALT('archiveFlyer', '/images/original-flyer.png', 'Original Wellington puppet festival flyer'),
       ALT('archiveParade', '/images/first-parade.png', 'The first NZ Puppet Parade, Lambton Quay 1986'),
