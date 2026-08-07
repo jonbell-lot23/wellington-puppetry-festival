@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 //
 //  1. Nothing goes in the "Passing" column that hasn't actually been run.
 //     The numbers below come from a real axe-core pass over the production
-//     build (10 pages x 3 viewports), a scripted keyboard walk, and a 320px
+//     build (11 pages x 3 viewports), a scripted keyboard walk, and a 320px
 //     reflow check — not from a checklist someone eyeballed.
 //  2. "Open" stays honest. A report that only lists wins is marketing, and
 //     the people who need this page can tell the difference immediately.
@@ -18,13 +18,13 @@ export const metadata: Metadata = {
     'What we test on this website, what passes, what is still open, and what we have fixed so far.',
 }
 
-const LAST_TESTED = '6 August 2026'
+const LAST_TESTED = '7 August 2026'
 
 const SUMMARY = [
   { figure: '11', label: 'pages tested' },
   { figure: '3', label: 'screen widths each' },
   { figure: '0', label: 'automated errors left' },
-  { figure: '13', label: 'issues fixed' },
+  { figure: '18', label: 'issues fixed' },
 ]
 
 type Status = 'pass' | 'open' | 'planned'
@@ -121,11 +121,11 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
   },
   {
     title: 'Te reo Māori pronunciation',
-    status: 'open',
+    status: 'pass',
     body:
-      'Words like whānau and Pōneke are not yet marked up so a screen reader pronounces them as te reo rather than as English.',
+      'Words like whānau, Pōneke, Aotearoa and Ngā Maunga Rū are marked up so a screen reader pronounces them as te reo rather than reading them as English.',
     detail:
-      'Done for the fixed page text. The programme listings are edited through the admin tool and stored separately, so marking those up needs a change to how that content is saved — it has not been done yet.',
+      'This happens automatically as the page is built, rather than being typed in by hand, so it keeps working as the programme is edited — nobody has to remember to do it. Currently marking 63 words and phrases across the site.',
   },
   {
     title: 'Accessible ticket options at booking',
@@ -146,6 +146,16 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
 ]
 
 const CHANGELOG: { date: string; items: string[] }[] = [
+  {
+    date: '7 August 2026',
+    items: [
+      'Te reo Māori is now marked up across the whole site so screen readers pronounce it as te reo, not as English — 63 words and phrases, applied automatically as pages are built rather than typed in by hand.',
+      'Access information folded into the programme itself, instead of living only on this section of the site.',
+      'Moved the "audio described" tag next to the show it describes — on a phone it had been sitting adrift in the row above.',
+      'The day is now repeated inside each programme card, so you can tell whether you are looking at Saturday or Sunday once a card is open.',
+      'Added the shows that offer audio description and touch tours, with their times.',
+    ],
+  },
   {
     date: '6 August 2026',
     items: [

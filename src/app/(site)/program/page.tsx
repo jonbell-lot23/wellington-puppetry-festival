@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import { teReo } from '@/lib/tereo'
 import {
   ACCESS_STYLE,
   DAYS,
@@ -125,8 +126,8 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
       )}
       <div className="flex-1 min-w-0 basis-full sm:basis-auto order-last sm:order-none">
         <p className="font-bold" style={{ color: 'var(--wpf-ink)' }}>
-          {ev.title}
-          {ev.by && <span className="font-semibold wpf-text-muted"> · {ev.by}</span>}
+          {teReo(ev.title)}
+          {ev.by && <span className="font-semibold wpf-text-muted"> · {teReo(ev.by)}</span>}
         </p>
         {/* Sarah, 7 Aug: "I don't know why it's centred". The tag used to sit
             in the right-hand group with the venue label. On a phone the title
@@ -145,7 +146,7 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
             {ev.note}
           </span>
         )}
-        {ev.detail && <p className="text-sm wpf-text-muted">{ev.detail}</p>}
+        {ev.detail && <p className="text-sm wpf-text-muted">{teReo(ev.detail)}</p>}
         {(more || ev.ticketUrl?.trim()) && (
           <p className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1">
             {/* Not a link itself — the row overlay above handles the click. It's
@@ -193,12 +194,12 @@ function CardFace({ strand }: { strand: Strand }) {
         {access.label}
       </span>
       <h3 className="text-2xl font-extrabold mb-3" style={{ color: 'var(--wpf-ink)' }}>
-        {strand.title}
+        {teReo(strand.title)}
       </h3>
-      <p className="leading-relaxed wpf-text-muted">{strand.blurb}</p>
+      <p className="leading-relaxed wpf-text-muted">{teReo(strand.blurb)}</p>
       {strand.note && (
         <p className="mt-2 leading-relaxed font-semibold" style={{ color: 'var(--wpf-ink)' }}>
-          {strand.note}
+          {teReo(strand.note)}
         </p>
       )}
       {strand.ctaLabel && strand.ctaUrl && (
@@ -267,7 +268,7 @@ function StrandCard({ strand }: { strand: Strand }) {
         className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
         style={{ color: 'var(--wpf-pink-deep)' }}
       >
-        {strand.day} — {strand.title}
+        {strand.day} — {teReo(strand.title)}
       </h4>
 
       <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
@@ -343,7 +344,7 @@ export default async function ProgramPage() {
               >
                 {c.accessHeading}
               </h2>
-              <p className="wpf-text-muted text-sm leading-relaxed max-w-2xl">{c.accessBody}</p>
+              <p className="wpf-text-muted text-sm leading-relaxed max-w-2xl">{teReo(c.accessBody)}</p>
               <p className="mt-4 flex flex-wrap gap-x-6 gap-y-2">
                 <a
                   href="/accessibility#accessible-shows"

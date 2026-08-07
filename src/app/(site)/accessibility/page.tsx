@@ -1,5 +1,6 @@
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import { teReo } from '@/lib/tereo'
 
 export const revalidate = 60
 
@@ -30,7 +31,7 @@ export default async function AccessibilityPage() {
           {cards.map((item) => (
             <div key={item.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
               <h3 className="font-bold mb-2" style={{ color: 'var(--wpf-ink)' }}>{item.title}</h3>
-              <p className="wpf-text-muted text-sm leading-relaxed">{item.body}</p>
+              <p className="wpf-text-muted text-sm leading-relaxed">{teReo(item.body)}</p>
             </div>
           ))}
         </div>

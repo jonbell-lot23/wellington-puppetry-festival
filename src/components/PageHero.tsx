@@ -1,3 +1,4 @@
+import { teReo } from '@/lib/tereo'
 export default function PageHero({
   heading,
   intro,
@@ -20,11 +21,11 @@ export default function PageHero({
     >
       <div className="mx-auto max-w-3xl text-center">
         <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight text-balance">
-          {heading}
+          {teReo(heading)}
         </h1>
         {intro && (
           <p className="mt-5 text-base md:text-lg wpf-text-muted leading-relaxed text-balance max-w-2xl mx-auto">
-            {intro}
+            {teReo(intro)}
           </p>
         )}
       </div>

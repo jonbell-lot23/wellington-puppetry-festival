@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { teReo } from '@/lib/tereo'
 import { notFound } from 'next/navigation'
 import { getPageContent } from '@/app/actions'
 import ImagePlaceholder from '@/components/ImagePlaceholder'
@@ -28,7 +29,9 @@ function paragraphs(text: string) {
   return text
     .split(/\n\s*\n/)
     .filter((p) => p.trim())
-    .map((p, i) => <p key={i}>{p}</p>)
+    // teReo() here covers blurbs and bios in one place — between them that's
+    // most of the te reo on the site.
+    .map((p, i) => <p key={i}>{teReo(p)}</p>)
 }
 
 async function loadStrands() {
@@ -75,10 +78,10 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
           </Link>
 
           <p className="text-sm font-bold uppercase tracking-widest wpf-text-muted mb-2">
-            {strand.day} · {strand.title}
+            {strand.day} · {teReo(strand.title)}
           </p>
           <h1 className="text-4xl font-extrabold mb-3" style={{ color: 'var(--wpf-ink)' }}>
-            {ev.title}
+            {teReo(ev.title)}
           </h1>
           {ev.by && (
             <p className="text-xl font-bold mb-6 wpf-text-muted">{ev.by}</p>

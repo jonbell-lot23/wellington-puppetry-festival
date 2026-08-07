@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import { teReo } from '@/lib/tereo'
 
 export const revalidate = 60
 
@@ -26,9 +27,9 @@ export default async function AboutPage() {
             <h2 className="wpf-section-heading text-2xl md:text-3xl mb-4">
               {c.communityHeading}
             </h2>
-            <p className="wpf-text-muted leading-relaxed mb-4">{c.communityBody1}</p>
+            <p className="wpf-text-muted leading-relaxed mb-4">{teReo(c.communityBody1)}</p>
             {c.communityBody2 && (
-              <p className="wpf-text-muted leading-relaxed">{c.communityBody2}</p>
+              <p className="wpf-text-muted leading-relaxed">{teReo(c.communityBody2)}</p>
             )}
           </div>
         </div>
@@ -48,8 +49,8 @@ export default async function AboutPage() {
               />
               <div>
                 <p className="wpf-section-kicker mb-3">{c.roseHeading}</p>
-                <p className="wpf-text-muted leading-relaxed mb-4">{c.roseBody1}</p>
-                <p className="wpf-text-muted leading-relaxed mb-6">{c.roseBody2}</p>
+                <p className="wpf-text-muted leading-relaxed mb-4">{teReo(c.roseBody1)}</p>
+                <p className="wpf-text-muted leading-relaxed mb-6">{teReo(c.roseBody2)}</p>
                 <blockquote className="border-l-4 pl-5 italic leading-relaxed" style={{ borderColor: 'var(--wpf-pink)', color: 'var(--wpf-ink)' }}>
                   &ldquo;{c.roseQuote}&rdquo;
                   <footer className="mt-2 text-sm not-italic wpf-text-muted">{c.roseQuoteBy}</footer>
