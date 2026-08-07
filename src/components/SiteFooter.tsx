@@ -77,7 +77,7 @@ export default function SiteFooter() {
           </p>
           <p className="text-sm max-w-xs leading-relaxed" style={{ color: maroon ? 'rgba(255,255,255,0.92)' : greenText }}>
             A free, community-powered puppetry festival in{' '}
-            <span lang="mi">Pōneke</span> Wellington — proudly Wellington Funky
+            <span lang="mi">Pōneke</span> Wellington, proudly Wellington Funky
             since day one.
           </p>
           <p className="text-xs mt-3" style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}>

@@ -1,9 +1,9 @@
 // Programme schedule: types, venues and the default (code-fallback) data.
 //
-// The live schedule is edited in /admin (Programme — Schedule) and stored as
+// The live schedule is edited in /admin (Programme: Schedule) and stored as
 // JSON in the pages table under the 'program-schedule' slug, one 'scheduleJson'
 // key. This default — from Bridget's "WPF Weekend Itinerary 2026" spreadsheet
-// (Jul 2026) — is what renders when no DB row exists yet, and what parsing
+// (Jul 2026), is what renders when no DB row exists yet, and what parsing
 // falls back to if the stored JSON is ever malformed.
 
 // The Hall, Upstairs and the Green are all rooms at one address — the Vogelmorn
@@ -101,13 +101,13 @@ export const DEFAULT_SCHEDULE: DaySchedule[] = [
           { time: '12:00–12:45pm', title: 'Little Top Circus', by: 'Jon', duration: '45 mins', age: '3+', venue: 'hall' },
           { time: '12:00–1:00pm', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
           { time: '12:15–1:45pm', title: 'Make a Puppet and Bring It to Life', by: 'Birds', duration: '1.5 hrs', venue: 'upstairs' },
-          { time: '1:15–2:00pm', title: 'The Fish — Commission', by: 'Joey', duration: '40 mins', age: '7+', venue: 'hall' },
+          { time: '1:15–2:00pm', title: 'The Fish: Festival Commission', by: 'Joey', duration: '40 mins', age: '7+', venue: 'hall' },
         ],
       },
       {
         label: 'Evening',
         events: [
-          { time: '6:00–6:40pm', title: 'The Fish — Commission', by: 'Joey', duration: '40 mins', venue: 'hall' },
+          { time: '6:00–6:40pm', title: 'The Fish: Festival Commission', by: 'Joey', duration: '40 mins', venue: 'hall' },
           { time: '6:45–7:30pm', title: 'Pea Soup Dinner + Films', venue: 'hall' },
           { time: '7:30–8:00pm', title: 'Excerpt: Skylight', by: 'Birdlife', duration: '20 mins', venue: 'hall' },
           { time: '8:00–9:30pm', title: 'Cabaret', duration: '60 mins', venue: 'hall' },

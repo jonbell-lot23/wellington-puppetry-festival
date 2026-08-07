@@ -39,7 +39,7 @@ export type StrandEvent = {
   warnings?: string
   /** Artist bio — only shown on the More info page. */
   bio?: string
-  /** Creative team, one person per line ("Name (pronouns) — role"). */
+  /** Creative team, one person per line ("Name (pronouns), role"). */
   credits?: string
   /**
    * Photo strip on the More info page. An empty string is a deliberate slot —
@@ -78,7 +78,7 @@ export const ACCESS_STYLE: Record<Access, { label: string; bg: string; fg: strin
   invite: { label: 'By invitation', bg: 'var(--wpf-cream)', fg: 'var(--wpf-ink)' },
   // Bridget: "its not a public event" — so no green "come along" chip here.
   attendees: { label: 'Festival attendees', bg: 'var(--wpf-cream)', fg: 'var(--wpf-ink)' },
-  free: { label: 'Free — no ticket needed', bg: 'var(--wpf-blue-soft)', fg: 'var(--wpf-ink)' },
+  free: { label: 'Free, no ticket needed', bg: 'var(--wpf-blue-soft)', fg: 'var(--wpf-ink)' },
   ticketed: { label: 'Ticketed', bg: 'var(--wpf-pink-soft)', fg: 'var(--wpf-pink-deep)' },
 }
 
@@ -92,13 +92,13 @@ export const ACCESS_STYLE: Record<Access, { label: string; bg: string; fg: strin
 const RIDGWAY_ACCESS = 'Wheelchair accessible venue.'
 
 const BIRDLIFE_BLURB =
-  'Peter and his grandma build a nesting box for Ruru — but Peter must learn to be patient and wait to discover who will eventually nest in his ‘Box of Birds’! The story introduces young children to the idea of supporting our precious manu and the different needs they may have. Hailed as “the cutest little show in Aotearoa” by Hamilton Arts Festival, this is an exquisitely produced puppet show with interactive songs and percussion, designed very specifically for young children and their whānau to enjoy.'
+  'Peter and his grandma build a nesting box for Ruru, but Peter must learn to be patient and wait to discover who will eventually nest in his ‘Box of Birds’! The story introduces young children to the idea of supporting our precious manu and the different needs they may have. Hailed as “the cutest little show in Aotearoa” by Hamilton Arts Festival, this is an exquisitely produced puppet show with interactive songs and percussion, designed very specifically for young children and their whānau to enjoy.'
 
 const BIRDLIFE_BIO =
   'Birdlife Productions Theatre for Children (aka Bridget and Roger Sanders) are an award-winning professional partnership with a passion for communicating a greater dimension of the world through Puppetry, Masks, Music and Storytelling. Based here in Pōneke, they produce original high-quality theatre using a hand-made low-tech aesthetic and intimate, sophisticated storytelling techniques, and are committed to creating shows for Schools, Kindergartens, Theatres and Festivals touring both nationally and internationally. Current touring shows are ‘The Boy with Wings’, ‘Box of Birds’ and ‘Aya and the Butterfly’. They initiated the re-establishment of the ‘Wellington Puppetry Festival’ in 2024.'
 
 const BIRDLIFE_CREDITS =
-  'Roger Sanders — Maker, Writer, Musician and Performer\nBridget Sanders — Director, Writer, Maker and Performer'
+  'Roger Sanders, Maker, Writer, Musician and Performer\nBridget Sanders, Director, Writer, Maker and Performer'
 
 const CODDINGTON_BIO =
   'Jon Coddington is a New Zealand-based theatre designer, illustrator, animator, and President of UNIMA Aotearoa NZ, who has worked primarily as a puppeteer and puppet-maker for over 13 years. A graduate of Toi Whakaari: NZ Drama School, his highlights include the hit marionette show Puppet Fiction, creating and performing puppets for Fat Freddy’s Drop music videos, and performing on stage with Coldplay. He has worked in screen puppetry (Custard’s World, Sweet Tooth), with training from Muppeteer Peter Linz, and in theatre has made Taniwhas with Silo Theatre, Vultures with Indian Ink, Trolls with Trick of the Light, and Crocodiles with Auckland Theatre Company, amongst many others.'
@@ -110,12 +110,12 @@ const FISH_BIO =
   'Joey Sheppard is an award-nominated multidisciplinary performer, puppeteer; and a graduate of Toi Whakaari New Zealand Drama School. Now based in Melbourne as part of St Martin’s Youth Arts EMBOLDEN Emerging Artist Program, she creates tactile, imaginative work that challenges expectations and gives voice to untold stories. Community is central to their practice; alongside fellow Toi grads, Joey created a youth arts initiative in the south of Aotearoa, sharing clowning, puppetry and movement with young people to nurture creativity and connection.'
 
 const FISH_CREDITS =
-  'Joey Sheppard (she/they) — Creative lead, performer, puppeteer and puppet maker\nThomas Steinmann (he/him) — Performer, head puppeteer'
+  'Joey Sheppard (she/they), Creative lead, performer, puppeteer and puppet maker\nThomas Steinmann (he/him), Performer, head puppeteer'
 
 // Alt text for photos reused across two listings each (Box of Birds and The
 // Fish both run twice over the weekend, sharing the same production photos).
 const BOX_OF_BIRDS_IMAGE_ALT =
-  "Peter and his grandma puppets — an older character in a knitted headscarf embracing a boy puppet in a blue beanie"
+  "Peter and his grandma puppets, an older character in a knitted headscarf embracing a boy puppet in a blue beanie"
 const BOX_OF_BIRDS_IMAGES_ALT = [
   BOX_OF_BIRDS_IMAGE_ALT,
   'Two fluffy baby owl (ruru) puppets peeking over a wooden nesting box, with a third owl looking out through its round hole',
@@ -143,7 +143,7 @@ export const DEFAULT_STRANDS: Strand[] = [
     day: 'Saturday',
     title: 'Junk Puppet Carnival',
     blurb: 'A morning of FREE junk puppet making, roaming puppets and outdoor games.',
-    note: 'No ticket required — pack a picnic and bring the whānau.',
+    note: 'No ticket required. Pack a picnic and bring the whānau.',
     access: 'free',
     events: [
       {
@@ -196,10 +196,10 @@ export const DEFAULT_STRANDS: Strand[] = [
         age: '3–10',
         venue: 'hall',
         blurb:
-          'Join Long John Knickers and Nudger as they tell you the tale of Migit and the Dragon — a “mouse moon myth”. This is an original story, told with glove and finger puppets, storytelling, mask and music. A little mouse goes on a quest to overcome the dragon which is threatening Mousetown. Along the way, he meets a Wizard, the Giant in the Sun and the Woman in the Moon, and faces his own fear, with surprising results. A participatory glove puppet show full of magic and fun!',
+          'Join Long John Knickers and Nudger as they tell you the tale of Migit and the Dragon, a “mouse moon myth”. This is an original story, told with glove and finger puppets, storytelling, mask and music. A little mouse goes on a quest to overcome the dragon which is threatening Mousetown. Along the way, he meets a Wizard, the Giant in the Sun and the Woman in the Moon, and faces his own fear, with surprising results. A participatory glove puppet show full of magic and fun!',
         bio:
           'Coming to the festival from Ōtautahi Christchurch, Kerry and Mary formed Natural Magic together in 1981 in the UK. They had both previously trained and worked as teachers. Since 1981 they have worked continuously as performers, writing and presenting their original shows and music. For the past 20 odd years (very odd years!) they have become increasingly identified with their pirate characters, Long John Knickers and Nudger. They are pirates for peace and for FUN, as immortalised by Margaret Mahy; loving friendship, community, adventure, curiosity and joy.',
-        credits: 'Kerry and Mary McCammon — Joint writers, performers and musicians',
+        credits: 'Kerry and Mary McCammon, Joint writers, performers and musicians',
       },
       {
         time: '12:00–12:45pm',
@@ -219,12 +219,12 @@ export const DEFAULT_STRANDS: Strand[] = [
           'Little Top Circus is a tabletop circus, reminiscent of classic P. T. Barnum revelry, and aims to capture the spectacle of traditional circus on an unfolding and transforming box/table. Featuring acts such as the acrobat ‘The Amazing Piccini’, ‘Miss Baker’ the ‘Squirrel Monkey’ tight rope master, Clowns, Animal feats, and many more to amaze and delight. A fun new puppet show for all ages from a Master Puppeteer!',
         bio: CODDINGTON_BIO,
         credits:
-          'Jon Coddington — Solo artist\nNatasha Wilson — Support\nHannah K. Clarke — Support',
+          'Jon Coddington, Solo artist\nNatasha Wilson, Support\nHannah K. Clarke, Support',
       },
 
       {
         time: '1:15–2:00pm',
-        title: 'The Fish — Commission',
+        title: 'The Fish: Festival Commission',
         image: '/images/shows/the-fish-1.png',
         imageAlt: FISH_IMAGE_ALT,
         by: 'Joey Sheppard',
@@ -285,7 +285,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio:
           'Ally Rogers was lucky to learn about lantern making many years ago and fell in love with the craft. Since then she has made many large scale Puppets, taught workshops and organised whole lantern festivals and parades. This love took her to the UK in 2018 where she worked with a team of Artists, and was taught how to make very large lantern puppets and the backpacks needed to carry them. Ally loves working in community and believes that we should share our knowledge and encourage creativity at all times.',
         credits:
-          'Ally Rogers — Maker of lanterns, puppets, parade puppets, walkabouts, theatre props and costumes',
+          'Ally Rogers, Maker of lanterns, puppets, parade puppets, walkabouts, theatre props and costumes',
       },
       {
         time: '12:15–1:45pm',
@@ -302,7 +302,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         age: '14+',
         venue: 'upstairs',
         blurb:
-          'A hands-on workshop offering a rare opportunity to build your own Practice Puppet (in the style of a table-top Sandglass training puppet) and explore techniques to breathe life into it. Perfect for anyone curious about puppetry, theatre practitioners wanting to expand their toolbox, Parents and curious teenagers, and lovers of handmade craft. No prior experience needed — just enthusiasm and a generous puppetry heart! All materials provided.',
+          'A hands-on workshop offering a rare opportunity to build your own Practice Puppet (in the style of a table-top Sandglass training puppet) and explore techniques to breathe life into it. Perfect for anyone curious about puppetry, theatre practitioners wanting to expand their toolbox, Parents and curious teenagers, and lovers of handmade craft. No prior experience needed, just enthusiasm and a generous puppetry heart! All materials provided.',
         bio:
           'Bridget Sanders is Producer & Creative Director at Birdlife Productions and has been making and performing with Puppetry for the last 15 years. For Bridget, puppetry is a direct link from her handcraft to storytelling and performance. She was fortunate to work alongside Akiko Miyamoto, a Master Japanese puppeteer living in Whakatū Nelson, who inspired her to make simple Bunraku style puppets. Most of her puppetry to date is influenced by these rudimentary beginnings, with the addition of shadow puppetry, and the inclusion of scale shift (from very small to very big).\n\nTraining includes: Mask & Clown at the John Bolton Theatre School in Melbourne, Puppetry with Sandglass Puppet Theatre, USA and Puppet making with Judith Hope, UK.',
       },
@@ -329,7 +329,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio:
           'This workshop is led by a blind arts consultant and a sighted audio describer. Lauren and Judith are excited to share their skills and experience with the world of puppetry. As a blind consultant, Lauren brings first hand knowledge, along with technical and practical expertise in the arts and digital sectors. She’s recently worked to build more accessibility into the NZ Festival of the Arts. Lauren is a co-director of Wellington’s DAT Fest, an accessible platform for disabled artists and audiences. Judith has audio described all sorts of performances, and is a huge advocate for how this skill can support more meaningful experiences for blind and low vision audiences. She trains audio describers in the gallery and museums sector, including how to effectively incorporate touch into a guided tour.',
         credits:
-          'Lauren Hayes (she/her) — Arts Accessibility Consultant\nJudith Jones (she/her) — Audio Describer',
+          'Lauren Hayes (she/her), Arts Accessibility Consultant\nJudith Jones (she/her), Audio Describer',
       },
     ],
   },
@@ -338,14 +338,14 @@ export const DEFAULT_STRANDS: Strand[] = [
     day: 'Saturday',
     title: 'Puppets for Peace and Pea Soup Platter',
     blurb:
-      'An evening of cutting-edge puppetry entertainment, including our freshly commissioned work by Joey Sheppard, a scintillating puppet cabaret, all rounded off with a gourmet dinner — all included in the price.',
+      'An evening of cutting-edge puppetry entertainment, including our freshly commissioned work by Joey Sheppard, a scintillating puppet cabaret, all rounded off with a gourmet dinner, all included in the price.',
     access: 'ticketed',
     events: [
       { time: '5:30–5:45pm', title: 'Doors open', venue: 'hall' },
       { time: '5:45–5:55pm', title: 'Karakia & Opening Circle', venue: 'hall' },
       {
         time: '6:00–6:40pm',
-        title: 'The Fish — Commission',
+        title: 'The Fish: Festival Commission',
         image: '/images/shows/the-fish-1.png',
         imageAlt: FISH_IMAGE_ALT,
         by: 'Joey Sheppard',
@@ -409,7 +409,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         blurb:
           'A funny exploration of community, anonymity and passive aggressive notes inspired by real-life texts. When disaster strikes, can we face the fact that we need each other, or do we want to stay hidden behind closed curtains? Can the puppet characters be brave enough to talk to each other and realise their interdependency, even after some rude and snarky behaviour? This is a shadow puppet work for our times using Stephanie’s (of Birdfeeder fame) inimitable puppetry style and highly crafted live soundtrack.',
         bio:
-          'Stephanie has been playing around with shadow puppets since ages ago, after encountering Indonesian puppetry through her musical involvement in Wellington’s Javanese gamelan. She has taken her shows to Cuba Dupa, the Wellington Folk Festival and previous editions of the Wellington Puppetry Festival. Also a musician, Stephanie has created a large scale shadow puppetry show set to the music of her band, Birdfeeder. She’s also dabbled in giant street puppetry and collaborated with Anna Bailey (String Bean Puppets) both as a musician and puppeteer, including work for the latest TAHI festival — ‘Flutter’.',
+          'Stephanie has been playing around with shadow puppets since ages ago, after encountering Indonesian puppetry through her musical involvement in Wellington’s Javanese gamelan. She has taken her shows to Cuba Dupa, the Wellington Folk Festival and previous editions of the Wellington Puppetry Festival. Also a musician, Stephanie has created a large scale shadow puppetry show set to the music of her band, Birdfeeder. She’s also dabbled in giant street puppetry and collaborated with Anna Bailey (String Bean Puppets) both as a musician and puppeteer, including work for the latest TAHI festival, ‘Flutter’.',
       },
     ],
   },
@@ -425,10 +425,10 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '9:00–11:30am',
         title: 'Exploring 3D Shadows',
         image: '/images/shows/exploring-3d-shadows-1.jpg',
-        imageAlt: "A shadow puppet screen showing a line of animal silhouettes — a bird, cat and dog — holding hands mid-dance",
+        imageAlt: "A shadow puppet screen showing a line of animal silhouettes (a bird, cat and dog) holding hands mid-dance",
         images: ['/images/shows/exploring-3d-shadows-1.jpg'],
         imagesAlt: [
-          "A shadow puppet screen showing a line of animal silhouettes — a bird, cat and dog — holding hands mid-dance",
+          "A shadow puppet screen showing a line of animal silhouettes (a bird, cat and dog) holding hands mid-dance",
         ],
         by: 'Rowena MacGill',
         duration: '2.5 hrs',
@@ -451,7 +451,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         images: ['/images/shows/puppetry-in-warzones-1.jpg', '/images/shows/puppetry-in-warzones-2.jpg'],
         imagesAlt: [
           "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
-          "An old photograph of two performers posing beside large costumed puppet figures — one in a polka-dot dress, one blue-faced in striped pyjamas",
+          "An old photograph of two performers posing beside large costumed puppet figures, one in a polka-dot dress, one blue-faced in striped pyjamas",
         ],
         by: 'Simone van Kan',
         duration: '40 mins',

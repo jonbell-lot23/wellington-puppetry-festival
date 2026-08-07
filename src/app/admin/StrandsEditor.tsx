@@ -135,7 +135,7 @@ export default function StrandsEditor({
     <div className="flex flex-col gap-4">
       <div className="text-xs text-[#8a7764] leading-relaxed flex flex-col gap-2">
         <p>
-          Each card on the programme page is one section below — its title and wording, plus the
+          Each card on the programme page is one section below: its title and wording, plus the
           shows or workshops listed inside it. Change any of it here.
         </p>
         <p>
@@ -145,7 +145,7 @@ export default function StrandsEditor({
           <em>Ticket link</em> and a <strong>Buy tickets</strong> button appears.
         </p>
         <p>
-          Image is a URL or a path like <code className="font-mono">/images/show.jpg</code> — email
+          Image is a URL or a path like <code className="font-mono">/images/show.jpg</code>. Email
           images to Jon and he&apos;ll give you the path to paste in.
         </p>
       </div>
@@ -204,7 +204,7 @@ export default function StrandsEditor({
                     onChange={(v) => updateStrand(si, { blurb: v })}
                   />
                   <Field
-                    label="Practical line (optional) — e.g. “Pack a picnic”"
+                    label="Practical line (optional), e.g. “Pack a picnic”"
                     value={strand.note ?? ''}
                     onChange={(v) => updateStrand(si, { note: v })}
                   />
@@ -322,13 +322,13 @@ export default function StrandsEditor({
 
                       <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-2">
                         <TextField
-                          label="Blurb — shown on the More info page"
+                          label="Blurb, shown on the More info page"
                           value={ev.blurb ?? ''}
                           rows={4}
                           onChange={(v) => updateEvent(si, ei, { blurb: v })}
                         />
                         <TextField
-                          label="Artist bio — shown on the More info page"
+                          label="Artist bio, shown on the More info page"
                           value={ev.bio ?? ''}
                           rows={4}
                           onChange={(v) => updateEvent(si, ei, { bio: v })}
@@ -343,10 +343,10 @@ export default function StrandsEditor({
                           onChange={(v) => updateEvent(si, ei, { warnings: v })}
                         />
                         <TextField
-                          label="Creative team — one person per line"
+                          label="Creative team, one person per line"
                           value={ev.credits ?? ''}
                           rows={3}
-                          placeholder="Jane Doe (she/her) — Puppeteer"
+                          placeholder="Jane Doe (she/her), Puppeteer"
                           onChange={(v) => updateEvent(si, ei, { credits: v })}
                         />
                       </div>
@@ -354,10 +354,10 @@ export default function StrandsEditor({
                       {/* Photo paths themselves are managed manually outside this
                           editor — only the alt text is edited here. */}
                       <TextField
-                        label="Photo alt text — one line per photo, same order"
+                        label="Photo alt text, one line per photo, same order"
                         value={(ev.imagesAlt ?? []).join('\n')}
                         rows={3}
-                        placeholder={`${ev.title || 'Show'} — photo 1`}
+                        placeholder={`${ev.title || 'Show'}, photo 1`}
                         onChange={(v) =>
                           updateEvent(si, ei, {
                             imagesAlt: v === '' ? [] : v.split('\n'),

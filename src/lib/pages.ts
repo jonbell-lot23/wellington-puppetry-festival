@@ -56,7 +56,7 @@ export const PAGES: PageDef[] = [
       F(
         'heroTagline',
         'Hero tagline',
-        'WPF returns this spring to fill the city with strings, shadows and wonder — a free, family-first celebration brought to life by our own community of puppeteers, storytellers and makers.',
+        'WPF returns this spring to fill the city with strings, shadows and wonder. A free, family-first celebration brought to life by our own community of puppeteers, storytellers and makers.',
         true,
       ),
       F('ticketsUrl', 'Tickets URL (Humanitix)', 'https://events.humanitix.com/'),
@@ -64,7 +64,7 @@ export const PAGES: PageDef[] = [
       F(
         'kidsBody',
         'Saturday kids section body',
-        'Drop in any time on Saturday for free hands-on puppet-making workshops, street performances and shows made just for little ones — no ticket required, just turn up.',
+        'Drop in any time on Saturday for free hands-on puppet-making workshops, street performances and shows made just for little ones. No ticket required, just turn up.',
         true,
       ),
       F('newsletterHeading', 'Newsletter section heading', 'WPF Newsletter'),
@@ -77,7 +77,7 @@ export const PAGES: PageDef[] = [
       F(
         'cabaretSectionBody',
         'Cabaret section body',
-        'When the kids have gone to bed, the festival gets a little wilder. An adults-only evening of bold, funny and surprising puppetry cabaret — one of the highlights of the Wellington Puppetry Festival.',
+        'When the kids have gone to bed, the festival gets a little wilder. An adults-only evening of bold, funny and surprising puppetry cabaret, one of the highlights of the Wellington Puppetry Festival.',
         true,
       ),
       F('galleryHeading', 'Gallery section heading', 'Moments from past festivals'),
@@ -93,7 +93,7 @@ export const PAGES: PageDef[] = [
       F(
         'intro',
         'Intro paragraph',
-        'Three days of shows, workshops and free family fun across Pōneke Wellington — from opening karakia on Friday night to the closing circle on Sunday afternoon.',
+        'Three days of shows, workshops and free family fun across Pōneke Wellington, from opening karakia on Friday night to the closing circle on Sunday afternoon.',
         true,
       ),
       // Bridget, Jul 2026: the Hall / Upstairs / the Green only make sense once
@@ -101,26 +101,26 @@ export const PAGES: PageDef[] = [
       F(
         'venueNote',
         'Venue note (above the programme)',
-        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club — “the Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, and is also our wet weather venue.',
+        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club. “The Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, and is also our wet weather venue.',
         true,
       ),
       // Sarah, 7 Aug: access information shouldn't be quarantined on its own
       // page. The separate /accessibility page stays as a shortcut, but the
       // same information is repeated here, in the ordinary flow, so it reaches
       // everyone rather than only the people who go looking for it.
-      F('accessHeading', 'Access note — heading', 'Access at the festival'),
+      F('accessHeading', 'Access note: heading', 'Access at the festival'),
       F(
         'accessBody',
-        'Access note — text',
-        'Volunteers will be on hand across the weekend to help with wayfinding and getting you where you need to go. Two of our shows are audio described and offer an optional touch tour. If you would like help planning your visit, or you have an access need we have not listed, please get in touch — we are very glad to help.',
+        'Access note: text',
+        'Volunteers will be on hand across the weekend to help with wayfinding and getting you where you need to go. Two of our shows are audio described and offer an optional touch tour. If you would like help planning your visit, or you have an access need we have not listed, please get in touch. We are very glad to help.',
         true,
       ),
-      F('accessLinkLabel', 'Access note — link label', 'See our shows for blind and low vision audiences'),
+      F('accessLinkLabel', 'Access note: link label', 'See our shows for blind and low vision audiences'),
 
       F(
         'footnote',
         'Footnote below the programme',
-        'Programme details may shift a little as the festival comes together — check back closer to the weekend.',
+        'Programme details may shift a little as the festival comes together. Check back closer to the weekend.',
         true,
       ),
 
@@ -135,7 +135,7 @@ export const PAGES: PageDef[] = [
     // StrandsEditor for this slug rather than showing a raw textarea.
     slug: 'program-schedule',
     path: '/program',
-    title: 'Programme — Cards & listings',
+    title: 'Programme: Cards & listings',
     fields: [F('strandsJson', 'Programme (JSON)', serializeStrands(DEFAULT_STRANDS), true)],
   },
   {
@@ -161,13 +161,13 @@ export const PAGES: PageDef[] = [
       F(
         'intro',
         'Intro paragraph',
-        'WPF is powered by community. Volunteers help with everything from front-of-house and bump-in to running our free Saturday kids\' activities — no puppetry experience required, just enthusiasm.',
+        'WPF is powered by community. Volunteers help with everything from front-of-house and bump-in to running our free Saturday kids\' activities. No puppetry experience required, just enthusiasm.',
         true,
       ),
-      F('ctaHeading', 'Sign-up box — heading', 'Keen to get involved?'),
+      F('ctaHeading', 'Sign-up box: heading', 'Keen to get involved?'),
       F(
         'ctaBody',
-        'Sign-up box — text',
+        'Sign-up box: text',
         'Fill in the volunteer form and we’ll be in touch about what’s needed and when.',
         true,
       ),
@@ -190,48 +190,48 @@ export const PAGES: PageDef[] = [
       F(
         'intro',
         'Intro paragraph',
-        'Wellington Puppetry Festival is a community-led celebration of puppetry in all its forms — traditional and contemporary, tiny and giant, for toddlers and adults alike. We\'re proud to bring the city together for a free, welcoming, imagination-filled long weekend.',
+        'Wellington Puppetry Festival is a community-led celebration of puppetry in all its forms: traditional and contemporary, tiny and giant, for toddlers and adults alike. We\'re proud to bring the city together for a free, welcoming, imagination-filled long weekend.',
         true,
       ),
 
       // "Made by the community" block. Was hardcoded until Aug 2026 — Bridget
       // wants to rewrite it to describe the festival as a Trust, and that
       // shouldn't need a developer.
-      F('communityHeading', 'Community section — heading', 'Made by the community, for the community'),
+      F('communityHeading', 'Community section: heading', 'Made by the community, for the community'),
       F(
         'communityBody1',
-        'Community section — first paragraph',
-        'WPF is run by Birdlife Productions with the help of local volunteers, artists and venues across Pōneke Wellington. It exists to make puppetry — one of the oldest, strangest and most joyful art forms — accessible to everyone, especially families who might not otherwise get to a theatre show.',
+        'Community section: first paragraph',
+        'WPF is run by Birdlife Productions with the help of local volunteers, artists and venues across Pōneke Wellington. It exists to make puppetry, one of the oldest, strangest and most joyful art forms, accessible to everyone, especially families who might not otherwise get to a theatre show.',
         true,
       ),
       F(
         'communityBody2',
-        'Community section — second paragraph',
+        'Community section: second paragraph',
         'That’s why Saturday is free: no ticket, no barrier, just turn up and join in.',
         true,
       ),
 
       // Rose Beauchamp tribute section.
-      F('roseHeading', 'Rose section — heading', 'In the footsteps of Rose Beauchamp'),
+      F('roseHeading', 'Rose section: heading', 'In the footsteps of Rose Beauchamp'),
       F(
         'roseBody1',
-        'Rose section — first paragraph',
+        'Rose section: first paragraph',
         'Wellington\'s love of puppetry owes an enormous amount to Rose Beauchamp. A pianist who never set out to become a puppeteer, Rose fell for the art form and went on to help organise the very first national puppet festival, the NZ Puppet Parade that filled Lambton Quay in 1986.',
         true,
       ),
       F(
         'roseBody2',
-        'Rose section — second paragraph',
+        'Rose section: second paragraph',
         'She turned shadows into art, and art into activism: her internationally renowned shadow puppetry made audiences laugh and cry, but also educated and spoke out against the injustice she saw in the world. The Wellington Puppetry Festival carries that spirit forward, puppetry for everyone, in the city she helped fall in love with the art.',
         true,
       ),
       F(
         'roseQuote',
-        'Rose section — pull quote',
+        'Rose section: pull quote',
         'Puppets are exciting, they make us laugh, and understand other cultures as well as enriching our own lives.',
         true,
       ),
-      F('roseQuoteBy', 'Rose section — quote attribution', 'Rose Beauchamp'),
+      F('roseQuoteBy', 'Rose section: quote attribution', 'Rose Beauchamp'),
     ],
   },
   {
@@ -261,19 +261,19 @@ export const PAGES: PageDef[] = [
       F(
         'intro',
         'Intro paragraph',
-        'An after-dark, adults-only night of puppetry cabaret — bold, funny, a little bit wild. The signature evening event of the festival, featuring a curated line-up of local and visiting performers.',
+        'An after-dark, adults-only night of puppetry cabaret: bold, funny, a little bit wild. The signature evening event of the festival, featuring a curated line-up of local and visiting performers.',
         true,
       ),
       F('ticketsLabel', 'Tickets button label', 'Get Cabaret Tickets'),
       F('ticketsUrl', 'Tickets button URL', 'https://events.humanitix.com/'),
 
       // Three feature cards.
-      F('card1Label', 'Card 1 — title', 'Bold'),
-      F('card1Body', 'Card 1 — text', 'Puppetry like you\'ve never seen it — sharp, funny, a little unhinged.', true),
-      F('card2Label', 'Card 2 — title', 'Curated'),
-      F('card2Body', 'Card 2 — text', 'A hand-picked line-up of local and visiting cabaret performers.', true),
-      F('card3Label', 'Card 3 — title', 'One night only'),
-      F('card3Body', 'Card 3 — text', 'The signature closing-night event of the festival.', true),
+      F('card1Label', 'Card 1: title', 'Bold'),
+      F('card1Body', 'Card 1: text', 'Puppetry like you\'ve never seen it: sharp, funny, a little unhinged.', true),
+      F('card2Label', 'Card 2: title', 'Curated'),
+      F('card2Body', 'Card 2: text', 'A hand-picked line-up of local and visiting cabaret performers.', true),
+      F('card3Label', 'Card 3: title', 'One night only'),
+      F('card3Body', 'Card 3: text', 'The signature closing-night event of the festival.', true),
 
       F('footnote', 'Footnote below cards', 'Line-up, venue and exact date to be confirmed alongside the full 2026 programme.', true),
     ],
@@ -301,24 +301,24 @@ export const PAGES: PageDef[] = [
     path: '/support',
     title: 'Support us',
     fields: [
-      F('heading', 'Page heading', 'Support the festival'),
+      F('heading', 'Page heading', 'Make a tax deductible donation'),
       F(
         'intro',
         'Intro paragraph',
         'Wellington Puppetry Festival is run by a charitable trust, which means donations to it are tax deductible.',
         true,
       ),
-      F('bodyHeading', 'Body — heading', 'Every bit of it goes into the work'),
+      F('bodyHeading', 'Body: heading', 'Every bit of it goes into the work'),
       F(
         'body1',
-        'Body — first paragraph',
-        'The festival runs on a small budget and a lot of goodwill. Support helps us keep Saturday free for families, pay the artists properly, and put on the things that are hardest to fund — audio described shows, touch tours, and the access support that lets everyone come along.',
+        'Body: first paragraph',
+        'The festival runs on a small budget and a lot of goodwill. Support helps us keep Saturday free for families, pay the artists properly, and put on the things that are hardest to fund: audio described shows, touch tours, and the access support that lets everyone come along.',
         true,
       ),
       F(
         'body2',
-        'Body — second paragraph (placeholder until the forms are ready)',
-        'We are still getting our donation forms and charity paperwork together. In the meantime, if you would like to support the festival — as an individual, a business or a funder — please email us and we will take it from there.',
+        'Body: second paragraph (placeholder until the forms are ready)',
+        'We are still getting our donation forms and charity paperwork together. In the meantime, if you would like to support the festival, whether as an individual, a business or a funder, please email us and we will take it from there.',
         true,
       ),
       F('ctaLabel', 'Email button label', 'Email us about supporting WPF'),
@@ -333,39 +333,39 @@ export const PAGES: PageDef[] = [
       F(
         'intro',
         'Intro paragraph',
-        'We want everyone to be able to enjoy WPF. We\'re working to make our venues, programme and free Saturday activities as accessible as possible — get in touch if you have questions or specific access needs.',
+        'We want everyone to be able to enjoy WPF. We\'re working to make our venues, programme and free Saturday activities as accessible as possible. Get in touch if you have questions or specific access needs.',
         true,
       ),
 
       // The four access cards. These say what a disabled festival-goer can
       // actually expect, so they need to be editable as venues and provisions
       // firm up — they were hardcoded until Aug 2026.
-      F('card1Label', 'Card 1 — title', 'Venue access'),
+      F('card1Label', 'Card 1: title', 'Venue access'),
       F(
         'card1Body',
-        'Card 1 — text',
+        'Card 1: text',
         'We work with venues across Wellington to ensure wheelchair access, accessible seating and accessible toilets wherever possible. Specific venue access details will be listed alongside each show in the programme.',
         true,
       ),
-      F('card2Label', 'Card 2 — title', 'Sensory-friendly'),
+      F('card2Label', 'Card 2: title', 'Sensory-friendly'),
       F(
         'card2Body',
-        'Card 2 — text',
+        'Card 2: text',
         'Our free Saturday activities are designed to be welcoming for neurodivergent kids and families, with space to move around and no obligation to stay for a full show.',
         true,
       ),
-      F('card3Label', 'Card 3 — title', 'Companion tickets'),
+      F('card3Label', 'Card 3: title', 'Companion tickets'),
       F(
         'card3Body',
-        'Card 3 — text',
-        'Support person / companion tickets are available on request for ticketed shows — contact us ahead of time and we\'ll sort it out.',
+        'Card 3: text',
+        'Support person / companion tickets are available on request for ticketed shows. Contact us ahead of time and we\'ll sort it out.',
         true,
       ),
-      F('card4Label', 'Card 4 — title', 'Let us know'),
+      F('card4Label', 'Card 4: title', 'Let us know'),
       F(
         'card4Body',
-        'Card 4 — text',
-        'If you have a specific access need we haven\'t covered here, get in touch — we\'d rather know in advance so we can make it work.',
+        'Card 4: text',
+        'If you have a specific access need we haven\'t covered here, get in touch. We\'d rather know in advance so we can make it work.',
         true,
       ),
 
@@ -376,39 +376,39 @@ export const PAGES: PageDef[] = [
       // as ordinary festival information, which is what the access advice
       // asked for. A show with an empty title is dropped, so the list can grow
       // — Ngā Maunga Rū may add a touch tour and has slot 3 waiting.
-      F('accessShowsHeading', 'Accessible shows — heading', 'Shows for blind and low vision audiences'),
+      F('accessShowsHeading', 'Accessible shows: heading', 'Shows for blind and low vision audiences'),
       F(
         'accessShowsIntro',
-        'Accessible shows — intro',
+        'Accessible shows: intro',
         'Audio description is provided through headphones and should be pre-booked with your ticket. Touch tours are optional and free to anyone holding a ticket to that show.',
         true,
       ),
-      F('accessShow1Label', 'Accessible show 1 — title', 'Box of Birds — Birdlife Productions'),
+      F('accessShow1Label', 'Accessible show 1: title', 'Box of Birds by Birdlife Productions'),
       F(
         'accessShow1Body',
-        'Accessible show 1 — details',
-        'Ages 3–8, 30 minutes. Audio description and touch tour.\nSaturday 19 September — touch tour 9:30am, show 10:00am, Vogelmorn Hall. $12.\nSunday 20 September — touch tour 9:30am, show 10:00am, Ridgway School Hall (wheelchair accessible). $12.',
+        'Accessible show 1: details',
+        'Ages 3–8, 30 minutes. Audio description and touch tour.\nSaturday 19 September: touch tour 9:30am, show 10:00am, Vogelmorn Hall. $12.\nSunday 20 September: touch tour 9:30am, show 10:00am, Ridgway School Hall (wheelchair accessible). $12.',
         true,
       ),
-      F('accessShow2Label', 'Accessible show 2 — title', 'Little Landscapes — Amy Grace Laura'),
+      F('accessShow2Label', 'Accessible show 2: title', 'Little Landscapes by Amy Grace Laura'),
       F(
         'accessShow2Body',
-        'Accessible show 2 — details',
-        'Ages 5–7 and their grown-ups, 25 minutes. Touch tour 15 minutes before each show.\nSaturday 19 September — 10:30am, 11:30am and 12:30pm on the Vogelmorn Green. Free, part of the Junk Puppet Carnival. Wet weather venue: Ridgway School Hall.',
+        'Accessible show 2: details',
+        'Ages 5–7 and their grown-ups, 25 minutes. Touch tour 15 minutes before each show.\nSaturday 19 September: 10:30am, 11:30am and 12:30pm on the Vogelmorn Green. Free, part of the Junk Puppet Carnival. Wet weather venue: Ridgway School Hall.',
         true,
       ),
-      F('accessShow3Label', 'Accessible show 3 — title', ''),
-      F('accessShow3Body', 'Accessible show 3 — details', '', true),
+      F('accessShow3Label', 'Accessible show 3: title', ''),
+      F('accessShow3Body', 'Accessible show 3: details', '', true),
 
       // Pointer to the public testing report at /accessibility/report.
-      F('reportHeading', 'Website report section — heading', 'How accessible is this website?'),
+      F('reportHeading', 'Website report section: heading', 'How accessible is this website?'),
       F(
         'reportBody',
-        'Website report section — text',
-        'We test this site with a keyboard, with automated checkers and at high zoom, and we publish what we find — including what we haven\'t fixed yet.',
+        'Website report section: text',
+        'We test this site with a keyboard, with automated checkers and at high zoom, and we publish what we find, including what we haven\'t fixed yet.',
         true,
       ),
-      F('reportLinkLabel', 'Website report section — link label', 'Read our accessibility report'),
+      F('reportLinkLabel', 'Website report section: link label', 'Read our accessibility report'),
     ],
   },
   {
@@ -426,12 +426,12 @@ export const PAGES: PageDef[] = [
       ALT(
         'homeCommunityDay',
         '/images/2024-puppetry-gala.jpg',
-        'Community day — kids activities',
+        'Community day, kids activities',
       ),
       ALT(
         'homeCabaretHero',
         '/images/cabaret-hero.jpeg',
-        'Evening Cabaret — WPF after-dark puppetry performance',
+        'Evening Cabaret, WPF after-dark puppetry performance',
       ),
       ALT('homeGallery1', '/images/gallery/wpf-gallery-01.jpg', 'Photo from Wellington Puppetry Festival 2024'),
       ALT('homeGallery2', '/images/gallery/wpf-gallery-tom-01.jpg', 'Photo from Wellington Puppetry Festival 2024'),

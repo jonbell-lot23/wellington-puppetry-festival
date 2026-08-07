@@ -13,7 +13,7 @@ import PageHero from '@/components/PageHero'
 // Re-run the audit before editing LAST_TESTED.
 
 export const metadata: Metadata = {
-  title: 'Accessibility report — Wellington Puppetry Festival',
+  title: 'Accessibility report: Wellington Puppetry Festival',
   description:
     'What we test on this website, what passes, what is still open, and what we have fixed so far.',
 }
@@ -56,7 +56,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Automated checker (axe-core, WCAG 2.2 AA)',
     status: 'pass',
     body:
-      'Every public page checked at desktop, phone and 320px widths — 25 pages, 75 page loads. Zero errors outstanding.',
+      'Every public page checked at desktop, phone and 320px widths. 25 pages, 75 page loads. Zero errors outstanding.',
     detail:
       'This caught 267 colour-contrast failures and a run of heading-order problems. All are fixed. Worth saying plainly: automated tools only catch roughly a quarter of real accessibility problems, so a clean run is a floor, not a finish line.',
   },
@@ -74,7 +74,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     body:
       'All text meets the WCAG AA minimum (4.5:1 for body text). Ratios were calculated directly rather than eyeballed.',
     detail:
-      'The brand green was the root cause of most failures — white text on it reached only 4.31:1. It has been darkened slightly to clear AA in both directions without changing the look of the site.',
+      'The brand green was the root cause of most failures: white text on it reached only 4.31:1. It has been darkened slightly to clear AA in both directions without changing the look of the site.',
   },
   {
     title: 'Motion and animation',
@@ -82,13 +82,13 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     body:
       'Nothing on the site animates on its own, nothing flashes, and there is no infinite scroll. The one animation is the "You!" tile on the sponsor wall, which plays when you hover or focus it.',
     detail:
-      'Verified that it is fully suppressed when the operating system is set to reduce motion — the whole rig is removed rather than merely slowed down. It also runs on keyboard focus, so it is not mouse-only.',
+      'Verified that it is fully suppressed when the operating system is set to reduce motion, with the whole rig removed rather than merely slowed down. It also runs on keyboard focus, so it is not mouse-only.',
   },
   {
     title: 'No accessibility overlay',
     status: 'pass',
     body:
-      'This site uses no overlay plugin — no UserWay, no AccessiBe, nothing of that kind. Accessibility is built into the pages themselves.',
+      'This site uses no overlay plugin: no UserWay, no AccessiBe, nothing of that kind. Accessibility is built into the pages themselves.',
   },
   {
     title: 'Form labels',
@@ -125,7 +125,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     body:
       'Words like whānau, Pōneke, Aotearoa and Ngā Maunga Rū are marked up so a screen reader pronounces them as te reo rather than reading them as English.',
     detail:
-      'This happens automatically as the page is built, rather than being typed in by hand, so it keeps working as the programme is edited — nobody has to remember to do it. It currently recognises a dozen words and phrases, including the ones in show titles and artist bios.',
+      'This happens automatically as the page is built, rather than being typed in by hand, so it keeps working as the programme is edited, so nobody has to remember to do it. It currently recognises a dozen words and phrases, including the ones in show titles and artist bios.',
   },
   {
     title: 'Accessible ticket options at booking',
@@ -152,7 +152,7 @@ const CHANGELOG: { date: string; items: string[] }[] = [
       'The "You!" tile on the sponsor wall is now a proper link to a Support page, rather than a button that only did something visual. Its animation plays on hover and on keyboard focus.',
       'Te reo Māori is now marked up across the whole site so screen readers pronounce it as te reo, not as English. It is applied automatically as pages are built, rather than typed in by hand, so it keeps working as the programme changes.',
       'Access information folded into the programme itself, instead of living only on this section of the site.',
-      'Moved the "audio described" tag next to the show it describes — on a phone it had been sitting adrift in the row above.',
+      'Moved the "audio described" tag next to the show it describes. On a phone it had been sitting adrift in the row above.',
       'The day is now repeated inside each programme card, so you can tell whether you are looking at Saturday or Sunday once a card is open.',
       'Added the shows that offer audio description and touch tours, with their times.',
     ],
@@ -161,7 +161,7 @@ const CHANGELOG: { date: string; items: string[] }[] = [
     date: '6 August 2026',
     items: [
       'Added a "Skip to content" link as the first stop on every page.',
-      'Darkened the brand green so white text on it reads at 5.6:1 instead of 4.3:1 — this alone cleared most of the site\'s contrast failures.',
+      'Darkened the brand green so white text on it reads at 5.6:1 instead of 4.3:1. This alone cleared most of the site\'s contrast failures.',
       'Replaced the faded "Tix on sale soon" pill, which sat at 1.9:1, with a bordered blush version at 7.5:1.',
       'Swapped see-through white footer text for solid tints (was 2.5:1 at its worst, now 4.7:1 or better).',
       'Turned the contact page newsletter panel white-on-deep-green; its label was previously 2.2:1.',
@@ -212,7 +212,7 @@ export default function AccessibilityReportPage() {
         <div className="mx-auto max-w-3xl">
           <p className="wpf-text-muted text-sm leading-relaxed mb-8">
             Last tested <strong>{LAST_TESTED}</strong> against the live build.
-            We publish the open items alongside the fixed ones — if something
+            We publish the open items alongside the fixed ones. If something
             here is wrong, or you hit a problem we have not listed,{' '}
             <a
               href="/contact"

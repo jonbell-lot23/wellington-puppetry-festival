@@ -51,8 +51,8 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const found = findEventBySlug(await loadStrands(), slug)
-  if (!found) return { title: 'Programme — Wellington Puppetry Festival' }
-  return { title: `${found.event.title} — Wellington Puppetry Festival` }
+  if (!found) return { title: 'Programme: Wellington Puppetry Festival' }
+  return { title: `${found.event.title}: Wellington Puppetry Festival` }
 }
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -168,7 +168,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={src}
-                      alt={ev.imagesAlt?.[i]?.trim() || `${ev.title} — photo ${i + 1}`}
+                      alt={ev.imagesAlt?.[i]?.trim() || `${ev.title}, photo ${i + 1}`}
                       className="max-w-full max-h-full w-auto h-auto object-contain"
                     />
                   </div>

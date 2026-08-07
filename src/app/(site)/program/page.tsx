@@ -268,7 +268,7 @@ function StrandCard({ strand }: { strand: Strand }) {
         className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
         style={{ color: 'var(--wpf-pink-deep)' }}
       >
-        {strand.day} — {teReo(strand.title)}
+        {strand.day}: {teReo(strand.title)}
       </h4>
 
       <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">

@@ -46,7 +46,7 @@ export default function HistoryPanel({
   if (versions.length === 0) {
     return (
       <div className="text-[#8a7764] text-sm text-center py-8 admin-card px-4">
-        No history yet — save a change to start tracking versions.
+        No history yet. Save a change to start tracking versions.
       </div>
     )
   }
@@ -125,7 +125,7 @@ export default function HistoryPanel({
                   </div>
                 ) : (
                   <div className="text-[#8a7764] text-xs mb-4">
-                    Full snapshot — no previous version to diff against.
+                    Full snapshot, no previous version to diff against.
                   </div>
                 )}
 

@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './admin-theme.css'
 
 export const metadata: Metadata = {
-  title: 'Admin — Wellington Puppetry Festival',
+  title: 'Admin: Wellington Puppetry Festival',
   robots: { index: false, follow: false },
 }
 

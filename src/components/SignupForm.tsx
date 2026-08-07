@@ -18,7 +18,7 @@ export default function SignupForm() {
       // role=status so a screen reader announces the confirmation — otherwise
       // the form silently vanishes and there's no feedback that it worked.
       <p role="status" className="wpf-text-muted-on-dark text-sm py-4 max-w-md mx-auto leading-relaxed">
-        Thanks! We&apos;ll be in touch once sign-ups are open — follow us on Instagram or Facebook for updates in the meantime.
+        Thanks! We&apos;ll be in touch once sign-ups are open. Follow us on Instagram or Facebook for updates in the meantime.
       </p>
     )
   }
