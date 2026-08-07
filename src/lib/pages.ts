@@ -246,7 +246,9 @@ export const PAGES: PageDef[] = [
         'Questions about the programme, volunteering, accessibility or anything else? We\'d love to hear from you.',
         true,
       ),
-      F('email', 'Contact email', 'hello@wellingtonpuppetryfestival.nz'),
+      // .com, not .nz — wellingtonpuppetryfestival.com is the domain that was
+      // actually registered (Aug 2026). The .nz address never existed.
+      F('email', 'Contact email', 'hello@wellingtonpuppetryfestival.com'),
     ],
   },
   {

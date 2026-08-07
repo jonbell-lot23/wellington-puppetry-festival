@@ -5,7 +5,7 @@ import PageHero from '@/components/PageHero'
 //
 //  1. Nothing goes in the "Passing" column that hasn't actually been run.
 //     The numbers below come from a real axe-core pass over the production
-//     build (11 pages x 3 viewports), a scripted keyboard walk, and a 320px
+//     build (24 pages x 3 viewports), a scripted keyboard walk, and a 320px
 //     reflow check — not from a checklist someone eyeballed.
 //  2. "Open" stays honest. A report that only lists wins is marketing, and
 //     the people who need this page can tell the difference immediately.
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 const LAST_TESTED = '7 August 2026'
 
 const SUMMARY = [
-  { figure: '11', label: 'pages tested' },
+  { figure: '24', label: 'pages tested' },
   { figure: '3', label: 'screen widths each' },
   { figure: '0', label: 'automated errors left' },
   { figure: '18', label: 'issues fixed' },
@@ -56,7 +56,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Automated checker (axe-core, WCAG 2.2 AA)',
     status: 'pass',
     body:
-      '11 pages checked at desktop, phone and 320px widths — 33 page loads in total. Zero errors outstanding.',
+      'Every public page checked at desktop, phone and 320px widths — 24 pages, 72 page loads. Zero errors outstanding.',
     detail:
       'This caught 267 colour-contrast failures and a run of heading-order problems. All are fixed. Worth saying plainly: automated tools only catch roughly a quarter of real accessibility problems, so a clean run is a floor, not a finish line.',
   },
@@ -125,7 +125,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     body:
       'Words like whānau, Pōneke, Aotearoa and Ngā Maunga Rū are marked up so a screen reader pronounces them as te reo rather than reading them as English.',
     detail:
-      'This happens automatically as the page is built, rather than being typed in by hand, so it keeps working as the programme is edited — nobody has to remember to do it. Currently marking 63 words and phrases across the site.',
+      'This happens automatically as the page is built, rather than being typed in by hand, so it keeps working as the programme is edited — nobody has to remember to do it. It currently recognises a dozen words and phrases, including the ones in show titles and artist bios.',
   },
   {
     title: 'Accessible ticket options at booking',
@@ -149,7 +149,7 @@ const CHANGELOG: { date: string; items: string[] }[] = [
   {
     date: '7 August 2026',
     items: [
-      'Te reo Māori is now marked up across the whole site so screen readers pronounce it as te reo, not as English — 63 words and phrases, applied automatically as pages are built rather than typed in by hand.',
+      'Te reo Māori is now marked up across the whole site so screen readers pronounce it as te reo, not as English. It is applied automatically as pages are built, rather than typed in by hand, so it keeps working as the programme changes.',
       'Access information folded into the programme itself, instead of living only on this section of the site.',
       'Moved the "audio described" tag next to the show it describes — on a phone it had been sitting adrift in the row above.',
       'The day is now repeated inside each programme card, so you can tell whether you are looking at Saturday or Sunday once a card is open.',
