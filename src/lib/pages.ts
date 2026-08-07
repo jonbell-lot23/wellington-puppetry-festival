@@ -164,6 +164,21 @@ export const PAGES: PageDef[] = [
         'WPF is powered by community. Volunteers help with everything from front-of-house and bump-in to running our free Saturday kids\' activities — no puppetry experience required, just enthusiasm.',
         true,
       ),
+      F('ctaHeading', 'Sign-up box — heading', 'Keen to get involved?'),
+      F(
+        'ctaBody',
+        'Sign-up box — text',
+        'Fill in the volunteer form and we’ll be in touch about what’s needed and when.',
+        true,
+      ),
+      F('ctaLabel', 'Sign-up button label', 'Sign up to volunteer'),
+      // Empty falls back to the contact page, so the button is never a dead
+      // end if the form is ever taken down.
+      F(
+        'formUrl',
+        'Volunteer form URL (blank = link to Contact page)',
+        'https://docs.google.com/forms/d/e/1FAIpQLSeeO_ZKBfviZmuX663DkH86I1x7Ve1z52gbjTiw5QeFZkIAng/viewform',
+      ),
     ],
   },
   {
@@ -176,6 +191,23 @@ export const PAGES: PageDef[] = [
         'intro',
         'Intro paragraph',
         'Wellington Puppetry Festival is a community-led celebration of puppetry in all its forms — traditional and contemporary, tiny and giant, for toddlers and adults alike. We\'re proud to bring the city together for a free, welcoming, imagination-filled long weekend.',
+        true,
+      ),
+
+      // "Made by the community" block. Was hardcoded until Aug 2026 — Bridget
+      // wants to rewrite it to describe the festival as a Trust, and that
+      // shouldn't need a developer.
+      F('communityHeading', 'Community section — heading', 'Made by the community, for the community'),
+      F(
+        'communityBody1',
+        'Community section — first paragraph',
+        'WPF is run by Birdlife Productions with the help of local volunteers, artists and venues across Pōneke Wellington. It exists to make puppetry — one of the oldest, strangest and most joyful art forms — accessible to everyone, especially families who might not otherwise get to a theatre show.',
+        true,
+      ),
+      F(
+        'communityBody2',
+        'Community section — second paragraph',
+        'That’s why Saturday is free: no ticket, no barrier, just turn up and join in.',
         true,
       ),
 
