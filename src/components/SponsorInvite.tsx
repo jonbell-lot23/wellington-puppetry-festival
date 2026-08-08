@@ -26,7 +26,7 @@ export default function SponsorInvite() {
       // Six logos plus this tile is seven, so it lands alone on the last row.
       // Full width on mobile, centred under the middle column above that, so
       // the position reads as chosen rather than left over.
-      className="wpf-sponsor-invite wpf-btn-focus group col-span-2 sm:col-span-1 sm:col-start-2 h-24 flex items-center justify-center px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
+      className="wpf-sponsor-invite wpf-btn-focus group col-span-2 sm:col-span-1 sm:col-start-2 h-28 flex flex-col items-center justify-center gap-1 px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
       style={{ borderColor: 'var(--wpf-pink)' }}
     >
       <span className="relative">
@@ -60,9 +60,15 @@ export default function SponsorInvite() {
             </span>
           ))}
         </span>
-        {/* The tile reads as "You!" visually, which is the joke. On its own
-            that's a useless link name, so spell out where it goes. */}
-        <span className="wpf-visually-hidden">Support the festival</span>
+      </span>
+      {/* Bridget: the tile read as decoration, not a link — "You!" alone
+          doesn't say what clicking it does. A small caption underneath
+          keeps the joke but makes the CTA obvious without hovering. */}
+      <span
+        className="text-xs font-semibold uppercase tracking-wide"
+        style={{ color: 'var(--wpf-pink-deep)' }}
+      >
+        Support us
       </span>
     </Link>
   )
