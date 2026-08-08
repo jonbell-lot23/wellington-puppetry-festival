@@ -1,4 +1,5 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
 import { teReo } from '@/lib/tereo'
@@ -31,6 +32,12 @@ export default async function AboutPage() {
             {c.communityBody2 && (
               <p className="wpf-text-muted leading-relaxed">{teReo(c.communityBody2)}</p>
             )}
+            <Link
+              href="/support"
+              className="wpf-btn-primary wpf-btn-focus inline-block mt-7 px-7 py-3.5"
+            >
+              Support the festival
+            </Link>
           </div>
         </div>
       </section>

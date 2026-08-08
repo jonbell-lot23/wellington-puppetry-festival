@@ -1,3 +1,4 @@
+import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 
 export const revalidate = 60
@@ -6,7 +7,10 @@ export const revalidate = 60
 // moodier treatment (dark + gold) than the rest of the bright site, since
 // this is an after-dark, adults-only event within the festival.
 export default async function CabaretPage() {
-  const c = await getPageContent('cabaret')
+  const [c, alt] = await Promise.all([
+    getPageContent('cabaret'),
+    getPageContent('image-alt-text'),
+  ])
 
   return (
     <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-maroon)' }} className="text-white">
@@ -31,6 +35,14 @@ export default async function CabaretPage() {
           >
             {c.ticketsLabel}
           </a>
+          <div className="relative mt-12 aspect-[3/2] max-w-xl mx-auto rounded-2xl overflow-hidden">
+            <Image
+              src="/images/cabaret-woo-pee-woo.jpg"
+              alt={alt.cabaretWooPeeWoo}
+              fill
+              className="object-cover"
+            />
+          </div>
         </div>
       </section>
 

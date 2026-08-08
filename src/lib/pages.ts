@@ -104,6 +104,17 @@ export const PAGES: PageDef[] = [
         'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club. “The Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, and is also our wet weather venue.',
         true,
       ),
+      // Bridget, 8 Aug: unclear where visitors buy tickets while browsing the
+      // programme. A banner above the listings, plus a "Buy tickets" button on
+      // each ticketed event further down, until per-show ticket links are live.
+      F(
+        'ticketsNote',
+        'Tickets note (above the programme)',
+        'Most of the festival is free! A few events are ticketed — look for the "Buy tickets" button on those, or get tickets for the whole festival here.',
+        true,
+      ),
+      F('ticketsLabel', 'Tickets button label', 'Get Tickets'),
+      F('ticketsUrl', 'Tickets button URL', 'https://events.humanitix.com/'),
       // Sarah, 7 Aug: access information shouldn't be quarantined on its own
       // page. The separate /accessibility page stays as a shortcut, but the
       // same information is repeated here, in the ordinary flow, so it reaches
@@ -452,6 +463,11 @@ export const PAGES: PageDef[] = [
       ALT('archiveParade', '/images/first-parade.png', 'The first NZ Puppet Parade, Lambton Quay 1986'),
       ALT('archiveStilts', '/images/stilts.png', 'Stilt performers at an early puppet festival'),
       ALT('archiveBeach', '/images/beach.png', 'Puppetry on the beach'),
+      ALT(
+        'cabaretWooPeeWoo',
+        '/images/cabaret-woo-pee-woo.jpg',
+        "Marianne Mettes performing with the 'Woo Pee Woo' marionette on stage",
+      ),
     ],
   },
 ]

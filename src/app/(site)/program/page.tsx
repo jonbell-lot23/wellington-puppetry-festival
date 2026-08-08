@@ -293,6 +293,30 @@ export default async function ProgramPage() {
 
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-3xl">
+          {/* Bridget, 8 Aug: unclear where to buy tickets while browsing the
+              programme — a banner above the listings, pointing at the
+              per-event "Buy tickets" buttons and a general tickets link. */}
+          {c.ticketsNote && (
+            <p
+              className="mb-6 rounded-xl px-5 py-4 leading-relaxed border"
+              style={{ backgroundColor: 'var(--wpf-pink-soft)', borderColor: 'var(--wpf-pink-deep)', color: 'var(--wpf-ink)' }}
+            >
+              {c.ticketsNote}
+              {c.ticketsUrl && (
+                <>
+                  {' '}
+                  <a
+                    href={c.ticketsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-semibold underline underline-offset-2"
+                  >
+                    {c.ticketsLabel}
+                  </a>
+                </>
+              )}
+            </p>
+          )}
           {/* Bridget: the Hall / Upstairs / the Green only make sense once you
               know they're all rooms at one address. Say so before the listings. */}
           {c.venueNote && (

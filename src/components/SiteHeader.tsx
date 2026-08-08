@@ -4,16 +4,22 @@ import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
 
 // Top nav is deliberately trimmed to the handful of high-traffic pages —
-// see summary for reasoning. Everything else (Volunteers, Team,
-// Accessibility) lives in the footer instead.
+// see summary for reasoning. Team and Accessibility still live in the
+// footer only; Volunteers was promoted here per Bridget's request.
 const NAV = [
-  { label: 'Program', href: '/program' },
+  { label: 'Programme', href: '/program' },
   // Artists page hidden for now — head shots weren't available; bios will
   // live in the programme listings instead. Re-add when ready.
   { label: 'Cabaret', href: '/cabaret' },
   { label: 'About', href: '/about' },
+  { label: 'Volunteers', href: '/volunteers' },
   { label: 'Contact', href: '/contact' },
 ]
+
+// "Home" is only added on the mobile menu — people were losing their way
+// back to the homepage on mobile, but the desktop header already has the
+// wordmark as a persistent, always-visible way home.
+const MOBILE_NAV = [{ label: 'Home', href: '/' }, ...NAV]
 
 // This is the festival's own microsite, so its own hand-lettered-style
 // wordmark leads the header — the Birdlife Productions bird-nest logo has
@@ -120,7 +126,7 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
             className="lg:hidden mx-4 mb-4 rounded-xl border border-black/5 px-5 py-4 flex flex-col gap-3"
             style={{ backgroundColor: '#ffffff' }}
           >
-            {NAV.map((item) => (
+            {MOBILE_NAV.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
