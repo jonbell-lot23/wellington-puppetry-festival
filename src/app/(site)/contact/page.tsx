@@ -29,7 +29,7 @@ export default async function ContactPage() {
               <p className="wpf-section-kicker mb-3">Follow along</p>
               <div className="flex gap-3">
                 <a
-                  href="https://www.instagram.com/BirdlifeProductions3/"
+                  href="https://www.instagram.com/wellingtonpuppetryfestival"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="wpf-btn-secondary wpf-btn-focus text-sm px-5 py-2.5 border-black/15"
@@ -37,7 +37,7 @@ export default async function ContactPage() {
                   Instagram
                 </a>
                 <a
-                  href="https://www.facebook.com/BirdlifeProductions"
+                  href="https://www.facebook.com/wellingtonpuppetryfestival"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="wpf-btn-secondary wpf-btn-focus text-sm px-5 py-2.5 border-black/15"

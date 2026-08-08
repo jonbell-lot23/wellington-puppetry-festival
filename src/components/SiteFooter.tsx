@@ -93,7 +93,7 @@ export default function SiteFooter() {
           </p>
           <div className="flex items-center gap-3 mt-5">
             <a
-              href="https://www.instagram.com/BirdlifeProductions3/"
+              href="https://www.instagram.com/wellingtonpuppetryfestival"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
@@ -103,7 +103,7 @@ export default function SiteFooter() {
               <Instagram />
             </a>
             <a
-              href="https://www.facebook.com/BirdlifeProductions"
+              href="https://www.facebook.com/wellingtonpuppetryfestival"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Facebook"
