@@ -65,7 +65,7 @@ export default function SponsorInvite() {
           doesn't say what clicking it does. A small caption underneath
           keeps the joke but makes the CTA obvious without hovering. */}
       <span
-        className="text-xs font-semibold uppercase tracking-wide"
+        className="text-xs font-semibold uppercase tracking-wide underline underline-offset-2"
         style={{ color: 'var(--wpf-pink-deep)' }}
       >
         Support us
