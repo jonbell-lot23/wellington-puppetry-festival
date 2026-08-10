@@ -24,18 +24,25 @@ export default async function AccessibilityPage() {
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
-        {/* Hidden h2 — the card titles are h3s and the design has no visible
-            heading above them, which left them skipping a level. */}
-        <h2 className="wpf-visually-hidden">Access at the festival</h2>
-        <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
-          {cards.map((item) => (
-            <div key={item.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
-              <h3 className="font-bold mb-2" style={{ color: 'var(--wpf-ink)' }}>{item.title}</h3>
-              <p className="wpf-text-muted text-sm leading-relaxed">{teReo(item.body)}</p>
+        {/* All four cards are currently empty — the placeholder copy they
+            shipped with described provisions nobody had confirmed. Nothing is
+            rendered rather than an empty grid and a stray heading. */}
+        {cards.length > 0 && (
+          <>
+            {/* Hidden h2 — the card titles are h3s and the design has no visible
+                heading above them, which left them skipping a level. */}
+            <h2 className="wpf-visually-hidden">Access at the festival</h2>
+            <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
+              {cards.map((item) => (
+                <div key={item.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
+                  <h3 className="font-bold mb-2" style={{ color: 'var(--wpf-ink)' }}>{item.title}</h3>
+                  <p className="wpf-text-muted text-sm leading-relaxed">{teReo(item.body)}</p>
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
-        <div className="text-center mt-10">
+          </>
+        )}
+        <div className={cards.length > 0 ? 'text-center mt-10' : 'text-center'}>
           <a
             href="/contact"
             className="wpf-btn-primary wpf-btn-focus px-7 py-3.5"

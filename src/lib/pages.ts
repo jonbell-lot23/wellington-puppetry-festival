@@ -123,7 +123,9 @@ export const PAGES: PageDef[] = [
       F(
         'accessBody',
         'Access note: text',
-        'Volunteers will be on hand across the weekend to help with wayfinding and getting you where you need to go. Two of our shows are audio described and offer an optional touch tour. If you would like help planning your visit, or you have an access need we have not listed, please get in touch. We are very glad to help.',
+        // The volunteer wayfinding claim that used to open this was never
+        // confirmed by anyone; only say what we know is arranged.
+        'Two of our shows are audio described and offer an optional touch tour. If you would like help planning your visit, or you have an access need we have not listed, please get in touch. We are very glad to help.',
         true,
       ),
       F('accessLinkLabel', 'Access note: link label', 'See our shows for blind and low vision audiences'),
@@ -355,37 +357,20 @@ export const PAGES: PageDef[] = [
         true,
       ),
 
-      // The four access cards. These say what a disabled festival-goer can
-      // actually expect, so they need to be editable as venues and provisions
-      // firm up — they were hardcoded until Aug 2026.
-      F('card1Label', 'Card 1: title', 'Venue access'),
-      F(
-        'card1Body',
-        'Card 1: text',
-        'We work with venues across Wellington to ensure wheelchair access, accessible seating and accessible toilets wherever possible. Specific venue access details will be listed alongside each show in the programme.',
-        true,
-      ),
-      F('card2Label', 'Card 2: title', 'Sensory-friendly'),
-      F(
-        'card2Body',
-        'Card 2: text',
-        'Our free Saturday activities are designed to be welcoming for neurodivergent kids and families, with space to move around and no obligation to stay for a full show.',
-        true,
-      ),
-      F('card3Label', 'Card 3: title', 'Companion tickets'),
-      F(
-        'card3Body',
-        'Card 3: text',
-        'Support person / companion tickets are available on request for ticketed shows. Contact us ahead of time and we\'ll sort it out.',
-        true,
-      ),
-      F('card4Label', 'Card 4: title', 'Let us know'),
-      F(
-        'card4Body',
-        'Card 4: text',
-        'If you have a specific access need we haven\'t covered here, get in touch. We\'d rather know in advance so we can make it work.',
-        true,
-      ),
+      // Four access cards, deliberately empty. They previously shipped with
+      // placeholder copy describing provisions nobody had confirmed — the
+      // venue one ("we work with venues across Wellington to ensure wheelchair
+      // access") was simply untrue, and on an access page that is worse than
+      // saying nothing. Fill these in only with provisions that are actually
+      // in place; a card with an empty title is dropped from the page.
+      F('card1Label', 'Card 1: title', ''),
+      F('card1Body', 'Card 1: text', '', true),
+      F('card2Label', 'Card 2: title', ''),
+      F('card2Body', 'Card 2: text', '', true),
+      F('card3Label', 'Card 3: title', ''),
+      F('card3Body', 'Card 3: text', '', true),
+      F('card4Label', 'Card 4: title', ''),
+      F('card4Body', 'Card 4: text', '', true),
 
       F('ctaLabel', 'Contact button label', 'Contact us about access needs'),
 
