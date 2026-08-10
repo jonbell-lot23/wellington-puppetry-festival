@@ -146,7 +146,11 @@ export default function StrandsEditor({
         </p>
         <p>
           Image is a URL or a path like <code className="font-mono">/images/show.jpg</code>. Email
-          images to Jon and he&apos;ll give you the path to paste in.
+          images to{' '}
+          <a href="mailto:jb@lot23.com" className="underline" style={{ color: '#0d5fa8' }}>
+            Jon
+          </a>{' '}
+          and he&apos;ll give you the path to paste in.
         </p>
       </div>
 
