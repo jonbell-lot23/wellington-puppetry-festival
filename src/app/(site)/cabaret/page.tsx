@@ -35,14 +35,23 @@ export default async function CabaretPage() {
           >
             {c.ticketsLabel}
           </a>
-          <div className="relative mt-12 aspect-[3/2] max-w-xl mx-auto rounded-2xl overflow-hidden">
-            <Image
-              src="/images/cabaret-woo-pee-woo.jpg"
-              alt={alt.cabaretWooPeeWoo}
-              fill
-              className="object-cover"
-            />
-          </div>
+          <figure className="mt-12 max-w-xl mx-auto">
+            <div className="relative aspect-[3/2] rounded-2xl overflow-hidden">
+              <Image
+                src="/images/cabaret-woo-pee-woo.jpg"
+                alt={alt.cabaretWooPeeWoo}
+                fill
+                className="object-cover"
+              />
+            </div>
+            {/* white/70 rather than a fainter grey: the maroon behind it means
+                anything lighter drops under AA at this size. */}
+            {c.imageCaption && (
+              <figcaption className="mt-3 text-sm text-white/70 leading-relaxed text-balance">
+                {c.imageCaption}
+              </figcaption>
+            )}
+          </figure>
         </div>
       </section>
 

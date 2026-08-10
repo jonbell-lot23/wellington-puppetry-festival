@@ -278,6 +278,13 @@ export const PAGES: PageDef[] = [
       F('ticketsLabel', 'Tickets button label', 'Get Cabaret Tickets'),
       F('ticketsUrl', 'Tickets button URL', 'https://events.humanitix.com/'),
 
+      F(
+        'imageCaption',
+        'Caption under the photo',
+        "Image is of Marianne Mettes with 'Woo Pee Woo'. They are joining us for the festival all the way from Canberra!",
+        true,
+      ),
+
       // Three feature cards.
       F('card1Label', 'Card 1: title', 'Bold'),
       F('card1Body', 'Card 1: text', 'Puppetry like you\'ve never seen it: sharp, funny, a little unhinged.', true),
