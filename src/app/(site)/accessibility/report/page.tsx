@@ -66,7 +66,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     body:
       'Checked at a 320px-wide viewport, which is what a 1280px desktop looks like at 400% zoom. No content is cut off and nothing has to be scrolled sideways to read.',
     detail:
-      'The header used to overflow by 41px at this size, which made every page scroll horizontally. The "Tix soon" pill now steps out of the way on very narrow screens.',
+      'The header used to overflow by 41px at this size, which made every page scroll horizontally. The tickets pill still steps out of the way on very narrow screens, and the same link is repeated in the mobile menu so nothing is lost at that width.',
   },
   {
     title: 'Colour contrast',
@@ -109,7 +109,15 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Ticketing platform',
     status: 'pass',
     body:
-      'Ticket links point at Humanitix, which was preferred over Eventbrite for the booking flow.',
+      'Ticket links point at Humanitix, which was preferred over Eventbrite for the booking flow. Tickets went on sale in August 2026, and each show and workshop links straight to its own section of the ticket page rather than dropping you at the top of a long list.',
+  },
+  {
+    title: 'Venue access information published',
+    status: 'pass',
+    body:
+      'How to reach each venue by car, bus and bike; where you will meet steps and uneven pavement; and where the wheelchair accessible toilets are. It says plainly which parts of the festival are not accessible.',
+    detail:
+      'It appears in three places rather than one: the access page, the note above the programme, and under the address on every individual event page — the last of these being where someone is actually deciding whether they can get in. The notes are attached to the four venues rather than to each of the twenty-odd listings, so the same room cannot end up described two different ways.',
   },
   {
     title: 'Screen reader pass',
@@ -129,23 +137,34 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
   },
   {
     title: 'Accessible ticket options at booking',
-    status: 'planned',
+    status: 'open',
     body:
-      'Access requirements need to be selectable individually at booking, each as its own proper checkbox rather than one box covering several options.',
+      'Booking is live and does ask about access requirements, and the festival follows up by email with anyone who flags one. What has not been confirmed is whether each requirement is its own checkbox rather than a single box covering several at once.',
     detail:
-      'Booking happens on Humanitix rather than on this site, so this is a setup task there. Flagged here so it does not get lost.',
+      'Booking happens on Humanitix rather than on this site, so this is a setup task there and not something this site can fix. Left open rather than marked passing because nobody has been through the checkout to check.',
   },
   {
     title: 'Cabaret access information',
     status: 'planned',
     body:
-      'Pre-show notes, wayfinding, drop-off points, entrance and ramp descriptions, and named support volunteers are not on the site yet.',
+      'Steps, surfaces and toilets are now covered for every venue including the Hall. Still missing: pre-show notes, drop-off points, entrance and ramp descriptions, and named support volunteers.',
     detail:
-      'The plan is to fold this into the ordinary event listing rather than putting it in a separate access post, so it reaches everyone and reads as normal information.',
+      'The venue notes went in as ordinary listing information rather than a separate access post, which is the shape the rest of this should take too. The cabaret evening is sold as one ticket and has no page of its own, so it has nowhere yet to put pre-show notes.',
   },
 ]
 
 const CHANGELOG: { date: string; items: string[] }[] = [
+  {
+    date: '12 August 2026',
+    items: [
+      'Published Sarah\u2019s venue access information: getting to each venue by car, bus and bike, the steps and uneven pavement at Vogelmorn, and the fact that the only wheelchair accessible toilets are at Ridgway School Hall.',
+      'The note above the programme said Ridgway is wheelchair accessible and said nothing about Vogelmorn, which read as though both were. It now names the steps between the buildings.',
+      'Each event page carries its own venue\u2019s access note directly under the address, so the information is where someone is deciding whether they can get in \u2014 not one page away.',
+      'Moved ticket buying off the programme listing and onto each event page, where it sits beside that event\u2019s venue and access details. You now see what the room is like before you book, not after.',
+      'Tickets went on sale, so the disabled \u201cTix on sale soon\u201d placeholder is a real link. As a dimmed placeholder it had been the worst contrast on the site; the live button carries white on pink at 4.81:1.',
+      'Removed the festival phone number from the site at the contact\u2019s request. Worth recording plainly: for some people a phone call is the accessible route and email is not, so this is a step backwards for them. Anyone who flags an access need at checkout is sent the number by email instead.',
+    ],
+  },
   {
     date: '7 August 2026',
     items: [
@@ -212,6 +231,11 @@ export default function AccessibilityReportPage() {
         <div className="mx-auto max-w-3xl">
           <p className="wpf-text-muted text-sm leading-relaxed mb-8">
             Last tested <strong>{LAST_TESTED}</strong> against the live build.
+            The site has changed since then — tickets went on sale and the
+            venue access notes went in — and those changes have not had a full
+            audit run over them. Contrast and keyboard order were checked by
+            hand for each new element, which is not the same thing, so the
+            figures below describe the site as it was on that date.
             We publish the open items alongside the fixed ones. If something
             here is wrong, or you hit a problem we have not listed,{' '}
             <a
