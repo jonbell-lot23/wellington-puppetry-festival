@@ -128,6 +128,15 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                   {venue.address}
                 </a>
               </dd>
+              {/* Sarah's venue access notes (Aug 2026). This is the page
+                  someone reads while deciding whether they can get in, so it
+                  says what's actually there — steps, toilets — rather than
+                  leaving them to ask. */}
+              {venue.access && (
+                <dd className="text-sm leading-relaxed wpf-text-muted mt-2 max-w-md">
+                  {venue.access}
+                </dd>
+              )}
             </div>
           </dl>
 

@@ -103,10 +103,14 @@ export const PAGES: PageDef[] = [
       ),
       // Bridget, Jul 2026: the Hall / Upstairs / the Green only make sense once
       // you know they're all rooms at one address. Sits above the listings.
+      // Sarah, Aug 2026: it said Ridgway is wheelchair accessible but said
+      // nothing about Vogelmorn, which reads as though both are. The steps and
+      // the toilets are the two things that decide whether some people can come
+      // at all, so they're named here rather than left to the access page.
       F(
         'venueNote',
         'Venue note (above the programme)',
-        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club. “The Hall”, “Upstairs” and “the Green” are all part of the same place. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, and is also our wet weather venue.',
+        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club. “The Hall”, “Upstairs” and “the Green” are all part of the same place, and getting between them means steps and uneven pavement. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, has the only wheelchair accessible toilets, and is also our wet weather venue.',
         true,
       ),
       // Bridget, 8 Aug: unclear where visitors buy tickets while browsing the
@@ -270,6 +274,11 @@ export const PAGES: PageDef[] = [
       // The festival reads mail at the Gmail account, not at a domain address —
       // the domain isn't set up for mail. Feeds /contact and the Support page.
       F('email', 'Contact email', 'wellingtonpuppetryfestival@gmail.com'),
+      // Sarah's details, as published on the Humanitix listing (Aug 2026).
+      // The phone number matters most to anyone who'd rather not email about
+      // an access need, so it's repeated on /accessibility.
+      F('contactName', 'Who answers (name)', 'Sarah Bell'),
+      F('phone', 'Contact phone', '021 294 9831'),
     ],
   },
   {
@@ -366,20 +375,45 @@ export const PAGES: PageDef[] = [
         true,
       ),
 
-      // Four access cards, deliberately empty. They previously shipped with
-      // placeholder copy describing provisions nobody had confirmed — the
-      // venue one ("we work with venues across Wellington to ensure wheelchair
-      // access") was simply untrue, and on an access page that is worse than
-      // saying nothing. Fill these in only with provisions that are actually
-      // in place; a card with an empty title is dropped from the page.
-      F('card1Label', 'Card 1: title', ''),
-      F('card1Body', 'Card 1: text', '', true),
-      F('card2Label', 'Card 2: title', ''),
-      F('card2Body', 'Card 2: text', '', true),
-      F('card3Label', 'Card 3: title', ''),
-      F('card3Body', 'Card 3: text', '', true),
-      F('card4Label', 'Card 4: title', ''),
-      F('card4Body', 'Card 4: text', '', true),
+      // Four access cards. These shipped with placeholder copy describing
+      // provisions nobody had confirmed — the venue one ("we work with venues
+      // across Wellington to ensure wheelchair access") was simply untrue, and
+      // on an access page that is worse than saying nothing, so they were
+      // emptied. They're filled now with Sarah's information (Aug 2026), the
+      // same text she published on the Humanitix listing.
+      //
+      // It says plainly where the festival is *not* accessible. That's the
+      // point: someone deciding whether they can come needs to know about the
+      // steps and the toilets before they buy, not on the day.
+      // A card with an empty title is still dropped from the page.
+      F('card1Label', 'Card 1: title', 'Getting to Vogelmorn Bowling Club'),
+      F(
+        'card1Body',
+        'Card 1: text',
+        '93 Mornington Road, Brooklyn. There is usually lots of free, unmetered street parking. The closest bus stop is Mills Road opposite Vennell Street — from the CBD, take the number 7 towards Kingston. There is ample bike parking at the venue.',
+        true,
+      ),
+      F('card2Label', 'Card 2: title', 'Getting to Ridgway School Hall'),
+      F(
+        'card2Body',
+        'Card 2: text',
+        '120 Mornington Road, Brooklyn, a short walk further up the road from the Bowling Club. There is usually free street parking around the school on Mornington Road. The closest bus stop is The Ridgway at Ingestre Street — from the CBD, take the number 7 towards Kingston.',
+        true,
+      ),
+      F('card3Label', 'Card 3: title', 'Steps and surfaces'),
+      F(
+        'card3Body',
+        'Card 3: text',
+        'At Vogelmorn you will likely encounter steps and uneven pavement. Crossing from the Precinct building, where the workshops are held, to the Hall means several sets of steps and a lawn. Ridgway School Hall is wheelchair accessible.',
+        true,
+      ),
+      F('card4Label', 'Card 4: title', 'Toilets'),
+      F(
+        'card4Body',
+        'Card 4: text',
+        'The only wheelchair accessible toilets are at Ridgway School Hall. The toilets at Vogelmorn are not wheelchair accessible: those in the Precinct are up a short flight of stairs (fewer than five), and those in the Hall are on the same level as the shows, so there are no stairs once you are inside.',
+        true,
+      ),
 
       F('ctaLabel', 'Contact button label', 'Contact us about access needs'),
 

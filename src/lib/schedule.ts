@@ -15,26 +15,39 @@
 // logo, Te Kura o Tawatawa / Ridgway School, 120 Mornington Rd. The object key
 // stays 'ridgeway' because stored programme JSON references it; only the label
 // visitors see was ever misspelled.
+//
+// `access` is Sarah's venue-by-venue access information (Aug 2026, also on the
+// Humanitix listing). It lives on the venue rather than on each event so it
+// can't drift between the twelve listings that share these four rooms, and so
+// a new event inherits it without anyone remembering to write it again.
 export const VENUES = {
   hall: {
     label: 'The Hall',
     bg: 'var(--wpf-yellow)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
+    access:
+      'Once you are inside, the toilets are on the same level as the shows, so there are no stairs. They are not wheelchair accessible — the nearest wheelchair accessible toilets are at Ridgway School Hall. Expect steps and uneven pavement getting to the building.',
   },
   upstairs: {
     label: 'Upstairs',
     bg: 'var(--wpf-pink-soft)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
+    access:
+      'In the Precinct building. The toilets here are up a short flight of stairs (fewer than five) and are not wheelchair accessible. Crossing to the Hall means several sets of steps and a lawn.',
   },
   green: {
     label: 'The Green',
     bg: 'var(--wpf-blue-soft)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
+    access:
+      'Outdoors on the lawn. Expect steps and uneven pavement around the Precinct, including several sets of steps between here and the Hall.',
   },
   ridgeway: {
     label: 'Ridgway Hall',
     bg: 'var(--wpf-cream)',
     address: 'Ridgway School, 120 Mornington Road, Brooklyn, Wellington 6021',
+    access:
+      'Wheelchair accessible, and the only venue with wheelchair accessible toilets. A short walk further up Mornington Road from the Bowling Club.',
   },
 } as const
 

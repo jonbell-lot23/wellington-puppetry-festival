@@ -5,7 +5,14 @@ import { teReo } from '@/lib/tereo'
 export const revalidate = 60
 
 export default async function AccessibilityPage() {
-  const c = await getPageContent('accessibility')
+  // Sarah's contact details live on the contact page's content so there's one
+  // copy of them; this page shows them inline rather than only behind a button,
+  // because "phone a human" is the fallback when the written information here
+  // doesn't cover someone's situation.
+  const [c, contact] = await Promise.all([
+    getPageContent('accessibility'),
+    getPageContent('contact'),
+  ])
 
   // Card text is editable in /admin (see the 'accessibility' entry in
   // lib/pages.ts) — access provisions change as venues are confirmed, and
@@ -49,6 +56,32 @@ export default async function AccessibilityPage() {
           >
             {c.ctaLabel}
           </a>
+          {(contact.email || contact.phone) && (
+            <p className="mt-5 text-sm leading-relaxed wpf-text-muted">
+              {contact.contactName && <>Or talk to {contact.contactName}: </>}
+              {contact.email && (
+                <a
+                  href={`mailto:${contact.email}`}
+                  className="wpf-btn-focus font-semibold underline underline-offset-4"
+                  style={{ color: 'var(--wpf-pink-deep)' }}
+                >
+                  {contact.email}
+                </a>
+              )}
+              {contact.email && contact.phone && ' · '}
+              {contact.phone && (
+                // tel: with the spaces stripped — a NZ mobile written
+                // "021 294 9831" won't dial from some Android keypads otherwise.
+                <a
+                  href={`tel:${contact.phone.replace(/\s+/g, '')}`}
+                  className="wpf-btn-focus font-semibold underline underline-offset-4"
+                  style={{ color: 'var(--wpf-pink-deep)' }}
+                >
+                  {contact.phone}
+                </a>
+              )}
+            </p>
+          )}
         </div>
 
         {/* Linked to from the end of the programme as its own destination —
