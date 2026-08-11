@@ -28,22 +28,6 @@ export default async function ContactPage() {
               <p className="mt-2 text-sm wpf-text-muted">Your message reaches {c.contactName}.</p>
             )}
 
-            {/* Sarah's number, from the Humanitix access listing (Aug 2026).
-                Worth having on the page for anyone who'd rather not put an
-                access need in writing to a stranger. */}
-            {c.phone && (
-              <div className="mt-8 pt-8 border-t border-black/10">
-                <p className="wpf-section-kicker mb-2">Phone</p>
-                <a
-                  href={`tel:${c.phone.replace(/\s+/g, '')}`}
-                  className="wpf-btn-focus text-base md:text-lg font-bold hover:underline transition-colors"
-                  style={{ color: 'var(--wpf-pink-deep)' }}
-                >
-                  {c.phone}
-                </a>
-              </div>
-            )}
-
             <div className="mt-8 pt-8 border-t border-black/10">
               <p className="wpf-section-kicker mb-3">Follow along</p>
               <div className="flex gap-3">

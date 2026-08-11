@@ -274,11 +274,12 @@ export const PAGES: PageDef[] = [
       // The festival reads mail at the Gmail account, not at a domain address —
       // the domain isn't set up for mail. Feeds /contact and the Support page.
       F('email', 'Contact email', 'wellingtonpuppetryfestival@gmail.com'),
-      // Sarah's details, as published on the Humanitix listing (Aug 2026).
-      // The phone number matters most to anyone who'd rather not email about
-      // an access need, so it's repeated on /accessibility.
+      // Sarah, 11 Aug: no phone number on the site. Attendees who flag an
+      // access need at checkout get her number by email instead, which keeps
+      // it to the people who need it rather than the open web. There is
+      // deliberately no phone field here — an empty one is an invitation to
+      // fill it in.
       F('contactName', 'Who answers (name)', 'Sarah Bell'),
-      F('phone', 'Contact phone', '021 294 9831'),
     ],
   },
   {
