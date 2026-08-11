@@ -16,6 +16,17 @@ import { VENUES, type VenueKey } from './schedule'
 export type { VenueKey }
 export { VENUES }
 
+// Sarah, 11 Aug: Humanitix is live. Everything sells from one page, with the
+// four ticket groups reachable as anchors on it. The numbering starts at
+// zero — #group1 is the Saturday workshops, *not* the shows.
+export const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
+/** Puppet Shows — every ticketed show, Saturday and Sunday. */
+export const TICKETS_SHOWS_URL = `${TICKETS_URL}#group0`
+export const TICKETS_SAT_WORKSHOPS_URL = `${TICKETS_URL}#group1`
+export const TICKETS_SUN_WORKSHOPS_URL = `${TICKETS_URL}#group2`
+/** Pea Soup + Puppets for Peace Cabaret — one ticket for the whole evening. */
+export const TICKETS_CABARET_URL = `${TICKETS_URL}#group3`
+
 /** How you get in. Drives the chip on the card. */
 export type Access = 'invite' | 'attendees' | 'free' | 'ticketed'
 
@@ -168,6 +179,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '10:00–10:30am',
         title: 'Box of Birds',
+        ticketUrl: TICKETS_SHOWS_URL,
         image: '/images/shows/box-of-birds-1.jpg',
         imageAlt: BOX_OF_BIRDS_IMAGE_ALT,
         images: ['/images/shows/box-of-birds-1.jpg', '/images/shows/box-of-birds-2.jpg'],
@@ -184,6 +196,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '11:00–11:30am',
         title: 'Migit and the Dragon',
+        ticketUrl: TICKETS_SHOWS_URL,
         image: '/images/shows/migit-and-the-dragon-1.jpg',
         imageAlt: "Kerry and Mary McCammon performing with a suitcase puppet featuring sun and moon faces, to a classroom of children with hands raised",
         images: ['/images/shows/migit-and-the-dragon-1.jpg', '/images/shows/migit-and-the-dragon-2.jpg'],
@@ -204,6 +217,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '12:00–12:45pm',
         title: 'Little Top Circus',
+        ticketUrl: TICKETS_SHOWS_URL,
         image: '/images/shows/little-top-circus-1.jpg',
         imageAlt: "A marionette circus strongman puppet in a red-and-white striped costume with a waxed moustache and boots",
         images: ['/images/shows/little-top-circus-1.jpg', '/images/shows/little-top-circus-2.jpg'],
@@ -225,6 +239,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '1:15–2:00pm',
         title: 'The Fish: Festival Commission',
+        ticketUrl: TICKETS_SHOWS_URL,
         image: '/images/shows/the-fish-1.png',
         imageAlt: FISH_IMAGE_ALT,
         by: 'Joey Sheppard',
@@ -251,6 +266,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '9:30–11:00am',
         title: 'Basic Mechanisms for Puppetry',
+        ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/basic-mechanisms-1.jpg',
         imageAlt: "A mechanical four-legged dog puppet built from wood, wire and hinges, showing its internal movement mechanism",
         images: ['/images/shows/basic-mechanisms-1.jpg', '/images/shows/basic-mechanisms-2.jpg'],
@@ -269,6 +285,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '11:50am',
         title: 'Bespoke Backpacks for Giants and Walkabouts',
+        ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/bespoke-backpacks-1.jpg',
         imageAlt: "A glowing green goblin-faced giant puppet waving to a nighttime street parade crowd",
         images: ['/images/shows/bespoke-backpacks-1.jpg', '/images/shows/bespoke-backpacks-2.jpg'],
@@ -290,6 +307,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '12:15–1:45pm',
         title: 'Make a Puppet and Bring it to Life!',
+        ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/make-a-puppet-1.jpg',
         imageAlt: "A simple table-top puppet with a plain white face, headscarf and flowing purple robe, operated by a hidden puppeteer's hand",
         images: ['/images/shows/make-a-puppet-1.jpg', '/images/shows/make-a-puppet-2.jpg'],
@@ -312,6 +330,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '2:00–5:00pm',
         title: 'Building Access from the Start',
+        ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/building-access-1.jpg',
         imageAlt: "Portrait of a woman with short grey hair, smiling",
         images: ['/images/shows/building-access-1.jpg'],
@@ -340,6 +359,10 @@ export const DEFAULT_STRANDS: Strand[] = [
     blurb:
       'An evening of cutting-edge puppetry entertainment, including our freshly commissioned work by Joey Sheppard, a scintillating puppet cabaret, all rounded off with a gourmet dinner, all included in the price.',
     access: 'ticketed',
+    // One ticket covers the whole evening, so the link belongs on the card
+    // rather than on each row inside it.
+    ctaLabel: 'Get Cabaret Tickets',
+    ctaUrl: TICKETS_CABARET_URL,
     events: [
       { time: '5:30–5:45pm', title: 'Doors open', venue: 'hall' },
       { time: '5:45–5:55pm', title: 'Karakia & Opening Circle', venue: 'hall' },
@@ -376,6 +399,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '10:00–10:30am',
         title: 'Box of Birds',
+        ticketUrl: TICKETS_SHOWS_URL,
         image: '/images/shows/box-of-birds-1.jpg',
         imageAlt: BOX_OF_BIRDS_IMAGE_ALT,
         images: ['/images/shows/box-of-birds-1.jpg', '/images/shows/box-of-birds-2.jpg'],
@@ -424,6 +448,7 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         time: '9:00–11:30am',
         title: 'Exploring 3D Shadows',
+        ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
         image: '/images/shows/exploring-3d-shadows-1.jpg',
         imageAlt: "A shadow puppet screen showing a line of animal silhouettes (a bird, cat and dog) holding hands mid-dance",
         images: ['/images/shows/exploring-3d-shadows-1.jpg'],
@@ -440,12 +465,20 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio:
           'Rowena MacGill (she/her) has been a Shadow Puppetry performer for 45 years, both here and in Japan. Coming to puppetry from an educational background, the message of her work is important to her. She feels workshops can be of great value to families and children as it helps them express their creativity and encourages manipulation skills. Rowena has always enjoyed going to ‘out of the way’ places with her work and has undertaken many international tours.',
       },
-      // Late submission — Bridget is still waiting on Sarah's write-up, so
-      // there's no real title yet. Time and venue are firm.
-      { time: '10:00–11:00am', title: 'Workshop with Sarah Bell', by: 'Sarah Bell', duration: '1 hr', venue: 'upstairs' },
+      // Sarah's workshop finally has its title — it's what Humanitix sells it
+      // as. Still no blurb, so no More info page yet.
+      {
+        time: '10:00–11:00am',
+        title: 'Pattern Making for Puppets',
+        ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
+        by: 'Sarah Bell',
+        duration: '1 hr',
+        venue: 'upstairs',
+      },
       {
         time: '11:15–11:50am',
         title: 'Puppetry in Warzones',
+        ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
         image: '/images/shows/puppetry-in-warzones-1.jpg',
         imageAlt: "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
         images: ['/images/shows/puppetry-in-warzones-1.jpg', '/images/shows/puppetry-in-warzones-2.jpg'],

@@ -21,6 +21,10 @@ const NAV = [
 // wordmark as a persistent, always-visible way home.
 const MOBILE_NAV = [{ label: 'Home', href: '/' }, ...NAV]
 
+// The festival-wide Humanitix link. Per-show links (which deep-link to a
+// group on the same page) live on the programme listings instead.
+const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
+
 // This is the festival's own microsite, so its own hand-lettered-style
 // wordmark leads the header — the Birdlife Productions bird-nest logo has
 // been demoted to a small text credit in the footer instead (see
@@ -78,30 +82,36 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
                 {item.label}
               </Link>
             ))}
-            {/* Was opacity-40 over pink to read as "not yet active", which
-                dropped white-on-pink to 1.93:1 — the worst contrast on the
-                site. The dimming now comes from a soft blush fill with ink
-                text (11.15:1) rather than from transparency. */}
-            <span
-              className="text-[14px] font-semibold px-6 py-3 whitespace-nowrap rounded-full cursor-default border"
-              style={{ backgroundColor: 'var(--wpf-pink-soft)', color: 'var(--wpf-pink-deep)', borderColor: 'var(--wpf-pink-deep)' }}
+            {/* Sarah, 11 Aug: tickets are live, so this is a real link now.
+                White on --wpf-pink was 1.93:1 while it was a dim placeholder;
+                --wpf-pink-deep carries white at 5.1:1, which clears AA. */}
+            <a
+              href={TICKETS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wpf-btn-focus text-[14px] font-bold px-6 py-3 whitespace-nowrap rounded-full transition-transform hover:-translate-y-0.5"
+              style={{ backgroundColor: 'var(--wpf-pink-deep)', color: '#ffffff' }}
             >
-              Tix on sale soon
-            </span>
+              Get Tickets
+            </a>
           </nav>
 
           {/* Mobile: tickets + menu toggle.
               The pill is hidden below 380px — at a 400% zoom / 320px viewport
               it pushed the menu button off the right edge (doc width 361 vs
-              320), which made the page scroll sideways. The same "tickets
-              soon" message is repeated in the footer, so nothing is lost. */}
+              320), which made the page scroll sideways. The same tickets link
+              is repeated in the mobile menu and the footer, so nothing is
+              lost at that width. */}
           <div className="lg:hidden flex items-center gap-2">
-            <span
-              className="hidden min-[380px]:inline-block text-[13px] px-4 py-2.5 whitespace-nowrap rounded-full cursor-default"
+            <a
+              href={TICKETS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wpf-btn-focus hidden min-[380px]:inline-block text-[13px] font-bold px-4 py-2.5 whitespace-nowrap rounded-full"
               style={{ backgroundColor: 'var(--wpf-pink-deep)', color: '#ffffff' }}
             >
-              Tix soon
-            </span>
+              Tickets
+            </a>
             <button
               ref={toggleRef}
               aria-label={open ? 'Close menu' : 'Open menu'}
@@ -137,6 +147,17 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
                 {item.label}
               </Link>
             ))}
+            {/* Repeated here because the header pill is hidden below 380px. */}
+            <a
+              href={TICKETS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setOpen(false)}
+              className="wpf-btn-focus text-base font-bold py-1 underline underline-offset-4"
+              style={{ color: 'var(--wpf-pink-deep)' }}
+            >
+              Get Tickets
+            </a>
           </nav>
         )}
       </div>

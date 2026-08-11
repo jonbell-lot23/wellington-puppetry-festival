@@ -120,12 +120,16 @@ export default async function HomePage() {
             >
               See the Programme
             </Link>
-            <span
-              className="wpf-btn-secondary text-base px-8 py-3.5 opacity-40 cursor-not-allowed"
-              aria-disabled="true"
+            {/* Sarah, 11 Aug: Humanitix is live, so the placeholder becomes a
+                real link. */}
+            <a
+              href={c.ticketsUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wpf-btn-secondary wpf-btn-focus text-base px-8 py-3.5"
             >
-              Tix on sale soon
-            </span>
+              Get Tickets
+            </a>
           </div>
         </div>
       </section>

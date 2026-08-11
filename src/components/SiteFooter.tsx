@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-const TICKETS_URL = 'https://events.humanitix.com/'
+const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
 
 function Instagram() {
   return (

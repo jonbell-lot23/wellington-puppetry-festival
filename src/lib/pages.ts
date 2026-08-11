@@ -11,7 +11,9 @@
 // events as one JSON blob and gets a dedicated structured editor in /admin
 // instead of the generic field form.
 
-import { DEFAULT_STRANDS, serializeStrands } from './strands'
+import { DEFAULT_STRANDS, serializeStrands, TICKETS_URL, TICKETS_CABARET_URL } from './strands'
+
+export { TICKETS_URL, TICKETS_CABARET_URL }
 
 export type Field = {
   key: string
@@ -59,7 +61,7 @@ export const PAGES: PageDef[] = [
         'WPF returns this spring to fill the city with strings, shadows and wonder. A free, family-first celebration brought to life by our own community of puppeteers, storytellers and makers.',
         true,
       ),
-      F('ticketsUrl', 'Tickets URL (Humanitix)', 'https://events.humanitix.com/'),
+      F('ticketsUrl', 'Tickets URL (Humanitix)', TICKETS_URL),
       F('kidsHeading', 'Saturday kids section heading', 'Saturday is FREE for kids & whānau'),
       F(
         'kidsBody',
@@ -117,7 +119,7 @@ export const PAGES: PageDef[] = [
         true,
       ),
       F('ticketsLabel', 'Tickets button label', 'Get Tickets'),
-      F('ticketsUrl', 'Tickets button URL', 'https://events.humanitix.com/'),
+      F('ticketsUrl', 'Tickets button URL', TICKETS_URL),
       // Sarah, 7 Aug: access information shouldn't be quarantined on its own
       // page. The separate /accessibility page stays as a shortcut, but the
       // same information is repeated here, in the ordinary flow, so it reaches
@@ -281,7 +283,8 @@ export const PAGES: PageDef[] = [
         true,
       ),
       F('ticketsLabel', 'Tickets button label', 'Get Cabaret Tickets'),
-      F('ticketsUrl', 'Tickets button URL', 'https://events.humanitix.com/'),
+      // Straight to the Cabaret group rather than the top of the page.
+      F('ticketsUrl', 'Tickets button URL', TICKETS_CABARET_URL),
 
       F(
         'imageCaption',
