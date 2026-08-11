@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import SponsorInvite from '@/components/SponsorInvite'
+import { teReo } from '@/lib/tereo'
 
 export const revalidate = 60
 
@@ -101,15 +102,15 @@ export default async function HomePage() {
 
         <div className="mx-auto max-w-3xl flex flex-col items-center text-center">
 
-          <p className="wpf-section-kicker mb-3">{c.heroKicker}</p>
+          <p className="wpf-section-kicker mb-3">{teReo(c.heroKicker)}</p>
           <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.08] text-balance tracking-tight">
-            {c.heroTitle}
+            {teReo(c.heroTitle)}
           </h1>
           <p className="mt-3 text-lg md:text-xl font-extrabold tracking-wide" style={{ color: 'var(--wpf-pink)' }}>
-            {c.heroDates}
+            {teReo(c.heroDates)}
           </p>
           <p className="mt-5 wpf-text-muted leading-relaxed max-w-2xl text-balance text-base md:text-lg">
-            {c.heroTagline}
+            {teReo(c.heroTagline)}
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
@@ -144,12 +145,12 @@ export default async function HomePage() {
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
               <p className="wpf-section-kicker mb-2" style={{ color: 'var(--wpf-yellow)' }}>Community day</p>
               <h2 className="wpf-section-heading text-3xl md:text-5xl" style={{ color: 'var(--wpf-yellow)' }}>
-                {c.kidsHeading}
+                {teReo(c.kidsHeading)}
               </h2>
             </div>
           </div>
           <p className="mt-7 text-center max-w-2xl mx-auto leading-relaxed text-base md:text-lg" style={{ color: '#ffffff' }}>
-            {c.kidsBody}
+            {teReo(c.kidsBody)}
           </p>
         </div>
       </section>
@@ -176,12 +177,12 @@ export default async function HomePage() {
             <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
               <p className="wpf-section-kicker mb-2" style={{ color: 'var(--wpf-pink-soft)' }}>Evening Cabaret</p>
               <h2 className="wpf-section-heading text-3xl md:text-5xl" style={{ color: '#ffffff' }}>
-                {c.cabaretSectionHeading}
+                {teReo(c.cabaretSectionHeading)}
               </h2>
             </div>
           </div>
           <p className="mt-7 text-center max-w-2xl mx-auto leading-relaxed text-base md:text-lg" style={{ color: 'rgba(255,255,255,0.82)' }}>
-            {c.cabaretSectionBody}
+            {teReo(c.cabaretSectionBody)}
           </p>
         </div>
       </section>
@@ -198,7 +199,7 @@ export default async function HomePage() {
       <section className="px-6 pt-16 pb-10 md:pt-24 md:pb-14" style={{ backgroundColor: CREAM }}>
         <div className="mx-auto max-w-6xl">
           <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12" style={{ color: 'var(--wpf-blue)' }}>
-            {c.galleryHeading}
+            {teReo(c.galleryHeading)}
           </h2>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
             {GALLERY_IMAGES.map(({ file, key }) => (
@@ -216,6 +217,14 @@ export default async function HomePage() {
               </div>
             ))}
           </div>
+          {/* Photo credit. Solid ink rather than a faded tint — every other
+              faded-text case on this site failed contrast and had to be
+              fixed, so this one starts solid. */}
+          {c.photoCredit?.trim() && (
+            <p className="mt-8 text-center text-sm" style={{ color: INK }}>
+              {teReo(c.photoCredit)}
+            </p>
+          )}
         </div>
       </section>
 
@@ -226,7 +235,7 @@ export default async function HomePage() {
             rather than as the runt of a five-wide row. */}
         <div className="mx-auto max-w-3xl">
           <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12 lowercase" style={{ color: 'var(--wpf-ink)' }}>
-            {c.sponsorsCaption}
+            {teReo(c.sponsorsCaption)}
           </h2>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-5 md:gap-8 items-center">
             {SPONSORS.map((s) =>

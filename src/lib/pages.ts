@@ -50,9 +50,9 @@ export const PAGES: PageDef[] = [
     path: '/',
     title: 'Homepage',
     fields: [
-      F('heroKicker', 'Hero kicker (small line above title)', 'A community festival made in Pōneke'),
+      F('heroKicker', 'Hero kicker (small line above title)', 'A community festival made in Te Whanganui-a-Tara'),
       F('heroTitle', 'Hero title', 'Three days of strings, shadows & wonder'),
-      F('heroDates', 'Hero dates line', '18–20 SEP 2026 · PŌNEKE WELLINGTON'),
+      F('heroDates', 'Hero dates line', '18–20 SEP 2026 · TE WHANGANUI-A-TARA'),
       F(
         'heroTagline',
         'Hero tagline',
@@ -81,6 +81,9 @@ export const PAGES: PageDef[] = [
         true,
       ),
       F('galleryHeading', 'Gallery section heading', 'Moments from past festivals'),
+      // Bridget, 11 Aug: the festival photography was uncredited. A field
+      // rather than hardcoded text, so the wording can change as photos do.
+      F('photoCredit', 'Photo credit (under the gallery)', 'All photos on this page are courtesy of Tom Kay.'),
       F('sponsorsCaption', 'Sponsors heading', 'Thanks to our sponsors and supporters'),
     ],
   },
@@ -93,7 +96,7 @@ export const PAGES: PageDef[] = [
       F(
         'intro',
         'Intro paragraph',
-        'Three days of shows, workshops and free family fun across Pōneke Wellington, from opening karakia on Friday night to the closing circle on Sunday afternoon.',
+        'Three days of shows, workshops and free family fun across Te Whanganui-a-Tara Wellington, from opening karakia on Friday night to the closing circle on Sunday afternoon.',
         true,
       ),
       // Bridget, Jul 2026: the Hall / Upstairs / the Green only make sense once
@@ -214,7 +217,7 @@ export const PAGES: PageDef[] = [
       F(
         'communityBody1',
         'Community section: first paragraph',
-        'WPF is run by Birdlife Productions with the help of local volunteers, artists and venues across Pōneke Wellington. It exists to make puppetry, one of the oldest, strangest and most joyful art forms, accessible to everyone, especially families who might not otherwise get to a theatre show.',
+        'WPF is run by Birdlife Productions with the help of local volunteers, artists and venues across Te Whanganui-a-Tara Wellington. It exists to make puppetry, one of the oldest, strangest and most joyful art forms, accessible to everyone, especially families who might not otherwise get to a theatre show.',
         true,
       ),
       F(

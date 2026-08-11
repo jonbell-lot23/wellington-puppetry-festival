@@ -123,7 +123,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Te reo Māori pronunciation',
     status: 'pass',
     body:
-      'Words like whānau, Pōneke, Aotearoa and Ngā Maunga Rū are marked up so a screen reader pronounces them as te reo rather than reading them as English.',
+      'Words like whānau, Te Whanganui-a-Tara, Aotearoa and Ngā Maunga Rū are marked up so a screen reader pronounces them as te reo rather than reading them as English.',
     detail:
       'This happens automatically as the page is built, rather than being typed in by hand, so it keeps working as the programme is edited, so nobody has to remember to do it. It currently recognises a dozen words and phrases, including the ones in show titles and artist bios.',
   },

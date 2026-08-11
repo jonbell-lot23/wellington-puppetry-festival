@@ -26,7 +26,11 @@ const TERMS = [
   // "Ngā Maunga Rū" must win over a bare "Ngā".
   'Ngā Maunga Rū',
   'Nga Maunga Ru',
+  // Bridget moved the site from "Pōneke" to "Te Whanganui-a-Tara" (Aug 2026).
+  // She writes it spaced and macronless; the other spellings stay because
+  // older copy and existing Supabase rows still carry them.
   'Te Whanganui-a-Tara',
+  'Te Whanganui-ā-Tara',
   'Te-Whanganui-ā-Tara',
   'Toi Whakaari',
   'Te Kura o Tawatawa',
