@@ -87,7 +87,12 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             <p className="text-xl font-bold mb-6 wpf-text-muted">{ev.by}</p>
           )}
 
-          <dl className="flex flex-wrap gap-x-8 gap-y-3 mb-10">
+          {/* Jon, 11 Aug: the ticket button sits beside the When/Ages/Where
+              block rather than in a banner of its own underneath it — the
+              practical details and the way to act on them read as one thing,
+              and it saves a whole row above the fold. */}
+          <div className="flex flex-col sm:flex-row sm:items-center gap-6 mb-10">
+          <dl className="flex-1 flex flex-wrap gap-x-8 gap-y-3">
             {[
               { term: 'When', value: [ev.time, ev.duration].filter(Boolean).join(' · ') },
               { term: 'Ages', value: ev.age },
@@ -126,33 +131,19 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             </div>
           </dl>
 
-          {/* Jon, 11 Aug: the programme listing no longer carries per-row
-              ticket buttons, so this is the one place someone buys a ticket
-              for this event — it sits above the photo and the blurb, not
-              below them, and is sized to be the loudest thing on the page. */}
+          {/* The programme listing no longer carries per-row ticket buttons,
+              so this is where someone buys a ticket for this event. */}
           {ev.ticketUrl?.trim() && (
-            <div
-              className="rounded-2xl px-6 py-6 mb-10 border flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6"
-              style={{ backgroundColor: 'var(--wpf-pink-soft)', borderColor: 'var(--wpf-pink-deep)' }}
+            <a
+              href={ev.ticketUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="wpf-btn-primary wpf-btn-focus shrink-0 self-start sm:self-auto text-lg px-9 py-4 text-center"
             >
-              <div className="flex-1">
-                <p className="text-lg font-extrabold" style={{ color: 'var(--wpf-ink)' }}>
-                  Tickets are on sale now
-                </p>
-                <p className="text-sm mt-0.5" style={{ color: 'var(--wpf-ink)' }}>
-                  Booking opens in a new tab at Humanitix.
-                </p>
-              </div>
-              <a
-                href={ev.ticketUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="wpf-btn-primary wpf-btn-focus shrink-0 text-base px-8 py-3.5 text-center"
-              >
-                Buy tickets
-              </a>
-            </div>
+              Buy tickets
+            </a>
           )}
+          </div>
 
           {ev.image?.trim() && (
             // eslint-disable-next-line @next/next/no-img-element
