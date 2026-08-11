@@ -144,6 +144,17 @@ export default function SiteFooter() {
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
         <p className="text-xs text-center" style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}>
           © {new Date().getFullYear()} Wellington Puppetry Festival
+          {' • '}
+          Site design by{' '}
+          <a
+            href="https://lot23.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="wpf-btn-focus underline underline-offset-2 inline-block py-1"
+            style={{ color: 'inherit' }}
+          >
+            Jon Bell
+          </a>
         </p>
       </div>
     </footer>
