@@ -267,7 +267,9 @@ export const PAGES: PageDef[] = [
       ),
       // .com, not .nz — wellingtonpuppetryfestival.com is the domain that was
       // actually registered (Aug 2026). The .nz address never existed.
-      F('email', 'Contact email', 'hello@wellingtonpuppetryfestival.com'),
+      // The festival reads mail at the Gmail account, not at a domain address —
+      // the domain isn't set up for mail. Feeds /contact and the Support page.
+      F('email', 'Contact email', 'wellingtonpuppetryfestival@gmail.com'),
     ],
   },
   {
