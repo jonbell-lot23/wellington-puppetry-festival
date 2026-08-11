@@ -147,29 +147,20 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
           </span>
         )}
         {ev.detail && <p className="text-sm wpf-text-muted">{teReo(ev.detail)}</p>}
-        {(more || ev.ticketUrl?.trim()) && (
-          <p className="mt-1.5 flex flex-wrap items-center gap-x-4 gap-y-1">
+        {/* Jon, 11 Aug: a pink "Buy tickets" button on every row turned the
+            listing into a wall of buttons and drowned out the programme
+            itself. Tickets now live at the top of each event's own page,
+            where there's room to be unmissable. */}
+        {more && (
+          <p className="mt-1.5">
             {/* Not a link itself — the row overlay above handles the click. It's
                 here so the row visibly advertises that there's more to read. */}
-            {more && (
-              <span
-                className="text-xs font-bold uppercase tracking-widest underline underline-offset-4"
-                style={{ color: 'var(--wpf-pink-deep)' }}
-              >
-                More info →
-              </span>
-            )}
-            {ev.ticketUrl?.trim() && (
-              <a
-                href={ev.ticketUrl}
-                target="_blank"
-                rel="noreferrer"
-                className="relative z-10 inline-block rounded-full px-3.5 py-1 text-xs font-bold text-white transition-transform hover:-translate-y-0.5"
-                style={{ backgroundColor: 'var(--wpf-pink)' }}
-              >
-                Buy tickets
-              </a>
-            )}
+            <span
+              className="text-xs font-bold uppercase tracking-widest underline underline-offset-4"
+              style={{ color: 'var(--wpf-pink-deep)' }}
+            >
+              More info →
+            </span>
           </p>
         )}
       </div>

@@ -126,6 +126,34 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             </div>
           </dl>
 
+          {/* Jon, 11 Aug: the programme listing no longer carries per-row
+              ticket buttons, so this is the one place someone buys a ticket
+              for this event — it sits above the photo and the blurb, not
+              below them, and is sized to be the loudest thing on the page. */}
+          {ev.ticketUrl?.trim() && (
+            <div
+              className="rounded-2xl px-6 py-6 mb-10 border flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6"
+              style={{ backgroundColor: 'var(--wpf-pink-soft)', borderColor: 'var(--wpf-pink-deep)' }}
+            >
+              <div className="flex-1">
+                <p className="text-lg font-extrabold" style={{ color: 'var(--wpf-ink)' }}>
+                  Tickets are on sale now
+                </p>
+                <p className="text-sm mt-0.5" style={{ color: 'var(--wpf-ink)' }}>
+                  Booking opens in a new tab at Humanitix.
+                </p>
+              </div>
+              <a
+                href={ev.ticketUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="wpf-btn-primary wpf-btn-focus shrink-0 text-base px-8 py-3.5 text-center"
+              >
+                Buy tickets
+              </a>
+            </div>
+          )}
+
           {ev.image?.trim() && (
             // eslint-disable-next-line @next/next/no-img-element
             <img
@@ -223,13 +251,14 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             </div>
           )}
 
+          {/* Repeated at the end of a long read, quieter than the panel up top
+              so it doesn't compete with it. */}
           {ev.ticketUrl?.trim() && (
             <a
               href={ev.ticketUrl}
               target="_blank"
               rel="noreferrer"
-              className="inline-block rounded-full px-8 py-3 font-bold text-white transition-transform hover:-translate-y-0.5"
-              style={{ backgroundColor: 'var(--wpf-pink)' }}
+              className="wpf-btn-primary wpf-btn-focus px-8 py-3"
             >
               Buy tickets
             </a>

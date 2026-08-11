@@ -83,14 +83,16 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
               </Link>
             ))}
             {/* Sarah, 11 Aug: tickets are live, so this is a real link now.
-                White on --wpf-pink was 1.93:1 while it was a dim placeholder;
-                --wpf-pink-deep carries white at 5.1:1, which clears AA. */}
+                The old placeholder was white over --wpf-pink at opacity-40,
+                which read 1.93:1 — it's the transparency that failed, not the
+                colour. Solid --wpf-pink carries white at 4.81:1, so this uses
+                the same button as every other CTA on the site rather than a
+                darker pink of its own. */}
             <a
               href={TICKETS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="wpf-btn-focus text-[14px] font-bold px-6 py-3 whitespace-nowrap rounded-full transition-transform hover:-translate-y-0.5"
-              style={{ backgroundColor: 'var(--wpf-pink-deep)', color: '#ffffff' }}
+              className="wpf-btn-primary wpf-btn-focus text-[14px] px-6 py-3 whitespace-nowrap"
             >
               Get Tickets
             </a>
@@ -107,8 +109,7 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
               href={TICKETS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="wpf-btn-focus hidden min-[380px]:inline-block text-[13px] font-bold px-4 py-2.5 whitespace-nowrap rounded-full"
-              style={{ backgroundColor: 'var(--wpf-pink-deep)', color: '#ffffff' }}
+              className="wpf-btn-primary wpf-btn-focus hidden min-[380px]:inline-block text-[13px] px-4 py-2.5 whitespace-nowrap"
             >
               Tickets
             </a>
@@ -153,8 +154,7 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
               target="_blank"
               rel="noopener noreferrer"
               onClick={() => setOpen(false)}
-              className="wpf-btn-focus text-base font-bold py-1 underline underline-offset-4"
-              style={{ color: 'var(--wpf-pink-deep)' }}
+              className="wpf-btn-primary wpf-btn-focus self-start text-base px-6 py-2.5 mt-1"
             >
               Get Tickets
             </a>

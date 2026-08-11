@@ -114,19 +114,23 @@ export default async function HomePage() {
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
+            {/* Sarah, 11 Aug: Humanitix is live, so the placeholder becomes a
+                real link — and it takes the pink. Pink means "buy tickets"
+                everywhere else on the site (the header, the per-event Buy
+                tickets buttons, the cabaret CTA), so the hero shouldn't be the
+                one place it means something else. The programme keeps its
+                position and steps back to the outline. */}
             <Link
               href="/program"
-              className="wpf-btn-primary wpf-btn-focus text-base px-8 py-3.5"
+              className="wpf-btn-secondary wpf-btn-focus text-base px-8 py-3.5"
             >
               See the Programme
             </Link>
-            {/* Sarah, 11 Aug: Humanitix is live, so the placeholder becomes a
-                real link. */}
             <a
               href={c.ticketsUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="wpf-btn-secondary wpf-btn-focus text-base px-8 py-3.5"
+              className="wpf-btn-primary wpf-btn-focus text-base px-8 py-3.5"
             >
               Get Tickets
             </a>

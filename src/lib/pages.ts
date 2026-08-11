@@ -110,12 +110,13 @@ export const PAGES: PageDef[] = [
         true,
       ),
       // Bridget, 8 Aug: unclear where visitors buy tickets while browsing the
-      // programme. A banner above the listings, plus a "Buy tickets" button on
-      // each ticketed event further down, until per-show ticket links are live.
+      // programme. A banner above the listings.
+      // Jon, 11 Aug: it used to point at a "Buy tickets" button on every
+      // ticketed row; those are gone, so it points at the event pages now.
       F(
         'ticketsNote',
         'Tickets note (above the programme)',
-        'Most of the festival is free! A few events are ticketed — look for the "Buy tickets" button on those, or get tickets for the whole festival here.',
+        'Some of the festival is free and some events are ticketed. Open any event below for full details and a link to book, or get tickets for the whole festival here.',
         true,
       ),
       F('ticketsLabel', 'Tickets button label', 'Get Tickets'),
