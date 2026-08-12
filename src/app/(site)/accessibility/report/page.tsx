@@ -9,6 +9,11 @@ import PageHero from '@/components/PageHero'
 //     reflow check — not from a checklist someone eyeballed.
 //  2. "Open" stays honest. A report that only lists wins is marketing, and
 //     the people who need this page can tell the difference immediately.
+//  3. Never name an individual on this page. It records what the site does
+//     and what it still gets wrong, not who did or asked for what — naming a
+//     person turns a fault into their fault, and turns a request (like taking
+//     a phone number down) into a thing they can be argued with about. Say
+//     "the festival", "its owner", "an accessibility consultant".
 //
 // Re-run the audit before editing LAST_TESTED.
 
@@ -157,12 +162,12 @@ const CHANGELOG: { date: string; items: string[] }[] = [
   {
     date: '12 August 2026',
     items: [
-      'Published Sarah\u2019s venue access information: getting to each venue by car, bus and bike, the steps and uneven pavement at Vogelmorn, and the fact that the only wheelchair accessible toilets are at Ridgway School Hall.',
+      'Published venue access information: getting to each venue by car, bus and bike, the steps and uneven pavement at Vogelmorn, and the fact that the only wheelchair accessible toilets are at Ridgway School Hall.',
       'The note above the programme said Ridgway is wheelchair accessible and said nothing about Vogelmorn, which read as though both were. It now names the steps between the buildings.',
       'Each event page carries its own venue\u2019s access note directly under the address, so the information is where someone is deciding whether they can get in \u2014 not one page away.',
       'Moved ticket buying off the programme listing and onto each event page, where it sits beside that event\u2019s venue and access details. You now see what the room is like before you book, not after.',
       'Tickets went on sale, so the disabled \u201cTix on sale soon\u201d placeholder is a real link. As a dimmed placeholder it had been the worst contrast on the site; the live button carries white on pink at 4.81:1.',
-      'Removed the festival phone number from the site at the contact\u2019s request. Worth recording plainly: for some people a phone call is the accessible route and email is not, so this is a step backwards for them. Anyone who flags an access need at checkout is sent the number by email instead.',
+      'Removed the festival phone number from the site at its owner\u2019s request. Worth recording plainly: for some people a phone call is the accessible route and email is not, so this is a step backwards for them. Anyone who flags an access need at checkout is sent the number by email instead.',
     ],
   },
   {
