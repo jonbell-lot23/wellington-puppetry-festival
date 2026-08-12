@@ -2,7 +2,28 @@
 
 import { supabase, getSupabaseAdmin } from '@/lib/supabase'
 import { revalidatePath } from 'next/cache'
+import { cookies } from 'next/headers'
 import { defaultsFor, getPageDef } from '@/lib/pages'
+import { ADMIN_COOKIE, verifyToken } from '@/lib/adminAuth'
+
+/**
+ * Second lock on every admin action.
+ *
+ * proxy.ts already redirects an unauthenticated browser away from /admin, but
+ * a server action is a POST endpoint addressed by id, not a page — so a route
+ * guard is not by itself an authorisation check. Verified against the built
+ * app: posting each action id to a *public* page with no cookie reached them
+ * all, and getPageHistory happily returned the edit history. These functions
+ * do the work, so these functions verify.
+ *
+ * getPageContent is deliberately left open — every public page renders from it.
+ */
+async function requireAdmin() {
+  const jar = await cookies()
+  if (!verifyToken(jar.get(ADMIN_COOKIE)?.value)) {
+    throw new Error('Not signed in.')
+  }
+}
 
 export type PageContent = Record<string, string>
 
@@ -29,11 +50,13 @@ export async function getPageContent(slug: string): Promise<PageContent> {
 
 /** True when the service role key is set — required for admin writes and history. */
 export async function isAdminWritable(): Promise<boolean> {
+  await requireAdmin()
   return getSupabaseAdmin() !== null
 }
 
 /** Persist a page's content and snapshot history. */
 export async function savePageContent(slug: string, content: PageContent) {
+  await requireAdmin()
   const db = getSupabaseAdmin()
   if (!db) {
     throw new Error(
@@ -57,6 +80,7 @@ export async function savePageContent(slug: string, content: PageContent) {
 }
 
 export async function getPageHistory(slug: string): Promise<ContentVersion[]> {
+  await requireAdmin()
   const db = getSupabaseAdmin()
   if (!db) return []
   const { data, error } = await db
@@ -71,12 +95,14 @@ export async function getPageHistory(slug: string): Promise<ContentVersion[]> {
 }
 
 export async function pagesTableExists(): Promise<boolean> {
+  await requireAdmin()
   if (!supabase) return false
   const { error } = await supabase.from('pages').select('slug').limit(1)
   return !error
 }
 
 export async function revertToVersion(slug: string, versionId: number) {
+  await requireAdmin()
   const db = getSupabaseAdmin()
   if (!db) {
     throw new Error(
