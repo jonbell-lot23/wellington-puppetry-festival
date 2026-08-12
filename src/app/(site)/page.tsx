@@ -114,26 +114,23 @@ export default async function HomePage() {
           </p>
 
           <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            {/* Sarah, 11 Aug: Humanitix is live, so the placeholder becomes a
-                real link — and it takes the pink. Pink means "buy tickets"
-                everywhere else on the site (the header, the per-event Buy
-                tickets buttons, the cabaret CTA), so the hero shouldn't be the
-                one place it means something else. The programme keeps its
-                position and steps back to the outline. */}
+            {/* Jon, 13 Aug: the hero's pink Get Tickets button is gone. The
+                header carries tickets on every page including this one, so
+                the hero was the second ask in the same screenful, and it
+                pulled against the thing the hero is actually for — getting
+                someone into the programme, where the tickets live in context.
+                One button, one job.
+
+                Still outline rather than pink, per Sarah's 11 Aug rule: pink
+                means "buy tickets" everywhere on the site (the header, the
+                per-event Buy tickets buttons, the cabaret CTA), so the
+                programme shouldn't borrow it just because it's alone now. */}
             <Link
               href="/program"
               className="wpf-btn-secondary wpf-btn-focus text-base px-8 py-3.5"
             >
               See the Programme
             </Link>
-            <a
-              href={c.ticketsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="wpf-btn-primary wpf-btn-focus text-base px-8 py-3.5"
-            >
-              Get Tickets
-            </a>
           </div>
         </div>
       </section>

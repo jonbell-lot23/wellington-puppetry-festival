@@ -61,7 +61,12 @@ export const PAGES: PageDef[] = [
         'WPF returns this spring to fill the city with strings, shadows and wonder. A free, family-first celebration brought to life by our own community of puppeteers, storytellers and makers.',
         true,
       ),
-      F('ticketsUrl', 'Tickets URL (Humanitix)', TICKETS_URL),
+      // Jon, 13 Aug: no 'ticketsUrl' here any more. The hero's Get Tickets
+      // button is gone (see app/(site)/page.tsx), so nothing on the homepage
+      // read it, and an editable field that changes nothing is worse than no
+      // field at all. Tickets on this page now come from the header, which
+      // uses TICKETS_URL directly. Any value already stored under this key is
+      // left alone in the database — this only stops it appearing in /admin.
       F('kidsHeading', 'Saturday kids section heading', 'Saturday is FREE for kids & whānau'),
       F(
         'kidsBody',
