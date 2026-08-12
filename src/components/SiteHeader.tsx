@@ -90,8 +90,6 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
                 darker pink of its own. */}
             <a
               href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="wpf-btn-primary wpf-btn-focus text-[14px] px-6 py-3 whitespace-nowrap"
             >
               Get Tickets
@@ -107,8 +105,6 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
           <div className="lg:hidden flex items-center gap-2">
             <a
               href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               className="wpf-btn-primary wpf-btn-focus hidden min-[380px]:inline-block text-[13px] px-4 py-2.5 whitespace-nowrap"
             >
               Tickets
@@ -151,8 +147,6 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
             {/* Repeated here because the header pill is hidden below 380px. */}
             <a
               href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
               onClick={() => setOpen(false)}
               className="wpf-btn-primary wpf-btn-focus self-start text-base px-6 py-2.5 mt-1"
             >

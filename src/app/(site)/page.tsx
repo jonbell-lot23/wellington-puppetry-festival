@@ -128,8 +128,6 @@ export default async function HomePage() {
             </Link>
             <a
               href={c.ticketsUrl}
-              target="_blank"
-              rel="noopener noreferrer"
               className="wpf-btn-primary wpf-btn-focus text-base px-8 py-3.5"
             >
               Get Tickets
