@@ -26,6 +26,8 @@ export default async function CabaretPage() {
           <p className="mt-6 text-white/80 leading-relaxed max-w-2xl mx-auto text-balance">{c.intro}</p>
           <a
             href={c.ticketsUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-block mt-9 rounded-full font-bold text-base px-8 py-4 hover:brightness-125 transition"
             // --wpf-pink on black is 4.37:1 — just under AA for this size.
             // A brighter pink on the same black reads at 5.75:1.

@@ -2,9 +2,6 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-// Jon, 12 Aug: ticket links deliberately do NOT open a new tab. On a phone the
-// new tab covers the old one with no tab bar and the back swipe won't cross
-// tabs, so it reads as a dead end — same-tab means Back just works.
 const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
 
 function Instagram() {
@@ -33,8 +30,6 @@ const LINKS = [
   // Also reachable from the "You!" tile on the sponsor wall, but that tile is
   // a visual joke — this is the route for anyone not playing along.
   { label: 'Support us', href: '/support' },
-  // `external` means "absolute URL, so a plain <a>, not <Link>" — it does not
-  // mean "new tab". See the note by TICKETS_URL.
   { label: 'Get Tickets', href: TICKETS_URL, external: true },
 ]
 
@@ -130,7 +125,7 @@ export default function SiteFooter() {
               const cls = 'wpf-btn-focus text-sm font-medium inline-block py-1.5 hover:underline'
               return l.external ? (
                 <li key={l.href}>
-                  <a href={l.href} className={cls} style={linkStyle}>
+                  <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls} style={linkStyle}>
                     {l.label}
                   </a>
                 </li>

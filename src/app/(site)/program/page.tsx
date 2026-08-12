@@ -196,10 +196,14 @@ function CardFace({ strand }: { strand: Strand }) {
       {strand.ctaLabel && strand.ctaUrl && (
         <a
           href={strand.ctaUrl}
+          target="_blank"
+          rel="noreferrer"
           className="self-start mt-5 inline-block rounded-full px-6 py-2.5 font-bold text-white transition-transform hover:-translate-y-0.5"
           style={{ backgroundColor: 'var(--wpf-pink)' }}
         >
           {strand.ctaLabel}
+          <span aria-hidden="true"> ↗</span>
+          <span className="wpf-visually-hidden"> (opens in a new tab)</span>
         </a>
       )}
     </>
@@ -296,6 +300,8 @@ export default async function ProgramPage() {
                   {' '}
                   <a
                     href={c.ticketsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     className="font-semibold underline underline-offset-2"
                   >
                     {c.ticketsLabel}

@@ -117,10 +117,13 @@ export const PAGES: PageDef[] = [
       // programme. A banner above the listings.
       // Jon, 11 Aug: it used to point at a "Buy tickets" button on every
       // ticketed row; those are gone, so it points at the event pages now.
+      // Jon, 12 Aug: the per-event links made it look like one trip to
+      // Humanitix per show. Everything is sold from a single page there, so
+      // say so — it's the difference between four checkouts and one.
       F(
         'ticketsNote',
         'Tickets note (above the programme)',
-        'Some of the festival is free and some events are ticketed. Open any event below for full details and a link to book, or get tickets for the whole festival here.',
+        'Some of the festival is free and some events are ticketed. Open any event below for full details and a link to book. Ticketing opens in a new tab, and you can book several shows and workshops in one order, so you only need to go once.',
         true,
       ),
       F('ticketsLabel', 'Tickets button label', 'Get Tickets'),

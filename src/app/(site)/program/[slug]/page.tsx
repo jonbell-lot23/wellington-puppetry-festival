@@ -141,14 +141,39 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
           </dl>
 
           {/* The programme listing no longer carries per-row ticket buttons,
-              so this is where someone buys a ticket for this event. */}
+              so this is where someone buys a ticket for this event.
+
+              Jon, 12 Aug: on a phone the new tab opens on top of this one with
+              no visible tab bar, and the back swipe doesn't cross tabs — so it
+              reads as a one-way door, and you'd think you had to come back
+              here for each show you wanted. You don't: Humanitix sells the
+              whole festival from that one page, so the second line is doing
+              the real work here. The arrow and the hidden text are the
+              standard warning that a link leaves for a new tab (WCAG 3.2.5).
+
+              Jon, 13 Aug: briefly tried same-tab to fix that back button.
+              Bridget asked for the new tab back — losing sight of the
+              programme mid-purchase reads as if Back will empty the cart.
+              It won't, but the anxiety is real and it lands while someone is
+              part-way through paying. Keep the new tab; the copy above is
+              what makes it safe. */}
           {ev.ticketUrl?.trim() && (
-            <a
-              href={ev.ticketUrl}
-              className="wpf-btn-primary wpf-btn-focus shrink-0 self-start sm:self-auto text-lg px-9 py-4 text-center"
-            >
-              Buy tickets
-            </a>
+            <div className="shrink-0 self-start sm:self-auto sm:text-center">
+              <a
+                href={ev.ticketUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="wpf-btn-primary wpf-btn-focus text-lg px-9 py-4 text-center"
+              >
+                Buy tickets
+                <span aria-hidden="true"> ↗</span>
+                <span className="wpf-visually-hidden"> (opens in a new tab)</span>
+              </a>
+              <p className="text-xs leading-snug wpf-text-muted mt-2 sm:max-w-[16rem]">
+                Opens in a new tab. You can book several shows and workshops in
+                one order there.
+              </p>
+            </div>
           )}
           </div>
 
@@ -254,6 +279,8 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
           {ev.ticketUrl?.trim() && (
             <a
               href={ev.ticketUrl}
+              target="_blank"
+              rel="noreferrer"
               className="wpf-btn-primary wpf-btn-focus px-8 py-3"
             >
               Buy tickets
