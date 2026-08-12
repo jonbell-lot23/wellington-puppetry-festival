@@ -202,6 +202,8 @@ function CardFace({ strand }: { strand: Strand }) {
           style={{ backgroundColor: 'var(--wpf-pink)' }}
         >
           {strand.ctaLabel}
+          <span aria-hidden="true"> ↗</span>
+          <span className="wpf-visually-hidden"> (opens in a new tab)</span>
         </a>
       )}
     </>
