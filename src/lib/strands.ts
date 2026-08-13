@@ -162,7 +162,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         title: 'Free KidsZone',
         venue: 'green',
         detail:
-          'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgway Hall.',
+          'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgway School Hall.',
       },
       { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
       { time: '12:00–1:00pm', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
@@ -504,7 +504,7 @@ export const DEFAULT_STRANDS: Strand[] = [
     title: 'Closing Circle',
     blurb:
       'For anyone who wants to acknowledge and celebrate our wonderful weekend together.',
-    note: '12:45–1:30pm at the Hall.',
+    note: '12:45–1:30pm at Vogelmorn Hall.',
     access: 'attendees',
     events: [],
   },

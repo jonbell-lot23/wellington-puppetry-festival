@@ -152,7 +152,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Cabaret access information',
     status: 'planned',
     body:
-      'Steps, surfaces and toilets are now covered for every venue including the Hall. Still missing: pre-show notes, drop-off points, entrance and ramp descriptions, and named support volunteers.',
+      'Steps, surfaces and toilets are now covered for every venue including Vogelmorn Hall. Still missing: pre-show notes, drop-off points, entrance and ramp descriptions, and named support volunteers.',
     detail:
       'The venue notes went in as ordinary listing information rather than a separate access post, which is the shape the rest of this should take too. The cabaret evening is sold as one ticket and has no page of its own, so it has nowhere yet to put pre-show notes.',
   },

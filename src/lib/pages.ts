@@ -115,7 +115,7 @@ export const PAGES: PageDef[] = [
       F(
         'venueNote',
         'Venue note (above the programme)',
-        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club. “The Hall”, “Upstairs” and “the Green” are all part of the same place, and getting between them means steps and uneven pavement. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, has the only wheelchair accessible toilets, and is also our wet weather venue.',
+        'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club. “Vogelmorn Hall”, “Upstairs” and “the Green” are all part of the same place, and getting between them means steps and uneven pavement. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, has the only wheelchair accessible toilets, and is also our wet weather venue.',
         true,
       ),
       // Bridget, 8 Aug: unclear where visitors buy tickets while browsing the
@@ -413,14 +413,14 @@ export const PAGES: PageDef[] = [
       F(
         'card3Body',
         'Card 3: text',
-        'At Vogelmorn you will likely encounter steps and uneven pavement. Crossing from the Precinct building, where the workshops are held, to the Hall means several sets of steps and a lawn. Ridgway School Hall is wheelchair accessible.',
+        'At Vogelmorn you will likely encounter steps and uneven pavement. Crossing from the Precinct building, where the workshops are held, to Vogelmorn Hall means several sets of steps and a lawn. Ridgway School Hall is wheelchair accessible.',
         true,
       ),
       F('card4Label', 'Card 4: title', 'Toilets'),
       F(
         'card4Body',
         'Card 4: text',
-        'The only wheelchair accessible toilets are at Ridgway School Hall. The toilets at Vogelmorn are not wheelchair accessible: those in the Precinct are up a short flight of stairs (fewer than five), and those in the Hall are on the same level as the shows, so there are no stairs once you are inside.',
+        'The only wheelchair accessible toilets are at Ridgway School Hall. The toilets at Vogelmorn are not wheelchair accessible: those in the Precinct are up a short flight of stairs (fewer than five), and those in Vogelmorn Hall are on the same level as the shows, so there are no stairs once you are inside.',
         true,
       ),
 

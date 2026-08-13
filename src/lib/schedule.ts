@@ -6,8 +6,16 @@
 // (Jul 2026), is what renders when no DB row exists yet, and what parsing
 // falls back to if the stored JSON is ever malformed.
 
-// The Hall, Upstairs and the Green are all rooms at one address — the Vogelmorn
-// Bowling Club. `address` is what gets handed to the maps app when someone taps
+// Vogelmorn Hall, Upstairs and the Green are all rooms at one address — the
+// Vogelmorn Bowling Club.
+//
+// Jon, 13 Aug: the hall used to be labelled just "The Hall". With Ridgway in
+// the programme that was two buildings both called Hall, and on Sunday the
+// listing alternates between them — so "The Hall" read as "the hall you are
+// already standing in" when it actually meant a walk back down Mornington
+// Road with 30 minutes to do it. Both labels now name their building.
+//
+// `address` is what gets handed to the maps app when someone taps
 // a venue on their phone, so it needs to be a string a map can actually find:
 // name first, then street, suburb, city.
 //
@@ -22,7 +30,7 @@
 // a new event inherits it without anyone remembering to write it again.
 export const VENUES = {
   hall: {
-    label: 'The Hall',
+    label: 'Vogelmorn Hall',
     bg: 'var(--wpf-yellow)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
     access:
@@ -33,17 +41,17 @@ export const VENUES = {
     bg: 'var(--wpf-pink-soft)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
     access:
-      'In the Precinct building. The toilets here are up a short flight of stairs (fewer than five) and are not wheelchair accessible. Crossing to the Hall means several sets of steps and a lawn.',
+      'In the Precinct building. The toilets here are up a short flight of stairs (fewer than five) and are not wheelchair accessible. Crossing to Vogelmorn Hall means several sets of steps and a lawn.',
   },
   green: {
     label: 'The Green',
     bg: 'var(--wpf-blue-soft)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
     access:
-      'Outdoors on the lawn. Expect steps and uneven pavement around the Precinct, including several sets of steps between here and the Hall.',
+      'Outdoors on the lawn. Expect steps and uneven pavement around the Precinct, including several sets of steps between here and Vogelmorn Hall.',
   },
   ridgeway: {
-    label: 'Ridgway Hall',
+    label: 'Ridgway School Hall',
     bg: 'var(--wpf-cream)',
     address: 'Ridgway School, 120 Mornington Road, Brooklyn, Wellington 6021',
     access:
@@ -106,7 +114,7 @@ export const DEFAULT_SCHEDULE: DaySchedule[] = [
             time: '10:00am–2:00pm',
             title: 'Free KidsZone',
             venue: 'green',
-            detail: 'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgway Hall.',
+            detail: 'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgway School Hall.',
           },
           { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
           { time: '11:00–11:30am', title: 'Migit and the Dragon', by: 'Mary', duration: '30 mins', age: '3+', venue: 'hall' },
