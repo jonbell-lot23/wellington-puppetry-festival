@@ -13,7 +13,7 @@ import { join } from 'node:path'
 // stays crisp — Satori lays it out at build time and the PNG is cached.
 
 export const alt =
-  'A giant puppet with green eyes and a red korowai towers over a Wellington street beside a tino rangatiratanga flag, above the words “Wellington Puppetry Festival, Puppets for Peace, 18–20 September 2026”.'
+  'A marionette kiwi stands on a hall floor while children sit watching, one leaning in close, above the words “Wellington Puppetry Festival, Puppets for Peace, 18–20 September 2026”.'
 
 // 1200×630 is 1.91:1 — the ratio Facebook and Messenger render a large link
 // card at, so the whole card survives with no crop.
@@ -33,7 +33,7 @@ const asDataUri = async (path: string, mime: string) =>
 
 export default async function Image() {
   const [photo, mark, nunitoBold, nunitoExtraBold] = await Promise.all([
-    asDataUri('public/images/gallery/wpf-gallery-086.jpg', 'image/jpeg'),
+    asDataUri('public/images/gallery/wpf-gallery-064.jpg', 'image/jpeg'),
     asDataUri('public/images/wpf-logo.png', 'image/png'),
     readFile(join(process.cwd(), 'assets/Nunito-Bold.ttf')),
     readFile(join(process.cwd(), 'assets/Nunito-ExtraBold.ttf')),
@@ -52,10 +52,14 @@ export default async function Image() {
         }}
       >
         {/* Photo. The source is 1200×800; drawn at natural size and pulled up
-            150px so the crop lands on the puppet's face and the flag rather
-            than on its feet. */}
-        <div style={{ display: 'flex', height: 390, overflow: 'hidden' }}>
-          <img src={photo} width={1200} height={800} style={{ marginTop: -150 }} alt="" />
+            205px. The photo band is 410 tall rather than a rounder number
+            because that is what it takes to hold both ends of the moment at
+            once — the child's head at the top and the kiwi's feet at the
+            bottom span 410 rows of the source, and at 390 one of them clips.
+            Natural width is deliberate too: the band shows 410 of the photo's
+            800 rows, and scaling the image up would only show fewer. */}
+        <div style={{ display: 'flex', height: 410, overflow: 'hidden' }}>
+          <img src={photo} width={1200} height={800} style={{ marginTop: -205 }} alt="" />
         </div>
 
         {/* Festival ribbon — the same four accents the site uses, standing in
