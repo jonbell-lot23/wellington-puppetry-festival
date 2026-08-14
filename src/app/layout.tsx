@@ -23,6 +23,8 @@ const DESCRIPTION =
 // canonical origin (so per-page metadata had no base to resolve against), and
 // no Open Graph card — a link posted to Facebook or Instagram showed a bare
 // URL with no picture, on a festival that is almost entirely shared that way.
+//
+// Jon, 14 Aug: the card itself is now generated — see app/opengraph-image.tsx.
 export const metadata: Metadata = {
   // Makes relative URLs in any page's metadata resolve to the real domain.
   metadataBase: new URL(SITE_URL),
@@ -32,6 +34,10 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   icons: { icon: '/images/favicon.ico' },
   alternates: { canonical: '/' },
+  // No `images` on either of these. The card comes from app/opengraph-image.tsx
+  // and app/twitter-image.tsx, which Next wires up automatically along with the
+  // width, height, type and alt tags. An image listed here would win over the
+  // generated one and put the old blur straight back.
   openGraph: {
     title: TITLE,
     description: DESCRIPTION,
@@ -39,20 +45,11 @@ export const metadata: Metadata = {
     siteName: 'Wellington Puppetry Festival',
     locale: 'en_NZ',
     type: 'website',
-    images: [
-      {
-        url: '/images/festival-banner.jpg',
-        width: 1751,
-        height: 959,
-        alt: 'Puppeteers and giant puppets at the Wellington Puppetry Festival',
-      },
-    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: TITLE,
     description: DESCRIPTION,
-    images: ['/images/festival-banner.jpg'],
   },
 }
 
