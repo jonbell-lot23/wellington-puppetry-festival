@@ -35,7 +35,7 @@ const SUMMARY = [
   { figure: '25', label: 'pages tested' },
   { figure: '3', label: 'screen widths each' },
   { figure: '0', label: 'automated errors left' },
-  { figure: '35', label: 'issues fixed' },
+  { figure: '34', label: 'issues fixed' },
 ]
 
 type Status = 'pass' | 'open' | 'planned'
@@ -134,7 +134,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Screen reader pass',
     status: 'open',
     body:
-      `Started, not finished. An accessibility consultant went through the site with JAWS on Windows on ${SCREEN_READER_REVIEW} and raised eighteen things, essentially none of which our automated checks had caught. Sixteen are fixed, one is half done, and one is open — they are listed as their own items on this page and in the changelog below. A pass on a phone, with VoiceOver on iOS, is still to come.`,
+      `Started, not finished. An accessibility consultant went through the site with JAWS on Windows on ${SCREEN_READER_REVIEW} and raised eighteen things, essentially none of which our automated checks had caught. Fifteen are fixed, one is half done, one is open, and one we have decided to leave as it is — they are listed as their own items on this page and in the changelog below. A pass on a phone, with VoiceOver on iOS, is still to come.`,
     detail:
       'The largest one: skipping to the content used to land you on the page wrapper rather than on the heading, and landing on a wrapper makes JAWS read the entire page out as one unbroken string. Every page did it, on every first visit, and no checker we run reports it. That is the argument for this kind of testing in one example.',
   },
@@ -198,7 +198,7 @@ const CHANGELOG: { date: string; items: string[] }[] = [
       'Every link that opens a new tab now says so — the Humanitix ticket links above all, since those hand you to a different website part-way through buying.',
       'The newsletter sign-up has visible labels. It had real labels already, but they were invisible and the placeholder text was doing the visible work: that disappears the moment you type, and a label nobody can see is one a voice-control user cannot say out loud to reach the field.',
       'On the Team page the four cards had “To be announced” as their heading, so the heading list read “To be announced” four times and the actual roles sat underneath as plain text. The role is the heading now, until there are names to put there.',
-      'The “You!” tile on the sponsor wall announces as “Support us”, the same as every other route to that page, rather than “You! Support us”.',
+      'Not changed, on purpose: the “You!” tile on the sponsor wall still announces as “You! Support us” rather than matching the plainer “Support us” used everywhere else. It was raised as an inconsistency and it is one. The festival wants the tile to keep saying what it says, and a link whose name is a word louder than expected is a smaller cost than losing the invitation it is making.',
       'Every page has its own title. Nine of the eleven had been inheriting the same one, so arriving anywhere on the site announced the same words, and several open tabs were indistinguishable.',
       'Corrected the claim on this page about te reo Māori pronunciation, which was overstated. See the entry above for what it actually does.',
       'Found while doing the above, rather than in the review: every page was still scrolling sideways at a 320px screen width — the same as a desktop at 400% zoom — because the tickets pill in the header was supposed to drop out at that size and never did. This page has been claiming that check passed since 6 August. It did not, and it says so above now.',
