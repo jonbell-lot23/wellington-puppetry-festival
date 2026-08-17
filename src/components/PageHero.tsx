@@ -1,4 +1,6 @@
 import { teReo } from '@/lib/tereo'
+import { MAIN_HEADING_ID } from '@/lib/site'
+
 export default function PageHero({
   heading,
   intro,
@@ -20,7 +22,13 @@ export default function PageHero({
       style={{ backgroundColor: sunburst ? undefined : bg, color: textColor }}
     >
       <div className="mx-auto max-w-3xl text-center">
-        <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight text-balance">
+        {/* Where "Skip to content" lands. tabindex="-1" makes the heading
+            focusable without adding it to the tab order. */}
+        <h1
+          id={MAIN_HEADING_ID}
+          tabIndex={-1}
+          className="wpf-skip-target font-extrabold text-4xl sm:text-5xl md:text-6xl leading-tight text-balance"
+        >
           {teReo(heading)}
         </h1>
         {intro && (

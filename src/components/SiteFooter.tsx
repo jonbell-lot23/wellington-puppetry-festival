@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
+import NewTabHint from '@/components/NewTabHint'
 const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
 
 function Instagram() {
@@ -89,6 +90,7 @@ export default function SiteFooter() {
               className="wpf-btn-focus underline underline-offset-2 inline-block py-1"
             >
               Birdlife Productions
+              <NewTabHint />
             </a>
           </p>
           <div className="flex items-center gap-3 mt-5">
@@ -96,7 +98,7 @@ export default function SiteFooter() {
               href="https://www.instagram.com/wellingtonpuppetryfestival"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Instagram"
+              aria-label="Instagram (opens in a new tab)"
               className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
               style={{ color: maroon ? 'var(--wpf-pink)' : greenBg }}
             >
@@ -106,7 +108,7 @@ export default function SiteFooter() {
               href="https://www.facebook.com/wellingtonpuppetryfestival"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Facebook"
+              aria-label="Facebook (opens in a new tab)"
               className="grid place-items-center w-9 h-9 rounded-full bg-white transition hover:scale-105"
               style={{ color: maroon ? 'var(--wpf-pink)' : greenBg }}
             >
@@ -115,7 +117,11 @@ export default function SiteFooter() {
           </div>
         </div>
 
-        <div>
+        {/* A labelled <nav>, so a screen reader user can tell this apart from
+            the header navigation instead of landing on two unnamed
+            "navigation" landmarks — asked for by an accessibility consultant,
+            Aug 2026. The header's is labelled "Main". */}
+        <nav aria-label="Footer">
           <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}>More</p>
           {/* py-1.5 gives each link a >=24px tall hit area (WCAG 2.5.8) —
               they were 19px high, which is a small target on a phone. */}
@@ -127,6 +133,7 @@ export default function SiteFooter() {
                 <li key={l.href}>
                   <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls} style={linkStyle}>
                     {l.label}
+                    <NewTabHint />
                   </a>
                 </li>
               ) : (
@@ -138,7 +145,7 @@ export default function SiteFooter() {
               )
             })}
           </ul>
-        </div>
+        </nav>
       </div>
 
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>
@@ -154,6 +161,7 @@ export default function SiteFooter() {
             style={{ color: 'inherit' }}
           >
             Jon Bell
+            <NewTabHint />
           </a>
         </p>
       </div>

@@ -3,15 +3,18 @@ import Link from 'next/link'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
 import { teReo } from '@/lib/tereo'
+import type { Metadata } from 'next'
 
 export const revalidate = 60
+
+export const metadata: Metadata = { title: 'About the festival' }
 
 export default async function AboutPage() {
   const c = await getPageContent('about')
   const alt = await getPageContent('image-alt-text')
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
@@ -55,7 +58,12 @@ export default async function AboutPage() {
                 className="w-48 md:w-64 h-auto rounded-xl shadow-sm shrink-0"
               />
               <div>
-                <p className="wpf-section-kicker mb-3">{c.roseHeading}</p>
+                {/* An h2, not a styled paragraph. It's the title of a whole
+                    section of the page — leaving it as a <p> meant the Rose
+                    Beauchamp story didn't appear in the heading list at all,
+                    so nobody navigating by heading could find it. Same kicker
+                    styling; only the element changed. */}
+                <h2 className="wpf-section-kicker mb-3">{c.roseHeading}</h2>
                 <p className="wpf-text-muted leading-relaxed mb-4">{teReo(c.roseBody1)}</p>
                 <p className="wpf-text-muted leading-relaxed mb-6">{teReo(c.roseBody2)}</p>
                 <blockquote className="border-l-4 pl-5 italic leading-relaxed" style={{ borderColor: 'var(--wpf-pink)', color: 'var(--wpf-ink)' }}>

@@ -1,14 +1,18 @@
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
 import SignupForm from '@/components/SignupForm'
+import NewTabHint from '@/components/NewTabHint'
+import type { Metadata } from 'next'
 
 export const revalidate = 60
+
+export const metadata: Metadata = { title: 'Contact us' }
 
 export default async function ContactPage() {
   const c = await getPageContent('contact')
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
@@ -38,6 +42,7 @@ export default async function ContactPage() {
                   className="wpf-btn-secondary wpf-btn-focus text-sm px-5 py-2.5 border-black/15"
                 >
                   Instagram
+                  <NewTabHint />
                 </a>
                 <a
                   href="https://www.facebook.com/wellingtonpuppetryfestival"
@@ -46,6 +51,7 @@ export default async function ContactPage() {
                   className="wpf-btn-secondary wpf-btn-focus text-sm px-5 py-2.5 border-black/15"
                 >
                   Facebook
+                  <NewTabHint />
                 </a>
               </div>
             </div>

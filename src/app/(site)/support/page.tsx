@@ -2,8 +2,11 @@ import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
 import { teReo } from '@/lib/tereo'
+import type { Metadata } from 'next'
 
 export const revalidate = 60
+
+export const metadata: Metadata = { title: 'Support us' }
 
 // Reached from the "You!" tile on the sponsor wall. Deliberately honest that
 // the donation paperwork isn't ready yet — an empty "donate" form or a dead
@@ -17,7 +20,7 @@ export default async function SupportPage() {
   ])
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">

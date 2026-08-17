@@ -12,7 +12,7 @@ import {
 } from '@/lib/adminAuth'
 
 export const metadata: Metadata = {
-  title: 'Sign in: Wellington Puppetry Festival',
+  title: 'Sign in',
   robots: { index: false, follow: false },
 }
 
@@ -50,7 +50,7 @@ export default async function AdminLoginPage({
 
   return (
     <div className="admin-root">
-      <main id="main" tabIndex={-1} style={{ maxWidth: 380, margin: '0 auto', padding: '4rem 1.5rem' }}>
+      <main style={{ maxWidth: 380, margin: '0 auto', padding: '4rem 1.5rem' }}>
         <h1 style={{ fontSize: '1.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>
           Wellington Puppetry Festival
         </h1>

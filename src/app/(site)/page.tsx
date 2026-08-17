@@ -2,6 +2,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import SponsorInvite from '@/components/SponsorInvite'
+import { MAIN_HEADING_ID } from '@/lib/site'
 import { teReo } from '@/lib/tereo'
 
 export const revalidate = 60
@@ -50,7 +51,7 @@ export default async function HomePage() {
   const alt = await getPageContent('image-alt-text')
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: CREAM }}>
+    <main style={{ backgroundColor: CREAM }}>
 
       {/* Hero — logo sits at top, overlapping upward into the white header */}
       <section className="wpf-sunburst wpf-hero-scallop-mask relative z-10 px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pb-40 overflow-x-clip" style={{ color: INK }}>
@@ -102,11 +103,21 @@ export default async function HomePage() {
 
         <div className="mx-auto max-w-3xl flex flex-col items-center text-center">
 
-          <p className="wpf-section-kicker mb-3">{teReo(c.heroKicker)}</p>
-          <h1 className="font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.08] text-balance tracking-tight">
+          {/* Heading first, then the dates. An accessibility consultant
+              testing with JAWS (Aug 2026) pointed out that the kicker line —
+              which currently carries the festival dates — sat above the <h1>,
+              so anyone moving through the page by headings jumped straight
+              past the one line that says when the festival is. The h1 leads
+              now and both small lines follow it, in the DOM and on screen. */}
+          <h1
+            id={MAIN_HEADING_ID}
+            tabIndex={-1}
+            className="wpf-skip-target font-extrabold text-4xl sm:text-5xl md:text-6xl leading-[1.08] text-balance tracking-tight"
+          >
             {teReo(c.heroTitle)}
           </h1>
-          <p className="mt-3 text-lg md:text-xl font-extrabold tracking-wide" style={{ color: 'var(--wpf-pink)' }}>
+          <p className="wpf-section-kicker mt-4">{teReo(c.heroKicker)}</p>
+          <p className="mt-2 text-lg md:text-xl font-extrabold tracking-wide" style={{ color: 'var(--wpf-pink)' }}>
             {teReo(c.heroDates)}
           </p>
           <p className="mt-5 wpf-text-muted leading-relaxed max-w-2xl text-balance text-base md:text-lg">

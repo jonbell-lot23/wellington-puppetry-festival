@@ -18,18 +18,24 @@ import PageHero from '@/components/PageHero'
 // Re-run the audit before editing LAST_TESTED.
 
 export const metadata: Metadata = {
-  title: 'Accessibility report: Wellington Puppetry Festival',
+  title: 'Accessibility report',
   description:
     'What we test on this website, what passes, what is still open, and what we have fixed so far.',
 }
 
 const LAST_TESTED = '7 August 2026'
 
+// The first review by someone using a screen reader in earnest, rather than by
+// us running tools at the site. JAWS 2026 on Windows 11 and Chrome. This is a
+// different kind of date from LAST_TESTED above and is deliberately reported
+// separately — one is a machine pass, the other is a person listening.
+const SCREEN_READER_REVIEW = '14 August 2026'
+
 const SUMMARY = [
   { figure: '25', label: 'pages tested' },
   { figure: '3', label: 'screen widths each' },
   { figure: '0', label: 'automated errors left' },
-  { figure: '18', label: 'issues fixed' },
+  { figure: '35', label: 'issues fixed' },
 ]
 
 type Status = 'pass' | 'open' | 'planned'
@@ -71,7 +77,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     body:
       'Checked at a 320px-wide viewport, which is what a 1280px desktop looks like at 400% zoom. No content is cut off and nothing has to be scrolled sideways to read.',
     detail:
-      'The header used to overflow by 41px at this size, which made every page scroll horizontally. The tickets pill still steps out of the way on very narrow screens, and the same link is repeated in the mobile menu so nothing is lost at that width.',
+      'The header overflowed by 41px at this size, which made every page scroll horizontally. That was reported fixed in August 2026 and was not: the tickets pill was meant to step out of the way on very narrow screens and never did, so the header still ran 35px over and every page still scrolled sideways. Fixed properly on 17 August. The same ticket link is repeated in the mobile menu, so nothing is lost at that width.',
   },
   {
     title: 'Colour contrast',
@@ -128,17 +134,33 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Screen reader pass',
     status: 'open',
     body:
-      'Not done yet. An accessibility consultant will run this once the site is ready for it, and that testing will find things the automated tools cannot.',
+      `Started, not finished. An accessibility consultant went through the site with JAWS on Windows on ${SCREEN_READER_REVIEW} and raised eighteen things, essentially none of which our automated checks had caught. Sixteen are fixed, one is half done, and one is open — they are listed as their own items on this page and in the changelog below. A pass on a phone, with VoiceOver on iOS, is still to come.`,
     detail:
-      'Landmarks, heading structure and alt text are all in place to give that pass a sensible starting point, but none of that substitutes for someone actually listening to the site.',
+      'The largest one: skipping to the content used to land you on the page wrapper rather than on the heading, and landing on a wrapper makes JAWS read the entire page out as one unbroken string. Every page did it, on every first visit, and no checker we run reports it. That is the argument for this kind of testing in one example.',
   },
   {
-    title: 'Te reo Māori pronunciation',
+    title: 'Programme cards use details and summary',
+    status: 'open',
+    body:
+      'The cards on the programme open and close with the browser’s own show/hide control. It is keyboard operable and works with JavaScript switched off, but support for it across screen readers is uneven, and the recommendation we have had is to rebuild them as a standard accordion instead.',
+    detail:
+      'What was wrong with them is fixed: the control used to be labelled with the whole card — the access chip, the title, the blurb, the practical note and the ticket link, several sentences of it — before you learned it was something you could open. It now says "See the programme" and names the day and strand. The rebuild is the remaining half and has not been done.',
+  },
+  {
+    title: 'Te reo Māori marked up as te reo',
     status: 'pass',
     body:
-      'Words like whānau, Te Whanganui-a-Tara, Aotearoa and Ngā Maunga Rū are marked up so a screen reader pronounces them as te reo rather than reading them as English.',
+      'Words like whānau, Te Whanganui-a-Tara, Aotearoa and Ngā Maunga Rū are marked in the code as te reo rather than English, per WCAG 3.1.2.',
     detail:
-      'This happens automatically as the page is built, rather than being typed in by hand, so it keeps working as the programme is edited, so nobody has to remember to do it. It currently recognises a dozen words and phrases, including the ones in show titles and artist bios.',
+      'This page used to claim that made a screen reader pronounce them as te reo. That was wrong, and an accessibility consultant corrected us: very few screen readers can pronounce te reo at all. NVDA has a te reo voice that does not switch reliably between the two languages, and JAWS and the iPhone and Android screen readers do not have one. So the markup is correct and it is what a site can do, but for most people listening today it changes nothing audible. It is there for when that changes, and it is applied automatically as pages are built so it keeps working as the programme is edited.',
+  },
+  {
+    title: 'Alt text proofreading',
+    status: 'open',
+    body:
+      'Every meaningful image has alt text, and the descriptions are genuinely good — they describe what the puppets look like, not just that a puppet is present. Several have typos in them.',
+    detail:
+      'A misspelling gets read aloud as written, so it lands as a stumble in the middle of a description rather than as something you can skim past. The text is written and edited by the festival rather than in the code, so this is a proofread rather than a development task, and it is not done.',
   },
   {
     title: 'Accessible ticket options at booking',
@@ -159,6 +181,29 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
 ]
 
 const CHANGELOG: { date: string; items: string[] }[] = [
+  {
+    date: '17 August 2026',
+    items: [
+      'Everything in this entry except the last item comes from an accessibility consultant’s review of the site with the JAWS screen reader. None of it had been found by the automated checks we run.',
+      '“Skip to content” now lands on the page’s heading instead of on the wrapper around the content. Landing on the wrapper made JAWS read the whole page aloud as one unbroken string, on every page, every first visit — by a distance the worst thing on the site, and invisible to every tool we own.',
+      'The footer links are now a navigation block labelled “Footer”, and the header’s is labelled “Main”, so the two can be told apart instead of both announcing as “navigation”.',
+      'The header navigation is a real list, so a screen reader says how many links there are before you start moving through them.',
+      'Accessibility moved out of the footer and into the header navigation. It had been reachable only from the very bottom of the page, which is the furthest point from where anyone starts.',
+      'On the homepage and the Cabaret page, the heading now comes before the date line rather than after it. Anyone moving through a page by its headings was jumping straight past the dates.',
+      'Venue links no longer carry the full postal address in a tooltip. A screen reader reads a tooltip out after the link text, so “Vogelmorn Hall” was followed by the whole street address, twice on rows that had two of them. The addresses are still on each event page as ordinary text.',
+      'The programme cards used to announce the entire card — chip, title, blurb, note and ticket link — as the label of the control that opens them. They now say “See the programme” and name the day and strand.',
+      'Every show and workshop inside the programme is now a heading, so you can move between them directly instead of reading through each list.',
+      'The “More about…” link on each programme row moved to the end of the row. It used to be read out first, so you were offered more about a show before being told which show it was.',
+      'Decorative arrows (→, ↗) are hidden from screen readers. They were being announced as “rightwards arrow”, which tells nobody anything.',
+      'Every link that opens a new tab now says so — the Humanitix ticket links above all, since those hand you to a different website part-way through buying.',
+      'The newsletter sign-up has visible labels. It had real labels already, but they were invisible and the placeholder text was doing the visible work: that disappears the moment you type, and a label nobody can see is one a voice-control user cannot say out loud to reach the field.',
+      'On the Team page the four cards had “To be announced” as their heading, so the heading list read “To be announced” four times and the actual roles sat underneath as plain text. The role is the heading now, until there are names to put there.',
+      'The “You!” tile on the sponsor wall announces as “Support us”, the same as every other route to that page, rather than “You! Support us”.',
+      'Every page has its own title. Nine of the eleven had been inheriting the same one, so arriving anywhere on the site announced the same words, and several open tabs were indistinguishable.',
+      'Corrected the claim on this page about te reo Māori pronunciation, which was overstated. See the entry above for what it actually does.',
+      'Found while doing the above, rather than in the review: every page was still scrolling sideways at a 320px screen width — the same as a desktop at 400% zoom — because the tickets pill in the header was supposed to drop out at that size and never did. This page has been claiming that check passed since 6 August. It did not, and it says so above now.',
+    ],
+  },
   {
     date: '12 August 2026',
     items: [
@@ -226,7 +271,7 @@ export default function AccessibilityReportPage() {
   const passing = CHECKS.filter((c) => c.status === 'pass').length
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero
         heading="Accessibility report"
         intro="What we test on this website, how it is doing, and what we have not sorted yet."
@@ -235,12 +280,16 @@ export default function AccessibilityReportPage() {
       <section className="px-6 py-14 md:py-20">
         <div className="mx-auto max-w-3xl">
           <p className="wpf-text-muted text-sm leading-relaxed mb-8">
-            Last tested <strong>{LAST_TESTED}</strong> against the live build.
-            The site has changed since then — tickets went on sale and the
-            venue access notes went in — and those changes have not had a full
+            Automated and keyboard testing last run <strong>{LAST_TESTED}</strong>{' '}
+            against the live build. The site has changed since then — tickets
+            went on sale, the venue access notes went in, and the changes from
+            the review below landed — and those changes have not had a full
             audit run over them. Contrast and keyboard order were checked by
             hand for each new element, which is not the same thing, so the
-            figures below describe the site as it was on that date.
+            figures above describe the site as it was on that date.
+            Separately, an accessibility consultant reviewed the site with the
+            JAWS screen reader on <strong>{SCREEN_READER_REVIEW}</strong>; what
+            that found, and what is still outstanding from it, is set out below.
             We publish the open items alongside the fixed ones. If something
             here is wrong, or you hit a problem we have not listed,{' '}
             <a
@@ -322,8 +371,14 @@ export default function AccessibilityReportPage() {
                 genuinely removed and not just shortened.
               </li>
               <li>
-                Still to come: a <strong>screen reader pass</strong> with someone
-                who uses one daily.
+                A <strong>screen reader review</strong> by an accessibility
+                consultant, using JAWS on Windows. This is the one that finds
+                what the others cannot: of the eighteen things it raised, the
+                automated checks had flagged essentially none.
+              </li>
+              <li>
+                Still to come: the same on a <strong>phone</strong>, with
+                VoiceOver on iOS.
               </li>
             </ul>
           </div>

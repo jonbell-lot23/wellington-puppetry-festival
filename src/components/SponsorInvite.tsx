@@ -29,8 +29,15 @@ export default function SponsorInvite() {
       className="wpf-sponsor-invite wpf-btn-focus group col-span-2 sm:col-span-1 sm:col-start-2 h-28 flex flex-col items-center justify-center gap-1 px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
       style={{ borderColor: 'var(--wpf-pink)' }}
     >
-      <span className="relative">
-        <span className="wpf-rig" aria-hidden="true">
+      {/* aria-hidden, so the link announces as "Support us" and not as
+          "You! Support us". An accessibility consultant reviewing the site
+          (Aug 2026) pointed out that every other route to this page is
+          labelled "Support us", and a link that shouts a different name at you
+          in one place is just an inconsistency to work out. The letters are a
+          visual joke about the empty sponsor slot — the caption underneath is
+          the actual label, and it's visible to everyone. */}
+      <span className="relative" aria-hidden="true">
+        <span className="wpf-rig">
           <span className="wpf-rig-bar" />
           {LETTERS.map((_, i) => (
             <span

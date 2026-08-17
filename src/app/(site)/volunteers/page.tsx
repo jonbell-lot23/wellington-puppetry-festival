@@ -1,14 +1,17 @@
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
+import type { Metadata } from 'next'
 
 export const revalidate = 60
+
+export const metadata: Metadata = { title: 'Volunteer with us' }
 
 export default async function VolunteersPage() {
   const c = await getPageContent('volunteers')
   const form = c.formUrl?.trim()
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">

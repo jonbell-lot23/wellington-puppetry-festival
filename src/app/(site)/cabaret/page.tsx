@@ -1,5 +1,10 @@
 import Image from 'next/image'
+import type { Metadata } from 'next'
+import NewTabHint from '@/components/NewTabHint'
 import { getPageContent } from '@/app/actions'
+import { MAIN_HEADING_ID } from '@/lib/site'
+
+export const metadata: Metadata = { title: 'Cabaret' }
 
 export const revalidate = 60
 
@@ -13,16 +18,25 @@ export default async function CabaretPage() {
   ])
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-maroon)' }} className="text-white">
+    <main style={{ backgroundColor: 'var(--wpf-maroon)' }} className="text-white">
       <section className="px-6 pt-24 pb-20 md:pt-32 md:pb-28">
         <div className="mx-auto max-w-3xl text-center">
+          {/* Heading before the kicker, matching the homepage — the kicker
+              carries the "18+ / after dark" framing and the date, and heading
+              navigation skipped straight over it when it sat above the h1. */}
+          <h1
+            id={MAIN_HEADING_ID}
+            tabIndex={-1}
+            className="wpf-skip-target font-extrabold text-4xl md:text-6xl leading-tight text-balance"
+          >
+            {c.heading}
+          </h1>
           <p
-            className="uppercase tracking-[0.2em] text-xs md:text-sm font-bold mb-4"
+            className="uppercase tracking-[0.2em] text-xs md:text-sm font-bold mt-4"
             style={{ color: 'var(--wpf-yellow)' }}
           >
             {c.kicker}
           </p>
-          <h1 className="font-extrabold text-4xl md:text-6xl leading-tight text-balance">{c.heading}</h1>
           <p className="mt-6 text-white/80 leading-relaxed max-w-2xl mx-auto text-balance">{c.intro}</p>
           <a
             href={c.ticketsUrl}
@@ -34,6 +48,8 @@ export default async function CabaretPage() {
             style={{ backgroundColor: '#000000', color: '#e8459a' }}
           >
             {c.ticketsLabel}
+            <span aria-hidden="true"> ↗</span>
+            <NewTabHint />
           </a>
           <figure className="mt-12 max-w-xl mx-auto">
             <div className="relative aspect-[3/2] rounded-2xl overflow-hidden">

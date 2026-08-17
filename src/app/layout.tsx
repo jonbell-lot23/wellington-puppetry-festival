@@ -26,9 +26,22 @@ const DESCRIPTION =
 export const metadata: Metadata = {
   // Makes relative URLs in any page's metadata resolve to the real domain.
   metadataBase: new URL(SITE_URL),
-  // No `template` here: pages already end their own titles with
-  // ": Wellington Puppetry Festival", so a template would say it twice.
-  title: TITLE,
+  // Every page gets its own title, ending in the festival name.
+  //
+  // Until Aug 2026 almost none of them did: nine of the eleven public pages
+  // inherited "Wellington Puppetry Festival: Puppets for Peace" verbatim, so a
+  // screen reader announced the same words on arrival at every one, and a
+  // browser window with three of them open showed three identical tabs. An
+  // accessibility consultant flagged it, and asked for one consistent format
+  // rather than the mix of separators we had.
+  //
+  // The template is the format. A page sets `title: 'Support us'` and gets
+  // "Support us | Wellington Puppetry Festival" — the distinguishing part
+  // first, where it survives a truncated tab. The homepage uses `default`.
+  title: {
+    default: TITLE,
+    template: '%s | Wellington Puppetry Festival',
+  },
   description: DESCRIPTION,
   icons: { icon: '/images/favicon.ico' },
   alternates: { canonical: '/' },

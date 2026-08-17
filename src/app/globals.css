@@ -308,6 +308,30 @@
   outline-offset: 2px;
 }
 
+/* Where "Skip to content" lands: the <h1> of the page, not <main>.
+   An accessibility consultant testing with JAWS (Aug 2026) found every page
+   being read out as one continuous string on first arrival. The cause was
+   <main tabindex="-1"> — moving focus to a container makes JAWS announce the
+   whole container, and <main> is the whole page. Focusing the h1 instead
+   announces the heading and leaves the reader at the top of the content,
+   which is what the skip link is for.
+
+   scroll-margin keeps the heading clear of the sticky header on arrival.
+   The outline is deliberate: it shows a sighted keyboard user where they
+   landed. :focus-visible rather than :focus so a mouse click on the heading
+   — which also focuses a tabindex="-1" element — doesn't draw a ring. */
+.wpf-skip-target {
+  scroll-margin-top: 6rem;
+}
+.wpf-skip-target:focus {
+  outline: none;
+}
+.wpf-skip-target:focus-visible {
+  outline: 3px solid var(--wpf-pink-deep);
+  outline-offset: 6px;
+  border-radius: 4px;
+}
+
 /* ── Shared typography + section rhythm ─────────────────────────── */
 
 /* Kickers are small (12–14px) and bold, which is NOT "large text" under
@@ -400,6 +424,22 @@
   transform: translateY(1px);
 }
 
+/* Hide below 380px. Needed because Tailwind's `hidden` loses to the button
+   classes above: those live outside a cascade layer, and unlayered rules beat
+   layered ones no matter what order they're written in. So the header's
+   tickets pill has been carrying `hidden min-[380px]:inline-block` and staying
+   visible anyway — which put the menu button 35px past the right edge and made
+   every page scroll sideways at a 320px viewport (WCAG 1.4.10 Reflow, i.e.
+   400% zoom on a desktop screen). This page claimed that check was passing.
+   It wasn't; it had regressed since the header was last measured.
+
+   Declared here, after the button rules, so it wins on source order. */
+@media (max-width: 379.98px) {
+  .wpf-hide-below-380 {
+    display: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .wpf-btn-primary:hover,
   .wpf-btn-primary:active,
@@ -441,6 +481,22 @@
   padding: 1.25rem;
 }
 
+/* Visible field labels. These used to be .wpf-visually-hidden, with the
+   placeholder doing the visible work — which an accessibility consultant
+   flagged in Aug 2026 on three counts: the placeholder disappears the moment
+   you type, so anyone who loses their place has nothing to look at; a hidden
+   label gives a voice-control user no visible word to say to reach the field;
+   and low-contrast grey placeholder text is hard work to read in the first
+   place. The labels are real text now and the placeholders are gone. */
+.wpf-signup-label {
+  display: block;
+  margin-bottom: 0.3125rem;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
 .wpf-signup-input {
   width: 100%;
   padding: 0.625rem 1rem;
@@ -449,10 +505,6 @@
   color: var(--wpf-ink);
   font-size: 0.875rem;
   line-height: 1.4;
-}
-
-.wpf-signup-input::placeholder {
-  color: color-mix(in srgb, var(--wpf-ink) 45%, transparent);
 }
 
 .wpf-signup-input:focus {

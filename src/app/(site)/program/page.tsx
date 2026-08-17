@@ -1,5 +1,7 @@
 import Link from 'next/link'
+import type { Metadata } from 'next'
 import { getPageContent } from '@/app/actions'
+import NewTabHint from '@/components/NewTabHint'
 import PageHero from '@/components/PageHero'
 import { teReo } from '@/lib/tereo'
 import {
@@ -17,6 +19,8 @@ import {
 } from '@/lib/strands'
 
 export const revalidate = 60
+
+export const metadata: Metadata = { title: 'Programme' }
 
 // One card per strand — "Saturday — Workshops", "Saturday — Shows for Children
 // and whānau" — as Bridget asked (Jul 2026): shows and workshops were too hard
@@ -41,6 +45,23 @@ const MAP_TERMS: { term: string; venue: VenueKey }[] = [
 ]
 
 /**
+ * The screen-reader-only tail on every venue link.
+ *
+ * These links used to carry `title="Open {full street address} in Maps"`. A
+ * title attribute is announced *after* the link text, so an accessibility
+ * consultant testing with JAWS (Aug 2026) heard the venue name and then the
+ * entire postal address read back as part of the same link — twice over on
+ * rows that had one in the note and one in the label. The address belongs on
+ * the event page, where it's already printed as ordinary text.
+ *
+ * Hidden rather than visible because the dotted underline already tells a
+ * sighted reader the name is tappable, and the row is tight.
+ */
+function MapHint() {
+  return <span className="wpf-visually-hidden"> (opens Google Maps in a new tab)</span>
+}
+
+/**
  * Link the venue names in the note where they already sit, rather than trailing
  * each one with a "(Map)". Two parentheticals in a three-line paragraph read as
  * clutter; the name is the thing you'd tap anyway.
@@ -56,10 +77,10 @@ function withMapLinks(text: string) {
         href={venueMapUrl(hit.venue)}
         target="_blank"
         rel="noreferrer"
-        title={`Open ${VENUES[hit.venue].address} in Maps`}
         className="font-semibold underline decoration-dotted decoration-from-font underline-offset-4 hover:decoration-solid"
       >
         {chunk}
+        <MapHint />
       </a>
     )
   })
@@ -77,7 +98,6 @@ function VenueLabel({ venue }: { venue: VenueKey }) {
       href={venueMapUrl(venue)}
       target="_blank"
       rel="noreferrer"
-      title={`Open ${v.address} in Maps`}
       className="relative z-10 inline-flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-wider shrink-0 wpf-text-muted underline decoration-dotted decoration-from-font underline-offset-4 hover:decoration-solid"
     >
       <span
@@ -86,6 +106,7 @@ function VenueLabel({ venue }: { venue: VenueKey }) {
         aria-hidden="true"
       />
       {v.label}
+      <MapHint />
     </a>
   )
 }
@@ -101,13 +122,6 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
         more ? 'transition-colors hover:bg-black/[0.03] focus-within:bg-black/[0.03]' : ''
       }`}
     >
-      {more && (
-        <Link
-          href={`/program/${eventSlug(strand, ev)}`}
-          className="absolute inset-0 z-0"
-          aria-label={`More about ${ev.title}`}
-        />
-      )}
       {/* Left column carries everything time-ish: when, how long, who for. */}
       <div className="shrink-0 w-32">
         <p className="text-sm font-bold" style={{ color: 'var(--wpf-ink)' }}>
@@ -125,10 +139,15 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
         />
       )}
       <div className="flex-1 min-w-0 basis-full sm:basis-auto order-last sm:order-none">
-        <p className="font-bold" style={{ color: 'var(--wpf-ink)' }}>
+        {/* A real heading, not a bold paragraph. Under the strand's h3 this
+            gives every show and workshop its own stop when someone moves
+            through the programme by headings, which was the one thing the
+            expanded listings didn't offer — asked for by an accessibility
+            consultant, Aug 2026. */}
+        <h4 className="font-bold" style={{ color: 'var(--wpf-ink)' }}>
           {teReo(ev.title)}
           {ev.by && <span className="font-semibold wpf-text-muted"> · {teReo(ev.by)}</span>}
-        </p>
+        </h4>
         {/* Sarah, 7 Aug: "I don't know why it's centred". The tag used to sit
             in the right-hand group with the venue label. On a phone the title
             wraps onto its own line, which left "Audio described" stranded
@@ -153,13 +172,15 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
             where there's room to be unmissable. */}
         {more && (
           <p className="mt-1.5">
-            {/* Not a link itself — the row overlay above handles the click. It's
-                here so the row visibly advertises that there's more to read. */}
+            {/* Not a link itself — the row overlay below handles the click.
+                It's here so the row visibly advertises that there's more to
+                read. The arrow is decorative: a screen reader announced it as
+                "rightwards arrow", which tells nobody anything. */}
             <span
               className="text-xs font-bold uppercase tracking-widest underline underline-offset-4"
               style={{ color: 'var(--wpf-pink-deep)' }}
             >
-              More info →
+              More info<span aria-hidden="true"> →</span>
             </span>
           </p>
         )}
@@ -169,6 +190,18 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
       <div className="flex items-center gap-2.5 ml-auto shrink-0">
         <VenueLabel venue={ev.venue} />
       </div>
+      {/* Last in the row, not first. It's absolutely positioned, so this
+          doesn't move it on screen — but in reading order it used to come
+          before the title, so a screen reader hit "More about Box of Birds"
+          and then found out what Box of Birds was. Title, details, then the
+          way in. */}
+      {more && (
+        <Link
+          href={`/program/${eventSlug(strand, ev)}`}
+          className="absolute inset-0 z-0"
+          aria-label={`More about ${ev.title}`}
+        />
+      )}
     </li>
   )
 }
@@ -203,7 +236,7 @@ function CardFace({ strand }: { strand: Strand }) {
         >
           {strand.ctaLabel}
           <span aria-hidden="true"> ↗</span>
-          <span className="wpf-visually-hidden"> (opens in a new tab)</span>
+          <NewTabHint />
         </a>
       )}
     </>
@@ -224,16 +257,34 @@ function StrandCard({ strand }: { strand: Strand }) {
     )
   }
 
+  // The whole card face used to sit inside the <summary>, which made the
+  // control's accessible name the access chip, the title, the blurb, the
+  // practical note and the ticket link all read out as one label — several
+  // sentences to get through before you learn it's a thing you can open. An
+  // accessibility consultant testing with JAWS (Aug 2026) flagged it; the
+  // summary is now just "See the programme", with the strand and day it
+  // belongs to added for anyone tabbing between controls out of context.
+  //
+  // It also means the CTA is no longer a link nested inside a summary, which
+  // was a control inside a control.
+  //
+  // Still <details>/<summary> rather than an ARIA accordion: it keeps this a
+  // server component with no client JS, and it works with JavaScript off.
+  // The consultant's preference is the APG accordion pattern, and that's
+  // recorded as an open item on /accessibility/report rather than quietly
+  // dropped.
   return (
-    <details className={`${shell} group open:bg-[var(--wpf-yellow-soft)]`}>
-      <summary className="flex flex-col cursor-pointer list-none [&::-webkit-details-marker]:hidden">
-        <CardFace strand={strand} />
-        <span
-          className="mt-5 inline-flex items-center gap-2 font-bold text-sm uppercase tracking-widest"
+    <div className={`${shell} flex flex-col`}>
+      <CardFace strand={strand} />
+
+      <details className="group mt-5">
+        <summary
+          className="wpf-btn-focus inline-flex w-fit items-center gap-2 cursor-pointer font-bold text-sm uppercase tracking-widest list-none [&::-webkit-details-marker]:hidden"
           style={{ color: 'var(--wpf-pink-deep)' }}
         >
           <span className="group-open:hidden">See the programme</span>
           <span className="hidden group-open:inline">Hide the programme</span>
+          <span className="wpf-visually-hidden">{`: ${strand.day}, ${strand.title}`}</span>
           <svg
             width="14"
             height="14"
@@ -248,28 +299,31 @@ function StrandCard({ strand }: { strand: Strand }) {
           >
             <path d="m6 9 6 6 6-6" />
           </svg>
-        </span>
-      </summary>
+        </summary>
 
-      {/* Bridget, 6 Aug: "I get confused when opening the 'Saturday Shows' or
-          Workshops because I forget I am in the 'Saturday' listing." The day
-          is only on the <h2> group heading further up the page, which is off
-          screen by the time a card is open. Repeating it here as a real
-          heading fixes it for sighted readers and gives screen-reader users a
-          labelled landmark into the list at the same time. */}
-      <h4
-        className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
-        style={{ color: 'var(--wpf-pink-deep)' }}
-      >
-        {strand.day}: {teReo(strand.title)}
-      </h4>
+        {/* Bridget, 6 Aug: "I get confused when opening the 'Saturday Shows'
+            or Workshops because I forget I am in the 'Saturday' listing." The
+            day is only on the <h2> group heading further up the page, which is
+            off screen by the time a card is open.
 
-      <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
-        {events.map((ev, i) => (
-          <EventRow key={i} strand={strand} ev={ev} />
-        ))}
-      </ul>
-    </details>
+            A paragraph rather than a heading now: it repeats the h3 directly
+            above it word for word, so as a heading it put a duplicate entry in
+            the outline for no gain. The listings underneath carry the headings
+            that matter — one per show or workshop. */}
+        <p
+          className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
+          style={{ color: 'var(--wpf-pink-deep)' }}
+        >
+          {strand.day}: {teReo(strand.title)}
+        </p>
+
+        <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
+          {events.map((ev, i) => (
+            <EventRow key={i} strand={strand} ev={ev} />
+          ))}
+        </ul>
+      </details>
+    </div>
   )
 }
 
@@ -281,7 +335,7 @@ export default async function ProgramPage() {
   const strands = parseStrands(stored.strandsJson)
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
@@ -305,6 +359,7 @@ export default async function ProgramPage() {
                     className="font-semibold underline underline-offset-2"
                   >
                     {c.ticketsLabel}
+                    <NewTabHint />
                   </a>
                 </>
               )}
@@ -368,14 +423,16 @@ export default async function ProgramPage() {
                   className="wpf-btn-focus text-sm font-bold underline underline-offset-4"
                   style={{ color: 'var(--wpf-pink-deep)' }}
                 >
-                  {c.accessLinkLabel} →
+                  {c.accessLinkLabel}
+                  <span aria-hidden="true"> →</span>
                 </a>
                 <a
                   href="/contact"
                   className="wpf-btn-focus text-sm font-bold underline underline-offset-4"
                   style={{ color: 'var(--wpf-pink-deep)' }}
                 >
-                  Contact us about access →
+                  Contact us about access
+                  <span aria-hidden="true"> →</span>
                 </a>
               </p>
             </section>

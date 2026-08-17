@@ -2,10 +2,17 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
+import NewTabHint from '@/components/NewTabHint'
 
 // Top nav is deliberately trimmed to the handful of high-traffic pages —
-// see summary for reasoning. Team and Accessibility still live in the
-// footer only; Volunteers was promoted here per Bridget's request.
+// see summary for reasoning. Team still lives in the footer only; Volunteers
+// was promoted here per Bridget's request.
+//
+// Accessibility was promoted here too (Aug 2026), after an accessibility
+// consultant pointed out that the footer-only links were the ones a disabled
+// visitor is most likely to be looking for — and the footer is the furthest
+// point in the page from where they start. Team and Support us stay in the
+// footer: they're the two with no bearing on whether someone can attend.
 const NAV = [
   { label: 'Programme', href: '/program' },
   // Artists page hidden for now — head shots weren't available; bios will
@@ -13,6 +20,7 @@ const NAV = [
   { label: 'Cabaret', href: '/cabaret' },
   { label: 'About', href: '/about' },
   { label: 'Volunteers', href: '/volunteers' },
+  { label: 'Accessibility', href: '/accessibility' },
   { label: 'Contact', href: '/contact' },
 ]
 
@@ -70,24 +78,35 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
             </span>
           </Link>
 
-          {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center gap-7">
-            {NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                className="wpf-nav-link text-[15px] font-bold whitespace-nowrap"
-                style={{ color: 'var(--wpf-ink)' }}
-              >
-                {item.label}
-              </Link>
-            ))}
+          {/* Desktop nav.
+              The links are a real <ul> so a screen reader announces how many
+              there are before you start moving through them — asked for by an
+              accessibility consultant, Aug 2026. gap tightens at lg and opens
+              back up at xl: six links plus the tickets pill don't fit beside
+              the wordmark at exactly 1024px otherwise. */}
+          <nav className="hidden lg:flex items-center gap-5 xl:gap-7" aria-label="Main">
+            <ul className="flex items-center gap-5 xl:gap-7">
+              {NAV.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="wpf-nav-link text-[15px] font-bold whitespace-nowrap"
+                    style={{ color: 'var(--wpf-ink)' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             {/* Sarah, 11 Aug: tickets are live, so this is a real link now.
                 The old placeholder was white over --wpf-pink at opacity-40,
                 which read 1.93:1 — it's the transparency that failed, not the
                 colour. Solid --wpf-pink carries white at 4.81:1, so this uses
                 the same button as every other CTA on the site rather than a
-                darker pink of its own. */}
+                darker pink of its own.
+
+                Outside the <ul>: it goes to Humanitix, not to a page of this
+                site, so it isn't one of the nav items being counted. */}
             <a
               href={TICKETS_URL}
               target="_blank"
@@ -95,23 +114,30 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
               className="wpf-btn-primary wpf-btn-focus text-[14px] px-6 py-3 whitespace-nowrap"
             >
               Get Tickets
+              <NewTabHint />
             </a>
           </nav>
 
           {/* Mobile: tickets + menu toggle.
               The pill is hidden below 380px — at a 400% zoom / 320px viewport
-              it pushed the menu button off the right edge (doc width 361 vs
-              320), which made the page scroll sideways. The same tickets link
-              is repeated in the mobile menu and the footer, so nothing is
-              lost at that width. */}
+              it pushes the menu button off the right edge, which makes the
+              page scroll sideways. The same tickets link is repeated in the
+              mobile menu and the footer, so nothing is lost at that width.
+
+              It hides via .wpf-hide-below-380 rather than Tailwind's `hidden`.
+              That was the original fix and it never worked: `hidden` is a
+              layered utility and .wpf-btn-primary is unlayered, so the
+              button's own `display: inline-block` won and the pill stayed put.
+              See the note on that class in globals.css. */}
           <div className="lg:hidden flex items-center gap-2">
             <a
               href={TICKETS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="wpf-btn-primary wpf-btn-focus hidden min-[380px]:inline-block text-[13px] px-4 py-2.5 whitespace-nowrap"
+              className="wpf-btn-primary wpf-btn-focus wpf-hide-below-380 text-[13px] px-4 py-2.5 whitespace-nowrap"
             >
               Tickets
+              <NewTabHint />
             </a>
             <button
               ref={toggleRef}
@@ -137,17 +163,20 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
             className="lg:hidden mx-4 mb-4 rounded-xl border border-black/5 px-5 py-4 flex flex-col gap-3"
             style={{ backgroundColor: '#ffffff' }}
           >
-            {MOBILE_NAV.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setOpen(false)}
-                className="wpf-nav-link text-base font-bold py-1"
-                style={{ color: 'var(--wpf-ink)' }}
-              >
-                {item.label}
-              </Link>
-            ))}
+            <ul className="flex flex-col gap-3">
+              {MOBILE_NAV.map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={() => setOpen(false)}
+                    className="wpf-nav-link text-base font-bold py-1 inline-block"
+                    style={{ color: 'var(--wpf-ink)' }}
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
             {/* Repeated here because the header pill is hidden below 380px. */}
             <a
               href={TICKETS_URL}
@@ -157,6 +186,7 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
               className="wpf-btn-primary wpf-btn-focus self-start text-base px-6 py-2.5 mt-1"
             >
               Get Tickets
+              <NewTabHint />
             </a>
           </nav>
         )}

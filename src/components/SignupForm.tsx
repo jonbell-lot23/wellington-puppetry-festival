@@ -23,20 +23,24 @@ export default function SignupForm() {
     )
   }
 
-  // Every field previously relied on its placeholder as its only label. That
-  // gives a screen reader an unreliable name, and the label disappears for
-  // everyone as soon as they start typing. Real <label>s now, visually hidden
-  // where the design can't spare the room.
+  // Every field once relied on its placeholder as its only label. That was
+  // fixed with real <label>s, but they were visually hidden and the
+  // placeholders were left doing the visible work — which an accessibility
+  // consultant flagged in Aug 2026 as still the same problem wearing a
+  // different hat. A placeholder vanishes as soon as you type, which is hard
+  // on anyone who loses their thread mid-form, and a label nobody can see is
+  // a label a voice-control user can't say out loud to reach the field.
+  //
+  // So: visible labels, and no placeholders repeating them.
   return (
     <form onSubmit={handleSubmit} className="wpf-signup-panel w-full max-w-lg mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
-          <label htmlFor="signup-first-name" className="wpf-visually-hidden">First name</label>
+          <label htmlFor="signup-first-name" className="wpf-signup-label">First name</label>
           <input
             id="signup-first-name"
             name="firstName"
             type="text"
-            placeholder="First name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
             className="wpf-signup-input w-full"
@@ -44,12 +48,11 @@ export default function SignupForm() {
           />
         </div>
         <div>
-          <label htmlFor="signup-last-name" className="wpf-visually-hidden">Last name</label>
+          <label htmlFor="signup-last-name" className="wpf-signup-label">Last name</label>
           <input
             id="signup-last-name"
             name="lastName"
             type="text"
-            placeholder="Last name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
             className="wpf-signup-input w-full"
@@ -57,14 +60,18 @@ export default function SignupForm() {
           />
         </div>
       </div>
-      <div className="mt-3 flex flex-col sm:flex-row gap-3">
+      {/* items-end so the button still lines up with the input now that the
+          input has a label sitting above it. */}
+      <div className="mt-3 flex flex-col sm:flex-row sm:items-end gap-3">
         <div className="flex-1">
-          <label htmlFor="signup-email" className="wpf-visually-hidden">Email address (required)</label>
+          {/* "(required)" in the label text rather than only an asterisk or
+              only the `required` attribute — it's the one field that has to be
+              filled in, and that should be readable before you submit. */}
+          <label htmlFor="signup-email" className="wpf-signup-label">Email address (required)</label>
           <input
             id="signup-email"
             name="email"
             type="email"
-            placeholder="Email address"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required

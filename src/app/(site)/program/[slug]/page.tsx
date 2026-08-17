@@ -3,6 +3,8 @@ import { teReo } from '@/lib/tereo'
 import { notFound } from 'next/navigation'
 import { getPageContent } from '@/app/actions'
 import ImagePlaceholder from '@/components/ImagePlaceholder'
+import NewTabHint from '@/components/NewTabHint'
+import { MAIN_HEADING_ID } from '@/lib/site'
 import {
   VENUES,
   eventSlug,
@@ -51,8 +53,10 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const found = findEventBySlug(await loadStrands(), slug)
-  if (!found) return { title: 'Programme: Wellington Puppetry Festival' }
-  return { title: `${found.event.title}: Wellington Puppetry Festival` }
+  // The root layout appends "| Wellington Puppetry Festival" to every page
+  // title, so these are just the part that changes.
+  if (!found) return { title: 'Programme' }
+  return { title: found.event.title }
 }
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -66,7 +70,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
   const venue = VENUES[ev.venue] ?? VENUES.hall
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-2xl">
           <Link
@@ -80,7 +84,12 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
           <p className="text-sm font-bold uppercase tracking-widest wpf-text-muted mb-2">
             {strand.day} · {teReo(strand.title)}
           </p>
-          <h1 className="text-4xl font-extrabold mb-3" style={{ color: 'var(--wpf-ink)' }}>
+          <h1
+            id={MAIN_HEADING_ID}
+            tabIndex={-1}
+            className="wpf-skip-target text-4xl font-extrabold mb-3"
+            style={{ color: 'var(--wpf-ink)' }}
+          >
             {teReo(ev.title)}
           </h1>
           {ev.by && (
@@ -126,6 +135,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                   style={{ color: 'var(--wpf-pink-deep)' }}
                 >
                   {venue.address}
+                  <span className="wpf-visually-hidden"> (opens Google Maps in a new tab)</span>
                 </a>
               </dd>
               {/* Sarah's venue access notes (Aug 2026). This is the page
@@ -167,7 +177,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
               >
                 Buy tickets
                 <span aria-hidden="true"> ↗</span>
-                <span className="wpf-visually-hidden"> (opens in a new tab)</span>
+                <NewTabHint />
               </a>
               <p className="text-xs leading-snug wpf-text-muted mt-2 sm:max-w-[16rem]">
                 Opens in a new tab. You can book several shows and workshops in
@@ -284,6 +294,8 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
               className="wpf-btn-primary wpf-btn-focus px-8 py-3"
             >
               Buy tickets
+              <span aria-hidden="true"> ↗</span>
+              <NewTabHint />
             </a>
           )}
 

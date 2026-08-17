@@ -1,8 +1,11 @@
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
 import { teReo } from '@/lib/tereo'
+import type { Metadata } from 'next'
 
 export const revalidate = 60
+
+export const metadata: Metadata = { title: 'Accessibility' }
 
 export default async function AccessibilityPage() {
   // Sarah's contact details live on the contact page's content so there's one
@@ -27,7 +30,7 @@ export default async function AccessibilityPage() {
     .filter((show) => show.title?.trim())
 
   return (
-    <main id="main" tabIndex={-1} style={{ backgroundColor: 'var(--wpf-cream)' }}>
+    <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
