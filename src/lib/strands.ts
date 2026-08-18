@@ -262,9 +262,12 @@ export const DEFAULT_STRANDS: Strand[] = [
     blurb: 'Captivating hands-on puppet workshops for ages 14+, morning and afternoon.',
     note: 'Check the programme here.',
     access: 'ticketed',
+    // The whole Upstairs column was re-timed on the 18 Aug master sheet to fit
+    // Sarah's workshop in: 10:00, 11:15, 12:30, each an hour. Jon's used to run
+    // 9:30–11:00am (1.5 hrs) and Ally's 11:50am (45 mins).
     events: [
       {
-        time: '9:30–11:00am',
+        time: '10:00–11:00am',
         title: 'Basic Mechanisms for Puppetry',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/basic-mechanisms-1.jpg',
@@ -275,7 +278,7 @@ export const DEFAULT_STRANDS: Strand[] = [
           "Jon Coddington smiling while operating a large vulture puppet with tattered wings, in front of a seated workshop audience",
         ],
         by: 'Jon Coddington',
-        duration: '1.5 hrs',
+        duration: '1 hr',
         age: '14+',
         venue: 'upstairs',
         blurb:
@@ -283,7 +286,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio: CODDINGTON_BIO,
       },
       {
-        time: '11:50am',
+        time: '11:15am–12:15pm',
         title: 'Bespoke Backpacks for Giants and Walkabouts',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/bespoke-backpacks-1.jpg',
@@ -294,7 +297,7 @@ export const DEFAULT_STRANDS: Strand[] = [
           "A fluffy white giant puppet head strapped into a wooden carrying-backpack frame",
         ],
         by: 'Ally Rogers',
-        duration: '45 mins',
+        duration: '1 hr',
         age: '14+',
         venue: 'upstairs',
         blurb:
@@ -306,11 +309,13 @@ export const DEFAULT_STRANDS: Strand[] = [
       },
       // Bridget, 18 Aug: her own "Make a Puppet and Bring it to Life!" is out of
       // the weekend, and Sarah's workshop takes the slot it leaves — moved here
-      // from Sunday. It keeps Bridget's start time but runs an hour, not 90
-      // minutes, so it's clear of the 2:00pm BLENNZ workshop at Ridgway.
-      // Still no blurb for it, so no More info page yet.
+      // from Sunday, at 12:30 rather than Bridget's old 12:15–1:45pm.
+      //
+      // The master sheet calls it "Patterns for Puppet heads"; the title here is
+      // the one Humanitix sells it under, which is what a ticket-holder will
+      // have seen. Still no blurb for it, so no More info page yet.
       {
-        time: '12:15–1:15pm',
+        time: '12:30–1:30pm',
         title: 'Pattern Making for Puppets',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         by: 'Sarah Bell',
@@ -463,10 +468,9 @@ export const DEFAULT_STRANDS: Strand[] = [
       // Saturday — it's in sat-workshops now, in the slot Bridget's own
       // workshop used to hold.
       {
-        // Bridget, 18 Aug: moved to Vogelmorn Hall, same day. Same start as the
-        // 11:15–11:50am it used to hold, running the full 40 minutes it's
-        // billed at.
-        time: '11:15–11:55am',
+        // Bridget, 18 Aug: moved to Vogelmorn Hall, same day, a quarter of an
+        // hour earlier than the 11:15–11:50am it used to hold.
+        time: '11:00–11:40am',
         title: 'Puppetry in Warzones',
         ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
         image: '/images/shows/puppetry-in-warzones-1.jpg',
