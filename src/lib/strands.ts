@@ -262,12 +262,9 @@ export const DEFAULT_STRANDS: Strand[] = [
     blurb: 'Captivating hands-on puppet workshops for ages 14+, morning and afternoon.',
     note: 'Check the programme here.',
     access: 'ticketed',
-    // The whole Upstairs column was re-timed on the 18 Aug master sheet to fit
-    // Sarah's workshop in: 10:00, 11:15, 12:30, each an hour. Jon's used to run
-    // 9:30–11:00am (1.5 hrs) and Ally's 11:50am (45 mins).
     events: [
       {
-        time: '10:00–11:00am',
+        time: '9:30–11:00am',
         title: 'Basic Mechanisms for Puppetry',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/basic-mechanisms-1.jpg',
@@ -278,7 +275,7 @@ export const DEFAULT_STRANDS: Strand[] = [
           "Jon Coddington smiling while operating a large vulture puppet with tattered wings, in front of a seated workshop audience",
         ],
         by: 'Jon Coddington',
-        duration: '1 hr',
+        duration: '1.5 hrs',
         age: '14+',
         venue: 'upstairs',
         blurb:
@@ -286,7 +283,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio: CODDINGTON_BIO,
       },
       {
-        time: '11:15am–12:15pm',
+        time: '11:50am',
         title: 'Bespoke Backpacks for Giants and Walkabouts',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         image: '/images/shows/bespoke-backpacks-1.jpg',
@@ -297,7 +294,7 @@ export const DEFAULT_STRANDS: Strand[] = [
           "A fluffy white giant puppet head strapped into a wooden carrying-backpack frame",
         ],
         by: 'Ally Rogers',
-        duration: '1 hr',
+        duration: '45 mins',
         age: '14+',
         venue: 'upstairs',
         blurb:
