@@ -138,15 +138,33 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                   <span className="wpf-visually-hidden"> (opens Google Maps in a new tab)</span>
                 </a>
               </dd>
-              {/* Sarah's venue access notes (Aug 2026). This is the page
-                  someone reads while deciding whether they can get in, so it
-                  says what's actually there — steps, toilets — rather than
-                  leaving them to ask. */}
-              {venue.access && (
+              {/* Bridget, 18 Aug: this used to be Sarah's full access notes for
+                  the venue — three sentences on steps and toilets, printed
+                  above the blurb of every show and workshop that uses the room.
+                  Read one page and it's useful; read four and it's the toilets
+                  you remember. The notes live once on /accessibility now, and
+                  this is the pointer to them. Still on the page where someone
+                  is deciding whether they can get in — just not the loudest
+                  thing on it. */}
+              {/* The one-line venue detail from the listing — in practice
+                  "Wheelchair accessible venue." on the Ridgway rows. Short
+                  enough to belong here, and it's the single fact someone is
+                  looking for when they open a Ridgway show. */}
+              {ev.detail?.trim() && (
                 <dd className="text-sm leading-relaxed wpf-text-muted mt-2 max-w-md">
-                  {venue.access}
+                  {teReo(ev.detail)}
                 </dd>
               )}
+              <dd className="mt-2">
+                <a
+                  href="/accessibility#venues"
+                  className="wpf-btn-focus text-sm font-semibold underline underline-offset-4 hover:no-underline"
+                  style={{ color: 'var(--wpf-pink-deep)' }}
+                >
+                  Access at our venues
+                  <span aria-hidden="true"> →</span>
+                </a>
+              </dd>
             </div>
           </dl>
 
