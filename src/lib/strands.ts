@@ -306,10 +306,11 @@ export const DEFAULT_STRANDS: Strand[] = [
       },
       // Bridget, 18 Aug: her own "Make a Puppet and Bring it to Life!" is out of
       // the weekend, and Sarah's workshop takes the slot it leaves — moved here
-      // from Sunday, at a time of its own rather than Bridget's old 12:15–1:45pm.
+      // from Sunday. It keeps Bridget's start time but runs an hour, not 90
+      // minutes, so it's clear of the 2:00pm BLENNZ workshop at Ridgway.
       // Still no blurb for it, so no More info page yet.
       {
-        time: 'TBC',
+        time: '12:15–1:15pm',
         title: 'Pattern Making for Puppets',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
         by: 'Sarah Bell',
@@ -462,9 +463,10 @@ export const DEFAULT_STRANDS: Strand[] = [
       // Saturday — it's in sat-workshops now, in the slot Bridget's own
       // workshop used to hold.
       {
-        // Bridget, 18 Aug: moved to Vogelmorn Hall, same day, at a slightly
-        // different time to the 11:15–11:50am it used to hold.
-        time: 'TBC',
+        // Bridget, 18 Aug: moved to Vogelmorn Hall, same day. Same start as the
+        // 11:15–11:50am it used to hold, running the full 40 minutes it's
+        // billed at.
+        time: '11:15–11:55am',
         title: 'Puppetry in Warzones',
         ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
         image: '/images/shows/puppetry-in-warzones-1.jpg',
