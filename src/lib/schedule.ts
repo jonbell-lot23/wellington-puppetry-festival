@@ -24,38 +24,39 @@
 // stays 'ridgeway' because stored programme JSON references it; only the label
 // visitors see was ever misspelled.
 //
-// `access` is Sarah's venue-by-venue access information (Aug 2026, also on the
-// Humanitix listing). It lives on the venue rather than on each event so it
-// can't drift between the twelve listings that share these four rooms, and so
-// a new event inherits it without anyone remembering to write it again.
+// Venues used to carry an `access` paragraph each — Sarah's venue-by-venue
+// notes on steps and toilets — which every event page printed under its Where
+// block.
+//
+// Bridget, 18 Aug: "when you open up any programme item, you get a fabulous
+// description of the toilet situation". Twelve listings share these four rooms,
+// so the same three sentences about the toilets were on every show and every
+// workshop page, above the blurb of the show itself.
+//
+// It's said once now, in the place that exists to say it: the four cards on
+// /accessibility (Getting to Vogelmorn, Getting to Ridgway, Steps and surfaces,
+// Toilets — see lib/pages.ts), with the venue note above the programme listing
+// carrying the short version. Event pages link there instead of repeating it.
 export const VENUES = {
   hall: {
     label: 'Vogelmorn Hall',
     bg: 'var(--wpf-yellow)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
-    access:
-      'Once you are inside, the toilets are on the same level as the shows, so there are no stairs. They are not wheelchair accessible — the nearest wheelchair accessible toilets are at Ridgway School Hall. Expect steps and uneven pavement getting to the building.',
   },
   upstairs: {
     label: 'Upstairs',
     bg: 'var(--wpf-pink-soft)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
-    access:
-      'In the Precinct building. The toilets here are up a short flight of stairs (fewer than five) and are not wheelchair accessible. Crossing to Vogelmorn Hall means several sets of steps and a lawn.',
   },
   green: {
     label: 'The Green',
     bg: 'var(--wpf-blue-soft)',
     address: 'Vogelmorn Bowling Club, 93 Mornington Road, Brooklyn, Wellington 6021',
-    access:
-      'Outdoors on the lawn. Expect steps and uneven pavement around the Precinct, including several sets of steps between here and Vogelmorn Hall.',
   },
   ridgeway: {
     label: 'Ridgway School Hall',
     bg: 'var(--wpf-cream)',
     address: 'Ridgway School, 120 Mornington Road, Brooklyn, Wellington 6021',
-    access:
-      'Wheelchair accessible, and the only venue with wheelchair accessible toilets. A short walk further up Mornington Road from the Bowling Club.',
   },
 } as const
 

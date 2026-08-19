@@ -38,10 +38,13 @@ export default async function AccessibilityPage() {
             shipped with described provisions nobody had confirmed. Nothing is
             rendered rather than an empty grid and a stray heading. */}
         {cards.length > 0 && (
-          <>
+          // Every event page links here for the venue's access information
+          // rather than reprinting it — scroll-mt keeps the first card clear of
+          // the sticky header on arrival, the same as #accessible-shows below.
+          <section id="venues" aria-labelledby="venues-heading" className="scroll-mt-28">
             {/* Hidden h2 — the card titles are h3s and the design has no visible
                 heading above them, which left them skipping a level. */}
-            <h2 className="wpf-visually-hidden">Access at the festival</h2>
+            <h2 id="venues-heading" className="wpf-visually-hidden">Access at the festival</h2>
             <div className="mx-auto max-w-3xl grid grid-cols-1 sm:grid-cols-2 gap-6">
               {cards.map((item) => (
                 <div key={item.title} className="rounded-xl bg-[var(--wpf-yellow-soft)] p-6 border border-black/5">
@@ -50,7 +53,7 @@ export default async function AccessibilityPage() {
                 </div>
               ))}
             </div>
-          </>
+          </section>
         )}
         <div className={cards.length > 0 ? 'text-center mt-10' : 'text-center'}>
           <a

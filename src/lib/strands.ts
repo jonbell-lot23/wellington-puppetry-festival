@@ -304,25 +304,20 @@ export const DEFAULT_STRANDS: Strand[] = [
         credits:
           'Ally Rogers, Maker of lanterns, puppets, parade puppets, walkabouts, theatre props and costumes',
       },
+      // Bridget, 18 Aug: her own "Make a Puppet and Bring it to Life!" is out of
+      // the weekend, and Sarah's workshop takes the slot it leaves — moved here
+      // from Sunday, at 12:30 rather than Bridget's old 12:15–1:45pm.
+      //
+      // The master sheet calls it "Patterns for Puppet heads"; the title here is
+      // the one Humanitix sells it under, which is what a ticket-holder will
+      // have seen. Still no blurb for it, so no More info page yet.
       {
-        time: '12:15–1:45pm',
-        title: 'Make a Puppet and Bring it to Life!',
+        time: '12:30–1:30pm',
+        title: 'Pattern Making for Puppets',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
-        image: '/images/shows/make-a-puppet-1.jpg',
-        imageAlt: "A simple table-top puppet with a plain white face, headscarf and flowing purple robe, operated by a hidden puppeteer's hand",
-        images: ['/images/shows/make-a-puppet-1.jpg', '/images/shows/make-a-puppet-2.jpg'],
-        imagesAlt: [
-          "A simple table-top puppet with a plain white face, headscarf and flowing purple robe, operated by a hidden puppeteer's hand",
-          "Workshop participants standing at a table, each holding a simple puppet with a white foam head and dark fabric cape they have just made",
-        ],
-        by: 'Bridget Sanders',
-        duration: '90 mins',
-        age: '14+',
+        by: 'Sarah Bell',
+        duration: '1 hr',
         venue: 'upstairs',
-        blurb:
-          'A hands-on workshop offering a rare opportunity to build your own Practice Puppet (in the style of a table-top Sandglass training puppet) and explore techniques to breathe life into it. Perfect for anyone curious about puppetry, theatre practitioners wanting to expand their toolbox, Parents and curious teenagers, and lovers of handmade craft. No prior experience needed, just enthusiasm and a generous puppetry heart! All materials provided.',
-        bio:
-          'Bridget Sanders is Producer & Creative Director at Birdlife Productions and has been making and performing with Puppetry for the last 15 years. For Bridget, puppetry is a direct link from her handcraft to storytelling and performance. She was fortunate to work alongside Akiko Miyamoto, a Master Japanese puppeteer living in Whakatū Nelson, who inspired her to make simple Bunraku style puppets. Most of her puppetry to date is influenced by these rudimentary beginnings, with the addition of shadow puppetry, and the inclusion of scale shift (from very small to very big).\n\nTraining includes: Mask & Clown at the John Bolton Theatre School in Melbourne, Puppetry with Sandglass Puppet Theatre, USA and Puppet making with Judith Hope, UK.',
       },
       // Lauren and Judith's BLENNZ access workshop. The 29 Jul itinerary gives
       // it the Saturday 2–5pm slot at Ridgway — the only afternoon session, and
@@ -458,25 +453,21 @@ export const DEFAULT_STRANDS: Strand[] = [
         by: 'Rowena MacGill',
         duration: '2.5 hrs',
         age: '14+',
-        venue: 'hall',
+        // Bridget, 18 Aug: moved to Upstairs. Same day, same times.
+        venue: 'upstairs',
         blurb:
           'Movement and shadows can create wonderful worlds with which to enhance your shows, as backgrounds or main features. This stunning extended 2.5 hour workshop explores techniques of using 3D shadows with puppets, sets and lighting with one of Aotearoa’s top Shadow puppetry experts. If you enjoyed Rowena’s offerings at the Festival in 2024, give yourself a treat and sign up for this workshop.\n\nWe will be working with cardboard and participants are encouraged to bring craft knives, pencils, eraser, thin and thick cardboard, cutting board and anything to enhance puppets or sets eg wool, lace, small leaves or twigs. Fun!',
         warnings: 'The room will be in blackout at times.',
         bio:
           'Rowena MacGill (she/her) has been a Shadow Puppetry performer for 45 years, both here and in Japan. Coming to puppetry from an educational background, the message of her work is important to her. She feels workshops can be of great value to families and children as it helps them express their creativity and encourages manipulation skills. Rowena has always enjoyed going to ‘out of the way’ places with her work and has undertaken many international tours.',
       },
-      // Sarah's workshop finally has its title — it's what Humanitix sells it
-      // as. Still no blurb, so no More info page yet.
+      // Bridget, 18 Aug: Sarah's "Pattern Making for Puppets" has moved to
+      // Saturday — it's in sat-workshops now, in the slot Bridget's own
+      // workshop used to hold.
       {
-        time: '10:00–11:00am',
-        title: 'Pattern Making for Puppets',
-        ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
-        by: 'Sarah Bell',
-        duration: '1 hr',
-        venue: 'upstairs',
-      },
-      {
-        time: '11:15–11:50am',
+        // Bridget, 18 Aug: moved to Vogelmorn Hall, same day, a quarter of an
+        // hour earlier than the 11:15–11:50am it used to hold.
+        time: '11:00–11:40am',
         title: 'Puppetry in Warzones',
         ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
         image: '/images/shows/puppetry-in-warzones-1.jpg',
@@ -489,7 +480,7 @@ export const DEFAULT_STRANDS: Strand[] = [
         by: 'Simone van Kan',
         duration: '40 mins',
         age: '14+',
-        venue: 'upstairs',
+        venue: 'hall',
         blurb:
           'Immerse yourselves for a while in the true meaning of ‘Puppets for Peace!’ Come and hear how Simone performed for orphans and refugees in war-torn Bosnia and Herzegovina and Romania during the nineties with her work ‘The Serious Road Trip’. If you ever doubted the power of puppetry to heal and inspire, this talk is for you!',
         bio:
