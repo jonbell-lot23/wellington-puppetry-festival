@@ -55,9 +55,9 @@ export const metadata: Metadata = {
     images: [
       {
         url: '/images/festival-banner.jpg',
-        width: 1751,
-        height: 959,
-        alt: 'Puppeteers and giant puppets at the Wellington Puppetry Festival',
+        width: 1600,
+        height: 900,
+        alt: 'Two puppeteers from Toro Pikopiko Puppets holding carved kare-tao and taniwha puppets at the Wellington Puppetry Festival',
       },
     ],
   },
