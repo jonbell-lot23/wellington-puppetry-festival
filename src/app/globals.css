@@ -512,6 +512,24 @@
   box-shadow: 0 0 0 2px var(--wpf-pink-soft), 0 0 0 3px var(--wpf-pink);
 }
 
+/* Invalid state: a heavy border on the white input (red on white passes
+   contrast; anything red on the deep-blue panel itself wouldn't), plus the
+   message below in plain white text. The message is rendered by SignupForm
+   with role=alert and aria-describedby, and stays visible until the field is
+   corrected — the consultant's Aug 2026 re-test caught the native validation
+   bubble being announced once and then gone. */
+.wpf-signup-input-invalid {
+  border: 2px solid #c22030;
+}
+
+.wpf-signup-error {
+  margin-top: 0.375rem;
+  color: #ffffff;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
 /* Subtle gallery lift — discoverable, not distracting */
 
 

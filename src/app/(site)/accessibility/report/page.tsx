@@ -134,7 +134,7 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Screen reader pass',
     status: 'open',
     body:
-      `Started, not finished. An accessibility consultant went through the site with JAWS on Windows on ${SCREEN_READER_REVIEW} and raised eighteen things, essentially none of which our automated checks had caught. Fifteen are fixed, one is half done, one is open, and one we have decided to leave as it is — they are listed as their own items on this page and in the changelog below. A pass on a phone, with VoiceOver on iOS, is still to come.`,
+      `Started, not finished. An accessibility consultant went through the site with JAWS on Windows on ${SCREEN_READER_REVIEW} and raised eighteen things, essentially none of which our automated checks had caught. The consultant re-tested on 24 August and confirmed the fixes hold, with two exceptions: the dates-above-headings fix turned out to cover only the homepage and Cabaret page while the programme rows and event pages still read the time first, and the sign-up form's error message was announced once and then gone. Both are fixed — see the changelog. Still open from the first review: the accordion rebuild and the alt text proofread, listed as their own items on this page. A pass on a phone, with VoiceOver on iOS, is still to come.`,
     detail:
       'The largest one: skipping to the content used to land you on the page wrapper rather than on the heading, and landing on a wrapper makes JAWS read the entire page out as one unbroken string. Every page did it, on every first visit, and no checker we run reports it. That is the argument for this kind of testing in one example.',
   },
@@ -181,6 +181,14 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
 ]
 
 const CHANGELOG: { date: string; items: string[] }[] = [
+  {
+    date: '24 August 2026',
+    items: [
+      'Both items in this entry come from the accessibility consultant’s re-test of the site with JAWS, which otherwise confirmed the fixes from the first review.',
+      'Inside the programme, each show’s time, length and ages now come after its heading in reading order rather than before it. Nothing moved visually — but a time read out above a heading either goes unheard by anyone navigating by headings, or worse, attaches to the wrong show: the next event’s time was the last thing announced before its heading. The same fix applies on each event’s own page, where the day sat above the page heading.',
+      'The newsletter sign-up form checks its own email field instead of leaving it to the browser. The browser’s validation bubble was announced once and then vanished, leaving no way to go back and re-read what was wrong. The error is now ordinary text under the field — announced when it appears, tied to the field so it is repeated on focus, and it stays visible until the field is fixed.',
+    ],
+  },
   {
     date: '17 August 2026',
     items: [

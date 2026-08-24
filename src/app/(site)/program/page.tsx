@@ -122,23 +122,14 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
         more ? 'transition-colors hover:bg-black/[0.03] focus-within:bg-black/[0.03]' : ''
       }`}
     >
-      {/* Left column carries everything time-ish: when, how long, who for. */}
-      <div className="shrink-0 w-32">
-        <p className="text-sm font-bold" style={{ color: 'var(--wpf-ink)' }}>
-          {ev.time}
-        </p>
-        {ev.duration && <p className="text-sm wpf-text-muted">{ev.duration}</p>}
-        {ev.age && <p className="text-xs font-bold wpf-text-muted">Ages: {ev.age}</p>}
-      </div>
-      {ev.image?.trim() && (
-        // eslint-disable-next-line @next/next/no-img-element
-        <img
-          src={ev.image}
-          alt={ev.imageAlt?.trim() || ev.title}
-          className="w-14 h-14 rounded-lg object-cover shrink-0 border border-black/10"
-        />
-      )}
-      <div className="flex-1 min-w-0 basis-full sm:basis-auto order-last sm:order-none">
+      {/* This block is first in the DOM but not on screen — the time column
+          keeps the left edge visually (flex order below). The heading has to
+          come first in reading order: the accessibility consultant (Aug 2026)
+          found that with the time above each h4, anyone moving through the
+          programme by headings never hears the times — or worse, hears the
+          *next* show's time while still focused on this one, because it sits
+          between this heading and the next. Heading first, then its own time. */}
+      <div className="flex-1 min-w-0 basis-full sm:basis-auto order-last sm:order-3">
         {/* A real heading, not a bold paragraph. Under the strand's h3 this
             gives every show and workshop its own stop when someone moves
             through the programme by headings, which was the one thing the
@@ -185,9 +176,28 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
           </p>
         )}
       </div>
+      {/* Left column carries everything time-ish: when, how long, who for.
+          order-1 keeps it visually first even though the title block now
+          precedes it in the DOM. Nothing in here is focusable, so the
+          visual/DOM mismatch never scrambles tab order. */}
+      <div className="shrink-0 w-32 order-1">
+        <p className="text-sm font-bold" style={{ color: 'var(--wpf-ink)' }}>
+          {ev.time}
+        </p>
+        {ev.duration && <p className="text-sm wpf-text-muted">{ev.duration}</p>}
+        {ev.age && <p className="text-xs font-bold wpf-text-muted">Ages: {ev.age}</p>}
+      </div>
+      {ev.image?.trim() && (
+        // eslint-disable-next-line @next/next/no-img-element
+        <img
+          src={ev.image}
+          alt={ev.imageAlt?.trim() || ev.title}
+          className="w-14 h-14 rounded-lg object-cover shrink-0 border border-black/10 order-2"
+        />
+      )}
       {/* shrink-0 is load-bearing: the label inside is shrink-0 too, so without
           it this container collapses under it and it overflows the row. */}
-      <div className="flex items-center gap-2.5 ml-auto shrink-0">
+      <div className="flex items-center gap-2.5 ml-auto shrink-0 order-4">
         <VenueLabel venue={ev.venue} />
       </div>
       {/* Last in the row, not first. It's absolutely positioned, so this

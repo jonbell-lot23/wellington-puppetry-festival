@@ -411,7 +411,8 @@ export const DEFAULT_STRANDS: Strand[] = [
       },
       { time: '10:45–11:10am', title: 'Little Bad Mood', by: 'Marine', duration: '20 mins', age: '5+', venue: 'ridgeway', detail: RIDGWAY_ACCESS },
       {
-        time: '12:00–12:30pm',
+        // Bridget, 24 Aug: Steph's show moves to the morning.
+        time: '10:00–10:30am',
         title: 'Night Shift',
         image: '/images/shows/night-shift-1.jpg',
         imageAlt: "A shadow-puppet screen showing a city skyline with a bridge, buildings and trees, with a performer silhouetted reaching up beside it",
@@ -432,6 +433,44 @@ export const DEFAULT_STRANDS: Strand[] = [
       },
     ],
   },
+  // Bridget, 24 Aug: new to the programme — Asra, from Sumud Ensemble, midday
+  // Sunday in the Hall. Its own strand rather than a row under "Shows for
+  // Children and whānau": it's documentary theatre for adult audiences with
+  // depictions of torture, and it shouldn't sit under a children's heading.
+  // Blurb, bio and credits are from the ensemble's own doc, as sent.
+  {
+    id: 'sun-asra',
+    day: 'Sunday',
+    title: 'Asra: Stories of Palestinian Prisoners',
+    blurb:
+      'Documentary puppetry theatre for adult audiences from Sumud Ensemble — stories of Palestinian prisoners, and of culture as a practice of resistance and liberation.',
+    note: 'Ages 14+. Contains depictions of torture and abuse.',
+    access: 'ticketed',
+    events: [
+      {
+        time: '12:00–1:00pm',
+        title: 'Asra: Stories of Palestinian Prisoners',
+        by: 'Sumud Ensemble',
+        duration: '60 mins',
+        age: '14+',
+        venue: 'hall',
+        image: '/images/shows/asra-1.jpg',
+        imageAlt:
+          'Two performers dressed in black kneel in darkness, operating a life-size child puppet in ochre-coloured clothing as it reaches one arm forward into the light.',
+        images: ['/images/shows/asra-1.jpg'],
+        imagesAlt: [
+          'Two performers dressed in black kneel in darkness, operating a life-size child puppet in ochre-coloured clothing as it reaches one arm forward into the light.',
+        ],
+        blurb:
+          'Palestinian prisoners detained and arrested by the Israeli military occupation are referred to as Captives or Asra أسرى. Using puppetry and audience participation, this documentary theatre production explores the experiences of Asra and the importance of Thaqafah ثقافة or Culture, such as literature, poetry, and songs, as practices of resistance and liberation.\n\nSo often puppetry is thought of as a children’s art form and it is rare to have shows in Aotearoa for adult audiences that address serious topics. We are very excited to welcome Asra to our festival, fitting so well into our theme of ‘Puppets for Peace’.',
+        warnings: 'Depictions of torture and abuse.',
+        bio:
+          'We are Sumud Ensemble. We make theatre in solidarity with Palestinians and for liberation of all oppressed peoples everywhere. We are enthusiastic learners when it comes to Puppetry! Some of our rōpū are mimes and have experience making puppets, others are voice actors and musicians.',
+        credits:
+          'Rand Hazou, Director\nPaul Lewis, Puppetry Director\nTerry Hooper, Performer\nZoe Higgins, Performer\nAcacia O’Connor, Performer',
+      },
+    ],
+  },
   {
     id: 'sun-workshops',
     day: 'Sunday',
@@ -441,7 +480,8 @@ export const DEFAULT_STRANDS: Strand[] = [
     // Bridget, 25 Jul: "ad-hoc workshops & sharings" — CUT.
     events: [
       {
-        time: '9:00–11:30am',
+        // Bridget, 24 Aug: re-timed from 9:00–11:30am.
+        time: '10:45am–1:15pm',
         title: 'Exploring 3D Shadows',
         ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
         image: '/images/shows/exploring-3d-shadows-1.jpg',
@@ -467,7 +507,9 @@ export const DEFAULT_STRANDS: Strand[] = [
       {
         // Bridget, 18 Aug: moved to Vogelmorn Hall, same day, a quarter of an
         // hour earlier than the 11:15–11:50am it used to hold.
-        time: '11:00–11:40am',
+        // Bridget, 24 Aug: 11:00–11:30 — a 30-minute slot, though her note
+        // still says 40 mins. Times as sent; the duration below is hers too.
+        time: '11:00–11:30am',
         title: 'Puppetry in Warzones',
         ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
         image: '/images/shows/puppetry-in-warzones-1.jpg',
@@ -495,7 +537,8 @@ export const DEFAULT_STRANDS: Strand[] = [
     title: 'Closing Circle',
     blurb:
       'For anyone who wants to acknowledge and celebrate our wonderful weekend together.',
-    note: '12:45–1:30pm at Vogelmorn Hall.',
+    // Bridget, 24 Aug: pushed back to make room for Asra at midday.
+    note: '1:30–2:30pm at Vogelmorn Hall.',
     access: 'attendees',
     events: [],
   },

@@ -81,17 +81,22 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
             <span aria-hidden="true">←</span> Back to the programme
           </Link>
 
-          <p className="text-sm font-bold uppercase tracking-widest wpf-text-muted mb-2">
-            {strand.day} · {teReo(strand.title)}
-          </p>
+          {/* Heading before the kicker, matching the homepage and cabaret —
+              the kicker carries the day, and heading navigation skipped
+              straight over it when it sat above the h1 (the accessibility
+              consultant's Aug 2026 re-test: dates above headings get missed,
+              or misattributed to the previous event). */}
           <h1
             id={MAIN_HEADING_ID}
             tabIndex={-1}
-            className="wpf-skip-target text-4xl font-extrabold mb-3"
+            className="wpf-skip-target text-4xl font-extrabold mb-2"
             style={{ color: 'var(--wpf-ink)' }}
           >
             {teReo(ev.title)}
           </h1>
+          <p className="text-sm font-bold uppercase tracking-widest wpf-text-muted mb-3">
+            {strand.day} · {teReo(strand.title)}
+          </p>
           {ev.by && (
             <p className="text-xl font-bold mb-6 wpf-text-muted">{ev.by}</p>
           )}

@@ -1,16 +1,38 @@
 'use client'
 
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 export default function SignupForm() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
+  const [error, setError] = useState('')
   const [submitted, setSubmitted] = useState(false)
+  const emailRef = useRef<HTMLInputElement>(null)
 
+  // Validation used to be the browser's: `required` + type=email pops a native
+  // bubble, which a screen reader announces once — and then it's gone. The
+  // accessibility consultant (Aug 2026): "I can't then go back and check to
+  // see what the message said, I can only tell that the field is marked as
+  // having an error." So the form validates itself (noValidate below) and the
+  // message is ordinary text that stays on the page until the field is fixed,
+  // tied to the input with aria-describedby so it re-reads on focus.
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    if (email) setSubmitted(true)
+    const trimmed = email.trim()
+    const problem = !trimmed
+      ? 'Error: Enter your email address.'
+      : !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(trimmed)
+        ? 'Error: Enter an email address that includes an @, like name@example.com.'
+        : ''
+    if (problem) {
+      setError(problem)
+      // Focus lands on the field so the label, the invalid state and the
+      // message are all announced together — no hunting for what went wrong.
+      emailRef.current?.focus()
+      return
+    }
+    setSubmitted(true)
   }
 
   if (submitted) {
@@ -33,7 +55,7 @@ export default function SignupForm() {
   //
   // So: visible labels, and no placeholders repeating them.
   return (
-    <form onSubmit={handleSubmit} className="wpf-signup-panel w-full max-w-lg mx-auto">
+    <form onSubmit={handleSubmit} noValidate className="wpf-signup-panel w-full max-w-lg mx-auto">
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label htmlFor="signup-first-name" className="wpf-signup-label">First name</label>
@@ -69,15 +91,27 @@ export default function SignupForm() {
               filled in, and that should be readable before you submit. */}
           <label htmlFor="signup-email" className="wpf-signup-label">Email address (required)</label>
           <input
+            ref={emailRef}
             id="signup-email"
             name="email"
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
-            className="wpf-signup-input w-full"
+            aria-invalid={error ? true : undefined}
+            aria-describedby={error ? 'signup-email-error' : undefined}
+            className={`wpf-signup-input w-full ${error ? 'wpf-signup-input-invalid' : ''}`}
             autoComplete="email"
           />
+          {/* role=alert announces the message the moment it appears; being
+              plain text, it also stays put for anyone who wants to read it
+              again. Starts with "Error:" so the severity survives being read
+              out of visual context. */}
+          {error && (
+            <p id="signup-email-error" role="alert" className="wpf-signup-error">
+              {error}
+            </p>
+          )}
         </div>
         <button
           type="submit"
