@@ -436,25 +436,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio:
           'Stephanie has been playing around with shadow puppets since ages ago, after encountering Indonesian puppetry through her musical involvement in Wellington’s Javanese gamelan. She has taken her shows to Cuba Dupa, the Wellington Folk Festival and previous editions of the Wellington Puppetry Festival. Also a musician, Stephanie has created a large scale shadow puppetry show set to the music of her band, Birdfeeder. She’s also dabbled in giant street puppetry and collaborated with Anna Bailey (String Bean Puppets) both as a musician and puppeteer, including work for the latest TAHI festival, ‘Flutter’.',
       },
-    ],
-  },
-  // Bridget, 24 Aug: new to the programme — Asra, from Sumud Ensemble, midday
-  // Sunday in the Hall. Its own strand rather than a row under the Sunday
-  // shows card (titled "Shows for Children and whānau" when this went in,
-  // "Sunday Shows" since later that day): it's documentary theatre for adult
-  // audiences with depictions of torture, and the separate card is what lets
-  // the 14+ / content-warning note sit on the card face where you see it
-  // before opening the programme. Blurb, bio and credits are from the
-  // ensemble's own doc, as sent.
-  {
-    id: 'sun-asra',
-    day: 'Sunday',
-    title: 'Asra: Stories of Palestinian Prisoners',
-    blurb:
-      'Documentary puppetry theatre for adult audiences from Sumud Ensemble — stories of Palestinian prisoners, and of culture as a practice of resistance and liberation.',
-    note: 'Ages 14+. Contains depictions of torture and abuse.',
-    access: 'ticketed',
-    events: [
+      // Bridget, 24 Aug: new to the programme — Asra, from Sumud Ensemble,
+      // midday Sunday in the Hall. Went in as its own card first (so the 14+
+      // and content warning sat on the card face); Bridget, 25 Aug: list it
+      // under Sunday Shows like the others. The warnings still lead the More
+      // info page. Blurb, bio and credits are from the ensemble's own doc,
+      // as sent.
       {
         time: '12:00–1:00pm',
         title: 'Asra: Stories of Palestinian Prisoners',
