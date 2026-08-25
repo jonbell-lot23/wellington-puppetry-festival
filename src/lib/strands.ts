@@ -171,9 +171,10 @@ export const DEFAULT_STRANDS: Strand[] = [
   {
     id: 'sat-shows',
     day: 'Saturday',
-    // Sarah, 24 Aug: titled to match Humanitix's ticket groups ("Saturday
-    // Shows" / "Sunday Shows") — was "Shows for Children and whānau". The
-    // blurb keeps the who-it's-for framing the title used to carry.
+    // Bridget, 24 Aug (off Sarah's observation that Humanitix groups the
+    // tickets this way): titled to match the ticket groups ("Saturday Shows"
+    // / "Sunday Shows") — was "Shows for Children and whānau". The blurb
+    // keeps the who-it's-for framing the title used to carry.
     title: 'Saturday Shows',
     blurb: 'A morning of glorious puppet shows designed for different ages to enjoy!',
     note: 'Check the programme here and buy your tickets quick.',
@@ -390,7 +391,7 @@ export const DEFAULT_STRANDS: Strand[] = [
   {
     id: 'sun-shows',
     day: 'Sunday',
-    // Sarah, 24 Aug: matches Humanitix, see sat-shows.
+    // Bridget, 24 Aug: matches Humanitix, see sat-shows.
     title: 'Sunday Shows',
     blurb: 'Another morning of accessible shows.',
     access: 'ticketed',
