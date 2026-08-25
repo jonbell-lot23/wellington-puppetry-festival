@@ -171,7 +171,10 @@ export const DEFAULT_STRANDS: Strand[] = [
   {
     id: 'sat-shows',
     day: 'Saturday',
-    title: 'Shows for Children and whānau',
+    // Sarah, 24 Aug: titled to match Humanitix's ticket groups ("Saturday
+    // Shows" / "Sunday Shows") — was "Shows for Children and whānau". The
+    // blurb keeps the who-it's-for framing the title used to carry.
+    title: 'Saturday Shows',
     blurb: 'A morning of glorious puppet shows designed for different ages to enjoy!',
     note: 'Check the programme here and buy your tickets quick.',
     access: 'ticketed',
@@ -387,7 +390,8 @@ export const DEFAULT_STRANDS: Strand[] = [
   {
     id: 'sun-shows',
     day: 'Sunday',
-    title: 'Shows for Children and whānau',
+    // Sarah, 24 Aug: matches Humanitix, see sat-shows.
+    title: 'Sunday Shows',
     blurb: 'Another morning of accessible shows.',
     access: 'ticketed',
     events: [
@@ -434,10 +438,13 @@ export const DEFAULT_STRANDS: Strand[] = [
     ],
   },
   // Bridget, 24 Aug: new to the programme — Asra, from Sumud Ensemble, midday
-  // Sunday in the Hall. Its own strand rather than a row under "Shows for
-  // Children and whānau": it's documentary theatre for adult audiences with
-  // depictions of torture, and it shouldn't sit under a children's heading.
-  // Blurb, bio and credits are from the ensemble's own doc, as sent.
+  // Sunday in the Hall. Its own strand rather than a row under the Sunday
+  // shows card (titled "Shows for Children and whānau" when this went in,
+  // "Sunday Shows" since later that day): it's documentary theatre for adult
+  // audiences with depictions of torture, and the separate card is what lets
+  // the 14+ / content-warning note sit on the card face where you see it
+  // before opening the programme. Blurb, bio and credits are from the
+  // ensemble's own doc, as sent.
   {
     id: 'sun-asra',
     day: 'Sunday',
