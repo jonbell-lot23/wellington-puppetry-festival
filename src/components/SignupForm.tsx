@@ -2,7 +2,13 @@
 
 import { useRef, useState } from 'react'
 
-export default function SignupForm() {
+/**
+ * `panel` draws the translucent box the form sits in. The archived v1 footer
+ * wants it — the form floats there on a plain colour band. On /contact the
+ * form already sits inside a card, and the panel made it a box inside a box,
+ * so that page passes panel={false} and the card does the containing.
+ */
+export default function SignupForm({ panel = true }: { panel?: boolean }) {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [email, setEmail] = useState('')
@@ -39,7 +45,10 @@ export default function SignupForm() {
     return (
       // role=status so a screen reader announces the confirmation — otherwise
       // the form silently vanishes and there's no feedback that it worked.
-      <p role="status" className="wpf-text-muted-on-dark text-sm py-4 max-w-md mx-auto leading-relaxed">
+      <p
+        role="status"
+        className={`wpf-text-muted-on-dark text-sm leading-relaxed ${panel ? 'py-4 max-w-md mx-auto' : ''}`}
+      >
         Thanks! We&apos;ll be in touch once sign-ups are open. Follow us on Instagram or Facebook for updates in the meantime.
       </p>
     )
@@ -55,7 +64,11 @@ export default function SignupForm() {
   //
   // So: visible labels, and no placeholders repeating them.
   return (
-    <form onSubmit={handleSubmit} noValidate className="wpf-signup-panel w-full max-w-lg mx-auto">
+    <form
+      onSubmit={handleSubmit}
+      noValidate
+      className={panel ? 'wpf-signup-panel w-full max-w-lg mx-auto' : 'w-full'}
+    >
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
         <div>
           <label htmlFor="signup-first-name" className="wpf-signup-label">First name</label>
