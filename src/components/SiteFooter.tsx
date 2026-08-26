@@ -3,7 +3,12 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import NewTabHint from '@/components/NewTabHint'
-const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
+
+// Jon, 26 Aug: "remove the tickets link from the footer too." No Humanitix
+// link down here at all now — the header carries Get Tickets on every page,
+// desktop and mobile, and it's sticky, so it's never more than a glance away.
+// (This is the third pass over the old brief's "ticket links everywhere"
+// note; the footer was the copy that had least to do.)
 
 function Instagram() {
   return (
@@ -137,20 +142,6 @@ export default function SiteFooter() {
               <Facebook />
             </a>
           </div>
-
-          {/* Tickets kept its place in the footer when the link lists were
-              regrouped — it's the one thing here that isn't a page of this
-              site, so it's the pink pill it is in the header rather than a
-              sixth entry in a list of links. */}
-          <a
-            href={TICKETS_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="wpf-btn-primary wpf-btn-focus text-sm px-6 py-3 mt-6"
-          >
-            Get Tickets
-            <NewTabHint />
-          </a>
         </div>
 
         {/* A labelled <nav>, so a screen reader user can tell this apart from

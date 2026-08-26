@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
 import SignupForm from '@/components/SignupForm'
@@ -53,16 +52,13 @@ function EmailLink({ email, className, style }: { email: string; className?: str
   )
 }
 
-// The pages people are usually after when they land here — the intro asks
-// about the programme, volunteering and accessibility, so it's worth pointing
-// at the three pages that answer those without an email at all. Duplicating
-// the header and footer links is fine; sending someone away empty-handed
-// isn't.
-const ELSEWHERE = [
-  { label: 'Programme', href: '/program' },
-  { label: 'Volunteering', href: '/volunteers' },
-  { label: 'Accessibility', href: '/accessibility' },
-]
+// Jon, 26 Aug: the third block in this card — a row of links to Programme,
+// Volunteering and Accessibility under "Also on the site" — is out. It was
+// my addition, the reasoning being that the intro paragraph names those three
+// things; but the header, the footer and the intro itself all already point
+// at them, and a card headed "Email us" is a strange place to be handed a
+// fourth set of navigation. The card is the two things it's for: the address
+// and the socials.
 
 export default async function ContactPage() {
   const c = await getPageContent('contact')
@@ -81,11 +77,16 @@ export default async function ContactPage() {
             <h2 className="wpf-section-kicker mb-3">Email us</h2>
             <EmailLink
               email={c.email}
-              className="wpf-btn-focus text-[17px] md:text-xl font-bold hover:underline underline-offset-4 [overflow-wrap:anywhere] transition-colors"
+              className="wpf-btn-focus text-[17px] md:text-xl font-bold hover:underline underline-offset-4 [overflow-wrap:anywhere] transition-colors mb-7"
               style={{ color: 'var(--wpf-pink-deep)' }}
             />
 
-            <div className="mt-7 pt-7 border-t border-black/10">
+            {/* Fixed spacing, not mt-auto. The card stretches to match the
+                newsletter card beside it, and pushing the socials to the foot
+                of it just opened a hole in the middle — the slack reads
+                better as quiet space under a short card than as a gap between
+                two things that belong together. */}
+            <div className="pt-7 border-t border-black/10">
               <h2 className="wpf-section-kicker mb-3">Follow along</h2>
               <div className="flex flex-wrap gap-3">
                 <a
@@ -107,27 +108,6 @@ export default async function ContactPage() {
                   <NewTabHint />
                 </a>
               </div>
-            </div>
-
-            {/* Same mt-7/pt-7 rhythm as the block above rather than an
-                mt-auto pinning it to the bottom: with the two cards already
-                near enough the same height, `auto` resolved to no free space
-                and pulled the rule up flush against the social buttons. */}
-            <div className="mt-7 pt-7 border-t border-black/10">
-              <h2 className="wpf-section-kicker mb-3">Also on the site</h2>
-              <ul className="flex flex-wrap gap-x-5 gap-y-1">
-                {ELSEWHERE.map((l) => (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      className="wpf-btn-focus text-sm font-bold underline underline-offset-4 inline-block py-1"
-                      style={{ color: 'var(--wpf-pink-deep)' }}
-                    >
-                      {l.label}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
             </div>
           </div>
 
