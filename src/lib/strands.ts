@@ -436,6 +436,37 @@ export const DEFAULT_STRANDS: Strand[] = [
         bio:
           'Stephanie has been playing around with shadow puppets since ages ago, after encountering Indonesian puppetry through her musical involvement in Wellington’s Javanese gamelan. She has taken her shows to Cuba Dupa, the Wellington Folk Festival and previous editions of the Wellington Puppetry Festival. Also a musician, Stephanie has created a large scale shadow puppetry show set to the music of her band, Birdfeeder. She’s also dabbled in giant street puppetry and collaborated with Anna Bailey (String Bean Puppets) both as a musician and puppeteer, including work for the latest TAHI festival, ‘Flutter’.',
       },
+      // Bridget, 26 Aug: Simone's talk moves across from the Sunday
+      // Workshops card to sit here, before Asra — it reads as a show, not a
+      // workshop, and the Sunday afternoon in the Hall now runs in one
+      // continuous list so people can see what follows what.
+      {
+        // Bridget, 18 Aug: moved to Vogelmorn Hall, same day, a quarter of an
+        // hour earlier than the 11:15–11:50am it used to hold.
+        // Bridget, 24 Aug: 11:00–11:30 — a 30-minute slot, though her note
+        // still says 40 mins. Times as sent; the duration below is hers too.
+        time: '11:00–11:30am',
+        title: 'Puppetry in Warzones',
+        // Bridget calls this "Simone's Free Talk", so the workshop ticket link
+        // it carried under sun-workshops comes off and the row says free
+        // instead — the card chip above it reads "Ticketed" for the shows.
+        detail: 'Free, no ticket needed.',
+        image: '/images/shows/puppetry-in-warzones-1.jpg',
+        imageAlt: "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
+        images: ['/images/shows/puppetry-in-warzones-1.jpg', '/images/shows/puppetry-in-warzones-2.jpg'],
+        imagesAlt: [
+          "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
+          "An old photograph of two performers posing beside large costumed puppet figures, one in a polka-dot dress, one blue-faced in striped pyjamas",
+        ],
+        by: 'Simone van Kan',
+        duration: '40 mins',
+        age: '14+',
+        venue: 'hall',
+        blurb:
+          'Immerse yourselves for a while in the true meaning of ‘Puppets for Peace!’ Come and hear how Simone performed for orphans and refugees in war-torn Bosnia and Herzegovina and Romania during the nineties with her work ‘The Serious Road Trip’. If you ever doubted the power of puppetry to heal and inspire, this talk is for you!',
+        bio:
+          'Simone began her puppetry journey by performing fairytales and other stories with ‘The Little People’s Puppet Theatre’ in Rotorua in the 70s. She was able to draw on this experience when touring orphanages and refugee camps with her own puppet and clown work ‘The Serious Road Trip’. On returning to Aotearoa, she developed this story further, honing and specialising in Puppetry. She received scholarships to train with masters from around the world such as Berlin, Bochum, Paris and Wellington with Capital E. Simone is visiting the Festival from the Bay of Plenty.',
+      },
       // Bridget, 24 Aug: new to the programme — Asra, from Sumud Ensemble,
       // midday Sunday in the Hall. Went in as its own card first (so the 14+
       // and content warning sat on the card face); Bridget, 25 Aug: list it
@@ -499,30 +530,8 @@ export const DEFAULT_STRANDS: Strand[] = [
       // Bridget, 18 Aug: Sarah's "Pattern Making for Puppets" has moved to
       // Saturday — it's in sat-workshops now, in the slot Bridget's own
       // workshop used to hold.
-      {
-        // Bridget, 18 Aug: moved to Vogelmorn Hall, same day, a quarter of an
-        // hour earlier than the 11:15–11:50am it used to hold.
-        // Bridget, 24 Aug: 11:00–11:30 — a 30-minute slot, though her note
-        // still says 40 mins. Times as sent; the duration below is hers too.
-        time: '11:00–11:30am',
-        title: 'Puppetry in Warzones',
-        ticketUrl: TICKETS_SUN_WORKSHOPS_URL,
-        image: '/images/shows/puppetry-in-warzones-1.jpg',
-        imageAlt: "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
-        images: ['/images/shows/puppetry-in-warzones-1.jpg', '/images/shows/puppetry-in-warzones-2.jpg'],
-        imagesAlt: [
-          "Simone van Kan laughing while holding up a fantastical furry monster hand-puppet with purple hair and big round eyes",
-          "An old photograph of two performers posing beside large costumed puppet figures, one in a polka-dot dress, one blue-faced in striped pyjamas",
-        ],
-        by: 'Simone van Kan',
-        duration: '40 mins',
-        age: '14+',
-        venue: 'hall',
-        blurb:
-          'Immerse yourselves for a while in the true meaning of ‘Puppets for Peace!’ Come and hear how Simone performed for orphans and refugees in war-torn Bosnia and Herzegovina and Romania during the nineties with her work ‘The Serious Road Trip’. If you ever doubted the power of puppetry to heal and inspire, this talk is for you!',
-        bio:
-          'Simone began her puppetry journey by performing fairytales and other stories with ‘The Little People’s Puppet Theatre’ in Rotorua in the 70s. She was able to draw on this experience when touring orphanages and refugee camps with her own puppet and clown work ‘The Serious Road Trip’. On returning to Aotearoa, she developed this story further, honing and specialising in Puppetry. She received scholarships to train with masters from around the world such as Berlin, Bochum, Paris and Wellington with Capital E. Simone is visiting the Festival from the Bay of Plenty.',
-      },
+      // Bridget, 26 Aug: Simone's "Puppetry in Warzones" has left this card
+      // too — it's listed under Sunday Shows now, above Asra.
       { time: '11:15am–12:00pm', title: 'Paper Bag Family', by: 'Marine', duration: '45 mins', age: '5+', venue: 'ridgeway', detail: RIDGWAY_ACCESS },
     ],
   },
