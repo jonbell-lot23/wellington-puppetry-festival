@@ -3,7 +3,12 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import NewTabHint from '@/components/NewTabHint'
-const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
+
+// Jon, 26 Aug: "remove the tickets link from the footer too." No Humanitix
+// link down here at all now — the header carries Get Tickets on every page,
+// desktop and mobile, and it's sticky, so it's never more than a glance away.
+// (This is the third pass over the old brief's "ticket links everywhere"
+// note; the footer was the copy that had least to do.)
 
 function Instagram() {
   return (
@@ -21,17 +26,37 @@ function Facebook() {
   )
 }
 
-// Secondary nav — the items trimmed out of the top nav (see SiteHeader
-// comment) live here instead, plus a repeated tickets link per the brief's
-// "ticket links everywhere" note.
-const LINKS = [
-  { label: 'Volunteers', href: '/volunteers' },
-  { label: 'Team', href: '/team' },
-  { label: 'Accessibility', href: '/accessibility' },
-  // Also reachable from the "You!" tile on the sponsor wall, but that tile is
-  // a visual joke — this is the route for anyone not playing along.
-  { label: 'Support us', href: '/support' },
-  { label: 'Get Tickets', href: TICKETS_URL, external: true },
+// Jon, 26 Aug: "let's make sure what is in the footer and top menu is good
+// and cohesive. You don't always need to duplicate but many things may be."
+//
+// The footer used to hold only the four pages the top nav had dropped, under
+// one heading called "More" — so from the bottom of any page there was no way
+// to the programme, the cabaret, the about page or the contact page, and
+// "More" meant "more than what, exactly?". It's the whole site now, in two
+// named groups: what's on, and how to be part of it. Deliberately overlapping
+// with the top nav — someone who has read to the bottom of a page shouldn't
+// have to scroll back up to go anywhere.
+const GROUPS = [
+  {
+    heading: "What's on",
+    links: [
+      { label: 'Programme', href: '/program' },
+      { label: 'Cabaret', href: '/cabaret' },
+      { label: 'About', href: '/about' },
+      { label: 'Team', href: '/team' },
+    ],
+  },
+  {
+    heading: 'Get involved',
+    links: [
+      { label: 'Volunteers', href: '/volunteers' },
+      { label: 'Accessibility', href: '/accessibility' },
+      // Also reachable from the "You!" tile on the sponsor wall, but that tile
+      // is a visual joke — this is the route for anyone not playing along.
+      { label: 'Support us', href: '/support' },
+      { label: 'Contact & Newsletter', href: '/contact' },
+    ],
+  },
 ]
 
 export default function SiteFooter() {
@@ -39,7 +64,6 @@ export default function SiteFooter() {
   // Cabaret is the intentionally moody maroon page — let the wine colour flow
   // straight into the footer with no wave and no blue break.
   const maroon = pathname?.startsWith('/cabaret') ?? false
-  const ink = 'var(--wpf-ink)'
 
   // Semi-transparent white over the brand green failed AA (0.9 → 3.81:1,
   // 0.6 → 2.53:1). Solid tints instead: white is 5.61:1 on the green and
@@ -69,8 +93,11 @@ export default function SiteFooter() {
       </div>
     )}
     <footer style={{ backgroundColor: maroon ? 'var(--wpf-maroon-deep)' : greenBg, color: maroon ? '#ffffff' : greenText }}>
-      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 md:grid-cols-[1.3fr_1fr] gap-10">
-        <div>
+      <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-14 md:py-16 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-[1.3fr_1fr_1fr] gap-10">
+        {/* Full width at the two-column size, so the link groups sit side by
+            side underneath rather than one of them stranding a column-wide
+            hole beside the blurb. */}
+        <div className="sm:col-span-2 md:col-span-1">
           <p className="font-extrabold leading-none text-xl mb-4">
             Wellington
             <br />
@@ -120,32 +147,43 @@ export default function SiteFooter() {
         {/* A labelled <nav>, so a screen reader user can tell this apart from
             the header navigation instead of landing on two unnamed
             "navigation" landmarks — asked for by an accessibility consultant,
-            Aug 2026. The header's is labelled "Main". */}
-        <nav aria-label="Footer">
-          <p className="text-xs uppercase tracking-widest font-semibold mb-4" style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}>More</p>
-          {/* py-1.5 gives each link a >=24px tall hit area (WCAG 2.5.8) —
-              they were 19px high, which is a small target on a phone. */}
-          <ul className="space-y-1">
-            {LINKS.map((l) => {
-              const linkStyle = { color: maroon ? '#ffffff' : greenText }
-              const cls = 'wpf-btn-focus text-sm font-medium inline-block py-1.5 hover:underline'
-              return l.external ? (
-                <li key={l.href}>
-                  <a href={l.href} target="_blank" rel="noopener noreferrer" className={cls} style={linkStyle}>
-                    {l.label}
-                    <NewTabHint />
-                  </a>
-                </li>
-              ) : (
-                <li key={l.href}>
-                  <Link href={l.href} className={cls} style={linkStyle}>
-                    {l.label}
-                  </Link>
-                </li>
-              )
-            })}
-          </ul>
-        </nav>
+            Aug 2026. The header's is labelled "Main".
+
+            One landmark, two lists: the group headings are tied to their list
+            with aria-labelledby, so "What's on" and "Get involved" are
+            announced as the names of the lists rather than as two stray lines
+            of text above them. */}
+        {GROUPS.map((group, i) => {
+          const headingId = `footer-group-${i}`
+          return (
+            <nav key={group.heading} aria-label={group.heading}>
+              <div>
+                <p
+                  id={headingId}
+                  className="text-xs uppercase tracking-widest font-semibold mb-4"
+                  style={{ color: maroon ? 'rgba(255,255,255,0.85)' : greenMuted }}
+                >
+                  {group.heading}
+                </p>
+                {/* py-1.5 gives each link a >=24px tall hit area (WCAG 2.5.8) —
+                    they were 19px high, which is a small target on a phone. */}
+                <ul className="space-y-1" aria-labelledby={headingId}>
+                  {group.links.map((l) => (
+                    <li key={l.href}>
+                      <Link
+                        href={l.href}
+                        className="wpf-btn-focus text-sm font-medium inline-block py-1.5 hover:underline"
+                        style={{ color: maroon ? '#ffffff' : greenText }}
+                      >
+                        {l.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </nav>
+          )
+        })}
       </div>
 
       <div className="mx-auto max-w-[1200px] px-6 md:px-10 py-5 border-t" style={{ borderColor: 'rgba(255,255,255,0.2)' }}>

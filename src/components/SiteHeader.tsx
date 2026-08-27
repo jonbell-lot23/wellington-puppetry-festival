@@ -21,13 +21,20 @@ const NAV = [
   { label: 'About', href: '/about' },
   { label: 'Volunteers', href: '/volunteers' },
   { label: 'Accessibility', href: '/accessibility' },
-  { label: 'Contact', href: '/contact' },
+  // Jon, 26 Aug: the page is Contact & Newsletter now. The full name is what
+  // the mobile menu and the footer use; the desktop bar keeps "Contact",
+  // because six links plus the tickets pill already only just fit beside the
+  // wordmark at 1024px and "& Newsletter" is what tips it into wrapping.
+  { label: 'Contact', href: '/contact', longLabel: 'Contact & Newsletter' },
 ]
 
 // "Home" is only added on the mobile menu — people were losing their way
 // back to the homepage on mobile, but the desktop header already has the
 // wordmark as a persistent, always-visible way home.
-const MOBILE_NAV = [{ label: 'Home', href: '/' }, ...NAV]
+const MOBILE_NAV = [{ label: 'Home', href: '/' }, ...NAV].map((item) => ({
+  href: item.href,
+  label: ('longLabel' in item && item.longLabel) || item.label,
+}))
 
 // The festival-wide Humanitix link. Per-show links (which deep-link to a
 // group on the same page) live on the programme listings instead.

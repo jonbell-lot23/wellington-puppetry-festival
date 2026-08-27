@@ -74,12 +74,12 @@ export const PAGES: PageDef[] = [
         'Drop in any time on Saturday for free hands-on puppet-making workshops, street performances and shows made just for little ones. No ticket required, just turn up.',
         true,
       ),
-      F('newsletterHeading', 'Newsletter section heading', 'WPF Newsletter'),
-      F(
-        'newsletterSubtext',
-        'Newsletter section subtext',
-        'Sign up to our newsletter for programme announcements, Saturday free-activity updates and festival news.',
-      ),
+      // Jon, 26 Aug: 'newsletterHeading' and 'newsletterSubtext' are gone from
+      // this page. The homepage newsletter section went with the v1 layout and
+      // nothing here has read either field since — the same reasoning as
+      // 'ticketsUrl' above. The sign-up lives on /contact, and the subtext
+      // field lives on that slug now. Stored values stay in the database
+      // untouched; this only stops two dead fields appearing in /admin.
       F('cabaretSectionHeading', 'Cabaret section heading', 'An after-dark evening of puppetry'),
       F(
         'cabaretSectionBody',
@@ -267,14 +267,17 @@ export const PAGES: PageDef[] = [
   },
   {
     slug: 'contact',
+    // Jon, 26 Aug: "let's name this page Contact/Newsletter". Half of what's
+    // on it is the mailing list sign-up, and calling the page "Contact"
+    // buried that — in the nav, in the tab title and here in /admin.
     path: '/contact',
-    title: 'Contact',
+    title: 'Contact & Newsletter',
     fields: [
-      F('heading', 'Page heading', 'Get in touch'),
+      F('heading', 'Page heading', 'Contact & Newsletter'),
       F(
         'intro',
         'Intro paragraph',
-        'Questions about the programme, volunteering, accessibility or anything else? We\'d love to hear from you.',
+        'Questions about the programme, volunteering, accessibility or anything else? We\'d love to hear from you. You can also sign up below for festival news by email.',
         true,
       ),
       // .com, not .nz — wellingtonpuppetryfestival.com is the domain that was
@@ -287,7 +290,23 @@ export const PAGES: PageDef[] = [
       // it to the people who need it rather than the open web. There is
       // deliberately no phone field here — an empty one is an invitation to
       // fill it in.
+      // Jon, 26 Aug: /contact no longer prints "Your message reaches Sarah
+      // Bell." — one address, one inbox, and who reads it isn't the visitor's
+      // problem. The field stays because /accessibility still names her
+      // beside the address, where knowing there's a person on the other end
+      // is the point.
       F('contactName', 'Who answers (name)', 'Sarah Bell'),
+      // Moved here from the home page (Jon, 26 Aug). The newsletter card on
+      // this page has always rendered `newsletterSubtext`, but the field was
+      // defined on the *home* slug — so it came back undefined here and the
+      // card showed an empty bold line above the form. The home page stopped
+      // having a newsletter section some time ago; this is the only place the
+      // sign-up lives now, so the copy lives with it.
+      F(
+        'newsletterSubtext',
+        'Newsletter card: line above the form',
+        'Sign up for programme announcements, Saturday free-activity updates and festival news.',
+      ),
     ],
   },
   {
