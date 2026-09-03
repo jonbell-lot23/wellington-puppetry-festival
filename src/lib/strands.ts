@@ -321,9 +321,14 @@ export const DEFAULT_STRANDS: Strand[] = [
       // 20 Aug while this fallback still said "no blurb yet". Re-synced from
       // the DB so the fallback isn't a worse page than the real one.
       //
-      // Photos 3 and 4 are the two Sarah sent on 4 Sep, appended to the
-      // gallery; 1 (the marked-up sculpt) stays the lead image and 2 is her
-      // portrait.
+      // The gallery used to lead with photo 1 — the same shot as `image`
+      // directly above it, so the sculpt appeared twice on the page with only
+      // the blurb between. Photo 3 (Sarah's rat head, 4 Sep) takes that first
+      // slot instead; 1 stays the lead image and 2 is her portrait.
+      //
+      // Photo 3 is pre-cropped to 1200x900 because the grid tiles are
+      // aspect-[4/3] object-contain: an uncropped portrait phone shot fills a
+      // third of the tile and letterboxes the rest in grey.
       {
         time: '12:30–1:30pm',
         title: 'Pattern Making for Puppets: From Sculpt to Pattern',
@@ -332,16 +337,12 @@ export const DEFAULT_STRANDS: Strand[] = [
         imageAlt:
           "A pale foam head sculpt marked up with pattern lines and labels such as 'front brow', 'eye bag' and 'side nose', sitting on a workbench surrounded by craft supplies.",
         images: [
-          '/images/shows/pattern-making-for-puppets-1.jpg',
-          '/images/shows/pattern-making-for-puppets-2.jpg',
           '/images/shows/pattern-making-for-puppets-3.jpg',
-          '/images/shows/pattern-making-for-puppets-4.jpg',
+          '/images/shows/pattern-making-for-puppets-2.jpg',
         ],
         imagesAlt: [
-          "A pale foam head sculpt marked up with pattern lines and labels such as 'front brow', 'eye bag' and 'side nose', sitting on a workbench surrounded by craft supplies.",
+          "A grey felt rat head, machine-stitched together from flat pattern pieces, fitted over a dressmaker's head form in a busy workroom.",
           'Portrait of Sarah Bell, a woman with long brown hair wearing colourful patterned glasses and red lipstick.',
-          "A felt animal head, machine-stitched together from flat pattern pieces, fitted over a dressmaker's head form in a busy workroom.",
-          "Three sculpted puppet heads wrapped in tape, each drawn over in marker with seam lines and labels such as 'nose', 'cheek', 'F eye' and 'chin'.",
         ],
         by: 'Sarah Bell',
         duration: '1 hr',
