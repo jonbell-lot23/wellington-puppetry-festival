@@ -312,16 +312,45 @@ export const DEFAULT_STRANDS: Strand[] = [
       // the weekend, and Sarah's workshop takes the slot it leaves — moved here
       // from Sunday, at 12:30 rather than Bridget's old 12:15–1:45pm.
       //
-      // The master sheet calls it "Patterns for Puppet heads"; the title here is
-      // the one Humanitix sells it under, which is what a ticket-holder will
-      // have seen. Still no blurb for it, so no More info page yet.
+      // The master sheet calls it "Patterns for Puppet heads". Sarah has since
+      // given it the fuller subtitle below, which is what Humanitix sells it
+      // under and what a ticket-holder will have seen.
+      //
+      // Jon, 4 Sep: this entry had drifted badly from the live record — the
+      // stored strandsJson has carried Sarah's blurb, bio and photos since
+      // 20 Aug while this fallback still said "no blurb yet". Re-synced from
+      // the DB so the fallback isn't a worse page than the real one.
+      //
+      // Photos 3 and 4 are the two Sarah sent on 4 Sep, appended to the
+      // gallery; 1 (the marked-up sculpt) stays the lead image and 2 is her
+      // portrait.
       {
         time: '12:30–1:30pm',
-        title: 'Pattern Making for Puppets',
+        title: 'Pattern Making for Puppets: From Sculpt to Pattern',
         ticketUrl: TICKETS_SAT_WORKSHOPS_URL,
+        image: '/images/shows/pattern-making-for-puppets-1.jpg',
+        imageAlt:
+          "A pale foam head sculpt marked up with pattern lines and labels such as 'front brow', 'eye bag' and 'side nose', sitting on a workbench surrounded by craft supplies.",
+        images: [
+          '/images/shows/pattern-making-for-puppets-1.jpg',
+          '/images/shows/pattern-making-for-puppets-2.jpg',
+          '/images/shows/pattern-making-for-puppets-3.jpg',
+          '/images/shows/pattern-making-for-puppets-4.jpg',
+        ],
+        imagesAlt: [
+          "A pale foam head sculpt marked up with pattern lines and labels such as 'front brow', 'eye bag' and 'side nose', sitting on a workbench surrounded by craft supplies.",
+          'Portrait of Sarah Bell, a woman with long brown hair wearing colourful patterned glasses and red lipstick.',
+          "A felt animal head, machine-stitched together from flat pattern pieces, fitted over a dressmaker's head form in a busy workroom.",
+          "Three sculpted puppet heads wrapped in tape, each drawn over in marker with seam lines and labels such as 'nose', 'cheek', 'F eye' and 'chin'.",
+        ],
         by: 'Sarah Bell',
         duration: '1 hr',
         venue: 'upstairs',
+        detail: "Optional – bring a small thing you'd like to make a pattern from.",
+        blurb:
+          "Learn how to translate a three-dimensional form into a working pattern, whether from your own sculpt or an existing toy or object. We'll cover the practicalities of scaling your pattern up or down to suit your puppet, and explore how your choice of materials shapes not only the look of your puppet but the pattern itself. Leave with the skills to design and make your own.",
+        bio:
+          "Sarah Bell is a maker working in puppetry design, fabrication and costume for theatre and film. Her work combines traditional craftsmanship with practical problem-solving and a huge range of materials. She specialises in the weird, wild, and wonderful and is based in Wellington. Her 'Finding Nemo' puppets were an amazing and memorable addition to the Saturday Gala of the 2024 Puppetry Festival!",
       },
       // Lauren and Judith's BLENNZ access workshop. The 29 Jul itinerary gives
       // it the Saturday 2–5pm slot at Ridgway — the only afternoon session, and
