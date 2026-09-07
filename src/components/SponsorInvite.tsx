@@ -23,10 +23,10 @@ export default function SponsorInvite() {
   return (
     <Link
       href="/support"
-      // Six logos plus this tile is seven, so it lands alone on the last row.
-      // Full width on mobile, centred under the middle column above that, so
-      // the position reads as chosen rather than left over.
-      className="wpf-sponsor-invite wpf-btn-focus group col-span-2 sm:col-span-1 sm:col-start-2 h-28 flex flex-col items-center justify-center gap-1 px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
+      // Eight logos plus this tile is nine — three full rows of three — so
+      // it falls naturally into the last slot, bottom-right. Full width on
+      // mobile, where the grid drops to two columns.
+      className="wpf-sponsor-invite wpf-btn-focus group col-span-2 sm:col-span-1 h-28 flex flex-col items-center justify-center gap-1 px-3 rounded-2xl border-2 border-dashed transition-all duration-200 hover:-translate-y-1 hover:rotate-[-1.5deg] hover:border-solid"
       style={{ borderColor: 'var(--wpf-pink)' }}
     >
       <span className="relative">

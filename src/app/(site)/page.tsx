@@ -248,9 +248,8 @@ export default async function HomePage() {
 
       {/* Sponsors */}
       <section className="px-6 pt-10 pb-16 md:pt-14 md:pb-24" style={{ backgroundColor: CREAM }}>
-        {/* Three across. Eight sponsor tiles fill three rows of three and
-            leave "You!" alone on the fourth — which is the point: it lands
-            as an invitation rather than as the runt of a row. */}
+        {/* Three across. Eight sponsor tiles plus "You!" fill exactly three
+            rows of three, landing the invitation bottom-right. */}
         <div className="mx-auto max-w-3xl">
           <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12 lowercase" style={{ color: 'var(--wpf-ink)' }}>
             {teReo(c.sponsorsCaption)}
