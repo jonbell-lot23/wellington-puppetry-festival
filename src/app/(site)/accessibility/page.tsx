@@ -34,6 +34,22 @@ export default async function AccessibilityPage() {
       <PageHero heading={c.heading} intro={c.intro} />
 
       <section className="px-6 py-16 md:py-24">
+        {/* Anna's welcome guide (7 Sep). While the four cards below are empty
+            this is the only concrete access information on the page, so it
+            leads — and it would deserve to lead anyway: it answers "can I get
+            in, and what happens when I do" for both venues in one read. It's a
+            page rather than a download; the reasoning is in that file. */}
+        <div className="mx-auto max-w-3xl mb-12 rounded-2xl p-7 border border-black/5 bg-[var(--wpf-blue-soft)]">
+          <h2 className="wpf-section-heading mb-3">Welcome guide</h2>
+          <p className="wpf-text-muted leading-relaxed mb-5">
+            How to get to each venue, what the buildings are like inside — steps, doors, floors and
+            toilets — where the accessible entrances are, and what happens at the shows.
+          </p>
+          <a href="/accessibility/welcome-guide" className="wpf-btn-primary wpf-btn-focus px-7 py-3.5">
+            Read the welcome guide
+          </a>
+        </div>
+
         {/* All four cards are currently empty — the placeholder copy they
             shipped with described provisions nobody had confirmed. Nothing is
             rendered rather than an empty grid and a stray heading. */}
