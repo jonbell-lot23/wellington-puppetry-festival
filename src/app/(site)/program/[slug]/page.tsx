@@ -10,6 +10,7 @@ import {
   eventSlug,
   findEventBySlug,
   hasMoreInfo,
+  parseDocs,
   parseStrands,
   publicEvents,
   venueMapUrl,
@@ -68,6 +69,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
   const { strand, event: ev } = found
   const venue = VENUES[ev.venue] ?? VENUES.hall
+  const docs = parseDocs(ev.docs)
 
   return (
     <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
@@ -233,6 +235,43 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
               <span className="font-bold">Content warnings: </span>
               {ev.warnings}
             </p>
+          )}
+
+          {/* Anna, 7 Sep: the "what to expect" stories — a page-by-page picture
+              story of the show, for anyone who wants to know exactly what will
+              happen before they walk in. Sits above the photo strip because
+              it's the reason some families can come at all, not a footnote.
+              The file type is in the link text (WCAG 3.2.4-adjacent courtesy:
+              a PDF opening in a viewer shouldn't be a surprise). */}
+          {docs.length > 0 && (
+            <section
+              aria-labelledby="before-you-come"
+              className="rounded-2xl p-7 mb-10 border border-black/5 bg-[var(--wpf-blue-soft)]"
+            >
+              <h2
+                id="before-you-come"
+                className="text-sm font-bold uppercase tracking-widest wpf-text-muted mb-3"
+              >
+                Before you come
+              </h2>
+              <p className="leading-relaxed mb-4" style={{ color: 'var(--wpf-ink)' }}>
+                You can read or print these at home to see what will happen at the show.
+              </p>
+              <ul className="space-y-2">
+                {docs.map((doc) => (
+                  <li key={doc.url}>
+                    <a
+                      href={doc.url}
+                      className="wpf-btn-focus font-semibold underline underline-offset-4 hover:no-underline"
+                      style={{ color: 'var(--wpf-pink-deep)' }}
+                    >
+                      {doc.label}
+                      {/\.pdf$/i.test(doc.url) && <span> (PDF)</span>}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </section>
           )}
 
           {/* Photo slots. An empty string is a placeholder Bridget has claimed

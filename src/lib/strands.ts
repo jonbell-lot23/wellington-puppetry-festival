@@ -62,6 +62,27 @@ export type StrandEvent = {
   imagesAlt?: string[]
   /** Humanitix (or other) link. The Buy tickets button appears once this is set. */
   ticketUrl?: string
+  /**
+   * Things to read or download before you come — Anna's "what to expect"
+   * stories (Sep 2026). One per line, `Label | /docs/file.pdf`. Rendered as a
+   * download list on the More info page; a line without a `|` is skipped.
+   */
+  docs?: string
+}
+
+/** A `docs` line split into its label and path. Blank/malformed lines drop out. */
+export function parseDocs(docs: string | undefined): { label: string; url: string }[] {
+  if (!docs?.trim()) return []
+  return docs
+    .split('\n')
+    .map((line) => {
+      const i = line.indexOf('|')
+      if (i === -1) return null
+      const label = line.slice(0, i).trim()
+      const url = line.slice(i + 1).trim()
+      return label && url ? { label, url } : null
+    })
+    .filter((d): d is { label: string; url: string } => d !== null)
 }
 
 export type Strand = {

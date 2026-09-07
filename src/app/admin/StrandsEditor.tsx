@@ -355,6 +355,19 @@ export default function StrandsEditor({
                         />
                       </div>
 
+                      {/* "What to expect" stories and anything else to read
+                          before the show. The file itself is uploaded to
+                          public/docs by a developer; this is where it gets its
+                          label and its place on the More info page. */}
+                      <TextField
+                        label="Documents to download, one per line: Label | /docs/file.pdf"
+                        value={ev.docs ?? ''}
+                        rows={2}
+                        placeholder="What to expect at this show | /docs/what-to-expect.pdf"
+                        onChange={(v) => updateEvent(si, ei, { docs: v })}
+                        className="mb-2"
+                      />
+
                       {/* Photo paths themselves are managed manually outside this
                           editor — only the alt text is edited here. */}
                       <TextField

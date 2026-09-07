@@ -24,6 +24,7 @@ const STATIC_PATHS = [
   '/team',
   '/volunteers',
   '/accessibility',
+  '/accessibility/welcome-guide',
   '/accessibility/report',
   '/support',
   '/contact',
