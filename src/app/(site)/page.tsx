@@ -31,6 +31,8 @@ const SPONSORS = [
   { name: 'Ridgway School', logo: '/images/logos/ridgway-school.png' },
   { name: 'Vogelmorn Bowling Club', logo: '/images/logos/vogelmorn-bowling-club.png' },
   { name: 'BLENNZ', logo: '/images/logos/blennz.png' },
+  { name: 'Creative NZ — Creative Communities Scheme', logo: '/images/logos/creative-nz-communities-scheme.png' },
+  { name: 'Yip Real Estate', logo: '/images/logos/yip-real-estate.png' },
   // Not a sponsor — an invitation. Rendered as a call to action, not a logo.
   { name: 'You!', logo: null, cta: true },
 ]
@@ -246,9 +248,9 @@ export default async function HomePage() {
 
       {/* Sponsors */}
       <section className="px-6 pt-10 pb-16 md:pt-14 md:pb-24" style={{ backgroundColor: CREAM }}>
-        {/* Three across. Seven tiles fills two rows of three and leaves "You!"
-            alone on the third — which is the point: it lands as an invitation
-            rather than as the runt of a five-wide row. */}
+        {/* Three across. Eight sponsor tiles fill three rows of three and
+            leave "You!" alone on the fourth — which is the point: it lands
+            as an invitation rather than as the runt of a row. */}
         <div className="mx-auto max-w-3xl">
           <h2 className="wpf-section-heading text-center text-2xl md:text-4xl mb-10 md:mb-12 lowercase" style={{ color: 'var(--wpf-ink)' }}>
             {teReo(c.sponsorsCaption)}
