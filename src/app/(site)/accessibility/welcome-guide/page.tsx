@@ -93,7 +93,7 @@ const SECTIONS: Section[] = [
       {
         heading: 'By taxi or Uber',
         body: [
-          'For Vogelmorn Bowling Club and Vogelmorn Hall: there is a 10-minute loading zone outside the gate to the VBC building, 95 Mornington Road. If you need help getting from the drop-off point to either building, email us and we will arrange it.',
+          'For Vogelmorn Bowling Club and Vogelmorn Hall: there is a 10-minute loading zone outside the gate to the VBC building, 93 Mornington Road. If you need help getting from the drop-off point to either building, email us and we will arrange it.',
           {
             img: '/images/welcome-guide/vbc-loading-zone.jpg',
             alt: 'The street outside Vogelmorn Bowling Club, with a car parked at the kerb against a low brick wall. A blue accessible-parking sign stands at one end of the parking area and a 10-minute loading zone sign at the other, beside the gap in the wall that leads to the club’s gate.',
