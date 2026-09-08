@@ -360,7 +360,7 @@ export default function StrandsEditor({
                           public/docs by a developer; this is where it gets its
                           label and its place on the More info page. */}
                       <TextField
-                        label="Documents to download, one per line: Label | /docs/file.pdf"
+                        label="Documents to download, one per line: Label | /docs/file.pdf — PDF or Word is added for you, leave it out of the label"
                         value={ev.docs ?? ''}
                         rows={2}
                         placeholder="What to expect at this show | /docs/what-to-expect.pdf"

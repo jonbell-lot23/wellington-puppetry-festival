@@ -60,6 +60,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   return { title: found.event.title }
 }
 
+/** File type shown after a download's label, so the format is never a surprise. */
+function docType(url: string): string | null {
+  if (/\.pdf$/i.test(url)) return 'PDF'
+  if (/\.docx?$/i.test(url)) return 'Word'
+  return null
+}
+
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
   const found = findEventBySlug(await loadStrands(), slug)
@@ -241,8 +248,11 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
               story of the show, for anyone who wants to know exactly what will
               happen before they walk in. Sits above the photo strip because
               it's the reason some families can come at all, not a footnote.
-              The file type is in the link text (WCAG 3.2.4-adjacent courtesy:
-              a PDF opening in a viewer shouldn't be a surprise). */}
+              The file type is appended to the link text here, not typed into
+              the label (WCAG 3.2.4-adjacent courtesy: a file opening in a
+              viewer shouldn't be a surprise) — so labels in the admin editor
+              should not repeat it. Word sits alongside PDF because some blind
+              and low vision readers find it easier to use. */}
           {docs.length > 0 && (
             <section
               aria-labelledby="before-you-come"
@@ -266,7 +276,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                       style={{ color: 'var(--wpf-pink-deep)' }}
                     >
                       {doc.label}
-                      {/\.pdf$/i.test(doc.url) && <span> (PDF)</span>}
+                      {docType(doc.url) && <span> ({docType(doc.url)})</span>}
                     </a>
                   </li>
                 ))}
