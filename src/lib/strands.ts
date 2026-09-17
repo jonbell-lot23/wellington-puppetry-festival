@@ -63,9 +63,11 @@ export type StrandEvent = {
   /** Humanitix (or other) link. The Buy tickets button appears once this is set. */
   ticketUrl?: string
   /**
-   * Things to read or download before you come — Anna's "what to expect"
-   * stories (Sep 2026). One per line, `Label | /docs/file.pdf`. Rendered as a
-   * download list on the More info page; a line without a `|` is skipped.
+   * Things to read, listen to or download before you come — Anna's "what to
+   * expect" stories and Lauren's preshow notes (Sep 2026). One per line,
+   * `Label | /docs/file.pdf`; .pdf, .doc(x) and .mp3 are labelled for you.
+   * Rendered as a download list on the More info page; a line without a `|`
+   * is skipped.
    */
   docs?: string
 }

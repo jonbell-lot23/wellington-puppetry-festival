@@ -64,7 +64,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 function docType(url: string): string | null {
   if (/\.pdf$/i.test(url)) return 'PDF'
   if (/\.docx?$/i.test(url)) return 'Word'
+  // Lauren Hayes' preshow notes (Sep 2026) come as a recording as well as a
+  // document — for a blind or low vision visitor that's often the version they
+  // actually want, so it gets named rather than left as an unlabelled link.
+  if (/\.mp3$/i.test(url)) return 'Audio'
   return null
+}
+
+/** True once a download list includes something you listen to rather than read. */
+function hasAudio(docs: { url: string }[]): boolean {
+  return docs.some((d) => docType(d.url) === 'Audio')
 }
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -265,7 +274,9 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
                 Before you come
               </h2>
               <p className="leading-relaxed mb-4" style={{ color: 'var(--wpf-ink)' }}>
-                You can read or print these at home to see what will happen at the show.
+                {hasAudio(docs)
+                  ? 'You can read, print or listen to these at home to find out what will happen at the show.'
+                  : 'You can read or print these at home to see what will happen at the show.'}
               </p>
               <ul className="space-y-2">
                 {docs.map((doc) => (
