@@ -5,6 +5,9 @@ import { getPageContent } from '@/app/actions'
 import ImagePlaceholder from '@/components/ImagePlaceholder'
 import NewTabHint from '@/components/NewTabHint'
 import { MAIN_HEADING_ID } from '@/lib/site'
+import ProgrammeDay from '@/components/ProgrammeDay'
+import PageHero from '@/components/PageHero'
+import { DAYS } from '@/lib/strands'
 import {
   VENUES,
   eventSlug,
@@ -18,7 +21,7 @@ import {
 
 export const revalidate = 60
 
-// The "More info" page Bridget asked for (Jul 2026): the listing on /program
+// The "More info" page Bridget asked for (Jul 2026): the listing on /programme
 // stays clean and precise, and each show or workshop with something more to say
 // gets its own page — blurb, image, artist bio, tickets — with an obvious way
 // back to the listing.
@@ -42,20 +45,44 @@ async function loadStrands() {
   return parseStrands(stored.strandsJson)
 }
 
+/**
+ * A day's whole listing lives at /programme/saturday, alongside the individual
+ * event pages at /programme/sat-shows-box-of-birds.
+ *
+ * Both are the same dynamic segment, so the day pages are handled here rather
+ * than in a route of their own — a sibling /programme/[day] would collide with
+ * this one, and pushing the days to /programme/day/saturday would buy a
+ * clumsier URL for nothing.
+ */
+const DAY_BY_SLUG: Record<string, (typeof DAYS)[number]['day']> = Object.fromEntries(
+  DAYS.map((d) => [d.day.toLowerCase(), d.day]),
+)
+
 export async function generateStaticParams() {
   const strands = await loadStrands()
-  return strands.flatMap((strand) =>
-    publicEvents(strand)
-      .filter(hasMoreInfo)
-      .map((ev) => ({ slug: eventSlug(strand, ev) })),
-  )
+  return [
+    ...Object.keys(DAY_BY_SLUG).map((slug) => ({ slug })),
+    ...strands.flatMap((strand) =>
+      publicEvents(strand)
+        .filter(hasMoreInfo)
+        .map((ev) => ({ slug: eventSlug(strand, ev) })),
+    ),
+  ]
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
-  const found = findEventBySlug(await loadStrands(), slug)
   // The root layout appends "| Wellington Puppetry Festival" to every page
   // title, so these are just the part that changes.
+  const day = DAY_BY_SLUG[slug.toLowerCase()]
+  if (day) {
+    const info = DAYS.find((d) => d.day === day)!
+    return {
+      title: day,
+      description: `Everything on at the Wellington Puppetry Festival on ${day} ${info.date}.`,
+    }
+  }
+  const found = findEventBySlug(await loadStrands(), slug)
   if (!found) return { title: 'Programme' }
   return { title: found.event.title }
 }
@@ -78,6 +105,47 @@ function hasAudio(docs: { url: string }[]): boolean {
 
 export default async function EventPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params
+
+  // A whole day, rather than one event.
+  const day = DAY_BY_SLUG[slug.toLowerCase()]
+  if (day) {
+    const strands = await loadStrands()
+    const info = DAYS.find((d) => d.day === day)!
+    const others = DAYS.filter((d) => d.day !== day)
+
+    return (
+      <main style={{ backgroundColor: 'var(--wpf-cream)' }}>
+        <PageHero heading={day} intro={info.date} />
+
+        <section className="px-6 pt-10 pb-20">
+          <div className="mx-auto max-w-2xl">
+            <nav aria-label="Other days" className="flex flex-wrap gap-2 mb-8">
+              {others.map((d) => (
+                <Link
+                  key={d.day}
+                  href={`/programme/${d.day.toLowerCase()}`}
+                  className="wpf-btn-focus rounded-full px-5 py-2.5 font-bold border"
+                  style={{ color: 'var(--wpf-ink)', borderColor: 'rgba(0,0,0,0.18)' }}
+                >
+                  {d.day}
+                </Link>
+              ))}
+              <Link
+                href="/programme"
+                className="wpf-btn-focus rounded-full px-5 py-2.5 font-bold border"
+                style={{ color: 'var(--wpf-ink)', borderColor: 'rgba(0,0,0,0.18)' }}
+              >
+                Whole programme
+              </Link>
+            </nav>
+
+            <ProgrammeDay strands={strands} day={day} />
+          </div>
+        </section>
+      </main>
+    )
+  }
+
   const found = findEventBySlug(await loadStrands(), slug)
   // Events with nothing extra to show never link here, and shouldn't render an
   // near-empty page if someone guesses the URL.
@@ -92,7 +160,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
       <section className="px-6 py-16 md:py-24">
         <div className="mx-auto max-w-2xl">
           <Link
-            href="/program"
+            href="/programme"
             className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest mb-10"
             style={{ color: 'var(--wpf-pink-deep)' }}
           >
@@ -384,7 +452,7 @@ export default async function EventPage({ params }: { params: Promise<{ slug: st
 
           <p className="mt-14 pt-8 border-t border-black/10">
             <Link
-              href="/program"
+              href="/programme"
               className="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest"
               style={{ color: 'var(--wpf-pink-deep)' }}
             >

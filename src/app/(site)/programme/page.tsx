@@ -208,7 +208,7 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
           way in. */}
       {more && (
         <Link
-          href={`/program/${eventSlug(strand, ev)}`}
+          href={`/programme/${eventSlug(strand, ev)}`}
           className="absolute inset-0 z-0"
           aria-label={`More about ${ev.title}`}
         />

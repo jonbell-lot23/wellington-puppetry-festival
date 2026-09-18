@@ -1,5 +1,7 @@
 'use client'
 
+import Link from 'next/link'
+
 import { useNow } from '@/components/useNow'
 
 // A day heading on the public programme that knows whether its day has been.
@@ -66,11 +68,25 @@ export default function DayHeading({
   }
 
   return (
-    <div className="flex items-baseline gap-3 mb-6">
+    <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-6">
       <h2 className="text-3xl font-extrabold" style={{ color: 'var(--wpf-ink)' }}>
-        {day}
+        {/* The heading is the way into the day's own page — one flat list of
+            everything on, which is what you want on the day itself. */}
+        <Link
+          href={`/programme/${day.toLowerCase()}`}
+          className="wpf-btn-focus hover:underline underline-offset-4"
+        >
+          {day}
+        </Link>
       </h2>
       <span className="text-sm font-bold uppercase tracking-widest wpf-text-muted">{date}</span>
+      <Link
+        href={`/programme/${day.toLowerCase()}`}
+        className="text-sm font-bold underline underline-offset-4"
+        style={{ color: 'var(--wpf-pink-deep)' }}
+      >
+        just this day →
+      </Link>
     </div>
   )
 }

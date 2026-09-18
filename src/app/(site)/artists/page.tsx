@@ -5,5 +5,5 @@ import { redirect } from 'next/navigation'
 // instead. The full component is preserved in git history — to bring the
 // page back, restore it from there and re-add the nav link in SiteHeader.
 export default function ArtistsPage() {
-  redirect('/program')
+  redirect('/programme')
 }

@@ -40,7 +40,7 @@ const GROUPS = [
   {
     heading: "What's on",
     links: [
-      { label: 'Programme', href: '/program' },
+      { label: 'Programme', href: '/programme' },
       { label: 'Cabaret', href: '/cabaret' },
       { label: 'About', href: '/about' },
       { label: 'Team', href: '/team' },

@@ -104,7 +104,7 @@ export const PAGES: PageDef[] = [
   },
   {
     slug: 'program',
-    path: '/program',
+    path: '/programme',
     title: 'Program',
     fields: [
       F('heading', 'Page heading', 'Programme'),
@@ -192,7 +192,7 @@ export const PAGES: PageDef[] = [
     // The single field holds it as JSON; /admin swaps in the structured
     // StrandsEditor for this slug rather than showing a raw textarea.
     slug: 'program-schedule',
-    path: '/program',
+    path: '/programme',
     title: 'Programme: Cards & listings',
     fields: [F('strandsJson', 'Programme (JSON)', serializeStrands(DEFAULT_STRANDS), true)],
   },

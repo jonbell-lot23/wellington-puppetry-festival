@@ -3,7 +3,7 @@
 //
 // The show pages are derived from the live programme rather than typed out, so
 // when Bridget adds a blurb in /admin and a listing earns its More info page,
-// that page turns up here too. `hasMoreInfo` is the same gate /program/[slug]
+// that page turns up here too. `hasMoreInfo` is the same gate /programme/[slug]
 // uses for generateStaticParams, so the sitemap can't advertise a 404.
 //
 // See node_modules/next/dist/docs/01-app/03-api-reference/03-file-conventions/01-metadata/sitemap.md
@@ -13,12 +13,12 @@ import { getPageContent } from '@/app/actions'
 import { SITE_URL } from '@/lib/site'
 import { eventSlug, hasMoreInfo, parseStrands, publicEvents } from '@/lib/strands'
 
-// Left out on purpose: /artists and /program/v2 both redirect to /program, and
+// Left out on purpose: /artists and /programme/v2 both redirect to /programme, and
 // listing a redirect just spends a crawl on a URL that isn't the destination.
 // /admin, /admin-login and /archives are covered by the disallow in robots.ts.
 const STATIC_PATHS = [
   '',
-  '/program',
+  '/programme',
   '/cabaret',
   '/about',
   '/team',
@@ -39,7 +39,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const showPaths = strands.flatMap((strand) =>
     publicEvents(strand)
       .filter(hasMoreInfo)
-      .map((ev) => `/program/${eventSlug(strand, ev)}`),
+      .map((ev) => `/programme/${eventSlug(strand, ev)}`),
   )
 
   // One festival, one weekend — everything moves together, so there's no
@@ -49,7 +49,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...STATIC_PATHS.map((path) => ({
       url: `${SITE_URL}${path}`,
       changeFrequency: 'weekly' as const,
-      priority: path === '' || path === '/program' ? 1 : 0.7,
+      priority: path === '' || path === '/programme' ? 1 : 0.7,
     })),
     ...showPaths.map((path) => ({
       url: `${SITE_URL}${path}`,

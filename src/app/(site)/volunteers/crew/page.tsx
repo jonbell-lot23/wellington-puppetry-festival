@@ -67,7 +67,7 @@ const RESOURCES: Resource[] = [
   },
   {
     label: 'Public programme',
-    href: '/program',
+    href: '/programme',
     detail: 'What the audience sees. Use this one when someone asks you what is on.',
   },
   {

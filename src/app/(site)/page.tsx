@@ -162,7 +162,7 @@ export default async function HomePage() {
                 per-event Buy tickets buttons, the cabaret CTA), so the
                 programme shouldn't borrow it just because it's alone now. */}
             <Link
-              href="/program"
+              href="/programme"
               className="wpf-btn-secondary wpf-btn-focus text-base px-8 py-3.5"
             >
               See the Programme

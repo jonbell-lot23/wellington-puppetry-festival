@@ -651,6 +651,57 @@ export function serializeStrands(strands: Strand[]): string {
   return JSON.stringify(strands, null, 2)
 }
 
+/**
+ * When an event starts, in minutes past midnight, for sorting a day's listings.
+ *
+ * The `time` field is free text typed by a person and it shows: "10:00am–2:00pm",
+ * "11:15-12.00", "10.50–11:30am", "10:30am, 11:30am & 12:30pm". This reads the
+ * first clock time it finds and leaves the string itself alone — the display
+ * always shows exactly what was typed.
+ *
+ * The am/pm guess, when the first time doesn't say: 9, 10 and 11 are morning,
+ * 12 is midday, 1 through 8 are afternoon and evening. That is not a general
+ * rule about clocks, it is a true statement about this festival, which runs
+ * from about 9am to about 9:30pm. An explicit am or pm always wins.
+ *
+ * Returns null when there is no time at all, so those rows can sort last
+ * instead of to midnight.
+ */
+export function eventStartMinutes(time: string | undefined): number | null {
+  if (!time?.trim()) return null
+  const m = time.match(/(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)?/i)
+  if (!m) return null
+
+  let hour = Number(m[1])
+  const min = m[2] ? Number(m[2]) : 0
+  const mer = m[3]?.toLowerCase()
+  if (hour > 23 || min > 59) return null
+
+  if (mer === 'pm' && hour < 12) hour += 12
+  else if (mer === 'am' && hour === 12) hour = 0
+  else if (!mer && hour >= 1 && hour <= 8) hour += 12
+
+  return hour * 60 + min
+}
+
+/** Every public event on one day, in the order they happen. */
+export function eventsForDay(
+  strands: Strand[],
+  day: Strand['day'],
+): { strand: Strand; event: StrandEvent }[] {
+  return strands
+    .filter((s) => s.day === day)
+    .flatMap((strand) => publicEvents(strand).map((event) => ({ strand, event })))
+    .sort((a, b) => {
+      const at = eventStartMinutes(a.event.time)
+      const bt = eventStartMinutes(b.event.time)
+      if (at !== null && bt !== null) return at - bt
+      if (at !== null) return -1
+      if (bt !== null) return 1
+      return 0
+    })
+}
+
 /** Rows with no title are drafts in /admin — never render them publicly. */
 export function publicEvents(strand: Strand): StrandEvent[] {
   return strand.events.filter((ev) => ev.title?.trim())

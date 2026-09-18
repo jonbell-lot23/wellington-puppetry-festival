@@ -14,7 +14,7 @@ import NewTabHint from '@/components/NewTabHint'
 // point in the page from where they start. Team and Support us stay in the
 // footer: they're the two with no bearing on whether someone can attend.
 const NAV = [
-  { label: 'Programme', href: '/program' },
+  { label: 'Programme', href: '/programme' },
   // Artists page hidden for now — head shots weren't available; bios will
   // live in the programme listings instead. Re-add when ready.
   { label: 'Cabaret', href: '/cabaret' },
