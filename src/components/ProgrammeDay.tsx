@@ -227,7 +227,16 @@ export default function ProgrammeDay({
                     More about {teReo(event.title)} →
                   </Link>
                 )}
-                <span className="text-xs uppercase tracking-widest wpf-text-muted">
+                {/* The strand name — which carnival, which set of shows this
+                    row belongs to. It used to be the faintest thing on the
+                    card, grey on cream, which made a card hard to place at a
+                    glance. Jon, on the Saturday: "JUNK PUPPET CARNIVAL --
+                    highlight it". A filled chip, so it reads as a label rather
+                    than as an afterthought. */}
+                <span
+                  className="rounded-full px-3 py-1 text-xs font-extrabold uppercase tracking-widest"
+                  style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }}
+                >
                   {teReo(strand.title)}
                 </span>
               </p>

@@ -203,15 +203,19 @@ export const DEFAULT_STRANDS: Strand[] = [
     note: 'No ticket required. Pack a picnic and bring the whānau.',
     access: 'free',
     events: [
+      // Moved to Ridgway on the morning of 19 Sep: the wind made The Green
+      // unusable and the wet weather venue became the actual one. The live
+      // listing is the stored copy in Supabase, which was edited to match;
+      // this is only the fallback, kept in step so the two cannot disagree.
       {
         time: '10:00am–2:00pm',
         title: 'Free KidsZone',
-        venue: 'green',
+        venue: 'ridgeway',
         detail:
-          'Junk games, ice cream van, roaming puppeteers & musicians all day. Wet weather venue: Ridgway School Hall.',
+          'Junk games, ice cream van, roaming puppeteers & musicians all day. MOVED because of the wind: the Carnival is at Ridgway School Hall, 120 Mornington Road — not The Green.',
       },
-      { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
-      { time: '12:00–1:00pm', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'green' },
+      { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'ridgeway' },
+      { time: '12:00–1:00pm', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'ridgeway' },
     ],
   },
   {
