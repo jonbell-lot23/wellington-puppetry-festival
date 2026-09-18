@@ -27,9 +27,12 @@ export const revalidate = 60
 //     organisations, not people: the school office and the hospital, and the
 //     hospital one is on the call sheet for a reason.
 //
-// The roster is deliberately linked, never reproduced: the assignments sheet
-// is forty volunteers' first names against jobs, and a public page is not the
-// place to reprint it.
+// The roster used to be linked but never reproduced. That changed the same day,
+// on Jon's call: /volunteers/crew/jobs now renders it, because a spreadsheet
+// nobody can read on a phone is not actually a privacy control — it just makes
+// the information useless to the people who need it while staying just as
+// public. The names shown are first names against jobs, the pages are
+// noindex, and the mobile-number rule above still stands.
 
 export const metadata: Metadata = {
   title: 'Crew info',
@@ -48,17 +51,20 @@ type Resource = {
 }
 
 const RESOURCES: Resource[] = [
-  {
-    label: 'Volunteer job assignments',
-    href: 'https://docs.google.com/spreadsheets/d/1fvC8A0W_g9YSfm6Kx5fs-Fhzngd1JSuOqjB2HKgVww4/edit?usp=sharing',
-    detail: 'Who is on what, by session. Find your name and your times here first.',
-    external: true,
-  },
+  // The two readable views come first, and the raw spreadsheets are further
+  // down under "the originals". A spreadsheet on a phone in a carpark is the
+  // problem these pages exist to solve, so they should not be the second
+  // thing someone finds.
   {
     label: 'Weekend schedule',
-    href: 'https://docs.google.com/spreadsheets/d/1qor54hKPbTDgGePcRipx6VTdHcqCNQam8vX7796dAqc/edit?usp=sharing',
-    detail: 'The full run of both days, venue by venue, including pack-in and pack-out.',
-    external: true,
+    href: '/volunteers/crew/schedule',
+    detail:
+      'Both days hour by hour, with a countdown on everything. Put your name in to see only yours.',
+  },
+  {
+    label: 'Job assignments',
+    href: '/volunteers/crew/jobs',
+    detail: 'Every shift and who is on it, by day. Same name filter.',
   },
   {
     label: 'Public programme',
@@ -74,6 +80,18 @@ const RESOURCES: Resource[] = [
     label: 'Welcome guide',
     href: '/accessibility/welcome-guide',
     detail: 'Both venues described in detail, with photos. Useful for wayfinding questions.',
+  },
+  {
+    label: 'The schedule spreadsheet',
+    href: 'https://docs.google.com/spreadsheets/d/1qor54hKPbTDgGePcRipx6VTdHcqCNQam8vX7796dAqc/edit?usp=sharing',
+    detail: 'Izzy’s original. The live copy, if you need to edit it or check something the page missed.',
+    external: true,
+  },
+  {
+    label: 'The assignments spreadsheet',
+    href: 'https://docs.google.com/spreadsheets/d/1fvC8A0W_g9YSfm6Kx5fs-Fhzngd1JSuOqjB2HKgVww4/edit?usp=sharing',
+    detail: 'Bridget’s original, same again.',
+    external: true,
   },
 ]
 
@@ -164,9 +182,9 @@ export default function CrewPage() {
             ))}
           </ul>
           <p className="mt-5 text-sm wpf-text-muted leading-relaxed">
-            The two spreadsheets are the live working copies — they change during the weekend, so
-            open them fresh rather than trusting a screenshot. Your own call times come from the
-            assignments sheet, not from this page.
+            The schedule and assignments pages copy the spreadsheets every 30 minutes and say at the
+            top how long ago that was. The spreadsheets themselves are always the final word — open
+            those if something looks wrong or you need to make a change.
           </p>
         </div>
       </section>
