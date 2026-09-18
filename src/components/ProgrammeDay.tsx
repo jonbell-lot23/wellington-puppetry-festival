@@ -5,6 +5,7 @@ import { useMemo } from 'react'
 
 import { teReo } from '@/lib/tereo'
 import NewTabHint from '@/components/NewTabHint'
+import Notice from '@/components/Notice'
 import { useNow } from '@/components/useNow'
 import { timingFor, type Timing } from '@/lib/crew-time'
 import {
@@ -216,6 +217,8 @@ export default function ProgrammeDay({
               </p>
 
               {event.detail && <p className="mt-3 leading-relaxed">{teReo(event.detail)}</p>}
+
+              {event.notice && <Notice>{event.notice}</Notice>}
 
               <p className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1">
                 {more && (

@@ -3,6 +3,7 @@ import type { Metadata } from 'next'
 import DayHeading from '@/components/DayHeading'
 import { getPageContent } from '@/app/actions'
 import NewTabHint from '@/components/NewTabHint'
+import Notice from '@/components/Notice'
 import PageHero from '@/components/PageHero'
 import { teReo } from '@/lib/tereo'
 import {
@@ -158,6 +159,7 @@ function EventRow({ strand, ev }: { strand: Strand; ev: StrandEvent }) {
           </span>
         )}
         {ev.detail && <p className="text-sm wpf-text-muted">{teReo(ev.detail)}</p>}
+        {ev.notice && <Notice>{ev.notice}</Notice>}
         {/* Jon, 11 Aug: a pink "Buy tickets" button on every row turned the
             listing into a wall of buttons and drowned out the programme
             itself. Tickets now live at the top of each event's own page,
@@ -232,6 +234,7 @@ function CardFace({ strand }: { strand: Strand }) {
         {teReo(strand.title)}
       </h3>
       <p className="leading-relaxed wpf-text-muted">{teReo(strand.blurb)}</p>
+      {strand.notice && <Notice>{strand.notice}</Notice>}
       {strand.note && (
         <p className="mt-2 leading-relaxed font-semibold" style={{ color: 'var(--wpf-ink)' }}>
           {teReo(strand.note)}

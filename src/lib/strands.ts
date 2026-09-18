@@ -41,6 +41,16 @@ export type StrandEvent = {
   note?: string
   /** One-line detail shown inline on the listing. Keep it short. */
   detail?: string
+  /**
+   * A change to this row that a reader needs to notice — a venue move on the
+   * day, usually.
+   *
+   * Separate from `detail` so it can be styled as the exception it is. It used
+   * to be shouted in capitals inside the detail text; Jon, 19 Sep: "No
+   * SHOUTING but you can underline it with pink." So it is a normal sentence
+   * wearing a pink underline, which stands out without raising its voice.
+   */
+  notice?: string
   image?: string
   /** Alt text for `image`. Falls back to the event title if left blank. */
   imageAlt?: string
@@ -94,6 +104,8 @@ export type Strand = {
   blurb: string
   /** Practical line under the blurb — "Pack a picnic", "Email us to come along". */
   note?: string
+  /** A change to the whole strand the reader needs to notice. See StrandEvent.notice. */
+  notice?: string
   access: Access
   /** Blank until tickets go live; Bridget pastes the Humanitix link herself. */
   ctaLabel?: string
@@ -211,8 +223,9 @@ export const DEFAULT_STRANDS: Strand[] = [
         time: '10:00am–2:00pm',
         title: 'Free KidsZone',
         venue: 'ridgeway',
-        detail:
-          'Junk games, ice cream van, roaming puppeteers & musicians all day. MOVED because of the wind: the Carnival is at Ridgway School Hall, 120 Mornington Road — not The Green.',
+        detail: 'Junk games, ice cream van, roaming puppeteers & musicians all day.',
+        notice:
+          'Moved because of the wind: the Carnival is at Ridgway School Hall, 120 Mornington Road — not The Green.',
       },
       { time: '10:30–11:30am', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'ridgeway' },
       { time: '12:00–1:00pm', title: 'Junk Puppet Workshop', duration: '1 hr', venue: 'ridgeway' },

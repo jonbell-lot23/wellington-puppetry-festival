@@ -212,6 +212,12 @@ export default function StrandsEditor({
                     value={strand.note ?? ''}
                     onChange={(v) => updateStrand(si, { note: v })}
                   />
+                  <TextField
+                    label="Notice — shown underlined in pink, for a change affecting this whole strand. Clear it when it no longer applies."
+                    value={strand.notice ?? ''}
+                    rows={2}
+                    onChange={(v) => updateStrand(si, { notice: v })}
+                  />
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <Field
                       label="Button label (optional)"
@@ -298,6 +304,16 @@ export default function StrandsEditor({
                         value={ev.detail ?? ''}
                         rows={2}
                         onChange={(v) => updateEvent(si, ei, { detail: v })}
+                        className="mb-2"
+                      />
+
+                      {/* Editable here so a venue move can be put up and taken
+                          down by whoever is running the day, without a deploy. */}
+                      <TextField
+                        label="Notice — shown underlined in pink. For a change on the day, like a venue move. Clear it when it no longer applies."
+                        value={ev.notice ?? ''}
+                        rows={2}
+                        onChange={(v) => updateEvent(si, ei, { notice: v })}
                         className="mb-2"
                       />
 
