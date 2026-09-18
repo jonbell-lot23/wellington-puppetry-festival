@@ -39,6 +39,14 @@ import {
 // JavaScript off, every row still shows its real clock time — the countdown is
 // an addition, never the only way to read the page.
 
+/**
+ * Timing pill styling.
+ *
+ * `later` and `past` are deliberately unfilled — only the thing happening now,
+ * and the thing about to, earn a coloured pill. Which means they must not
+ * carry the pill's horizontal padding either: with no background behind it,
+ * that padding reads as an accidental indent.
+ */
 const TIMING_STYLE: Record<Timing['status'], { bg: string; fg: string }> = {
   now: { bg: 'var(--wpf-pink)', fg: '#ffffff' },
   soon: { bg: 'var(--wpf-yellow)', fg: 'var(--wpf-ink)' },
@@ -56,12 +64,18 @@ export default function ProgrammeDay({
   const now = useNow()
 
   const listings = useMemo(() => {
-    return eventsForDay(strands, day).map(({ strand, event }) => {
+    return eventsForDay(strands, day).map(({ strand, event }, i) => {
       const { start, end } = eventTimeRange(event.time)
       return {
         strand,
         event,
-        id: `${strand.id}-${eventSlug(strand, event)}`,
+        // The position is part of the id because a slug is not unique: the
+        // Carnival runs "Junk Puppet Workshop" twice, at 10:30 and at 12:00,
+        // and both slugify identically. Without the index React sees two
+        // children with the same key — which it may quietly drop or duplicate
+        // — and the page emits the same HTML id twice, breaking the
+        // jump-to-now anchor.
+        id: `${strand.id}-${i}-${eventSlug(strand, event)}`,
         startsAt: start !== null ? festivalInstant(day, start) : null,
         endsAt: end !== null ? festivalInstant(day, end) : null,
       }
@@ -141,7 +155,9 @@ export default function ProgrammeDay({
               {timing && (
                 <p className="mt-1.5">
                   <span
-                    className="inline-block rounded-full px-3 py-1 text-sm font-extrabold"
+                    className={`inline-block rounded-full py-1 text-sm font-extrabold ${
+                      TIMING_STYLE[timing.status].bg === 'transparent' ? '' : 'px-3'
+                    }`}
                     style={{
                       backgroundColor: TIMING_STYLE[timing.status].bg,
                       color: TIMING_STYLE[timing.status].fg,
