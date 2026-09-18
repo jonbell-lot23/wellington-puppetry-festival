@@ -46,5 +46,18 @@ export default async function SiteAlert() {
   const expiresAt = c.alertUntil?.trim()
   if (expiresAt && hasPassed(expiresAt)) return null
 
-  return <SiteAlertBar text={text} detail={c.alertDetail?.trim() || undefined} expiresAt={expiresAt} />
+  // Both halves required, or there is no link: a label with no destination is
+  // just underlined text that does nothing.
+  const linkLabel = c.alertLinkText?.trim()
+  const linkHref = c.alertLinkUrl?.trim()
+  const link = linkLabel && linkHref ? { label: linkLabel, href: linkHref } : undefined
+
+  return (
+    <SiteAlertBar
+      text={text}
+      detail={c.alertDetail?.trim() || undefined}
+      expiresAt={expiresAt}
+      link={link}
+    />
+  )
 }

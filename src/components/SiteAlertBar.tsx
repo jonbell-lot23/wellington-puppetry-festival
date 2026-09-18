@@ -19,14 +19,48 @@ import { useNow } from '@/components/useNow'
 // just-expired notice is better than briefly hiding a live one that tells
 // somebody which building to walk to.
 
+type LinkSpec = { label: string; href: string }
+
+/**
+ * Renders a line, turning one phrase inside it into a link.
+ *
+ * Matched as plain text rather than stored as markup, so whoever edits the bar
+ * in /admin is writing a sentence and an address, not HTML. If the phrase is
+ * not in the line — a typo, or the wording changed — the line renders exactly
+ * as written. A missing link is a small loss; a bar that fails to render
+ * because someone mistyped is a large one.
+ */
+function AlertLine({ text, link }: { text: string; link?: LinkSpec }) {
+  const i = link ? text.indexOf(link.label) : -1
+  if (!link || i === -1) return <>{text}</>
+
+  return (
+    <>
+      {text.slice(0, i)}
+      <a
+        href={link.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="wpf-btn-focus underline underline-offset-4 decoration-2 hover:decoration-4"
+      >
+        {link.label}
+      </a>
+      <span className="wpf-visually-hidden"> (opens a map in a new tab)</span>
+      {text.slice(i + link.label.length)}
+    </>
+  )
+}
+
 export default function SiteAlertBar({
   text,
   detail,
   expiresAt,
+  link,
 }: {
   text: string
   detail?: string
   expiresAt?: string
+  link?: LinkSpec
 }) {
   const now = useNow()
 
@@ -48,10 +82,12 @@ export default function SiteAlertBar({
         id="site-alert-heading"
         className="font-extrabold text-lg md:text-2xl leading-snug max-w-3xl mx-auto"
       >
-        {text}
+        <AlertLine text={text} link={link} />
       </p>
       {detail && (
-        <p className="mt-1.5 text-base md:text-lg max-w-3xl mx-auto leading-snug">{detail}</p>
+        <p className="mt-1.5 text-base md:text-lg max-w-3xl mx-auto leading-snug">
+          <AlertLine text={detail} link={link} />
+        </p>
       )}
     </aside>
   )

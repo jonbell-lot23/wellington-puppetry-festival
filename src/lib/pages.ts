@@ -56,6 +56,12 @@ export const PAGES: PageDef[] = [
     fields: [
       F('alertText', 'Alert: main line (empty = no alert bar at all)', ''),
       F('alertDetail', 'Alert: second line', ''),
+      // A phrase inside alertText (or alertDetail) that becomes a link — an
+      // address, usually, pointing at a map. Must match the text exactly;
+      // if it does not appear, the line just renders as written and nothing
+      // breaks. Blank alertLinkUrl = no link.
+      F('alertLinkText', 'Alert: phrase to turn into a link (must appear in the text above)', ''),
+      F('alertLinkUrl', 'Alert: where that link goes', ''),
       // An ISO instant with the NZ offset, e.g. 2026-09-19T14:00:00+12:00.
       // The bar removes itself then, with no edit and no deploy — for a thing
       // with a known end, like a carnival that finishes at 2pm. Leave blank
