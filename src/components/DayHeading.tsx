@@ -59,10 +59,14 @@ export default function DayHeading({
     <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-6">
       <h2 className="text-3xl font-extrabold" style={{ color: 'var(--wpf-ink)' }}>
         {/* The heading is the way into the day's own page — one flat list of
-            everything on, which is what you want on the day itself. */}
+            everything on, which is what you want on the day itself.
+            Underlined at rest, not only on hover: a bare heading does not look
+            like a link, and on a phone there is no hover to discover it
+            with. */}
         <Link
           href={`/programme/${day.toLowerCase()}`}
-          className="wpf-btn-focus hover:underline underline-offset-4"
+          className="wpf-btn-focus underline underline-offset-8 hover:decoration-[var(--wpf-pink)]"
+          style={{ textDecorationThickness: '4px', textDecorationColor: 'var(--wpf-yellow-deep)' }}
         >
           {day}
         </Link>
