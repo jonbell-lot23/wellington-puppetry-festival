@@ -48,6 +48,18 @@ const ALT = (key: string, image: string, def: string): Field => ({
 
 export const PAGES: PageDef[] = [
   {
+    // The pink bar across the top of every page. Empty = no bar at all.
+    // Added 19 Sep 2026 for the wind call that moved the Carnival to Ridgway.
+    slug: 'site-alert',
+    path: '/',
+    title: 'Alert bar (top of every page)',
+    fields: [
+      F('alertText', 'Alert: main line (empty = no alert bar at all)', ''),
+      F('alertDetail', 'Alert: second line', ''),
+    ],
+  },
+
+  {
     slug: 'homepage',
     path: '/',
     title: 'Homepage',
