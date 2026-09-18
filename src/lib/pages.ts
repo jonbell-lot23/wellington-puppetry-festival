@@ -126,6 +126,19 @@ export const PAGES: PageDef[] = [
         'Everything happens at 93 Mornington Road, Brooklyn, at the Vogelmorn Bowling Club. “Vogelmorn Hall”, “Upstairs” and “the Green” are all part of the same place, and getting between them means steps and uneven pavement. Ridgway School Hall is a short walk further up the same road. It is wheelchair accessible, has the only wheelchair accessible toilets, and is also our wet weather venue.',
         true,
       ),
+      // The venue block, split into two numbered venues on 19 Sep 2026. It was
+      // one long paragraph holding both addresses, three sub-venues, the steps
+      // warning and the wet weather plan — true, and unreadable. Label is the
+      // bold line; body is the sentence or two under it. Venue names inside
+      // either are auto-linked to maps, so write them exactly as they appear
+      // in MAP_TERMS. Clearing venue1Label falls back to the old `venueNote`
+      // paragraph, which is kept below for exactly that reason.
+      F('venuesHeading', 'Venues box: heading', 'Where everything happens'),
+      F('venue1Label', 'Venue 1: bold line', ''),
+      F('venue1Body', 'Venue 1: detail', '', true),
+      F('venue2Label', 'Venue 2: bold line', ''),
+      F('venue2Body', 'Venue 2: detail', '', true),
+
       // Bridget, 8 Aug: unclear where visitors buy tickets while browsing the
       // programme. A banner above the listings.
       // Jon, 11 Aug: it used to point at a "Buy tickets" button on every
@@ -156,13 +169,11 @@ export const PAGES: PageDef[] = [
       ),
       F('accessLinkLabel', 'Access note: link label', 'See our shows for blind and low vision audiences'),
 
-      // Shown under a day's heading once that day is over, alongside the
-      // strike-through. The switch is on a clock (see DAYS.endsAt), so these
-      // appear by themselves at midnight — write them ahead of time in the
-      // past tense. Blank means the day just strikes through with no note.
-      F('pastNoteFriday', 'Friday: note shown once the day has been', 'The opening event happened.'),
-      F('pastNoteSaturday', 'Saturday: note shown once the day has been', 'It was a great time.'),
-      F('pastNoteSunday', 'Sunday: note shown once the day has been', ''),
+      // Jon, 19 Sep: the "pastNoteFriday/Saturday/Sunday" fields are gone. A
+      // finished day is now just its name struck through — no date, no note
+      // explaining that it happened. Any values already stored under those
+      // keys are left alone in the database; this only stops them appearing
+      // in /admin and nothing reads them.
 
       F(
         'footnote',

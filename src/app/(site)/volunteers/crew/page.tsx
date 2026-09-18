@@ -58,13 +58,12 @@ const RESOURCES: Resource[] = [
   {
     label: 'Weekend schedule',
     href: '/volunteers/crew/schedule',
-    detail:
-      'Both days hour by hour, with a countdown on everything. Put your name in to see only yours.',
+    detail: 'The whole schedule sheet at once, all three days, if you want the big picture.',
   },
   {
     label: 'Job assignments',
     href: '/volunteers/crew/jobs',
-    detail: 'Every shift and who is on it, by day. Same name filter.',
+    detail: 'The whole assignments sheet at once. Same name filter.',
   },
   {
     label: 'Public programme',
@@ -155,9 +154,34 @@ export default function CrewPage() {
 
       <section className="px-6 pt-14 pb-10 md:pt-20">
         <div className="mx-auto max-w-3xl">
-          {/* The links first, because that is what someone opens this page
-              on a phone to get to. Everything else is reference. */}
-          <h2 className="wpf-section-heading mb-6">Everything you need</h2>
+          {/* Jon, 19 Sep: "I don't see the full day pages for Saturday and
+              stuff" — they were only linked from inside the sheet pages, which
+              is two taps too deep for the thing most people want. They go
+              first, as three big buttons, above everything else. */}
+          <h2 className="wpf-section-heading mb-4">Today, and the other days</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
+            {[
+              { day: 'Friday', date: '18 Sep' },
+              { day: 'Saturday', date: '19 Sep' },
+              { day: 'Sunday', date: '20 Sep' },
+            ].map((d) => (
+              <Link
+                key={d.day}
+                href={`/volunteers/crew/${d.day.toLowerCase()}`}
+                className="wpf-btn-focus block rounded-2xl p-5 text-center border-2 hover:opacity-90 transition-opacity"
+                style={{
+                  backgroundColor: 'var(--wpf-pink)',
+                  borderColor: 'var(--wpf-pink)',
+                  color: '#ffffff',
+                }}
+              >
+                <span className="block font-extrabold text-xl">{d.day}</span>
+                <span className="block text-sm opacity-90">{d.date} · everything on</span>
+              </Link>
+            ))}
+          </div>
+
+          <h2 className="wpf-section-heading mb-6">Everything else</h2>
           <ul className="space-y-3">
             {RESOURCES.map((r) => (
               <li key={r.href}>

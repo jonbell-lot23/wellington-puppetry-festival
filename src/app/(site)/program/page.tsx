@@ -377,27 +377,69 @@ export default async function ProgramPage() {
             </p>
           )}
           {/* Bridget: the Hall / Upstairs / the Green only make sense once you
-              know they're all rooms at one address. Say so before the listings. */}
-          {c.venueNote && (
-            <p
-              className="mb-12 rounded-xl px-5 py-4 leading-relaxed border border-black/10"
+              know they're all rooms at one address. Say so before the listings.
+              Jon, 19 Sep: this was one long grey paragraph carrying two
+              addresses, three sub-venues, a warning about steps and the wet
+              weather plan — nobody was going to find their venue in it. It's
+              two numbered venues now, each with its name in bold and its own
+              short paragraph, so you can scan for the one you want. The venue
+              names still auto-link to maps via withMapLinks. */}
+          {(c.venue1Label || c.venueNote) && (
+            <div
+              className="mb-12 rounded-xl px-5 py-5 leading-relaxed border border-black/10"
               style={{ backgroundColor: 'var(--wpf-blue-soft)', color: 'var(--wpf-ink)' }}
             >
-              {withMapLinks(c.venueNote)}
-            </p>
+              {c.venuesHeading && (
+                <h2 className="font-extrabold text-lg mb-3">{c.venuesHeading}</h2>
+              )}
+
+              {c.venue1Label ? (
+                <ol className="space-y-4 list-none">
+                  {[
+                    { label: c.venue1Label, body: c.venue1Body },
+                    { label: c.venue2Label, body: c.venue2Body },
+                  ]
+                    .filter((v) => v.label?.trim())
+                    .map((v, i) => (
+                      <li key={v.label} className="flex gap-3">
+                        {/* A real number, not a bullet: "the first venue" and
+                            "the second venue" is how people say it to each
+                            other on the day. */}
+                        <span
+                          aria-hidden="true"
+                          className="shrink-0 flex items-center justify-center w-7 h-7 rounded-full font-extrabold text-sm"
+                          style={{ backgroundColor: 'var(--wpf-yellow)', color: 'var(--wpf-ink)' }}
+                        >
+                          {i + 1}
+                        </span>
+                        <span>
+                          <strong className="font-extrabold">{withMapLinks(v.label!)}</strong>
+                          {v.body?.trim() && <span className="block mt-1">{withMapLinks(v.body)}</span>}
+                        </span>
+                      </li>
+                    ))}
+                </ol>
+              ) : (
+                // The original single paragraph, kept as a fallback so an
+                // older stored value still renders if the new fields are blank.
+                <p>{withMapLinks(c.venueNote)}</p>
+              )}
+            </div>
           )}
 
           <div className="space-y-16">
             {DAYS.map(({ day, date, endsAt }) => {
               const forDay = strands.filter((s) => s.day === day)
-              if (forDay.length === 0) return null
+              // A day with nothing left to list keeps its heading: Friday's
+              // opening event was removed once it had happened, and the
+              // struck-through "Friday" is the whole section.
               return (
                 <div key={day} id={day.toLowerCase()} className="scroll-mt-24">
                   <DayHeading
                     day={day}
                     date={date}
                     endsAt={endsAt}
-                    pastNote={c[`pastNote${day}`]}
+                    onlyWhenPast={forDay.length === 0}
                   />
                   <div className="space-y-5">
                     {forDay.map((s) => (

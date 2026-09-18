@@ -5,69 +5,72 @@ import { useNow } from '@/components/useNow'
 // A day heading on the public programme that knows whether its day has been.
 //
 // Jon, 19 Sep 2026 (the Saturday): "Friday happened. So just have it say
-// Friday with a strike through and a little item that says the opening event
-// happened. The same thing should happen tonight at midnight, Saturday gets a
-// strike through and says it was a great time."
+// Friday with a strike through... The same thing should happen tonight at
+// midnight." Then, once he saw it: drop the explanatory note, strike only the
+// day name, and lose the date.
 //
-// So the flip is on a clock, not on a deploy: the day strikes itself through
-// the moment its date ends, and the note underneath appears with it. Nobody
-// has to be awake at midnight for the site to be truthful.
+// So a day that has been is exactly one thing: its name, struck through and
+// greyed. No date, no blurb. A finished day should take up less room than a
+// day that is still to come, not the same amount with an apology attached.
+//
+// The flip is on a clock, not a deploy: the day strikes itself through the
+// moment its date ends. Nobody has to be awake at midnight for the site to be
+// truthful.
 //
 // The check runs in the browser. These pages are cached, so a "has Friday
 // been?" decided at render time would be answered by whenever the page was
 // last built rather than by when it is being read. Until hydration — and for
 // anyone with JavaScript off — the heading renders plainly, which is the safe
 // direction to be wrong in: a festival that hasn't struck a day through yet
-// reads as normal, where one that struck through the wrong day reads as broken.
+// reads as normal, where one that struck the wrong day reads as broken.
 
 export default function DayHeading({
   day,
   date,
   /** ISO instant the day is over: midnight at the end of it, NZ time. */
   endsAt,
-  /** Shown once the day has been. Blank means nothing is shown. */
-  pastNote,
+  /**
+   * Render nothing until the day is over.
+   *
+   * For a day with no listings left — Friday, once the opening event was
+   * removed after it happened — the struck-through name is the whole section.
+   * Before that day ends there is nothing worth showing, so it stays away
+   * rather than leaving a bare date above empty space.
+   */
+  onlyWhenPast = false,
 }: {
   day: string
   date: string
   endsAt: string
-  pastNote?: string
+  onlyWhenPast?: boolean
 }) {
   const now = useNow()
   const past = now !== null && now >= Date.parse(endsAt)
 
-  return (
-    <>
-      <div className="flex items-baseline gap-3 mb-2">
-        <h2
-          className="text-3xl font-extrabold"
-          style={{
-            color: past ? 'rgba(59,42,23,0.45)' : 'var(--wpf-ink)',
-            textDecoration: past ? 'line-through' : undefined,
-            // Keep the rule visibly a strike and not a stray underline at
-            // small sizes, where a 1px line through bold type disappears.
-            textDecorationThickness: past ? '3px' : undefined,
-          }}
-        >
-          {day}
-        </h2>
-        <span
-          className="text-sm font-bold uppercase tracking-widest wpf-text-muted"
-          style={past ? { textDecoration: 'line-through' } : undefined}
-        >
-          {date}
-        </span>
-      </div>
+  if (onlyWhenPast && !past) return null
 
-      {past && pastNote?.trim() && (
-        <p
-          className="mb-6 inline-block rounded-full px-4 py-1.5 text-sm font-bold"
-          style={{ backgroundColor: 'var(--wpf-blue-soft)', color: 'var(--wpf-ink)' }}
-        >
-          {pastNote}
-        </p>
-      )}
-      {!(past && pastNote?.trim()) && <div className="mb-6" />}
-    </>
+  if (past) {
+    return (
+      <h2
+        className="text-3xl font-extrabold mb-6"
+        style={{
+          color: 'rgba(59,42,23,0.4)',
+          textDecoration: 'line-through',
+          // A 1px rule through bold display type all but disappears.
+          textDecorationThickness: '3px',
+        }}
+      >
+        {day}
+      </h2>
+    )
+  }
+
+  return (
+    <div className="flex items-baseline gap-3 mb-6">
+      <h2 className="text-3xl font-extrabold" style={{ color: 'var(--wpf-ink)' }}>
+        {day}
+      </h2>
+      <span className="text-sm font-bold uppercase tracking-widest wpf-text-muted">{date}</span>
+    </div>
   )
 }
