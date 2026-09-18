@@ -107,10 +107,29 @@ export type Strand = {
 // programme's day headings use to strike themselves through once the day has
 // been, without anyone deploying anything at midnight.
 export const DAYS = [
-  { day: 'Friday', date: '18 September 2026', endsAt: '2026-09-19T00:00:00+12:00' },
-  { day: 'Saturday', date: '19 September 2026', endsAt: '2026-09-20T00:00:00+12:00' },
-  { day: 'Sunday', date: '20 September 2026', endsAt: '2026-09-21T00:00:00+12:00' },
+  { day: 'Friday', date: '18 September 2026', iso: '2026-09-18', endsAt: '2026-09-19T00:00:00+12:00' },
+  { day: 'Saturday', date: '19 September 2026', iso: '2026-09-19', endsAt: '2026-09-20T00:00:00+12:00' },
+  { day: 'Sunday', date: '20 September 2026', iso: '2026-09-20', endsAt: '2026-09-21T00:00:00+12:00' },
 ] as const
+
+/**
+ * NZST offset for the festival weekend.
+ *
+ * 18-20 September 2026 sits before daylight saving begins (27 September 2026),
+ * so the whole festival is UTC+12 with no transition inside it. If this is
+ * ever reused for a festival straddling the switch, this is the line that has
+ * to become a real timezone lookup.
+ */
+const NZ_OFFSET = '+12:00'
+
+/** A day plus minutes past midnight, as an absolute instant. */
+export function festivalInstant(day: Strand['day'], minutes: number): string | null {
+  const info = DAYS.find((d) => d.day === day)
+  if (!info) return null
+  const h = String(Math.floor(minutes / 60)).padStart(2, '0')
+  const m = String(minutes % 60).padStart(2, '0')
+  return `${info.iso}T${h}:${m}:00${NZ_OFFSET}`
+}
 
 export const ACCESS_STYLE: Record<Access, { label: string; bg: string; fg: string }> = {
   invite: { label: 'By invitation', bg: 'var(--wpf-cream)', fg: 'var(--wpf-ink)' },
@@ -682,6 +701,43 @@ export function eventStartMinutes(time: string | undefined): number | null {
   else if (!mer && hour >= 1 && hour <= 8) hour += 12
 
   return hour * 60 + min
+}
+
+/**
+ * Both ends of an event's time, in minutes past midnight.
+ *
+ * Same free text as eventStartMinutes: "10:00am-2:00pm", "11:15-12.00",
+ * "10.50-11:30am", and "10:30am, 11:30am & 12:30pm" — which is three separate
+ * showings rather than a range, so only its first time is used and it gets no
+ * end. An end earlier than its start means the pm was only written once
+ * ("11:15-12.00" is not eleven hours long), so it moves to the afternoon.
+ */
+export function eventTimeRange(time: string | undefined): {
+  start: number | null
+  end: number | null
+} {
+  const start = eventStartMinutes(time)
+  if (start === null || !time) return { start: null, end: null }
+
+  // A comma or an ampersand means a list of showings, not a range.
+  if (/[,&]/.test(time)) return { start, end: null }
+
+  const m = time.match(
+    /\d{1,2}(?:[:.]\d{2})?\s*(?:am|pm)?\s*(?:-|\u2013|\u2014|to)\s*(\d{1,2})(?:[:.](\d{2}))?\s*(am|pm)?/i,
+  )
+  if (!m) return { start, end: null }
+
+  let hour = Number(m[1])
+  const min = m[2] ? Number(m[2]) : 0
+  const mer = m[3]?.toLowerCase()
+  if (hour > 23 || min > 59) return { start, end: null }
+
+  if (mer === 'pm' && hour < 12) hour += 12
+  else if (mer === 'am' && hour === 12) hour = 0
+
+  let end = hour * 60 + min
+  if (end < start && !mer) end += 720
+  return { start, end: end > start ? end : null }
 }
 
 /** Every public event on one day, in the order they happen. */

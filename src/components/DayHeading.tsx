@@ -31,25 +31,13 @@ export default function DayHeading({
   date,
   /** ISO instant the day is over: midnight at the end of it, NZ time. */
   endsAt,
-  /**
-   * Render nothing until the day is over.
-   *
-   * For a day with no listings left — Friday, once the opening event was
-   * removed after it happened — the struck-through name is the whole section.
-   * Before that day ends there is nothing worth showing, so it stays away
-   * rather than leaving a bare date above empty space.
-   */
-  onlyWhenPast = false,
 }: {
   day: string
   date: string
   endsAt: string
-  onlyWhenPast?: boolean
 }) {
   const now = useNow()
   const past = now !== null && now >= Date.parse(endsAt)
-
-  if (onlyWhenPast && !past) return null
 
   if (past) {
     return (
@@ -80,13 +68,6 @@ export default function DayHeading({
         </Link>
       </h2>
       <span className="text-sm font-bold uppercase tracking-widest wpf-text-muted">{date}</span>
-      <Link
-        href={`/programme/${day.toLowerCase()}`}
-        className="text-sm font-bold underline underline-offset-4"
-        style={{ color: 'var(--wpf-pink-deep)' }}
-      >
-        just this day →
-      </Link>
     </div>
   )
 }

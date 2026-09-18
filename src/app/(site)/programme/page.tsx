@@ -430,17 +430,15 @@ export default async function ProgramPage() {
           <div className="space-y-16">
             {DAYS.map(({ day, date, endsAt }) => {
               const forDay = strands.filter((s) => s.day === day)
-              // A day with nothing left to list keeps its heading: Friday's
-              // opening event was removed once it had happened, and the
-              // struck-through "Friday" is the whole section.
+              // Jon, 19 Sep: "Remove Friday, it's gone." A day with nothing
+              // left to list disappears entirely rather than lingering as a
+              // struck-through heading over empty space. A day that still has
+              // listings keeps them, and strikes its name through once it has
+              // been — that is Saturday, after midnight tonight.
+              if (forDay.length === 0) return null
               return (
                 <div key={day} id={day.toLowerCase()} className="scroll-mt-24">
-                  <DayHeading
-                    day={day}
-                    date={date}
-                    endsAt={endsAt}
-                    onlyWhenPast={forDay.length === 0}
-                  />
+                  <DayHeading day={day} date={date} endsAt={endsAt} />
                   <div className="space-y-5">
                     {forDay.map((s) => (
                       <StrandCard key={s.id} strand={s} />
