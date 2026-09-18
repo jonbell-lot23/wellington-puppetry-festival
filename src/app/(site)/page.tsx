@@ -118,7 +118,30 @@ export default async function HomePage() {
           >
             {teReo(c.heroTitle)}
           </h1>
-          <p className="wpf-section-kicker mt-4">{teReo(c.heroKicker)}</p>
+          {/* Kicker, in three parts so the festival can announce itself while
+              it is actually running. `heroStatus` is the live badge — filled
+              pink rather than merely coloured, because the kicker text is
+              already magenta and a colour change alone would not read as
+              "this is happening right now". Clearing the field in /admin on
+              Monday removes the badge and the line closes back up, so nobody
+              has to touch code to stop the site shouting. */}
+          <p className="wpf-section-kicker mt-4">
+            <span className="inline-flex flex-wrap items-center justify-center gap-x-2 gap-y-1">
+              <span>{teReo(c.heroKicker)}</span>
+              {c.heroStatus?.trim() && (
+                <>
+                  <span aria-hidden="true">•</span>
+                  <span
+                    className="inline-block rounded-full px-2.5 py-1"
+                    style={{ backgroundColor: 'var(--wpf-pink)', color: '#ffffff' }}
+                  >
+                    {c.heroStatus}
+                  </span>
+                </>
+              )}
+            </span>
+            {c.heroPlace?.trim() && <span className="block mt-1.5">{teReo(c.heroPlace)}</span>}
+          </p>
           <p className="mt-2 text-lg md:text-xl font-extrabold tracking-wide" style={{ color: 'var(--wpf-pink)' }}>
             {teReo(c.heroDates)}
           </p>

@@ -53,6 +53,14 @@ export const PAGES: PageDef[] = [
     title: 'Homepage',
     fields: [
       F('heroKicker', 'Hero kicker (small line above title)', 'A community festival made in Te Whanganui-a-Tara'),
+      // Split out of the kicker on 19 Sep 2026, the Saturday of the festival,
+      // so the site could say it was happening while it was happening.
+      // heroStatus is a filled pink badge beside the dates; blank hides it
+      // and the kicker reads as it always did. heroPlace is the second line.
+      // Both are plain fields on purpose: turning the badge off on Monday
+      // should be an edit in /admin, not a deploy.
+      F('heroStatus', 'Hero badge beside the dates (blank = no badge)', ''),
+      F('heroPlace', 'Hero location line (under the dates)', ''),
       F('heroTitle', 'Hero title', 'Three days of strings, shadows & wonder'),
       F('heroDates', 'Hero dates line', '18–20 SEP 2026 · TE WHANGANUI-A-TARA'),
       F(
