@@ -65,8 +65,14 @@ export default function DayHeading({
             with. */}
         <Link
           href={`/programme/${day.toLowerCase()}`}
-          className="wpf-btn-focus underline underline-offset-8 hover:decoration-[var(--wpf-pink)]"
-          style={{ textDecorationThickness: '4px', textDecorationColor: 'var(--wpf-yellow-deep)' }}
+          className="wpf-btn-focus underline underline-offset-8"
+          style={{
+            // Pink, not gold: pink is the site's action colour, and a gold
+            // rule on the cream background was too quiet to read as a link at
+            // all. Thick enough to survive under bold 3xl type.
+            textDecorationThickness: '5px',
+            textDecorationColor: 'var(--wpf-pink)',
+          }}
         >
           {day}
         </Link>
