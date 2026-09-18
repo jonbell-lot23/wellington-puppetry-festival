@@ -24,16 +24,27 @@ import SiteAlertBar from '@/components/SiteAlertBar'
 // The expiry is checked here as well as in the client component so that a
 // reader with no JavaScript stops seeing it too, within the page's revalidate
 // window rather than immediately.
+/**
+ * Has this instant passed?
+ *
+ * Outside the component on purpose: reading the clock inside a component body
+ * is impure, and React's lint rule is right to say so even on the server,
+ * where this renders once per revalidate rather than on every paint. The
+ * precise cut-off is the client component's job (see SiteAlertBar); this is
+ * the coarse one that serves readers with no JavaScript.
+ */
+function hasPassed(iso: string): boolean {
+  const until = Date.parse(iso)
+  return !Number.isNaN(until) && Date.now() >= until
+}
+
 export default async function SiteAlert() {
   const c = await getPageContent('site-alert')
   const text = c.alertText?.trim()
   if (!text) return null
 
   const expiresAt = c.alertUntil?.trim()
-  if (expiresAt) {
-    const until = Date.parse(expiresAt)
-    if (!Number.isNaN(until) && Date.now() >= until) return null
-  }
+  if (expiresAt && hasPassed(expiresAt)) return null
 
   return <SiteAlertBar text={text} detail={c.alertDetail?.trim() || undefined} expiresAt={expiresAt} />
 }
