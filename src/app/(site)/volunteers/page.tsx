@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { getPageContent } from '@/app/actions'
 import PageHero from '@/components/PageHero'
 import type { Metadata } from 'next'
@@ -36,6 +37,16 @@ export default async function VolunteersPage() {
               {form && <span className="wpf-visually-hidden"> (opens in a new tab)</span>}
             </a>
           </div>
+
+          {/* Rostered crew are told "it's on the website", so there has to be a
+              way in from here. Deliberately understated and below the sign-up
+              box — this page's job is still recruitment. */}
+          <p className="mt-8 text-center text-sm wpf-text-muted">
+            Already rostered on for the festival weekend?{' '}
+            <Link href="/volunteers/crew" className="underline underline-offset-4 font-semibold">
+              Crew info: call times, schedules and contacts
+            </Link>
+          </p>
         </div>
       </section>
     </main>
