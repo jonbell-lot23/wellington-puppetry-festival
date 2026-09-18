@@ -156,6 +156,14 @@ export const PAGES: PageDef[] = [
       ),
       F('accessLinkLabel', 'Access note: link label', 'See our shows for blind and low vision audiences'),
 
+      // Shown under a day's heading once that day is over, alongside the
+      // strike-through. The switch is on a clock (see DAYS.endsAt), so these
+      // appear by themselves at midnight — write them ahead of time in the
+      // past tense. Blank means the day just strikes through with no note.
+      F('pastNoteFriday', 'Friday: note shown once the day has been', 'The opening event happened.'),
+      F('pastNoteSaturday', 'Saturday: note shown once the day has been', 'It was a great time.'),
+      F('pastNoteSunday', 'Sunday: note shown once the day has been', ''),
+
       F(
         'footnote',
         'Footnote below the programme',

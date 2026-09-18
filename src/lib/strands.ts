@@ -102,10 +102,14 @@ export type Strand = {
   events: StrandEvent[]
 }
 
+// `endsAt` is midnight at the end of that day, NZ time (+12:00 — the festival
+// sits before daylight saving starts on 27 September 2026). It is what the
+// programme's day headings use to strike themselves through once the day has
+// been, without anyone deploying anything at midnight.
 export const DAYS = [
-  { day: 'Friday', date: '18 September 2026' },
-  { day: 'Saturday', date: '19 September 2026' },
-  { day: 'Sunday', date: '20 September 2026' },
+  { day: 'Friday', date: '18 September 2026', endsAt: '2026-09-19T00:00:00+12:00' },
+  { day: 'Saturday', date: '19 September 2026', endsAt: '2026-09-20T00:00:00+12:00' },
+  { day: 'Sunday', date: '20 September 2026', endsAt: '2026-09-21T00:00:00+12:00' },
 ] as const
 
 export const ACCESS_STYLE: Record<Access, { label: string; bg: string; fg: string }> = {

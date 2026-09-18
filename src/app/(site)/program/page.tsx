@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
+import DayHeading from '@/components/DayHeading'
 import { getPageContent } from '@/app/actions'
 import NewTabHint from '@/components/NewTabHint'
 import PageHero from '@/components/PageHero'
@@ -387,19 +388,17 @@ export default async function ProgramPage() {
           )}
 
           <div className="space-y-16">
-            {DAYS.map(({ day, date }) => {
+            {DAYS.map(({ day, date, endsAt }) => {
               const forDay = strands.filter((s) => s.day === day)
               if (forDay.length === 0) return null
               return (
                 <div key={day} id={day.toLowerCase()} className="scroll-mt-24">
-                  <div className="flex items-baseline gap-3 mb-6">
-                    <h2 className="text-3xl font-extrabold" style={{ color: 'var(--wpf-ink)' }}>
-                      {day}
-                    </h2>
-                    <span className="text-sm font-bold uppercase tracking-widest wpf-text-muted">
-                      {date}
-                    </span>
-                  </div>
+                  <DayHeading
+                    day={day}
+                    date={date}
+                    endsAt={endsAt}
+                    pastNote={c[`pastNote${day}`]}
+                  />
                   <div className="space-y-5">
                     {forDay.map((s) => (
                       <StrandCard key={s.id} strand={s} />
