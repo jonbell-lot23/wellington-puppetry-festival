@@ -56,6 +56,11 @@ export const PAGES: PageDef[] = [
     fields: [
       F('alertText', 'Alert: main line (empty = no alert bar at all)', ''),
       F('alertDetail', 'Alert: second line', ''),
+      // An ISO instant with the NZ offset, e.g. 2026-09-19T14:00:00+12:00.
+      // The bar removes itself then, with no edit and no deploy — for a thing
+      // with a known end, like a carnival that finishes at 2pm. Leave blank
+      // for a notice that should stay until someone clears alertText.
+      F('alertUntil', 'Alert: hide automatically at (e.g. 2026-09-19T14:00:00+12:00)', ''),
     ],
   },
 

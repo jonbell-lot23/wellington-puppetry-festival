@@ -1,4 +1,5 @@
 import { getPageContent } from '@/app/actions'
+import SiteAlertBar from '@/components/SiteAlertBar'
 
 // The festival-wide alert bar. Built 19 Sep 2026, on the Saturday, because the
 // wind moved the Junk Puppet Carnival to Ridgway School Hall and people were
@@ -9,39 +10,30 @@ import { getPageContent } from '@/app/actions'
 // people the Carnival is still going ahead", then "can it also indicate the
 // change of venue for the Carnival - at The Ridgeway School".
 //
-// It sits above the header on every page, and it is impossible to miss on
-// purpose: full-bleed pink, white text, large. This is the one piece of the
-// site where shouting is correct — someone reading it is standing outside in
-// the wind with a child, deciding which way to walk.
+// It sits above the header on every page and is impossible to miss on purpose.
+// This is the one part of the site where shouting is correct: whoever is
+// reading it is outside in the wind with a child, deciding which way to walk.
 //
-// Blank `alertText` hides the whole bar, so turning it off after the weekend
-// is an edit in /admin and not a deploy. Same for changing the wording when
-// the call changes.
+// Two ways to take it down, and they do different jobs:
+//
+//   alertText blank  — the bar never renders. For "that's over, thanks".
+//   alertUntil set   — the bar removes itself at that instant, with no edit
+//                      and no deploy. For a thing with a known end, like a
+//                      four-hour carnival.
+//
+// The expiry is checked here as well as in the client component so that a
+// reader with no JavaScript stops seeing it too, within the page's revalidate
+// window rather than immediately.
 export default async function SiteAlert() {
   const c = await getPageContent('site-alert')
   const text = c.alertText?.trim()
   if (!text) return null
 
-  const detail = c.alertDetail?.trim()
+  const expiresAt = c.alertUntil?.trim()
+  if (expiresAt) {
+    const until = Date.parse(expiresAt)
+    if (!Number.isNaN(until) && Date.now() >= until) return null
+  }
 
-  return (
-    <aside
-      // role="alert" would interrupt a screen reader mid-sentence on every
-      // page load. This is important but not an emergency announcement, so it
-      // is a labelled region the reader meets in the normal order instead.
-      aria-labelledby="site-alert-heading"
-      className="px-5 py-4 text-center"
-      style={{ backgroundColor: 'var(--wpf-pink)', color: '#ffffff' }}
-    >
-      <p
-        id="site-alert-heading"
-        className="font-extrabold text-lg md:text-2xl leading-snug max-w-3xl mx-auto"
-      >
-        {text}
-      </p>
-      {detail && (
-        <p className="mt-1.5 text-base md:text-lg max-w-3xl mx-auto leading-snug">{detail}</p>
-      )}
-    </aside>
-  )
+  return <SiteAlertBar text={text} detail={c.alertDetail?.trim() || undefined} expiresAt={expiresAt} />
 }
