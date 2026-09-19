@@ -780,6 +780,48 @@ export function publicEvents(strand: Strand): StrandEvent[] {
   return strand.events.filter((ev) => ev.title?.trim())
 }
 
+/**
+ * The instant a day's programme is over — the end of its last listing.
+ *
+ * Jon, 19 Sep 2026, 10pm on the Saturday: "Saturday is over. The program should
+ * tuck it away and just keep the link to saturday on the page. That way people
+ * can focus on sunday." A day used to finish at midnight, because that is when
+ * the date ends. But nobody is at a festival at 11pm wondering what else is on:
+ * the day is over when the last thing on it has finished, which on the Saturday
+ * is the Cabaret at 9:30pm.
+ *
+ * Falls back to midnight in the one case where finishing early would be a lie:
+ * a strand with nothing timed in it. The Sunday's Closing Circle has no times
+ * at all, so its day cannot be declared finished on the strength of the last
+ * *timed* event — that would tuck Sunday away in the early afternoon while the
+ * Closing Circle is still to come. Unknown means wait for midnight.
+ *
+ * `fallback` is the day's own DAYS.endsAt.
+ */
+export function dayFinishesAt(strands: Strand[], day: Strand['day'], fallback: string): string {
+  const forDay = strands.filter((s) => s.day === day)
+  if (forDay.length === 0) return fallback
+
+  let last: number | null = null
+  for (const strand of forDay) {
+    const events = publicEvents(strand)
+    if (events.length === 0) return fallback
+
+    for (const ev of events) {
+      const { start, end } = eventTimeRange(ev.time)
+      if (start === null) return fallback
+      // No parseable end — the same half-hour the day pages assume for a
+      // listing that only says when it starts.
+      last = Math.max(last ?? 0, end ?? start + 30)
+    }
+  }
+
+  // Past midnight is the fallback's job — festivalInstant has no notion of
+  // rolling over into the next date.
+  if (last === null || last >= 24 * 60) return fallback
+  return festivalInstant(day, last) ?? fallback
+}
+
 function slugify(s: string): string {
   return s
     .normalize('NFD')

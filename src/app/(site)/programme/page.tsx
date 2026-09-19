@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import type { Metadata } from 'next'
-import DayHeading from '@/components/DayHeading'
+import ProgrammeDaySection from '@/components/ProgrammeDaySection'
 import { getPageContent } from '@/app/actions'
 import NewTabHint from '@/components/NewTabHint'
 import Notice from '@/components/Notice'
@@ -10,6 +10,7 @@ import {
   ACCESS_STYLE,
   DAYS,
   VENUES,
+  dayFinishesAt,
   eventSlug,
   hasMoreInfo,
   parseStrands,
@@ -435,19 +436,22 @@ export default async function ProgramPage() {
               const forDay = strands.filter((s) => s.day === day)
               // Jon, 19 Sep: "Remove Friday, it's gone." A day with nothing
               // left to list disappears entirely rather than lingering as a
-              // struck-through heading over empty space. A day that still has
-              // listings keeps them, and strikes its name through once it has
-              // been — that is Saturday, after midnight tonight.
+              // heading over empty space — and, once its last event has
+              // finished, so does a day that still has listings. The strands
+              // stay in the database either way; this is only about what the
+              // programme shows tonight.
               if (forDay.length === 0) return null
               return (
-                <div key={day} id={day.toLowerCase()} className="scroll-mt-24">
-                  <DayHeading day={day} date={date} endsAt={endsAt} />
-                  <div className="space-y-5">
-                    {forDay.map((s) => (
-                      <StrandCard key={s.id} strand={s} />
-                    ))}
-                  </div>
-                </div>
+                <ProgrammeDaySection
+                  key={day}
+                  day={day}
+                  date={date}
+                  endsAt={dayFinishesAt(strands, day, endsAt)}
+                >
+                  {forDay.map((s) => (
+                    <StrandCard key={s.id} strand={s} />
+                  ))}
+                </ProgrammeDaySection>
               )
             })}
           </div>
