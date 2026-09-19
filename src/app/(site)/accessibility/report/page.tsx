@@ -134,17 +134,17 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
     title: 'Screen reader pass',
     status: 'open',
     body:
-      `Started, not finished. An accessibility consultant went through the site with JAWS on Windows on ${SCREEN_READER_REVIEW} and raised eighteen things, essentially none of which our automated checks had caught. The consultant re-tested on 24 August and confirmed the fixes hold, with two exceptions: the dates-above-headings fix turned out to cover only the homepage and Cabaret page while the programme rows and event pages still read the time first, and the sign-up form's error message was announced once and then gone. Both are fixed — see the changelog. Still open from the first review: the accordion rebuild and the alt text proofread, listed as their own items on this page. A pass on a phone, with VoiceOver on iOS, is still to come.`,
+      `Started, not finished. An accessibility consultant went through the site with JAWS on Windows on ${SCREEN_READER_REVIEW} and raised eighteen things, essentially none of which our automated checks had caught. The consultant re-tested on 24 August and confirmed the fixes hold, with two exceptions: the dates-above-headings fix turned out to cover only the homepage and Cabaret page while the programme rows and event pages still read the time first, and the sign-up form's error message was announced once and then gone. Both are fixed — see the changelog. The accordion rebuild is no longer outstanding, because the controls it applied to have been removed; the alt text proofread is still open and is listed as its own item on this page. A pass on a phone, with VoiceOver on iOS, is still to come.`,
     detail:
       'The largest one: skipping to the content used to land you on the page wrapper rather than on the heading, and landing on a wrapper makes JAWS read the entire page out as one unbroken string. Every page did it, on every first visit, and no checker we run reports it. That is the argument for this kind of testing in one example.',
   },
   {
     title: 'Programme cards use details and summary',
-    status: 'open',
+    status: 'pass',
     body:
-      'The cards on the programme open and close with the browser’s own show/hide control. It is keyboard operable and works with JavaScript switched off, but support for it across screen readers is uneven, and the recommendation we have had is to rebuild them as a standard accordion instead.',
+      'They no longer do. The cards used to open and close with the browser’s own show/hide control, which is keyboard operable and works with JavaScript switched off, but has uneven support across screen readers — the recommendation we had was to rebuild them as a standard accordion. On the last day of the festival the controls were removed instead, and every listing is simply open.',
     detail:
-      'What was wrong with them is fixed: the control used to be labelled with the whole card — the access chip, the title, the blurb, the practical note and the ticket link, several sentences of it — before you learned it was something you could open. It now says "See the programme" and names the day and strand. The rebuild is the remaining half and has not been done.',
+      'Recorded honestly: this was resolved rather than fixed. The rebuild was never done. The page had been hiding two strands behind a press, which stopped being worth anything once the programme was down to a single day, and a disclosure that does not exist needs no pattern — there is no control to operate, mislabel or announce. The half that was a genuine fix happened in August: the control used to take the whole card as its label — access chip, title, blurb, practical note and ticket link, several sentences of it — before you learned it was something you could open.',
   },
   {
     title: 'Te reo Māori marked up as te reo',
@@ -181,6 +181,13 @@ const CHECKS: { title: string; status: Status; body: string; detail?: string }[]
 ]
 
 const CHANGELOG: { date: string; items: string[] }[] = [
+  {
+    date: '20 September 2026',
+    items: [
+      'The programme’s show/hide controls are gone and every listing is open. They were the browser’s own details and summary control, which an accessibility consultant asked us to rebuild as a standard accordion because screen reader support for it is uneven. With the festival down to its last day there were two strands left on the page, so the controls were removed rather than rebuilt. There is now no control to operate, mislabel or announce.',
+      'Recorded as a removal, not a rebuild. If the programme ever carries three days again and needs to collapse them, the accordion is still the work, and it is still not done.',
+    ],
+  },
   {
     date: '24 August 2026',
     items: [

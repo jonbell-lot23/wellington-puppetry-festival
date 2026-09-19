@@ -30,9 +30,10 @@ export const metadata: Metadata = { title: 'Programme' }
 // to follow muddled together in a single per-day list.
 //
 // Cards and their programmes are edited together in /admin ("Programme —
-// Schedule"); defaults live in lib/strands.ts. Expanding uses native
-// <details>/<summary>, so this stays a server component with zero client JS and
-// keeps keyboard/screen-reader behaviour for free.
+// Schedule"); defaults live in lib/strands.ts. The cards used to collapse; as
+// of the last day of the festival they don't, and every listing is on the page
+// (see StrandCard). The only client JS here is the day sections, which need to
+// know the time.
 
 // Venue names that become map links wherever they turn up in the venue note.
 // The note is free text Bridget edits, so this is a scan rather than markup she
@@ -272,72 +273,49 @@ function StrandCard({ strand }: { strand: Strand }) {
     )
   }
 
-  // The whole card face used to sit inside the <summary>, which made the
-  // control's accessible name the access chip, the title, the blurb, the
-  // practical note and the ticket link all read out as one label — several
-  // sentences to get through before you learn it's a thing you can open. An
-  // accessibility consultant testing with JAWS (Aug 2026) flagged it; the
-  // summary is now just "See the programme", with the strand and day it
-  // belongs to added for anyone tabbing between controls out of context.
+  // Every listing, always open.
   //
-  // It also means the CTA is no longer a link nested inside a summary, which
-  // was a control inside a control.
+  // Jon, 20 Sep 2026 (the Sunday): "we don't need show the programme/show the
+  // workshops flippy uppy downy things. Just make them open by default with no
+  // way to close them."
   //
-  // Still <details>/<summary> rather than an ARIA accordion: it keeps this a
-  // server component with no client JS, and it works with JavaScript off.
-  // The consultant's preference is the APG accordion pattern, and that's
-  // recorded as an open item on /accessibility/report rather than quietly
-  // dropped.
+  // These were <details>/<summary> when the page carried three days and opening
+  // one strand at a time was how you kept it navigable. The festival is down to
+  // its last day: there are two strands left, and asking someone to press
+  // something before they can see what is on today is a click that buys nothing.
+  //
+  // This also retires the site's longest-standing accessibility debt rather
+  // than paying it. An accessibility consultant (Aug 2026) wanted these rebuilt
+  // as an APG accordion, because screen reader support for <details> is uneven.
+  // A disclosure that no longer exists needs no pattern: there is no control to
+  // operate, mislabel, or announce, and the listings are simply part of the
+  // page. Recorded as resolved on /accessibility/report.
   return (
     <div className={`${shell} flex flex-col`}>
       <CardFace strand={strand} />
 
-      <details className="group mt-5">
-        <summary
-          className="wpf-btn-focus inline-flex w-fit items-center gap-2 cursor-pointer font-bold text-sm uppercase tracking-widest list-none [&::-webkit-details-marker]:hidden"
-          style={{ color: 'var(--wpf-pink-deep)' }}
-        >
-          <span className="group-open:hidden">See the programme</span>
-          <span className="hidden group-open:inline">Hide the programme</span>
-          <span className="wpf-visually-hidden">{`: ${strand.day}, ${strand.title}`}</span>
-          <svg
-            width="14"
-            height="14"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="3"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="transition-transform group-open:rotate-180"
-            aria-hidden="true"
-          >
-            <path d="m6 9 6 6 6-6" />
-          </svg>
-        </summary>
+      {/* Bridget, 6 Aug: "I get confused when opening the 'Saturday Shows'
+          or Workshops because I forget I am in the 'Saturday' listing." The
+          day is only on the <h2> group heading further up the page — which,
+          now that every card is open, is further off screen than it ever was
+          behind a closed card.
 
-        {/* Bridget, 6 Aug: "I get confused when opening the 'Saturday Shows'
-            or Workshops because I forget I am in the 'Saturday' listing." The
-            day is only on the <h2> group heading further up the page, which is
-            off screen by the time a card is open.
+          A paragraph rather than a heading: it repeats the h3 above it word
+          for word, so as a heading it put a duplicate entry in the outline for
+          no gain. The listings underneath carry the headings that matter — one
+          per show or workshop. */}
+      <p
+        className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
+        style={{ color: 'var(--wpf-pink-deep)' }}
+      >
+        {strand.day}: {teReo(strand.title)}
+      </p>
 
-            A paragraph rather than a heading now: it repeats the h3 directly
-            above it word for word, so as a heading it put a duplicate entry in
-            the outline for no gain. The listings underneath carry the headings
-            that matter — one per show or workshop. */}
-        <p
-          className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
-          style={{ color: 'var(--wpf-pink-deep)' }}
-        >
-          {strand.day}: {teReo(strand.title)}
-        </p>
-
-        <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
-          {events.map((ev, i) => (
-            <EventRow key={i} strand={strand} ev={ev} />
-          ))}
-        </ul>
-      </details>
+      <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
+        {events.map((ev, i) => (
+          <EventRow key={i} strand={strand} ev={ev} />
+        ))}
+      </ul>
     </div>
   )
 }
