@@ -10,7 +10,6 @@ import {
   ACCESS_STYLE,
   DAYS,
   VENUES,
-  dayFinishesAt,
   eventSlug,
   hasMoreInfo,
   parseStrands,
@@ -30,10 +29,9 @@ export const metadata: Metadata = { title: 'Programme' }
 // to follow muddled together in a single per-day list.
 //
 // Cards and their programmes are edited together in /admin ("Programme —
-// Schedule"); defaults live in lib/strands.ts. The cards used to collapse; as
-// of the last day of the festival they don't, and every listing is on the page
-// (see StrandCard). The only client JS here is the day sections, which need to
-// know the time.
+// Schedule"); defaults live in lib/strands.ts. Expanding uses native
+// <details>/<summary>, so this is a server component with zero client JS and
+// keeps keyboard/screen-reader behaviour for free.
 
 // Venue names that become map links wherever they turn up in the venue note.
 // The note is free text Bridget edits, so this is a scan rather than markup she
@@ -273,49 +271,81 @@ function StrandCard({ strand }: { strand: Strand }) {
     )
   }
 
-  // Every listing, always open.
+  // Collapsible again, as it was for most of the festival's life.
   //
-  // Jon, 20 Sep 2026 (the Sunday): "we don't need show the programme/show the
-  // workshops flippy uppy downy things. Just make them open by default with no
-  // way to close them."
+  // Jon, 20 Sep 2026: "bring back the Saturday internal flippy uppy downy
+  // things." They came off that morning, when the page was down to one day and
+  // two strands and a press bought nothing. The page now carries all three days
+  // again — every strand of the whole weekend, one under another — so a reader
+  // who wants the Sunday workshops is otherwise scrolling past forty-odd
+  // listings to reach them. Open one at a time, and the weekend fits on a
+  // screen.
   //
-  // These were <details>/<summary> when the page carried three days and opening
-  // one strand at a time was how you kept it navigable. The festival is down to
-  // its last day: there are two strands left, and asking someone to press
-  // something before they can see what is on today is a click that buys nothing.
+  // The whole card face used to sit inside the <summary>, which made the
+  // control's accessible name the access chip, the title, the blurb, the
+  // practical note and the ticket link all read out as one label — several
+  // sentences to get through before you learn it's a thing you can open. An
+  // accessibility consultant testing with JAWS (Aug 2026) flagged it; the
+  // summary is just "See the programme", with the strand and day it belongs to
+  // added for anyone tabbing between controls out of context. It also means the
+  // CTA is not a link nested inside a summary, which was a control inside a
+  // control.
   //
-  // This also retires the site's longest-standing accessibility debt rather
-  // than paying it. An accessibility consultant (Aug 2026) wanted these rebuilt
-  // as an APG accordion, because screen reader support for <details> is uneven.
-  // A disclosure that no longer exists needs no pattern: there is no control to
-  // operate, mislabel, or announce, and the listings are simply part of the
-  // page. Recorded as resolved on /accessibility/report.
+  // Still <details>/<summary> rather than an ARIA accordion: it keeps this a
+  // server component with no client JS, and it works with JavaScript off. The
+  // consultant's preference is the APG accordion pattern, and that's an open
+  // item on /accessibility/report again now that there are disclosures here to
+  // rebuild.
   return (
     <div className={`${shell} flex flex-col`}>
       <CardFace strand={strand} />
 
-      {/* Bridget, 6 Aug: "I get confused when opening the 'Saturday Shows'
-          or Workshops because I forget I am in the 'Saturday' listing." The
-          day is only on the <h2> group heading further up the page — which,
-          now that every card is open, is further off screen than it ever was
-          behind a closed card.
+      <details className="group mt-5">
+        <summary
+          className="wpf-btn-focus inline-flex w-fit items-center gap-2 cursor-pointer font-bold text-sm uppercase tracking-widest list-none [&::-webkit-details-marker]:hidden"
+          style={{ color: 'var(--wpf-pink-deep)' }}
+        >
+          <span className="group-open:hidden">See the programme</span>
+          <span className="hidden group-open:inline">Hide the programme</span>
+          <span className="wpf-visually-hidden">{`: ${strand.day}, ${strand.title}`}</span>
+          <svg
+            width="14"
+            height="14"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="3"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="transition-transform group-open:rotate-180"
+            aria-hidden="true"
+          >
+            <path d="m6 9 6 6 6-6" />
+          </svg>
+        </summary>
 
-          A paragraph rather than a heading: it repeats the h3 above it word
-          for word, so as a heading it put a duplicate entry in the outline for
-          no gain. The listings underneath carry the headings that matter — one
-          per show or workshop. */}
-      <p
-        className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
-        style={{ color: 'var(--wpf-pink-deep)' }}
-      >
-        {strand.day}: {teReo(strand.title)}
-      </p>
+        {/* Bridget, 6 Aug: "I get confused when opening the 'Saturday Shows'
+            or Workshops because I forget I am in the 'Saturday' listing." The
+            day is only on the <h2> group heading further up the page, which is
+            off screen by the time a card is open.
 
-      <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
-        {events.map((ev, i) => (
-          <EventRow key={i} strand={strand} ev={ev} />
-        ))}
-      </ul>
+            A paragraph rather than a heading: it repeats the h3 directly above
+            it word for word, so as a heading it put a duplicate entry in the
+            outline for no gain. The listings underneath carry the headings
+            that matter — one per show or workshop. */}
+        <p
+          className="mt-5 mb-2 text-sm font-bold uppercase tracking-widest"
+          style={{ color: 'var(--wpf-pink-deep)' }}
+        >
+          {strand.day}: {teReo(strand.title)}
+        </p>
+
+        <ul className="rounded-2xl border border-black/5 divide-y divide-black/5 overflow-hidden bg-[var(--wpf-cream)]">
+          {events.map((ev, i) => (
+            <EventRow key={i} strand={strand} ev={ev} />
+          ))}
+        </ul>
+      </details>
     </div>
   )
 }
@@ -410,22 +440,20 @@ export default async function ProgramPage() {
           )}
 
           <div className="space-y-16">
-            {DAYS.map(({ day, date, endsAt }) => {
+            {/* All three days, all the time.
+                Through the festival this list thinned itself on a clock: a day
+                whose last listing had finished removed itself, so on the Sunday
+                morning the page was Sunday alone. That was right for a reader
+                standing in Brooklyn deciding where to go next. It is wrong for
+                the record the page is now — the programme is what happened, and
+                the weekend was three days long.
+                A day with no strands still renders nothing, because there is
+                nothing to render; it just isn't hidden for having been. */}
+            {DAYS.map(({ day, date }) => {
               const forDay = strands.filter((s) => s.day === day)
-              // Jon, 19 Sep: "Remove Friday, it's gone." A day with nothing
-              // left to list disappears entirely rather than lingering as a
-              // heading over empty space — and, once its last event has
-              // finished, so does a day that still has listings. The strands
-              // stay in the database either way; this is only about what the
-              // programme shows tonight.
               if (forDay.length === 0) return null
               return (
-                <ProgrammeDaySection
-                  key={day}
-                  day={day}
-                  date={date}
-                  endsAt={dayFinishesAt(strands, day, endsAt)}
-                >
+                <ProgrammeDaySection key={day} day={day} date={date}>
                   {forDay.map((s) => (
                     <StrandCard key={s.id} strand={s} />
                   ))}

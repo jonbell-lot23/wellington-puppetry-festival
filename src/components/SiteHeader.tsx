@@ -2,7 +2,6 @@
 
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import NewTabHint from '@/components/NewTabHint'
 
 // Top nav is deliberately trimmed to the handful of high-traffic pages —
 // see summary for reasoning. Team still lives in the footer only; Volunteers
@@ -36,9 +35,41 @@ const MOBILE_NAV = [{ label: 'Home', href: '/' }, ...NAV].map((item) => ({
   label: ('longLabel' in item && item.longLabel) || item.label,
 }))
 
-// The festival-wide Humanitix link. Per-show links (which deep-link to a
-// group on the same page) live on the programme listings instead.
-const TICKETS_URL = 'https://events.humanitix.com/wellingtonpuppetryfestival/tickets'
+// The festival-wide Humanitix link lived here. Nothing in the header points
+// at it now that the festival has been — see TicketsOver below. Per-show links
+// live on the programme listings, which are a record rather than an offer.
+
+/**
+ * The tickets pill, after the festival.
+ *
+ * Jon, 20 Sep 2026: "the Get tickets at the top right can be dimmed because
+ * the event is over." So the pink CTA is spent — every show has been and gone,
+ * and a bright pink button that sends someone to a Humanitix page with nothing
+ * left to sell is the site's most prominent lie.
+ *
+ * It says what it is rather than staying "Get Tickets" in grey: a dimmed
+ * control still looks like a control you could press, and "Get Tickets" that
+ * can't be pressed reads as broken rather than finished.
+ *
+ * Not a <button> and not a link — there is nothing to operate. It's a plain
+ * <span>, so it's skipped by anyone tabbing the header instead of offering
+ * them a dead stop. And it's dimmed with a muted colour, not opacity: the
+ * placeholder this button once was used white at opacity-40 and measured
+ * 1.93:1. Being over is not a reason to become unreadable.
+ */
+function TicketsOver({ className }: { className: string }) {
+  return (
+    <span
+      className={`inline-block rounded-full font-bold whitespace-nowrap wpf-text-muted ${className}`}
+      style={{
+        backgroundColor: 'color-mix(in srgb, var(--wpf-ink) 7%, transparent)',
+        border: '1px solid color-mix(in srgb, var(--wpf-ink) 15%, transparent)',
+      }}
+    >
+      Tickets closed
+    </span>
+  )
+}
 
 // This is the festival's own microsite, so its own hand-lettered-style
 // wordmark leads the header — the Birdlife Productions bird-nest logo has
@@ -105,47 +136,27 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
                 </li>
               ))}
             </ul>
-            {/* Sarah, 11 Aug: tickets are live, so this is a real link now.
-                The old placeholder was white over --wpf-pink at opacity-40,
-                which read 1.93:1 — it's the transparency that failed, not the
-                colour. Solid --wpf-pink carries white at 4.81:1, so this uses
-                the same button as every other CTA on the site rather than a
-                darker pink of its own.
+            {/* Sarah, 11 Aug: tickets are live, so this is a real link — and
+                it was, right through the festival. Now that the festival has
+                been, it's the spent pill above.
 
-                Outside the <ul>: it goes to Humanitix, not to a page of this
-                site, so it isn't one of the nav items being counted. */}
-            <a
-              href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="wpf-btn-primary wpf-btn-focus text-[14px] px-6 py-3 whitespace-nowrap"
-            >
-              Get Tickets
-              <NewTabHint />
-            </a>
+                Outside the <ul> either way: it was never one of the nav items
+                being counted, because it never went to a page of this site. */}
+            <TicketsOver className="text-[14px] px-6 py-3" />
           </nav>
 
           {/* Mobile: tickets + menu toggle.
               The pill is hidden below 380px — at a 400% zoom / 320px viewport
               it pushes the menu button off the right edge, which makes the
-              page scroll sideways. The same tickets link is repeated in the
-              mobile menu and the footer, so nothing is lost at that width.
+              page scroll sideways. The same pill is repeated in the mobile
+              menu, so nothing is lost at that width.
 
-              It hides via .wpf-hide-below-380 rather than Tailwind's `hidden`.
-              That was the original fix and it never worked: `hidden` is a
-              layered utility and .wpf-btn-primary is unlayered, so the
-              button's own `display: inline-block` won and the pill stayed put.
-              See the note on that class in globals.css. */}
+              It hides via .wpf-hide-below-380 rather than Tailwind's `hidden`,
+              because the pill sets its own `display: inline-block` and an
+              unlayered rule beats a layered utility no matter what order they
+              are written in. See the note on that class in globals.css. */}
           <div className="lg:hidden flex items-center gap-2">
-            <a
-              href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="wpf-btn-primary wpf-btn-focus wpf-hide-below-380 text-[13px] px-4 py-2.5 whitespace-nowrap"
-            >
-              Tickets
-              <NewTabHint />
-            </a>
+            <TicketsOver className="wpf-hide-below-380 text-[13px] px-4 py-2.5" />
             <button
               ref={toggleRef}
               aria-label={open ? 'Close menu' : 'Open menu'}
@@ -185,16 +196,7 @@ export default function SiteHeader({ logoAlt }: { logoAlt?: string }) {
               ))}
             </ul>
             {/* Repeated here because the header pill is hidden below 380px. */}
-            <a
-              href={TICKETS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-              className="wpf-btn-primary wpf-btn-focus self-start text-base px-6 py-2.5 mt-1"
-            >
-              Get Tickets
-              <NewTabHint />
-            </a>
+            <TicketsOver className="self-start text-base px-6 py-2.5 mt-1" />
           </nav>
         )}
       </div>
