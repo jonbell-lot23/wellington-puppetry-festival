@@ -1,0 +1,7 @@
+# Supabase CLI scratch state, written by `supabase link` and friends.
+# Machine-local and regenerated on demand — it is not project configuration.
+# Committed by accident on 13 Nov 2026; no secrets were in it (pooler-url
+# carries the username only, and the project ref already ships in the public
+# NEXT_PUBLIC_SUPABASE_URL), but it has no business being tracked.
+.temp/
+.branches/
