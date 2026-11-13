@@ -98,26 +98,41 @@ export const PAGES: PageDef[] = [
       // field at all. Tickets on this page now come from the header, which
       // uses TICKETS_URL directly. Any value already stored under this key is
       // left alone in the database — this only stops it appearing in /admin.
-      F('kidsHeading', 'Saturday kids section heading', 'Saturday is FREE for kids & whānau'),
-      F(
-        'kidsBody',
-        'Saturday kids section body',
-        'Drop in any time on Saturday for free hands-on puppet-making workshops, street performances and shows made just for little ones. No ticket required, just turn up.',
-        true,
-      ),
       // Jon, 26 Aug: 'newsletterHeading' and 'newsletterSubtext' are gone from
       // this page. The homepage newsletter section went with the v1 layout and
       // nothing here has read either field since — the same reasoning as
       // 'ticketsUrl' above. The sign-up lives on /contact, and the subtext
       // field lives on that slug now. Stored values stay in the database
       // untouched; this only stops two dead fields appearing in /admin.
-      F('cabaretSectionHeading', 'Cabaret section heading', 'An after-dark evening of puppetry'),
+      // Bridget, 13 Nov 2026: a newsletter splash on the homepage, now that
+      // the festival is behind us and the page's job is keeping people for
+      // 2027's events and the 2028 festival.
+      //
+      // 'signupHeading'/'signupBody', NOT the 'newsletterHeading' and
+      // 'newsletterSubtext' removed above: both of those still hold 2026
+      // festival wording in the database, and a stored value beats a code
+      // default, so reusing either key would have put last September's text
+      // on the page with no sign anything was wrong. Clearing both of these
+      // in /admin removes the card from the homepage.
+      F('signupHeading', 'Homepage newsletter card: heading (blank both to hide the card)', 'Stay in touch'),
       F(
-        'cabaretSectionBody',
-        'Cabaret section body',
-        'When the kids have gone to bed, the festival gets a little wilder. An adults-only evening of bold, funny and surprising puppetry cabaret, one of the highlights of the Wellington Puppetry Festival.',
+        'signupBody',
+        'Homepage newsletter card: body',
+        'Sign up to our newsletter to hear about the puppetry events and workshops we are promoting through 2027 — and we will see you all at the next festival in 2028.',
         true,
       ),
+      // Jon, 13 Nov 2026: 'kidsHeading', 'kidsBody', 'cabaretSectionHeading'
+      // and 'cabaretSectionBody' are retired. The two homepage sections they
+      // fed — Community Day and Evening Cabaret — came off the page when the
+      // festival finished; see app/(site)/page.tsx for why. Nothing reads
+      // these four keys now, and this file's own rule (see 'ticketsUrl'
+      // above) is that an editable field which changes nothing is worse than
+      // no field at all: Bridget would edit it, save, and see no difference.
+      //
+      // The stored values stay on the 'homepage' row in Supabase, untouched.
+      // This only stops the four fields appearing in /admin. Restoring the
+      // sections in 2028 is a revert, and the 2026 wording comes back with
+      // them.
       F('galleryHeading', 'Gallery section heading', 'Moments from past festivals'),
       // Bridget, 11 Aug: the festival photography was uncredited. A field
       // rather than hardcoded text, so the wording can change as photos do.
@@ -547,16 +562,9 @@ export const PAGES: PageDef[] = [
     title: 'Image alt text',
     fields: [
       ALT('logo', '/images/wpf-logo.png', 'Wellington Puppetry Festival logo'),
-      ALT(
-        'homeCommunityDay',
-        '/images/2024-puppetry-gala.jpg',
-        'Community day, kids activities',
-      ),
-      ALT(
-        'homeCabaretHero',
-        '/images/cabaret-hero.jpeg',
-        'Evening Cabaret, WPF after-dark puppetry performance',
-      ),
+      // 'homeCommunityDay' and 'homeCabaretHero' retired 13 Nov 2026 with the
+      // two homepage sections whose photos they described. Same reasoning as
+      // the four text fields on the 'homepage' slug above.
       ALT('homeGallery1', '/images/gallery/wpf-gallery-01.jpg', 'Photo from Wellington Puppetry Festival 2024'),
       ALT('homeGallery2', '/images/gallery/wpf-gallery-tom-01.jpg', 'Photo from Wellington Puppetry Festival 2024'),
       ALT('homeGallery3', '/images/gallery/wpf-gallery-045.jpg', 'Photo from Wellington Puppetry Festival 2024'),

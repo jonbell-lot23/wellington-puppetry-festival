@@ -1,16 +1,15 @@
-import Link from 'next/link'
 import Image from 'next/image'
 import { getPageContent } from '@/app/actions'
 import SponsorInvite from '@/components/SponsorInvite'
+import SignupForm from '@/components/SignupForm'
+import WaveDivider from '@/components/WaveDivider'
 import { MAIN_HEADING_ID } from '@/lib/site'
 import { teReo } from '@/lib/tereo'
 
 export const revalidate = 60
 
 const CREAM = 'var(--wpf-cream)'
-const GREEN_VIVID = 'var(--wpf-blue)'      // #5ec20f — vivid brand green
 const GREEN_DEEP = 'var(--wpf-blue-deep)'  // #2d6c0a — deep forest green
-const CABARET_BG = 'var(--wpf-maroon)'     // #271620 — same moody dark as cabaret page
 const INK = 'var(--wpf-ink)'
 
 // Sponsor list per Bridget (Jul 2026). Logos live in /public/images/logos,
@@ -56,7 +55,7 @@ export default async function HomePage() {
     <main style={{ backgroundColor: CREAM }}>
 
       {/* Hero — logo sits at top, overlapping upward into the white header */}
-      <section className="wpf-sunburst wpf-hero-scallop-mask relative z-10 px-6 pt-14 pb-16 md:pt-20 md:pb-20 lg:pb-40 overflow-x-clip" style={{ color: INK }}>
+      <section className="wpf-sunburst wpf-hero-scallop-mask relative z-10 px-6 pt-14 pb-16 md:pt-20 md:pb-24 overflow-x-clip" style={{ color: INK }}>
 
         {/* Left photo collage — lg+: full 3-photo spread in the gutter */}
         <div aria-hidden className="hidden lg:block pointer-events-none select-none">
@@ -149,92 +148,89 @@ export default async function HomePage() {
             {teReo(c.heroTagline)}
           </p>
 
-          <div className="mt-8 flex flex-col sm:flex-row items-center gap-3 sm:gap-4">
-            {/* Jon, 13 Aug: the hero's pink Get Tickets button is gone. The
-                header carries tickets on every page including this one, so
-                the hero was the second ask in the same screenful, and it
-                pulled against the thing the hero is actually for — getting
-                someone into the programme, where the tickets live in context.
-                One button, one job.
-
-                Still outline rather than pink, per Sarah's 11 Aug rule: pink
-                means "buy tickets" everywhere on the site (the header, the
-                per-event Buy tickets buttons, the cabaret CTA), so the
-                programme shouldn't borrow it just because it's alone now. */}
-            <Link
-              href="/programme"
-              className="wpf-btn-secondary wpf-btn-focus text-base px-8 py-3.5"
-            >
-              See the Programme
-            </Link>
-          </div>
         </div>
       </section>
 
-      {/* Community Day — vivid brand green. Pulled up under the hero's
-          scalloped bottom edge so the green shows through the notches. */}
-      <section className="px-6 pt-16 pb-16 md:pt-24 md:pb-24 -mt-[22px]" style={{ backgroundColor: GREEN_VIVID }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: GREEN_DEEP }}>
-            <Image
-              src="/images/2024-puppetry-gala.jpg"
-              alt={alt.homeCommunityDay}
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
-              <p className="wpf-section-kicker mb-2" style={{ color: 'var(--wpf-yellow)' }}>Community day</p>
-              <h2 className="wpf-section-heading text-3xl md:text-5xl" style={{ color: 'var(--wpf-yellow)' }}>
-                {teReo(c.kidsHeading)}
+      {/* Newsletter splash — Bridget, 13 Nov 2026. The festival is over, so
+          the one live ask left on this page is the mailing list: the events
+          and workshops through 2027, and the next festival in 2028.
+
+          A full-width band rather than a card inside the hero, which is
+          where this started and where it could not stay — the hero carries
+          `wpf-hero-scallop-mask`, and the mask clipped the bottom off the
+          card, Sign up button and all. It is the Community Day band's old
+          slot and its old trick: pulled up 22px so the green shows through
+          the scallop notches instead of the cream behind them.
+
+          Deep forest green, not the vivid brand green that band used. Deep
+          green is the site's newsletter colour — the /contact card and the
+          footer are both this green with white text — so the two sign-ups
+          read as one thing in two places. White on it is 6.44:1; the yellow
+          Sign up button carries the accent.
+
+          New field keys on purpose. 'newsletterHeading' and
+          'newsletterSubtext' already exist on this slug in the database,
+          holding 2026 festival wording left behind when the v1 homepage
+          newsletter section was removed. Reusing either key would have let
+          that stale text silently win over anything written here.
+
+          Both fields blank in /admin removes the band entirely — the same
+          escape hatch as the hero badge, no deploy needed. */}
+      {(c.signupHeading?.trim() || c.signupBody?.trim()) && (
+        <section
+          aria-labelledby="home-signup-heading"
+          className="px-6 pt-16 pb-16 md:pt-24 md:pb-24 -mt-[22px]"
+          style={{ backgroundColor: GREEN_DEEP }}
+        >
+          <div className="mx-auto max-w-2xl">
+            {c.signupHeading?.trim() && (
+              <h2
+                id="home-signup-heading"
+                className="wpf-section-heading text-center text-3xl md:text-4xl"
+                style={{ color: '#ffffff' }}
+              >
+                {teReo(c.signupHeading)}
               </h2>
-            </div>
+            )}
+            {c.signupBody?.trim() && (
+              <p
+                className="mt-4 mb-8 text-center leading-relaxed text-base md:text-lg text-balance"
+                style={{ color: '#ffffff' }}
+              >
+                {teReo(c.signupBody)}
+              </p>
+            )}
+            <SignupForm panel={false} />
           </div>
-          <p className="mt-7 text-center max-w-2xl mx-auto leading-relaxed text-base md:text-lg" style={{ color: '#ffffff' }}>
-            {teReo(c.kidsBody)}
-          </p>
-        </div>
-      </section>
+        </section>
+      )}
 
-      {/* Wave: green → cabaret maroon */}
-      <div aria-hidden className="relative w-full overflow-hidden leading-[0]" style={{ backgroundColor: GREEN_VIVID }}>
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
-          <path d="M0,55 C360,100 720,10 1080,45 C1260,65 1360,80 1440,50 L1440,100 L0,100 Z" fill={CABARET_BG} opacity="0.5" />
-          <path d="M0,68 C240,108 480,8 720,42 C960,76 1200,102 1440,62 L1440,100 L0,100 Z" fill={CABARET_BG} />
-        </svg>
-      </div>
+      {/* Wave: newsletter green → cream, so the band lands on the gallery the
+          way the cabaret section used to. */}
+      <WaveDivider fromColor={GREEN_DEEP} toColor={CREAM} />
 
-      {/* Evening Cabaret */}
-      <section className="px-6 py-16 md:py-24" style={{ backgroundColor: CABARET_BG }}>
-        <div className="mx-auto max-w-4xl">
-          <div className="relative w-full aspect-[16/10] overflow-hidden rounded-2xl shadow-md" style={{ backgroundColor: INK }}>
-            <Image
-              src="/images/cabaret-hero.jpeg"
-              alt={alt.homeCabaretHero}
-              fill
-              className="object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-            <div className="absolute inset-x-0 bottom-0 p-6 md:p-10">
-              <p className="wpf-section-kicker mb-2" style={{ color: 'var(--wpf-pink-soft)' }}>Evening Cabaret</p>
-              <h2 className="wpf-section-heading text-3xl md:text-5xl" style={{ color: '#ffffff' }}>
-                {teReo(c.cabaretSectionHeading)}
-              </h2>
-            </div>
-          </div>
-          <p className="mt-7 text-center max-w-2xl mx-auto leading-relaxed text-base md:text-lg" style={{ color: 'rgba(255,255,255,0.82)' }}>
-            {teReo(c.cabaretSectionBody)}
-          </p>
-        </div>
-      </section>
+      {/* Jon, 13 Nov 2026: the Community Day and Evening Cabaret sections
+          are gone, with the two wave dividers that separated them, and the
+          hero's "See the Programme" button with them.
 
-      {/* Wave: cabaret maroon → cream */}
-      <div aria-hidden className="relative w-full overflow-hidden leading-[0]" style={{ backgroundColor: CABARET_BG }}>
-        <svg viewBox="0 0 1440 100" preserveAspectRatio="none" className="block w-full h-[60px] md:h-[100px]">
-          <path d="M0,55 C360,100 720,10 1080,45 C1260,65 1360,80 1440,50 L1440,100 L0,100 Z" fill={CREAM} opacity="0.4" />
-          <path d="M0,65 C240,105 480,5 720,40 C960,75 1200,100 1440,60 L1440,100 L0,100 Z" fill={CREAM} />
-        </svg>
-      </div>
+          Both sections sold a thing that has already happened — a Saturday
+          carnival and a Saturday night cabaret, written in the present tense,
+          with a photo apiece and nothing to click. The festival finished in
+          September. Keeping them meant the homepage spent two full screens
+          advertising September to someone arriving in November, and the one
+          live ask on the page (the newsletter) sat above the fold being
+          scrolled past.
+
+          So the page is: what happened, stay in touch, photos, thank you.
+          The programme is still at /programme as a record and the cabaret at
+          /cabaret — the header and footer reach both. The homepage just
+          stops pushing them.
+
+          For 2028: `git show` this commit. The markup is intact in history,
+          and the wording it rendered is still on the 'homepage' row in
+          Supabase under kidsHeading / kidsBody / cabaretSectionHeading /
+          cabaretSectionBody — the fields are retired from /admin (see
+          lib/pages.ts) but nothing deleted the stored values. */}
 
       {/* Gallery */}
       <section className="px-6 pt-16 pb-10 md:pt-24 md:pb-14" style={{ backgroundColor: CREAM }}>
