@@ -367,10 +367,19 @@ export const PAGES: PageDef[] = [
       // card showed an empty bold line above the form. The home page stopped
       // having a newsletter section some time ago; this is the only place the
       // sign-up lives now, so the copy lives with it.
+      // Jon, 13 Nov 2026: reworded. It promised "programme announcements,
+      // Saturday free-activity updates and festival news" — all three of
+      // which were about a festival that finished in September, on the one
+      // form whose whole purpose is what happens next. It now says the same
+      // thing the homepage band says, shorter: the button underneath already
+      // says "Sign up", so this line does not need to.
+      //
+      // Safe to change here because nothing is stored under this key on the
+      // 'contact' row — checked, it is null, so this default is what renders.
       F(
         'newsletterSubtext',
         'Newsletter card: line above the form',
-        'Sign up for programme announcements, Saturday free-activity updates and festival news.',
+        'Puppetry events and workshops through 2027, and news of the next festival in 2028.',
       ),
     ],
   },
