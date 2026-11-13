@@ -126,7 +126,7 @@ export default async function ContactPage() {
                 {c.newsletterSubtext}
               </p>
             )}
-            <SignupForm panel={false} />
+            <SignupForm panel={false} source="contact" />
           </div>
 
         </div>

@@ -200,7 +200,7 @@ export default async function HomePage() {
                 {teReo(c.signupBody)}
               </p>
             )}
-            <SignupForm panel={false} />
+            <SignupForm panel={false} source="homepage" />
           </div>
         </section>
       )}

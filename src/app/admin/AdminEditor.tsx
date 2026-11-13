@@ -149,6 +149,22 @@ export default function AdminEditor({
               </a>
             ))}
           </nav>
+
+          {/* Not a page, so it sits under its own heading rather than being
+              smuggled into the page list. Added Nov 2026 with the sign-up
+              form's first working day — before that there was nothing to
+              link to, because nothing was being kept. */}
+          <p className="text-[#8a7764] text-xs uppercase tracking-wide mt-6 mb-3 font-medium">
+            Mailing list
+          </p>
+          <nav className="flex flex-col gap-1">
+            <a
+              href="/admin/signups"
+              className="text-sm px-3 py-2 rounded transition-colors text-[#5c4a38] hover:bg-[#fbf6e9]"
+            >
+              Newsletter sign-ups
+            </a>
+          </nav>
         </aside>
 
         {/* Editor + preview split */}
